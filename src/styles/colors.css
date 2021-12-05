@@ -1,0 +1,44 @@
+:root {
+  --black: #0a0b0b;
+  --white: #fafcff;
+
+  --text: var(--black);
+  --background: var(--white);
+
+  /** Accents. */
+
+  --accent: #0070f3;
+  --accent-ts: #4a96ee;
+  --accent-rust: #ce5542;
+  --accent-fp: #ee2e31;
+  --accent-fe: #09c372;
+
+  /** Contrasts. */
+
+  --contrast-100: #232323;
+  --contrast-200: #3b3c3c;
+  --contrast-300: #545454;
+  --contrast-400: #6c6d6d;
+  --contrast-500: #858585;
+  --contrast-600: #9d9d9d;
+  --contrast-700: #b6b6b6;
+  --contrast-800: #cecece;
+  --contrast-850: #d0d7de;
+  --contrast-900: #e7e7e7;
+
+  /** Selection.  */
+
+  --selection-color: var(--white);
+  --selection-background: var(--accent);
+
+  /** Common links. */
+
+  --link: var(--black);
+  --link-hover: var(--accent);
+
+  /** Cards. */
+
+  --card-color: var(--black);
+  --card-border: var(--contrast-900);
+  --card-hover: var(--accent);
+}

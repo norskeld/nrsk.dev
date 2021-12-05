@@ -1,0 +1,12 @@
+.date {
+  display: block;
+  color: var(--contrast-600);
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 560px) {
+  .date {
+    text-align: left;
+  }
+}

@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  padding: 6rem 1.5rem;
+}
+
+@media screen and (min-width: 560px) {
+  .wrapper {
+    padding: 6rem 4rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    padding: 6rem 0;
+  }
+}

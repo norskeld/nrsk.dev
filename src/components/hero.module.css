@@ -1,0 +1,35 @@
+.catch {
+  padding-top: 4em;
+  text-align: center;
+}
+
+.articles {
+  padding-top: 3rem;
+  opacity: 1;
+  text-align: center;
+}
+
+.articles p {
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .catch {
+    padding-top: 6rem;
+    text-align: left;
+  }
+
+  .articles {
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .catch {
+    padding-top: 8rem;
+  }
+
+  .articles {
+    padding-top: 6rem;
+  }
+}
