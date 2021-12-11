@@ -4,7 +4,7 @@ const ContentSecurityPolicy = `
   child-src *.youtube.com *.youtube-nocookie.com;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src 'none';
+  media-src 'self';
   connect-src *;
   font-src 'self';
 `
@@ -33,10 +33,6 @@ const headers = [
   {
     key: 'Strict-Transport-Security',
     value: 'max-age=31536000; includeSubDomains; preload'
-  },
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()'
   }
 ]
 
@@ -46,11 +42,7 @@ export default {
   async headers() {
     return [
       {
-        source: '/',
-        headers
-      },
-      {
-        source: '/:path*',
+        source: '/(.*)',
         headers
       }
     ]
