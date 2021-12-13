@@ -7,6 +7,7 @@ Personal website &amp; blog.
 - [x] Built with **[Next.js]** + **TypeScript**
 - [x] Syntax highlighting with **[Shiki.js]** + [custom theme].
 - [x] Markdown with YAML frontmatter.
+- [x] **[Open Graph]** support.
 
 ## Backlog
 
@@ -16,7 +17,6 @@ Personal website &amp; blog.
 - [ ] Add dark theme support.
 - [ ] Add page transitions via **[Framer Motion]**.
 - [ ] Use **[vanilla-extract]** for styling.
-- [ ] Use **[OpenGraph]**.
 
 ## License
 
@@ -27,5 +27,5 @@ Personal website &amp; blog.
 [next.js]: https://nextjs.org/
 [shiki.js]: https://github.com/shikijs/shiki
 [custom theme]: src/syntax/norskeld.json
-[opengraph]: https://ogp.me/
+[open graph]: https://ogp.me/
 [framer motion]: https://www.framer.com/motion/
