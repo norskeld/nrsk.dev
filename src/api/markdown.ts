@@ -14,7 +14,7 @@ export async function processMarkdown(input: string) {
     html: true,
     linkify: true,
     highlight(code, lang) {
-      return syntax.codeToHtml(code, lang)
+      return syntax.codeToHtml(code, { lang })
     }
   }).use(anchor, { permalink, slugify })
 
@@ -38,7 +38,7 @@ async function loadSyntaxTheme(theme: string) {
   }
 }
 
-/** Slugifies a given string. Almost certain i doesn't work with Unicode, but I don't care. */
+/** Slugifies a given string. It doesn't work with Unicode. */
 function slugify(string: string) {
   return string
     .toLowerCase()
