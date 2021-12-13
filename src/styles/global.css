@@ -11,7 +11,7 @@ html {
 
 body {
   min-height: 100vh;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--text);
 }
 
@@ -95,6 +95,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 2rem 0 1.5rem;
+  margin: 2rem 0 1rem;
   font-weight: bolder;
 }

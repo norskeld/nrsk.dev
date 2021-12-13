@@ -41,13 +41,12 @@
 
 .excerpt {
   margin: 0;
-  font-size: 1.25rem;
   line-height: 1.5;
 }
 
 .date {
   display: inline-block;
   padding-bottom: 1rem;
-  color: #d0d7de;
+  color: var(--contrast-400);
   font-size: 1.15rem;
 }

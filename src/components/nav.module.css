@@ -46,6 +46,8 @@
 
 .divider {
   color: var(--contrast-800);
+  pointer-events: none;
+  user-select: none;
 }
 
 .link:hover {
