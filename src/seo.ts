@@ -27,7 +27,7 @@ export const Seo: DefaultSeoProps = {
     ]
   },
   twitter: {
-    cardType: 'summary_large_site',
+    cardType: 'summary_large_image',
     site: '@norskeld',
     handle: '@norskeld'
   },
