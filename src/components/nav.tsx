@@ -37,10 +37,6 @@ export default function Nav() {
       </NavItem>
 
       <NavItem className={styles.links}>
-        <NavLink href="/assets/CV.pdf">CV</NavLink>
-
-        <NavDivider />
-
         <NavLink external blank href="https://hypnosense.bandcamp.com">
           Music
         </NavLink>
