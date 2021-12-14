@@ -7,24 +7,25 @@
 
   /** Accents. */
 
-  --accent: #0070f3;
-  --accent-ts: #4a96ee;
-  --accent-rust: #ce5542;
-  --accent-fp: #ee2e31;
-  --accent-fe: #09c372;
+  --accent-base: 0, 112, 243;
+
+  --accent: rgba(var(--accent-base), 1);
 
   /** Contrasts. */
 
-  --contrast-100: #232323;
-  --contrast-200: #3b3c3c;
-  --contrast-300: #545454;
-  --contrast-400: #6c6d6d;
-  --contrast-500: #858585;
-  --contrast-600: #9d9d9d;
-  --contrast-700: #b6b6b6;
-  --contrast-800: #cecece;
-  --contrast-850: #d0d7de;
-  --contrast-900: #e7e7e7;
+  --contrast-base: 212, 10%;
+
+  --contrast-100: hsl(var(--contrast-base), 14%);
+  --contrast-200: hsl(var(--contrast-base), 23%);
+  --contrast-300: hsl(var(--contrast-base), 33%);
+  --contrast-400: hsl(var(--contrast-base), 43%);
+  --contrast-500: hsl(var(--contrast-base), 52%);
+  --contrast-600: hsl(var(--contrast-base), 62%);
+  --contrast-700: hsl(var(--contrast-base), 71%);
+  --contrast-800: hsl(var(--contrast-base), 81%);
+  --contrast-850: hsl(var(--contrast-base), 84%);
+  --contrast-900: hsl(var(--contrast-base), 91%);
+  --contrast-950: hsl(var(--contrast-base), 94%);
 
   /** Selection.  */
 

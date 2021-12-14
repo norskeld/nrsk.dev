@@ -1,3 +1,15 @@
 .back {
   margin: 3rem 0 0;
 }
+
+.back a {
+  padding-bottom: 0.05rem;
+  border-bottom: 2px solid rgba(var(--accent-base), 0.125);
+  color: rgba(var(--accent-base), 0.815);
+}
+
+.back a:focus,
+.back a:hover {
+  color: var(--link-hover);
+  border-color: var(--link-hover);
+}
