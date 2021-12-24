@@ -2,7 +2,7 @@
 /*
 
 # Except: content and source directories.
-!posts
+!blog
 !public
 !src
 
