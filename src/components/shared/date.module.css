@@ -1,0 +1,5 @@
+.date {
+  display: block;
+  color: var(--contrast-400);
+  font-size: 1.15rem;
+}

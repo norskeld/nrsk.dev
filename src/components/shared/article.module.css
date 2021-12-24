@@ -1,0 +1,39 @@
+.article {
+  color: inherit;
+  width: 100%;
+  padding-bottom: 2rem;
+  text-align: left;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.header {
+  margin-bottom: 0.5rem;
+}
+
+.heading {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.heading a {
+  padding-bottom: 0.1rem;
+  border-bottom: 2px solid var(--contrast-900);
+}
+
+.heading a:focus,
+.heading a:hover {
+  color: var(--link-hover);
+  border-color: var(--link-hover);
+}
+
+.excerpt {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.date {
+  display: inline-block;
+  color: var(--contrast-400);
+  font-size: 1rem;
+}

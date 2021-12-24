@@ -1,20 +1,30 @@
-import { readFile } from 'fs/promises'
 import { join } from 'path'
 
+import { getHighlighter, loadTheme, renderToHtml } from 'shiki'
 import anchor from 'markdown-it-anchor'
 import markdown from 'markdown-it'
-import * as shiki from 'shiki'
 
-export async function processMarkdown(input: string) {
-  const theme = await loadSyntaxTheme('norskeld')
-  const syntax = await shiki.getHighlighter({ theme })
+export async function processMarkdown(input: string, theme: string) {
   const permalink = anchor.permalink.ariaHidden({ placement: 'before' })
+  const highlighter = await resolveCustomHighlighter(theme)
 
   const parser = markdown('default', {
     html: true,
     linkify: true,
-    highlight(code, lang) {
-      return syntax.codeToHtml(code, { lang })
+    typographer: true,
+
+    highlight(code, langId) {
+      const tokens = highlighter.codeToThemedTokens(code, langId)
+      const fg = highlighter.getForegroundColor(theme ?? 'nord')
+      const bg = highlighter.getBackgroundColor(theme ?? 'nord')
+
+      const html = renderToHtml(tokens, {
+        langId,
+        fg,
+        bg
+      })
+
+      return html
     }
   }).use(anchor, { permalink, slugify })
 
@@ -23,22 +33,19 @@ export async function processMarkdown(input: string) {
 
 /**
  * Loads a custom syntax theme (any Visual Studio Code theme in JSON format will do), or fallbacks
- * to the built-in `Nord`.
+ * to the built-in `Nord`, and resolves to a highlighter.
  */
-async function loadSyntaxTheme(theme: string) {
+async function resolveCustomHighlighter(theme: string) {
   const path = join(process.cwd(), 'src', 'syntax', `${theme}.json`)
 
   try {
-    const contents = await readFile(path, { encoding: 'utf8' })
-    const theme = JSON.parse(contents)
-
-    return theme
+    return await getHighlighter({ theme: await loadTheme(path) })
   } catch {
-    return 'nord'
+    return await getHighlighter({ theme: 'nord' })
   }
 }
 
-/** Slugifies a given string. It doesn't work with Unicode. */
+/** Slugifies a given string. **It doesn't work with Unicode**. */
 function slugify(string: string) {
   return string
     .toLowerCase()

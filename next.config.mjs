@@ -1,6 +1,11 @@
+const scriptSrc =
+  process.env.NODE_ENV === 'development'
+    ? `'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com localhost:*`
+    : `'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com`
+
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com;
+  script-src ${scriptSrc};
   child-src *.youtube.com *.youtube-nocookie.com;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;

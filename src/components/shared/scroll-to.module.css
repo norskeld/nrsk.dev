@@ -1,0 +1,5 @@
+.link {
+  padding-bottom: 0.05rem;
+  border-bottom: 2px solid rgba(var(--accent-base), 0.125);
+  color: rgba(var(--accent-base), 0.9);
+}

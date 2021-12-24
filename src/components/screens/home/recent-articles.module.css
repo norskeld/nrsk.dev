@@ -1,0 +1,13 @@
+.section {
+  padding-top: 2rem;
+}
+
+.articles {
+  padding-top: 1.5rem;
+}
+
+@media screen and (min-width: 560px) {
+  .section {
+    padding-top: 5rem;
+  }
+}
