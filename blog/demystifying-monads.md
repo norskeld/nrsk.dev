@@ -9,7 +9,7 @@ In this article we're going to find out, without diving into tangled mathematica
 
 Googling _"what a monad is"_ may yield [this answer on StackOverflow], which explains, in exquisitely painful mathematical jargon, what a monad in fact is. But, no worries! Understanding monads doesn't actually require you to learn the nuances of [category theory] or [_F_-algebra]. I rather suggest that the concept of monads can be distilled into a clearer single sentence:
 
-> A monad is a control abstraction that defines a composition of effectful functions.
+> A monad is a control abstraction that defines the composition of effectful functions.
 
 Sounds way better than _"A monad is just a monoid in the category of endofunctors"_, isn't it?
 
@@ -17,11 +17,11 @@ Now, let's unpack.
 
 ## Control abstractions
 
-In the practice of computer programming, _control logic_ refers to program code that defines the infrastructure needed to support a particular behavior. Broadly speaking, control logic is the cruft and/or boilerplate required to execute the code we're actually interested in writing. Control logic includes such mundane patterns as:
+In the practice of computer programming, _control logic_ refers to program code that defines the infrastructure needed to support a particular behavior. Broadly speaking, the control logic is the cruft and boilerplate required to execute the code we're actually interested in writing. Control logic includes such mundane patterns as:
 
 - Error propagation
 - Iteration
-- Stack manipualation
+- Stack manipulation
 - Virtual dispatch
 
 A common example of control logic is the classic error propagation routine:
@@ -46,9 +46,9 @@ A _control abstraction_ provides a way to separate a control structure from the 
 - **Function invocation**, for stack manipulation
 - **Memory management**
 
-The first two (exceptions and objects) are commonplace in languages that prefer or enforce the object-oriented paradigm. Function invocation is much more fundamental and is present in almost every language, excepting some of the more limited assembly languages.
+The first two (exceptions and objects) are commonplace in languages that prefer or enforce the object-oriented paradigm. Function invocation is much more fundamental and is present in almost every language, except some of the more limited assembly languages.
 
-The presence of many control abstractions is one of, if not _the_, defining feature of high level languages. High level systems languages like Rust provide destructors, automatic resource management, and smart pointers. Using these control abstractions certainly results in less, more interesting code than if the control logic was to be entangled with the more unique parts of the program.
+The presence of many control abstractions is one of, if not _the_, defining feature of high-level languages. High-level systems languages like Rust provide destructors, automatic resource management, and smart pointers. Using these control abstractions certainly results in less, more interesting code than if the control logic was to be entangled with the more unique parts of the program.
 
 ## Effectful functions
 
@@ -62,11 +62,11 @@ The term _effect_ can mean many things in a programming context, but we use it h
 - Synchronizing in a multithreaded environment
 - Reading or modifying global variables
 
-An effectful function, therefore, is a function which produces or consumes at least one effect. In most languages, any function can be an effectful function, but some mainstream languages restrict some effects to specially decorated functions. For example, [Java has checked exceptions] which must be opted into with a function `throws` clause, a widely criticized form of effect.
+An effectful function, therefore, is a function that produces or consumes at least one effect. In most languages, any function can be an effectful function, but some mainstream languages restrict some effects to specially decorated functions. For example, [Java has checked exceptions] that must be opted into with a function `throws` clause, a widely criticized form of effect.
 
 ## Function composition
 
-Function composition is a way to sequence functions by feeding the output of one function into the input of another function. You may actually remember the mathematical definition of function composition from school:
+Function composition is a way to sequence functions by feeding the output of one function into the input of another one. You may actually remember the mathematical definition of function composition from school:
 
 ```
 (f ∘ g)(x) = f(g(x))
@@ -78,20 +78,20 @@ And this is where monads enter the picture.
 
 ## Monads
 
-A monad, fundamentally, defines how functions are composed in the presence of an associated effect. A monad is made up of two operators, often called `unit` and `bind`, and often given in [Haskell syntax] like the following, given a monad `m`.
+A monad fundamentally defines how functions are composed in the presence of an associated effect. A monad consists of two operators, often called `unit` and `bind`, and often given in [Haskell syntax] like the following, given a monad `m`.
 
 ```haskell
 unit :: a -> m a
 bind :: (a -> m b) -> (m a -> m b)
 ```
 
-For those unfamiliar with Haskell syntax, the type ` t1 -> t2` is a function type, where `t1` is an argument and `t2` is a return type. And, the construction `m t1` basically refers to the type `t1` combined with the effect `m`.
+For those unfamiliar with Haskell syntax, the type ` t1 -> t2` is a function type, where `t1` is an argument and `t2` is a return type. And, the construction `m t1` refers to the type `t1` combined with the effect `m`.
 
 The `unit` operator takes a plain value and produces that same value, but within the associated effect. And, importantly, the `bind` operator takes an effectful function and produces an equivalent effectful function _that accepts the associated effect as an argument_. With `bind`, one can compose two effectful functions by `f` and `g` by simply using plain function composition on `bind f` and `g`.
 
 ### But what is `bind`, exactly?
 
-Monadic bind has several well-known implementations for specific effects. For lists (yes, [list is a monad]), streams, and iterators, `bind` is actually better known as `flatMap`; and for optionals and promises/futures it is better known as `andThen` or `then`. Often, `bind` implementations in object oriented languages will be defined as instance methods of the class that represents the associated effect.
+Monadic bind has several well-known implementations for specific effects. For lists (yes, [list is a monad]), streams, and iterators, `bind` is better known as `flatMap`; and for optionals and promises/futures it is better known as `andThen` or `then`. Often, `bind` implementations in object oriented languages will be defined as instance methods of the class that represents the associated effect.
 
 The `bind` function can be seen in two complementary ways:
 
@@ -110,7 +110,7 @@ But, monads only deal with one effect at a time. How does one compose functions 
 
 Consider an iterator. An iterator follows the rules of the list monad, because you can (in principle) collect the elements of an iterator into a list. But what if your iterator doesn't yield values directly, but instead yields a value in an effect?..
 
-In most programming languages, there is no way to use regular iteration to perform some effect. Instead, there are separate constructs in libraries for [fallible iterators] and [asynchronous streams]. As more and more effects are added into languages as first class features, the problem [only gets worse].
+In most programming languages, there is no way to use regular iteration to perform some effect. Instead, there are separate constructs in libraries for [fallible iterators] and [asynchronous streams]. As more and more effects are added into languages as first-class features, the problem [only gets worse].
 
 Fortunately, there is a way to unify these disparate interfaces and define a way to compose one effect with another... Up next time, the _monad transformer_!
 
