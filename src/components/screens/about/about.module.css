@@ -1,0 +1,33 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 50vh;
+}
+
+@media screen and (min-width: 640px) {
+  .about {
+    flex-direction: row;
+  }
+}
+
+.description {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.description p {
+  margin: 1.25em 0;
+  font-size: 1.25rem;
+}
+
+.description p:first-child {
+  margin: 0 0 1.25rem;
+}
+
+@media screen and (min-width: 640px) {
+  .description {
+    width: 50%;
+    padding: 0 2rem;
+  }
+}
