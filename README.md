@@ -11,7 +11,7 @@ Personal website &amp; blog.
 
 ## Backlog
 
-- [ ] Clean up and organize components.
+- [x] Clean up and organize components.
 - [ ] Implement [basic a11y best practices].
 - [ ] Add taxonomies (e.g. tags) and archive.
 - [ ] Add dark theme support.
