@@ -7,9 +7,9 @@ import { Common } from '@/seo.config'
 
 import { ArticleContent, ArticleFooter } from '@/components/screens/blog'
 
+import Container from '@/components/shared/container'
 import ScrollTo from '@/components/shared/scroll-to'
 import Heading from '@/components/shared/heading'
-import Layout from '@/components/shared/layout'
 import Date from '@/components/shared/date'
 
 interface Props {
@@ -24,7 +24,7 @@ export default function ({ post }: Props) {
   const url = Common.host + asPath
 
   return (
-    <Layout>
+    <Container>
       <NextSeo
         title={title}
         canonical={url}
@@ -52,7 +52,7 @@ export default function ({ post }: Props) {
           Scroll to top &uarr;
         </ScrollTo>
       </ArticleFooter>
-    </Layout>
+    </Container>
   )
 }
 
