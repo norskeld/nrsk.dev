@@ -37,7 +37,9 @@ export function Nav() {
 export function NavBrand({ children }: NavBrandProps) {
   return (
     <div className={styles.brand}>
-      <a href="/">{children}</a>
+      <AppLink href="/">
+        <a>{children}</a>
+      </AppLink>
     </div>
   )
 }
