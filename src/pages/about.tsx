@@ -5,8 +5,8 @@ import { Common } from '@/seo.config'
 
 import { AboutSection, AboutDescription, ProfilePicture } from '@/components/screens/about'
 
+import Container from '@/components/shared/container'
 import Heading from '@/components/shared/heading'
-import Layout from '@/components/shared/layout'
 import AppLink from '@/components/shared/link'
 
 /** The about page. */
@@ -40,7 +40,7 @@ export default function () {
   )
 
   return (
-    <Layout>
+    <Container>
       <NextSeo
         title={seo.title}
         canonical={seo.url}
@@ -69,6 +69,6 @@ export default function () {
           </p>
         </AboutDescription>
       </AboutSection>
-    </Layout>
+    </Container>
   )
 }
