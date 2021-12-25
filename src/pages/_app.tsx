@@ -1,3 +1,5 @@
+import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 
@@ -9,11 +11,16 @@ import '@/styles/colors.css'
 import '@/styles/reset.css'
 import '@/styles/global.css'
 
-export default function VmApp({ Component, pageProps }: AppProps) {
+export default function CustomApp({ Component, pageProps }: AppProps) {
+  const { asPath } = useRouter()
+
   return (
     <>
       <DefaultSeo {...Seo} />
-      <Component {...pageProps} />
+
+      <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
+        <Component key={asPath} {...pageProps} />
+      </AnimatePresence>
     </>
   )
 }

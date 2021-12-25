@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-export default class VmDocument extends Document {
+export default class CustomDocument extends Document {
   render() {
     return (
       <Html lang="en" prefix="og: http://ogp.me/ns#">

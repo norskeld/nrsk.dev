@@ -1,6 +1,5 @@
 import Link, { LinkProps } from 'next/link'
 import cx from 'classnames'
-import React from 'react'
 
 import styles from './link.module.css'
 
@@ -21,7 +20,7 @@ interface ExternalLinkProps {
 }
 
 function isExternalLink(href: unknown, external?: boolean) {
-  return external && typeof href === 'string'
+  return Boolean(external) && typeof href === 'string'
 }
 
 export function ExternalLink({ href, blank, className, title, children }: ExternalLinkProps) {
@@ -43,20 +42,14 @@ export function AppLink({
   children,
   ...rest
 }: AppLinkProps) {
-  return (
-    <React.Fragment>
-      {isExternalLink(href, external) && (
-        <ExternalLink className={className} blank={blank} href={href as string} title={title}>
-          {children}
-        </ExternalLink>
-      )}
-
-      {!isExternalLink(href, external) && (
-        <Link href={href} {...rest}>
-          {children}
-        </Link>
-      )}
-    </React.Fragment>
+  return isExternalLink(href, external) ? (
+    <ExternalLink className={className} blank={blank} href={href as string} title={title}>
+      {children}
+    </ExternalLink>
+  ) : (
+    <Link href={href} {...rest}>
+      {children}
+    </Link>
   )
 }
 
