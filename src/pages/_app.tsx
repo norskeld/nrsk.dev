@@ -1,7 +1,9 @@
+import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 
+import { smoothScrollPolyfill } from '@/utils/polyfills'
 import { Seo } from '@/seo.config'
 
 import '@/styles/constraints.css'
@@ -10,24 +12,25 @@ import '@/styles/colors.css'
 import '@/styles/reset.css'
 import '@/styles/global.css'
 
-import ContentMotion from '@/components/transitions/content'
-import Wrapper from '@/components/shared/wrapper'
-import Footer from '@/components/shared/footer'
-import Nav from '@/components/shared/nav'
+smoothScrollPolyfill()
 
 export default function CustomApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter()
 
+  const onExitComplete = () =>
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+
   return (
-    <Wrapper>
+    <>
       <DefaultSeo {...Seo} />
-      <Nav />
 
-      <ContentMotion location={asPath}>
+      <AnimatePresence exitBeforeEnter initial={false} onExitComplete={onExitComplete}>
         <Component key={asPath} {...pageProps} />
-      </ContentMotion>
-
-      <Footer />
-    </Wrapper>
+      </AnimatePresence>
+    </>
   )
 }

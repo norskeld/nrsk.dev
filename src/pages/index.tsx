@@ -6,6 +6,7 @@ import { AboutSection, RecentArticlesSection, RecentArticles } from '@/component
 
 import Heading from '@/components/shared/heading'
 import Accent from '@/components/shared/accent'
+import Layout from '@/layouts/base'
 
 interface Props {
   posts: Array<Post>
@@ -14,7 +15,7 @@ interface Props {
 /** The home page. */
 export default function ({ posts }: Props) {
   return (
-    <>
+    <Layout>
       <AboutSection>
         <Heading level={1} size="xxl">
           Hi. I'm <Accent color="var(--accent)">Vlad</Accent>.
@@ -36,7 +37,7 @@ export default function ({ posts }: Props) {
 
         <RecentArticles posts={posts} />
       </RecentArticlesSection>
-    </>
+    </Layout>
   )
 }
 

@@ -10,6 +10,7 @@ import { ArticleContent, ArticleFooter } from '@/components/screens/blog'
 import ScrollTo from '@/components/shared/scroll-to'
 import Heading from '@/components/shared/heading'
 import Date from '@/components/shared/date'
+import Layout from '@/layouts/base'
 
 interface Props {
   post: Post
@@ -23,7 +24,7 @@ export default function ({ post }: Props) {
   const url = Common.host + asPath
 
   return (
-    <>
+    <Layout>
       <NextSeo
         title={title}
         canonical={url}
@@ -47,11 +48,11 @@ export default function ({ post }: Props) {
       <ArticleContent html={content} />
 
       <ArticleFooter>
-        <ScrollTo top={0} left={0}>
+        <ScrollTo top={0} left={0} behavior="smooth">
           Scroll to top &uarr;
         </ScrollTo>
       </ArticleFooter>
-    </>
+    </Layout>
   )
 }
 

@@ -48,6 +48,7 @@ const contentCss = css`
   & .shiki {
     border-radius: 0;
     margin: 0 -1.5rem;
+    font-size: 1rem;
   }
 
   & .shiki code {
@@ -87,7 +88,7 @@ const contentCss = css`
 
   & q,
   & blockquote {
-    color: var(--contrast-500);
+    color: var(--contrast-400);
     padding: 0 1rem;
     margin: 0 0 1rem;
     border-left: 0.4rem solid var(--contrast-900);
@@ -98,7 +99,7 @@ const contentCss = css`
   & a {
     padding-bottom: 0.05rem;
     border-bottom: 2px solid rgba(var(--accent-base), 0.125);
-    color: rgba(var(--accent-base), 1);
+    color: var(--accent);
   }
 
   & a:focus,
