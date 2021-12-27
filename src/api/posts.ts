@@ -3,7 +3,7 @@ import { join } from 'path'
 
 import matter from 'gray-matter'
 
-import { blogDir, blogSyntaxTheme } from '@/content.config'
+import { BLOG_DIR, BLOG_SYNTAX_THEME } from '@/content.config'
 import { processMarkdown } from '@/api/markdown'
 
 export interface PostId {
@@ -24,11 +24,11 @@ export interface PostData {
 export type Post = PostId & PostMatter & PostData
 
 function getPostsLocation(): string {
-  return blogDir ?? 'blog'
+  return BLOG_DIR ?? 'blog'
 }
 
 function getSyntaxTheme(): string {
-  return blogSyntaxTheme ?? 'nord'
+  return BLOG_SYNTAX_THEME ?? 'nord'
 }
 
 export async function getPosts(): Promise<Array<Post>> {

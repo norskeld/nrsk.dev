@@ -11,6 +11,7 @@ Personal website &amp; blog.
 - [x] Syntax highlighting with **[Shiki.js]** + [custom theme].
 - [x] Markdown with YAML frontmatter.
 - [x] **[Open Graph]** support.
+- [x] **Google Analytics** support _(optional)_.
 
 ## Backlog
 
@@ -27,7 +28,7 @@ Personal website &amp; blog.
 [shiki.js]: https://github.com/shikijs/shiki
 [custom theme]: src/syntax/norskeld.json
 [open graph]: https://ogp.me/
-[framer motion]: https://www.framer.com/motion/
+[framer motion]: https://framer.com/motion/
 [preact]: https://github.com/preactjs/preact
 [react]: https://github.com/facebook/react
 [@emotion/react]: https://emotion.sh/docs/@emotion/react

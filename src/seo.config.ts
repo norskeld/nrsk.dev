@@ -1,11 +1,17 @@
 import { DefaultSeoProps } from 'next-seo'
 
+/**
+ * Common options that are handy.
+ *
+ * **Note**: `host` is required since it's used for Open Graph links that must be **absolute**.
+ */
 export const Common = {
   host: 'https://vm.codes',
   title: 'Vladislav Mamon',
   description: `Vladislav's cozy place on the Internet.`
 } as const
 
+/** Default SEO options/properties that are passed to `next-seo` and universal across all pages. */
 export const Seo: DefaultSeoProps = {
   defaultTitle: Common.title,
   titleTemplate: `%s — ${Common.title}`,

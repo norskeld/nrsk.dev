@@ -1,11 +1,11 @@
-const scriptSrc =
+const scriptSrcDomains =
   process.env.NODE_ENV === 'development'
-    ? `'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com localhost:*`
-    : `'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com`
+    ? '*.googletagmanager.com *.youtube.com localhost:*'
+    : '*.googletagmanager.com *.youtube.com'
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src ${scriptSrc};
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' ${scriptSrcDomains};
   child-src *.youtube.com *.youtube-nocookie.com;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
@@ -41,7 +41,10 @@ const headers = [
   }
 ]
 
-export default {
+/** @type {import('next').NextConfig} */
+const config = {
+  reactStrictMode: true,
+
   async headers() {
     return [
       {
@@ -63,3 +66,5 @@ export default {
     return config
   }
 }
+
+export default config
