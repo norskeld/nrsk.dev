@@ -9,7 +9,6 @@ const wrapperCss = css`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
   padding: 0 1.5rem;
 
   @media screen and (min-width: 560px) {

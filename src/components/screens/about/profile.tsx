@@ -26,7 +26,15 @@ const imageCss = css`
 export function ProfileImage() {
   return (
     <section css={imageContainerCss}>
-      <NextImage priority src={imageSrc} placeholder="blur" layout="fill" css={imageCss} />
+      <NextImage
+        alt="Hey, that's me!"
+        title="Hey, that's me!"
+        priority
+        src={imageSrc}
+        placeholder="blur"
+        layout="fill"
+        css={imageCss}
+      />
     </section>
   )
 }

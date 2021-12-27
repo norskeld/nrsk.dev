@@ -25,7 +25,7 @@ const descriptionCss = css`
 
   & p {
     margin: 1.25em 0;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   & p:first-of-type {

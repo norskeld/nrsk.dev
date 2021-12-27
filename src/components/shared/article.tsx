@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import { css } from '@emotion/react'
-import Link from 'next/link'
+
+import AppLink from '@/components/shared/link'
 
 interface ArticleProps {
   href: string
@@ -86,9 +87,9 @@ function ArticleHeader({ children }: ArticleHeaderProps) {
 function ArticleHeading({ href, title }: ArticleHeadingProps) {
   return (
     <h2 css={headingCss}>
-      <Link href={href} passHref>
+      <AppLink href={href}>
         <a>{title}</a>
-      </Link>
+      </AppLink>
     </h2>
   )
 }

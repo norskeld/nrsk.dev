@@ -7,6 +7,7 @@ import { AboutSection, AboutDescription, ProfileImage } from '@/components/scree
 
 import Heading from '@/components/shared/heading'
 import AppLink from '@/components/shared/link'
+import Layout from '@/layouts/base'
 
 /** The about page. */
 export default function () {
@@ -39,7 +40,7 @@ export default function () {
   )
 
   return (
-    <>
+    <Layout>
       <NextSeo
         title={seo.title}
         canonical={seo.url}
@@ -71,6 +72,6 @@ export default function () {
           </p>
         </AboutDescription>
       </AboutSection>
-    </>
+    </Layout>
   )
 }

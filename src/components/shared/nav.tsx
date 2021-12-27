@@ -1,15 +1,8 @@
+import { m, domAnimation, LazyMotion, Variants } from 'framer-motion'
 import { css } from '@emotion/react'
-
-import NavMotion from '@/components/transitions/nav'
 
 import AppLink from './link'
 import Logo from './logo'
-import { useRouter } from 'next/router'
-
-interface NavContainerProps {
-  style?: React.CSSProperties
-  children: React.ReactNode
-}
 
 interface NavLinkProps {
   href: string
@@ -55,7 +48,7 @@ const linksCss = css`
 
 const linkCss = css`
   padding: 0 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
 
   &:hover {
@@ -69,42 +62,40 @@ const linkCss = css`
 
 const dividerCss = css`
   padding: 0 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  pointer-events: none;
   user-select: none;
+  pointer-events: none;
   color: var(--contrast-800);
 `
 
-export function NavContainer({ style, children }: NavContainerProps) {
-  return (
-    <nav css={navCss} style={style}>
-      {children}
-    </nav>
-  )
+const variants: Variants = {
+  hidden: { opacity: 0, y: '-1.65rem' },
+  enter: { opacity: 1, y: '0rem', transition: { duration: 0.55 } },
+  exit: { opacity: 0, y: '1.25rem', transition: { duration: 0.5 } }
 }
 
 export function Nav() {
-  const { asPath } = useRouter()
-
   return (
-    <NavMotion location={asPath}>
-      <NavBrand>
-        <Logo />
-      </NavBrand>
+    <LazyMotion features={domAnimation}>
+      <m.nav css={navCss} variants={variants} initial="hidden" animate="enter" exit="exit">
+        <NavBrand>
+          <Logo />
+        </NavBrand>
 
-      <NavLinks>
-        <NavLink href="/blog">
-          <a title="Blog articles">Blog</a>
-        </NavLink>
+        <NavLinks>
+          <NavLink href="/blog">
+            <a title="Blog articles">Blog</a>
+          </NavLink>
 
-        <NavDivider />
+          <NavDivider />
 
-        <NavLink href="/about">
-          <a title="About author of this site">About</a>
-        </NavLink>
-      </NavLinks>
-    </NavMotion>
+          <NavLink href="/about">
+            <a title="About me">About</a>
+          </NavLink>
+        </NavLinks>
+      </m.nav>
+    </LazyMotion>
   )
 }
 
