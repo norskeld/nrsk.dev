@@ -3,9 +3,8 @@ import { NextSeo } from 'next-seo'
 
 import { Common } from '@/seo.config'
 
-import { AboutSection, AboutDescription, ProfilePicture } from '@/components/screens/about'
+import { AboutSection, AboutDescription, ProfileImage } from '@/components/screens/about'
 
-import Container from '@/components/shared/container'
 import Heading from '@/components/shared/heading'
 import AppLink from '@/components/shared/link'
 
@@ -40,7 +39,7 @@ export default function () {
   )
 
   return (
-    <Container>
+    <>
       <NextSeo
         title={seo.title}
         canonical={seo.url}
@@ -53,14 +52,17 @@ export default function () {
       </Heading>
 
       <AboutSection>
-        <ProfilePicture />
+        <ProfileImage />
 
         <AboutDescription>
+          <Heading level={2} size="lg">
+            Hi there!
+          </Heading>
+
           <p>
-            Hi there! I'm a front-end developer with a passion for{' '}
-            <strong>functional programming</strong>, <strong>compiler/PL design</strong>,{' '}
-            <strong>Rust</strong>, and <strong>TypeScript</strong>. I also have <GitHubLink /> I
-            work on in my free time.
+            I'm a front-end developer with a passion for <strong>functional programming</strong>,{' '}
+            <strong>compiler/PL design</strong>, <strong>Rust</strong>, and{' '}
+            <strong>TypeScript</strong>. I also have <GitHubLink /> I work on in my free time.
           </p>
 
           <p>
@@ -69,6 +71,6 @@ export default function () {
           </p>
         </AboutDescription>
       </AboutSection>
-    </Container>
+    </>
   )
 }

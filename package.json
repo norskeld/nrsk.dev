@@ -10,9 +10,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
+    "@emotion/react": "^11.7.1",
     "date-fns": "^2.27.0",
-    "framer-motion": "^5.5.5",
     "gray-matter": "^4.0.3",
     "markdown-it": "^12.2.0",
     "markdown-it-anchor": "^8.4.1",
@@ -21,6 +20,7 @@
     "postcss": "^8.4.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-transition-group": "^4.4.2",
     "sharp": "^0.29.3",
     "shiki": "^0.9.15",
     "typescript": "^4.5.2"
@@ -30,6 +30,7 @@
     "@types/node": "^14.18.0",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "@types/react-transition-group": "^4.4.4",
     "@types/sharp": "^0.29.4",
     "prettier": "^2.5.1"
   }

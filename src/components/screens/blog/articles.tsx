@@ -1,16 +1,20 @@
+import { css } from '@emotion/react'
+
 import { Post } from '@/api/posts'
 
 import ArticlePreview from '@/components/shared/article'
-
-import styles from './articles.module.css'
 
 interface ArticlesProps {
   posts: Array<Post>
 }
 
+const articlesCss = css`
+  padding-top: 2rem;
+`
+
 export function Articles({ posts }: ArticlesProps) {
   return (
-    <section className={styles.articles}>
+    <section css={articlesCss}>
       {posts.map(({ id, ...props }) => (
         <ArticlePreview key={id} href={`/blog/${id}`} {...props} />
       ))}

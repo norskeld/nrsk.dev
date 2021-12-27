@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "strict": true,
     "allowJs": true,
     "noEmit": true,
@@ -16,7 +17,8 @@
     "incremental": true,
     "forceConsistentCasingInFileNames": false,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "~/*": ["public/*"]
     }
   },
   "exclude": ["node_modules"],
