@@ -1,7 +1,6 @@
 import { format, parseISO } from 'date-fns'
+import { css } from '@emotion/react'
 import Link from 'next/link'
-
-import styles from './article.module.css'
 
 interface ArticleProps {
   href: string
@@ -15,30 +14,78 @@ interface ArticleHeadingProps {
   title: string
 }
 
-interface ArticleDateProps {
-  date: string
+interface ArticleHeaderProps {
+  children: React.ReactNode
 }
 
 interface ArticleExcerptProps {
   children: React.ReactNode
 }
 
+interface ArticleDateProps {
+  date: string
+}
+
+const articleCss = css`
+  color: inherit;
+  width: 100%;
+  padding-bottom: 2rem;
+  text-align: left;
+  text-decoration: none;
+  transition: color 150ms ease;
+`
+
+const headingCss = css`
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+
+  & a {
+    padding-bottom: 0.1rem;
+    border-bottom: 2px solid var(--contrast-900);
+  }
+
+  & a:focus,
+  & a:hover {
+    color: var(--link-hover);
+    border-color: var(--link-hover);
+  }
+`
+
+const headerCss = css`
+  margin-bottom: 0.5rem;
+`
+
+const dateCss = css`
+  display: inline-block;
+  color: var(--contrast-400);
+  font-size: 1rem;
+`
+
+const excerptCss = css`
+  margin: 0;
+  line-height: 1.5;
+`
+
 export default function Article({ title, href, excerpt, date }: ArticleProps) {
   return (
-    <article className={styles.article}>
-      <header className={styles.header}>
+    <article css={articleCss}>
+      <ArticleHeader>
         <ArticleHeading href={href} title={title} />
         <ArticleDate date={date} />
-      </header>
+      </ArticleHeader>
 
       <ArticleExcerpt>{excerpt}</ArticleExcerpt>
     </article>
   )
 }
 
+function ArticleHeader({ children }: ArticleHeaderProps) {
+  return <header css={headerCss}>{children}</header>
+}
+
 function ArticleHeading({ href, title }: ArticleHeadingProps) {
   return (
-    <h2 className={styles.heading}>
+    <h2 css={headingCss}>
       <Link href={href} passHref>
         <a>{title}</a>
       </Link>
@@ -48,12 +95,12 @@ function ArticleHeading({ href, title }: ArticleHeadingProps) {
 
 function ArticleDate({ date }: ArticleDateProps) {
   return (
-    <time className={styles.date} dateTime={date}>
+    <time css={dateCss} dateTime={date}>
       {format(parseISO(date), 'LLLL d, yyyy')}
     </time>
   )
 }
 
 function ArticleExcerpt({ children }: ArticleExcerptProps) {
-  return <p className={styles.excerpt}>{children}</p>
+  return <p css={excerptCss}>{children}</p>
 }

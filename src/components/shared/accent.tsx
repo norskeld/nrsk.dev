@@ -1,14 +1,14 @@
-import styles from './accent.module.css'
+import { css } from '@emotion/react'
 
 interface AccentProps {
   color?: string
   children: React.ReactNode
 }
 
-export default function Accent({ color, children }: AccentProps) {
-  return (
-    <span style={{ color }} className={styles.accent}>
-      {children}
-    </span>
-  )
+const AccentCss = css`
+  color: var(--accent);
+`
+
+export default function Accent({ children }: AccentProps) {
+  return <span css={AccentCss}>{children}</span>
 }

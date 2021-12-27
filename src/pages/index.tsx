@@ -4,7 +4,6 @@ import { getPosts, Post } from '@/api/posts'
 
 import { AboutSection, RecentArticlesSection, RecentArticles } from '@/components/screens/home'
 
-import Container from '@/components/shared/container'
 import Heading from '@/components/shared/heading'
 import Accent from '@/components/shared/accent'
 
@@ -15,7 +14,7 @@ interface Props {
 /** The home page. */
 export default function ({ posts }: Props) {
   return (
-    <Container>
+    <>
       <AboutSection>
         <Heading level={1} size="xxl">
           Hi. I'm <Accent color="var(--accent)">Vlad</Accent>.
@@ -37,7 +36,7 @@ export default function ({ posts }: Props) {
 
         <RecentArticles posts={posts} />
       </RecentArticlesSection>
-    </Container>
+    </>
   )
 }
 

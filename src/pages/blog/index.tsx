@@ -8,7 +8,6 @@ import { Common } from '@/seo.config'
 
 import { Articles } from '@/components/screens/blog'
 
-import Container from '@/components/shared/container'
 import Heading from '@/components/shared/heading'
 
 interface Props {
@@ -29,7 +28,7 @@ export default function ({ posts }: Props) {
   const articleInflected = inflect(['article', 'articles'], posts.length)
 
   return (
-    <Container>
+    <>
       <NextSeo
         title={seo.title}
         canonical={seo.url}
@@ -47,7 +46,7 @@ export default function ({ posts }: Props) {
       </p>
 
       <Articles posts={posts} />
-    </Container>
+    </>
   )
 }
 

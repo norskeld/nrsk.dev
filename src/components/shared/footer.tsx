@@ -1,10 +1,34 @@
-import AppLink from './link'
+import { css } from '@emotion/react'
 
-import styles from './footer.module.css'
+import AppLink from './link'
 
 interface FooterItemProps {
   children: React.ReactNode
 }
+
+const footerCss = css`
+  margin-top: auto;
+  padding-bottom: 4rem;
+  opacity: 0.5;
+  transition: opacity 150ms ease-in-out;
+  user-select: none;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const dotCss = css`
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--contrast-800);
+  padding: 0 0.5rem;
+`
+
+const itemCss = css`
+  font-size: 1rem;
+  color: var(--contrast-600);
+`
 
 export default function Footer() {
   const NextJsLink = () => (
@@ -14,7 +38,7 @@ export default function Footer() {
   )
 
   return (
-    <footer className={styles.footer}>
+    <footer css={footerCss}>
       <FooterItem>&copy; 2021</FooterItem>
       <FooterDot />
 
@@ -25,10 +49,10 @@ export default function Footer() {
   )
 }
 
-function FooterDot() {
-  return <span className={styles.dot}>&middot;</span>
+function FooterItem({ children }: FooterItemProps) {
+  return <span css={itemCss}>{children}</span>
 }
 
-function FooterItem({ children }: FooterItemProps) {
-  return <span className={styles.item}>{children}</span>
+function FooterDot() {
+  return <span css={dotCss}>&middot;</span>
 }

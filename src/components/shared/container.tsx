@@ -1,32 +1,24 @@
-import { motion, Transition, Variants } from 'framer-motion'
-
-import styles from './container.module.css'
+import { css } from '@emotion/react'
 
 interface ContainerProps {
+  style?: React.CSSProperties
   children: React.ReactNode
 }
 
-const variants: Variants = {
-  hidden: { opacity: 0, x: 0, y: -20 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: 20 }
-}
+const containerCss = css`
+  max-width: var(--container-w);
+  width: 100%;
+  padding: 4rem 0;
 
-const transition: Transition = {
-  type: 'linear'
-}
+  @media screen and (min-width: 560px) {
+    padding: 6rem 0;
+  }
+`
 
-export default function Container({ children }: ContainerProps) {
+export default function Container({ style, children }: ContainerProps) {
   return (
-    <motion.main
-      className={styles.container}
-      variants={variants}
-      transition={transition}
-      initial="hidden"
-      animate="enter"
-      exit="exit"
-    >
+    <main css={containerCss} style={style}>
       {children}
-    </motion.main>
+    </main>
   )
 }

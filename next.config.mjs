@@ -42,8 +42,6 @@ const headers = [
 ]
 
 export default {
-  reactStrictMode: true,
-
   async headers() {
     return [
       {
