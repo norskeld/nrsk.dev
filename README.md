@@ -8,7 +8,7 @@ Personal website &amp; blog.
 - [x] Uses **[Framer Motion]** for smooth page transitions.
 - [x] Uses **[Preact]** (compat) instead of **[React]** for smaller bundle size.
 - [x] Uses **[@emotion/react]** for styling.
-- [x] Syntax highlighting with **[Shiki.js]** + [custom theme].
+- [x] Syntax highlighting with **[Shiki.js]** via **[@nrsk/shikigami]** + [custom theme].
 - [x] Markdown with YAML frontmatter.
 - [x] **[Open Graph]** support.
 - [x] **Google Analytics** support _(optional)_.
@@ -32,3 +32,4 @@ Personal website &amp; blog.
 [preact]: https://github.com/preactjs/preact
 [react]: https://github.com/facebook/react
 [@emotion/react]: https://emotion.sh/docs/@emotion/react
+[@nrsk/shikigami]: https://github.com/norskeld/shikigami
