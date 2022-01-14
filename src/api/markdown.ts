@@ -1,56 +1,48 @@
-import { join } from 'path'
-
-import { getHighlighter, loadTheme, renderToHtml } from 'shiki'
+import { shikigami, loadTheme } from '@nrsk/shikigami'
 import anchor from 'markdown-it-anchor'
 import markdown from 'markdown-it'
 
 export async function processMarkdown(input: string, theme: string) {
-  const permalink = anchor.permalink.ariaHidden({ placement: 'before' })
-  const highlighter = await resolveCustomHighlighter(theme)
+  const highlighter = await createHighlighter(theme)
+  const permalink = createPermalinkTransformer()
+  const slugify = createSlugTransformer()
 
   const parser = markdown('default', {
     html: true,
     linkify: true,
-    typographer: true,
-
-    highlight(code, langId) {
-      const tokens = highlighter.codeToThemedTokens(code, langId)
-      const fg = highlighter.getForegroundColor(theme ?? 'nord')
-      const bg = highlighter.getBackgroundColor(theme ?? 'nord')
-
-      const html = renderToHtml(tokens, {
-        langId,
-        fg,
-        bg
-      })
-
-      return html
-    }
-  }).use(anchor, { permalink, slugify })
+    typographer: true
+  })
+    .use(anchor, { permalink, slugify })
+    .use(highlighter)
 
   return parser.render(input)
 }
 
-/**
- * Loads a custom syntax theme (any Visual Studio Code theme in JSON format will do), or fallbacks
- * to the built-in `Nord`, and resolves to a highlighter.
- */
-async function resolveCustomHighlighter(theme: string) {
-  const path = join(process.cwd(), 'src', 'syntax', `${theme}.json`)
+async function createHighlighter(themeName: string) {
+  const theme = await loadTheme(`${process.cwd()}/src/syntax/${themeName}.json`)
 
-  try {
-    return await getHighlighter({ theme: await loadTheme(path) })
-  } catch {
-    return await getHighlighter({ theme: 'nord' })
-  }
+  return await shikigami({
+    withLanguage: true,
+    withLineNumbers: true,
+    highlighter: {
+      theme
+    }
+  })
 }
 
-/** Slugifies a given string. **It doesn't work with Unicode**. */
-function slugify(string: string) {
-  return string
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+/** Creates permalink handler for the `markdown-it-anchor` plugin. */
+function createPermalinkTransformer() {
+  return anchor.permalink.ariaHidden({ placement: 'after' })
+}
+
+/** Creates slugifier for the `markdown-it-anchor` plugin. **It doesn't work with Unicode**. */
+function createSlugTransformer() {
+  return function (string: string) {
+    return string
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  }
 }

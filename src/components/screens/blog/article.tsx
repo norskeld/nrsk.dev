@@ -45,32 +45,82 @@ const contentCss = css`
 
   /** Code highlighting. */
 
+  /** -- General. */
+
   & .shiki {
     border-radius: 0;
-    margin: 0 -1.5rem;
-    font-size: 1rem;
+    margin: 1.5rem -1.5rem;
+    font-size: 0.9rem;
   }
 
   & .shiki code {
-    display: block;
-    padding: 1rem 1.5rem;
-    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
   }
 
-  & .language-id {
-    background: var(--black);
+  /** -- Line numbers. */
+
+  & .shiki .line-numbers {
+    padding: 0.75rem 0;
+    color: var(--contrast-600);
+    text-align: right;
+    user-select: none;
+  }
+
+  & .shiki .line-numbers .line-number {
+    min-width: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  /** -- Lines. */
+
+  & .shiki .lines {
+    display: grid;
+    width: 100%;
+    padding: 0.75rem 0;
+    overflow-x: auto;
+  }
+
+  & .shiki .lines .line {
+    display: flex;
+    flex-direction: row;
+    white-space: pre;
+  }
+
+  /** -- Highlight. */
+
+  & .shiki :where(.lines, .line-numbers) :where(.highlight-invert) {
+    opacity: 0.35;
+  }
+
+  &
+    .shiki
+    :where(.lines, .line-numbers)
+    :where(.highlight, .highlight-start, .highlight-inner, .highlight-end) {
+    background: #434c5e58;
+    opacity: 1;
+  }
+
+  /** -- Language label. */
+
+  & .shiki .language-id {
+    background: var(--contrast-100);
     color: var(--contrast-500);
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 0;
+    border-bottom: 1px solid var(--contrast-200);
+    user-select: none;
+    pointer-events: none;
   }
 
   @media screen and (min-width: 560px) {
     & .shiki {
       border-radius: 0.5rem;
-      margin: 0;
+      margin: 1.5rem 0;
     }
 
-    & .language-id {
+    & .shiki .language-id {
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
     }
@@ -82,6 +132,7 @@ const contentCss = css`
     background: var(--contrast-950);
     padding: 0.15rem 0.35rem;
     border-radius: 0.25rem;
+    white-space: nowrap;
   }
 
   /** Blockquotes. */
@@ -110,33 +161,33 @@ const contentCss = css`
 
   /** Headers. */
 
-  & a.header-anchor {
-    border: 0;
-    position: static;
-    color: var(--contrast-900);
-    transition: color 100ms ease-in-out;
+  & h1,
+  & h2 {
+    border-bottom: 2px solid var(--contrast-950);
   }
 
-  & a.header-anchor:focus,
+  & h1:first-of-type {
+    border: 0;
+  }
+
+  & a.header-anchor {
+    color: var(--contrast-800);
+    opacity: 1;
+    border: 0;
+    transition: color 150ms ease-in-out, opacity 150ms ease-in-out;
+  }
+
   & a.header-anchor:hover {
     color: var(--text);
   }
 
-  & h1,
-  & h2,
-  & h3,
-  & h4,
-  & h5,
-  & h6 {
-    position: relative;
-  }
-
-  @media screen and (min-width: 560px) {
+  @media screen and (min-width: 768px) {
     & a.header-anchor {
-      position: absolute;
-      right: 101%;
-      top: 0;
-      text-align: right;
+      opacity: 0;
+    }
+
+    & :is(h1, h2, h3, h4, h5, h5):hover a.header-anchor {
+      opacity: 1;
     }
   }
 
