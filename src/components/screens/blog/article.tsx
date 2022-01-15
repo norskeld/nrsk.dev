@@ -83,8 +83,7 @@ const contentCss = css`
   }
 
   & .shiki .lines .line {
-    display: flex;
-    flex-direction: row;
+    padding-right: 2rem;
     white-space: pre;
   }
 

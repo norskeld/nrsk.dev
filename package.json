@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
-    "@nrsk/shikigami": "^1.1.0",
+    "@nrsk/shikigami": "^1.1.1",
     "date-fns": "^2.27.0",
     "framer-motion": "^5.5.5",
     "gray-matter": "^4.0.3",
