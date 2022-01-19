@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { css } from '@emotion/react'
 
 import { getPosts, Post } from '@/api/posts'
 
@@ -12,16 +13,20 @@ interface Props {
   posts: Array<Post>
 }
 
+const headingCss = css`
+  font-weight: 800;
+`
+
 /** The home page. */
 export default function ({ posts }: Props) {
   return (
     <Layout>
       <AboutSection>
-        <Heading level={1} size="xxl">
-          Hi. I'm <Accent color="var(--accent)">Vlad</Accent>.
+        <Heading css={headingCss} level={1}>
+          Hi. I'm <Accent>Vlad</Accent>.
         </Heading>
 
-        <Heading level={1} size="xl">
+        <Heading level={1}>
           I'm a TypeScript devotee, Rust tyro, functional programming admirer, and front-end
           shepherd.
         </Heading>
