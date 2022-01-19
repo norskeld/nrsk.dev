@@ -20,7 +20,9 @@ Personal website &amp; blog.
 
 ## License
 
-[MIT](LICENSE).
+> **The content under the `blog` directory is licensed under the [CC BY-NC 4.0](LICENSE_CONTENT) license.**
+
+The code is licensed under the [MIT](LICENSE) license.
 
 [vanilla-extract]: https://vanilla-extract.style/
 [basic a11y best practices]: https://a11yproject.com/checklist/
