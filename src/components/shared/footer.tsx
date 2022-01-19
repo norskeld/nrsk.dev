@@ -14,16 +14,29 @@ const footerCss = css`
   transition: opacity 150ms ease-in-out;
   user-select: none;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   &:hover {
     opacity: 1 !important;
+  }
+
+  @media screen and (min-width: 560px) {
+    flex-direction: row;
   }
 `
 
 const dotCss = css`
+  display: none;
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--contrast-800);
   padding: 0 0.5rem;
+
+  @media screen and (min-width: 560px) {
+    display: block;
+  }
 `
 
 const itemCss = css`
@@ -38,20 +51,35 @@ const variants: Variants = {
 }
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   const NextJsLink = () => (
-    <AppLink external blank href="https://nextjs.org/">
+    <AppLink external href="https://nextjs.org">
       Next.js
+    </AppLink>
+  )
+
+  const SourceCodeLink = () => (
+    <AppLink external href="https://github.com/norskeld/vm.codes">
+      Source code
     </AppLink>
   )
 
   return (
     <LazyMotion features={domAnimation}>
       <m.footer css={footerCss} variants={variants} initial="hidden" animate="enter" exit="exit">
-        <FooterItem>&copy; 2021</FooterItem>
+        <FooterItem>&copy; 2021&ndash;{currentYear}</FooterItem>
+
         <FooterDot />
 
         <FooterItem>
           Built with <NextJsLink />
+        </FooterItem>
+
+        <FooterDot />
+
+        <FooterItem>
+          <SourceCodeLink />
         </FooterItem>
       </m.footer>
     </LazyMotion>
