@@ -20,10 +20,10 @@ const shake = keyframes`
 
 const logoCss = css`
   display: block;
-  height: 3rem;
+  height: 2rem;
 
   @media screen and (min-width: 560px) {
-    height: 4rem;
+    height: 2.5rem;
   }
 
   &:hover path {

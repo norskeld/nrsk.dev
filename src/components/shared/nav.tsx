@@ -48,7 +48,7 @@ const linksCss = css`
 
 const linkCss = css`
   padding: 0 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
 
   &:hover {
