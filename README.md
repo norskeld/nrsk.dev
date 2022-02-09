@@ -11,7 +11,7 @@ Personal website &amp; blog.
 - [x] Syntax highlighting with **[Shiki.js]** via **[@nrsk/shikigami]** + [custom theme].
 - [x] Markdown with YAML frontmatter.
 - [x] **[Open Graph]** support.
-- [x] **Google Analytics** support _(optional)_.
+- [x] **[Ackee Analytics][ackee]** support _(optional)_.
 
 ## Backlog
 
@@ -35,3 +35,4 @@ The code is licensed under the [MIT](LICENSE) license.
 [react]: https://github.com/facebook/react
 [@emotion/react]: https://emotion.sh/docs/@emotion/react
 [@nrsk/shikigami]: https://github.com/norskeld/shikigami
+[ackee]: https://ackee.electerious.com

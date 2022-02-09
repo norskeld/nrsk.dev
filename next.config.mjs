@@ -1,7 +1,7 @@
 const scriptSrcDomains =
   process.env.NODE_ENV === 'development'
-    ? '*.googletagmanager.com *.youtube.com localhost:*'
-    : '*.googletagmanager.com *.youtube.com'
+    ? '*.vm.codes *.youtube.com localhost:*'
+    : '*.vm.codes *.youtube.com'
 
 const ContentSecurityPolicy = `
   default-src 'self';

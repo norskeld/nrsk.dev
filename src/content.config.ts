@@ -13,9 +13,11 @@ export const BLOG_DIR = 'blog'
  */
 export const BLOG_SYNTAX_THEME = 'norskeld'
 
-/**
- * Google Analytics ID.
- *
- * Set to any falsy value to disable injection of GA scripts.
- */
-export const GA_ID = process.env.NEXT_PUBLIC_GA
+/** Ackee Domain ID. */
+export const ACKEE_DOMAIN_ID = process.env.NEXT_PUBLIC_ACKEE_DOMAIN_ID
+
+/** Ackee Host. This is the host with Ackee server. */
+export const ACKEE_HOST = process.env.NEXT_PUBLIC_ACKEE_HOST
+
+/** Ackee Tracker. Defaults to `tracker.js`. */
+export const ACKEE_TRACKER = process.env.NEXT_PUBLIC_ACKEE_TRACKER ?? 'tracker.js'
