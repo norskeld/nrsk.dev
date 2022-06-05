@@ -59,12 +59,6 @@ export default function Footer() {
     </AppLink>
   )
 
-  const SourceCodeLink = () => (
-    <AppLink external href="https://github.com/norskeld/vm.codes">
-      Source code
-    </AppLink>
-  )
-
   return (
     <LazyMotion features={domAnimation}>
       <m.footer css={footerCss} variants={variants} initial="hidden" animate="enter" exit="exit">
@@ -74,12 +68,6 @@ export default function Footer() {
 
         <FooterItem>
           Built with <NextJsLink />
-        </FooterItem>
-
-        <FooterDot />
-
-        <FooterItem>
-          <SourceCodeLink />
         </FooterItem>
       </m.footer>
     </LazyMotion>
