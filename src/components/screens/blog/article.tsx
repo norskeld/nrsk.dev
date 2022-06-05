@@ -1,5 +1,8 @@
 import { css } from '@emotion/react'
 
+import arrowBendDownRight from '~/icons/arrow-bend-down-right.svg'
+import arrowBendUpRight from '~/icons/arrow-bend-up-right.svg'
+
 interface ArticleFooterProps {
   children: React.ReactNode
 }
@@ -53,6 +56,10 @@ const contentCss = css`
     font-size: 0.9rem;
   }
 
+  & blockquote .shiki {
+    margin: 1.5rem 0;
+  }
+
   & .shiki code {
     display: flex;
     flex-direction: row;
@@ -78,8 +85,12 @@ const contentCss = css`
   & .shiki .lines {
     display: grid;
     width: 100%;
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
     overflow-x: auto;
+  }
+
+  & .shiki .line-numbers + .lines {
+    padding: 0.75rem 0;
   }
 
   & .shiki .lines .line {
@@ -110,7 +121,15 @@ const contentCss = css`
     border-radius: 0;
     border-bottom: 1px solid var(--contrast-200);
     user-select: none;
-    pointer-events: none;
+  }
+
+  & blockquote .shiki {
+    border-radius: 0.5rem;
+  }
+
+  & blockquote .shiki .language-id {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
   }
 
   @media screen and (min-width: 560px) {
@@ -127,7 +146,7 @@ const contentCss = css`
 
   /** Inline code. */
 
-  & :not(pre) code {
+  & :not(pre) > code {
     background: var(--contrast-950);
     padding: 0.15rem 0.35rem;
     border-radius: 0.25rem;
@@ -220,6 +239,94 @@ const contentCss = css`
   & img {
     width: 100%;
     border-radius: 0.5rem;
+  }
+
+  /** Abbreviations. */
+
+  & abbr {
+    cursor: help;
+    border-bottom: 2px dotted var(--text);
+  }
+
+  /** Strikethrough.  */
+
+  & s {
+    text-decoration: line-through;
+  }
+
+  /* Lists. */
+
+  & ul {
+    margin: 1rem 0;
+    padding-left: 1.25em;
+  }
+
+  @media screen and (min-width: 768px) {
+    & ul {
+      margin: 1rem 1rem;
+    }
+  }
+
+  /* Collapsible. */
+
+  & details {
+    padding: 0 1.5rem 0;
+    border-radius: 0.5rem;
+    background: var(--contrast-950);
+  }
+
+  & details > summary {
+    padding: 1rem 1.5rem;
+    margin: 0 -1.5rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    list-style-type: none;
+    background: var(--contrast-950);
+    border-radius: 0.5rem;
+    transition: background 150ms ease-in-out;
+  }
+
+  & details > summary::before {
+    content: '';
+    /* background-image: url(/icons/arrow-bend-down-right.svg); */
+    background-image: url(${arrowBendDownRight.src});
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    padding-right: 2rem;
+  }
+
+  & details > summary:hover {
+    background: var(--contrast-900);
+  }
+
+  & details[open] {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  & details[open] > summary {
+    background: var(--contrast-900);
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  & details[open] > summary::before {
+    /* background-image: url(/icons/arrow-bend-up-right.svg); */
+    background-image: url(${arrowBendUpRight.src});
+  }
+
+  & details[open] > :not(summary, pre) {
+    margin: 1.5rem 0;
+  }
+
+  & details[open] > :not(summary):last-child {
+    margin-bottom: 0;
+  }
+
+  & ::-webkit-details-marker {
+    display: none;
   }
 `
 
