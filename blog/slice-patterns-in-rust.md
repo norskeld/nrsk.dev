@@ -3,7 +3,7 @@ title: Slice patterns in Rust
 date: '2022-06-05'
 ---
 
-A short post on pattern matching slices and arrays in Rust, just to memorize how handy it can be.
+A short post on slice patterns in Rust, just to memorize how handy they are.
 
 ---
 
