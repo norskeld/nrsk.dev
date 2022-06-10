@@ -48,7 +48,7 @@ export default function () {
         openGraph={{ ...seo }}
       />
 
-      <Heading level={1} size="xxl">
+      <Heading disableSelection shadow level={1} size="xxl">
         {seo.title}
       </Heading>
 

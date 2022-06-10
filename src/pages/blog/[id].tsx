@@ -1,8 +1,8 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
+import type { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 
-import { getPostsId, getPost, Post } from '@/api/posts'
+import { getPostsId, getPost, type Post } from '@/api/posts'
 import { Common } from '@/seo.config'
 
 import { ArticleContent, ArticleFooter } from '@/components/screens/blog'
@@ -38,7 +38,7 @@ export default function ({ post }: Props) {
       />
 
       <header>
-        <Heading level={1} size="xxl">
+        <Heading shadow level={1} size="xxl">
           {title}
         </Heading>
 

@@ -1,11 +1,8 @@
 import { css } from '@emotion/react'
+import React from 'react'
 
 import arrowBendDownRight from '~/icons/arrow-bend-down-right.svg'
 import arrowBendUpRight from '~/icons/arrow-bend-up-right.svg'
-
-interface ArticleFooterProps {
-  children: React.ReactNode
-}
 
 interface ArticleContentProps {
   html: string
@@ -290,7 +287,6 @@ const contentCss = css`
 
   & details > summary::before {
     content: '';
-    /* background-image: url(/icons/arrow-bend-down-right.svg); */
     background-image: url(${arrowBendDownRight.src});
     background-repeat: no-repeat;
     background-size: contain;
@@ -313,7 +309,6 @@ const contentCss = css`
   }
 
   & details[open] > summary::before {
-    /* background-image: url(/icons/arrow-bend-up-right.svg); */
     background-image: url(${arrowBendUpRight.src});
   }
 
@@ -330,7 +325,7 @@ const contentCss = css`
   }
 `
 
-export function ArticleFooter({ children }: ArticleFooterProps) {
+export function ArticleFooter({ children }: React.ComponentPropsWithoutRef<'footer'>) {
   return <footer css={footerCss}>{children}</footer>
 }
 

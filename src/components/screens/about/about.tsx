@@ -1,13 +1,5 @@
 import { css } from '@emotion/react'
 
-interface AboutSectionProps {
-  children: React.ReactNode
-}
-
-interface AboutDescriptionProps {
-  children: React.ReactNode
-}
-
 const aboutCss = css`
   display: flex;
   flex-direction: column;
@@ -38,10 +30,10 @@ const descriptionCss = css`
   }
 `
 
-export function AboutSection({ children }: AboutSectionProps) {
+export function AboutSection({ children }: React.ComponentPropsWithoutRef<'section'>) {
   return <section css={aboutCss}>{children}</section>
 }
 
-export function AboutDescription({ children }: AboutDescriptionProps) {
+export function AboutDescription({ children }: React.ComponentPropsWithoutRef<'section'>) {
   return <section css={descriptionCss}>{children}</section>
 }

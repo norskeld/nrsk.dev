@@ -8,8 +8,12 @@
   /** Accents. */
 
   --accent-base: 0, 112, 243;
-
   --accent: rgba(var(--accent-base), 1);
+  --accent-lightest: rgba(var(--accent-base), 0.15);
+
+  --yellow-base: 252, 122, 30;
+  --yellow: rgba(var(--yellow-base), 1);
+  --yellow-lightest: rgba(var(--yellow-base), 0.15);
 
   /** Contrasts. */
 

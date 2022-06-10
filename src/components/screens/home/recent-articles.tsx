@@ -1,15 +1,11 @@
 import { css } from '@emotion/react'
 
-import { Post } from '@/api/posts'
+import type { Post } from '@/api/posts'
 
 import ArticlePreview from '@/components/shared/article'
 
 interface RecentArticlesProps {
   posts: Array<Post>
-}
-
-interface RecentArticlesSectionProps {
-  children: React.ReactNode
 }
 
 const sectionCss = css`
@@ -34,6 +30,6 @@ export function RecentArticles({ posts }: RecentArticlesProps) {
   )
 }
 
-export function RecentArticlesSection({ children }: RecentArticlesSectionProps) {
+export function RecentArticlesSection({ children }: React.ComponentPropsWithoutRef<'section'>) {
   return <section css={sectionCss}>{children}</section>
 }

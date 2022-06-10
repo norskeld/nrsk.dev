@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
+import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
-import { AppProps } from 'next/app'
 
 import { ACKEE_DOMAIN_ID, ACKEE_HOST, ACKEE_TRACKER } from '@/content.config'
 import { smoothScrollPolyfill } from '@/utils/polyfills'

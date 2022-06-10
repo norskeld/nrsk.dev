@@ -2,10 +2,7 @@ import { m, domAnimation, LazyMotion, Variants } from 'framer-motion'
 import { css } from '@emotion/react'
 
 import AppLink from './link'
-
-interface FooterItemProps {
-  children: React.ReactNode
-}
+import React from 'react'
 
 const footerCss = css`
   margin-top: auto;
@@ -74,7 +71,7 @@ export default function Footer() {
   )
 }
 
-function FooterItem({ children }: FooterItemProps) {
+function FooterItem({ children }: React.ComponentPropsWithoutRef<'span'>) {
   return <span css={itemCss}>{children}</span>
 }
 

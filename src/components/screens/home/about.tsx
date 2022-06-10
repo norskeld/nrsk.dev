@@ -1,13 +1,10 @@
 import { css } from '@emotion/react'
-
-interface AboutSectionProps {
-  children: React.ReactNode
-}
+import React from 'react'
 
 const aboutCss = css`
   text-align: left;
 `
 
-export function AboutSection({ children }: AboutSectionProps) {
+export function AboutSection({ children }: React.ComponentPropsWithoutRef<'section'>) {
   return <section css={aboutCss}>{children}</section>
 }

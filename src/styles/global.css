@@ -49,7 +49,7 @@ a:hover {
 
 /** Selection. */
 
-::-moz-selection {
+/* ::-moz-selection {
   background-color: var(--selection-background);
   color: var(--selection-color);
   text-shadow: none;
@@ -59,7 +59,7 @@ a:hover {
   background-color: var(--selection-background);
   color: var(--selection-color);
   text-shadow: none;
-}
+} */
 
 /** Headings. */
 

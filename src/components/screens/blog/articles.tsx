@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-import { Post } from '@/api/posts'
+import type { Post } from '@/api/posts'
 
 import ArticlePreview from '@/components/shared/article'
 

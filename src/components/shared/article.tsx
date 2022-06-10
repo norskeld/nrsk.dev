@@ -15,14 +15,6 @@ interface ArticleHeadingProps {
   title: string
 }
 
-interface ArticleHeaderProps {
-  children: React.ReactNode
-}
-
-interface ArticleExcerptProps {
-  children: React.ReactNode
-}
-
 interface ArticleDateProps {
   date: string
 }
@@ -80,7 +72,7 @@ export default function Article({ title, href, excerpt, date }: ArticleProps) {
   )
 }
 
-function ArticleHeader({ children }: ArticleHeaderProps) {
+function ArticleHeader({ children }: React.ComponentPropsWithoutRef<'header'>) {
   return <header css={headerCss}>{children}</header>
 }
 
@@ -102,6 +94,6 @@ function ArticleDate({ date }: ArticleDateProps) {
   )
 }
 
-function ArticleExcerpt({ children }: ArticleExcerptProps) {
+function ArticleExcerpt({ children }: React.ComponentPropsWithoutRef<'p'>) {
   return <p css={excerptCss}>{children}</p>
 }

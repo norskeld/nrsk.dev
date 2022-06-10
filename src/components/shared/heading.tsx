@@ -8,45 +8,75 @@ interface HeadingProps extends React.ComponentPropsWithoutRef<Heading> {
   level: Level
   size?: Size
   className?: string
-  children: React.ReactNode
+  shadow?: boolean
+  shadowColor?: string
+  disableSelection?: boolean
 }
 
-const baseCss = css`
+interface HeadingSpanProps extends React.ComponentPropsWithoutRef<'span'> {
+  color: string
+}
+
+const baseCss = (disableSelection: boolean) => css`
   margin: 1.5rem 0;
+  user-select: ${disableSelection ? 'none' : 'auto'};
+  cursor: ${disableSelection ? 'default' : 'auto'};
 `
 
-const components = {
-  xxl: css`
-    ${baseCss}
-    font-size: 2.5rem;
-    line-height: 1.2;
-    font-weight: 800;
-  `,
+const spanShadowCss = (color: string) => css`
+  --g-color: ${color};
 
-  xl: css`
-    ${baseCss}
-    font-size: 2rem;
-    line-height: 1.3;
-    font-weight: 700;
-  `,
+  padding-right: 0.5rem;
+  background: linear-gradient(var(--g-color), var(--g-color)) bottom right/calc(100% - 1rem) 1rem;
+  background-repeat: no-repeat;
+`
 
-  lg: css`
-    ${baseCss}
-    font-size: 1.5rem;
-    line-height: 1.4;
-  `,
+const components = (size: Size, disableSelection: boolean) => {
+  const variants = {
+    xxl: css`
+      ${baseCss(disableSelection)}
+      font-size: 2.5rem;
+      line-height: 1.2;
+      font-weight: 800;
+    `,
 
-  md: css`
-    ${baseCss}
-    font-size: 1.2rem;
-    line-height: 1.5;
-  `
+    xl: css`
+      ${baseCss(disableSelection)}
+      font-size: 2rem;
+      line-height: 1.3;
+      font-weight: 700;
+    `,
+
+    lg: css`
+      ${baseCss(disableSelection)}
+      font-size: 1.5rem;
+      line-height: 1.4;
+    `,
+
+    md: css`
+      ${baseCss(disableSelection)}
+      font-size: 1.2rem;
+      line-height: 1.5;
+    `
+  }
+
+  return variants[size]
 }
 
-export default function Heading({ level, size, children, ...rest }: HeadingProps) {
+export default function Heading({
+  level,
+  size,
+  shadow,
+  shadowColor,
+  children,
+  disableSelection,
+  ...rest
+}: HeadingProps) {
   const headingLevel = level ?? 1
   const headingSize = size ?? 'xl'
-  const headingCss = components[headingSize]
+  const headingShadow = shadow ?? false
+  const headingShadowColor = shadowColor ?? 'rgba(var(--accent-base), 0.15)'
+  const headingCss = components(headingSize, disableSelection ?? false)
 
   const Component = `h${headingLevel}`
 
@@ -55,5 +85,13 @@ export default function Heading({ level, size, children, ...rest }: HeadingProps
     css: headingCss
   }
 
-  return <Component {...props}>{children}</Component>
+  return (
+    <Component {...props}>
+      {headingShadow ? <HeadingSpan color={headingShadowColor}>{children}</HeadingSpan> : children}
+    </Component>
+  )
+}
+
+function HeadingSpan({ color, children }: HeadingSpanProps) {
+  return <span css={spanShadowCss(color)}>{children}</span>
 }

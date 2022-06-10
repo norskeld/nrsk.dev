@@ -1,9 +1,16 @@
-import { GetStaticProps } from 'next'
+import type { GetStaticProps } from 'next'
 import { css } from '@emotion/react'
 
-import { getPosts, Post } from '@/api/posts'
+import { getPosts, type Post } from '@/api/posts'
+import { getProjects, type Project } from '@/api/projects'
 
-import { AboutSection, RecentArticlesSection, RecentArticles } from '@/components/screens/home'
+import {
+  AboutSection,
+  Projects,
+  ProjectsSection,
+  RecentArticlesSection,
+  RecentArticles
+} from '@/components/screens/home'
 
 import Heading from '@/components/shared/heading'
 import Accent from '@/components/shared/accent'
@@ -11,6 +18,7 @@ import Layout from '@/layouts/base'
 
 interface Props {
   posts: Array<Post>
+  projects: Array<Project>
 }
 
 const headingCss = css`
@@ -18,7 +26,7 @@ const headingCss = css`
 `
 
 /** The home page. */
-export default function ({ posts }: Props) {
+export default function ({ posts, projects }: Props) {
   return (
     <Layout>
       <AboutSection>
@@ -33,7 +41,9 @@ export default function ({ posts }: Props) {
       </AboutSection>
 
       <RecentArticlesSection>
-        <Heading level={1}>Recent articles</Heading>
+        <Heading disableSelection shadow shadowColor="var(--accent-lightest)" level={1}>
+          Recent articles
+        </Heading>
 
         <p>
           I occasionally write about <strong>TypeScript</strong>, <strong>Rust</strong>,{' '}
@@ -42,16 +52,28 @@ export default function ({ posts }: Props) {
 
         <RecentArticles posts={posts} />
       </RecentArticlesSection>
+
+      <ProjectsSection>
+        <Heading disableSelection shadow shadowColor="var(--yellow-lightest)" level={1}>
+          Projects
+        </Heading>
+
+        <p>Some of my OSS projects.</p>
+
+        <Projects projects={projects} />
+      </ProjectsSection>
     </Layout>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = await getPosts()
+  const projects = await getProjects()
 
   return {
     props: {
-      posts
+      posts,
+      projects
     }
   }
 }

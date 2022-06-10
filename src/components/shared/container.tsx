@@ -1,4 +1,4 @@
-import { m, domAnimation, LazyMotion, Transition, Variants } from 'framer-motion'
+import { m, domAnimation, LazyMotion, Variants } from 'framer-motion'
 import { css } from '@emotion/react'
 
 interface ContainerProps {
