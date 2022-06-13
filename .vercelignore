@@ -6,7 +6,8 @@
 !public
 !src
 
-# Except: Next.js config and types.
+# Except: Next.js configs and types.
+!next-sitemap.config.*
 !next.config.*
 !next-env.d.ts
 
