@@ -1,0 +1,108 @@
+---
+import { format, parseISO } from 'date-fns'
+
+import type { Article } from '@/api/loader'
+
+export interface Props {
+  article: Article
+}
+
+const { article } = Astro.props
+---
+
+<article class="flex flex-col justify-center items-start w-full pb-16">
+  <header class="flex flex-col w-full mb-8">
+    <h1 class="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">
+      {article.frontmatter.title}
+    </h1>
+
+    <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+      {format(parseISO(article.frontmatter.createdAt), 'd MMM, yyyy')}
+      <span class="mx-1 text-gray-500 dark:text-gray-600">&middot;</span>
+      15 mins read
+    </p>
+  </header>
+
+  <section set:html={article.content} class="w-full mt-4 prose dark:prose-dark max-w-none" />
+</article>
+
+<style>
+.prose :global(hr) {
+  @apply block w-3/4 mt-8 mx-auto border border-solid border-gray-200;
+}
+
+/** Code highlighting. */
+
+/** -- General. */
+
+.prose :global(.shiki) {
+  @apply rounded-none sm:rounded-lg -mx-8 sm:mx-0 my-4 sm:my-6 p-0;
+}
+
+.prose blockquote :global(.shiki) {
+  @apply my-4;
+}
+
+.prose :global(.shiki code) {
+  @apply flex flex-row whitespace-nowrap;
+}
+
+/** -- Line numbers. */
+
+.prose :global(.shiki .line-numbers) {
+  @apply py-3 px-0 text-gray-200 text-right select-none;
+}
+
+.prose :global(.shiki .line-numbers .line-number) {
+  @apply min-w-[1.5rem] px-4;
+}
+
+/** -- Lines. */
+
+.prose :global(.shiki .lines) {
+  @apply grid w-full px-4 py-3 overflow-x-auto;
+}
+
+.prose :global(.shiki .line-numbers + .lines) {
+  @apply px-0 py-3;
+}
+
+.prose :global(.shiki .lines .line) {
+  @apply pr-8 whitespace-pre;
+}
+
+/** -- Highlight. */
+
+.prose :global(.shiki :where(.lines, .line-numbers) :where(.highlight-invert)) {
+  @apply opacity-[0.35];
+}
+
+.prose
+  :global(
+    .shiki
+    :where(.lines, .line-numbers)
+    :where(.highlight, .highlight-start, .highlight-inner, .highlight-end)
+  ) {
+  @apply bg-[#434c5e58] opacity-100;
+}
+
+/** -- Language label. */
+
+.prose :global(.shiki .language-id) {
+  @apply bg-[#202327] text-gray-300 py-2 px-4 rounded-none sm:rounded-tl-lg sm:rounded-tr-lg border-b border-solid border-gray-700 select-none;
+}
+
+.prose :global(blockquote .shiki) {
+  @apply rounded-lg;
+}
+
+.prose :global(blockquote .shiki .language-id) {
+  @apply rounded-tl-lg rounded-tr-lg;
+}
+
+/** Inline code. */
+
+.prose :global(:not(pre) > code) {
+  @apply whitespace-nowrap py-0.5 px-0.5 rounded-md border border-gray-200;
+}
+</style>

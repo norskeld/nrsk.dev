@@ -1,0 +1,53 @@
+---
+import LayoutBase from '@/layouts/Base.astro'
+
+import ArticleCard from '@/components/ArticleCard.astro'
+---
+
+<LayoutBase title="Vladislav M.">
+  <!-- Introduction. -->
+  <div class="flex flex-col-reverse sm:flex-row justify-between">
+    <div class="flex flex-col w-full pr-16">
+      <h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-6 text-black dark:text-white">
+        Howdy! I'm Vlad.
+      </h1>
+
+      <p class="text-gray-600 dark:text-gray-400 mb-16">
+        A <strong>TypeScript</strong> devotee, <strong>Rust</strong> tyro, and front-end shepherd. Interested in functional programming, compilers and PL design.
+      </p>
+    </div>
+
+    <div class="w-24 sm:w-56 relative mb-8 sm:mb-0">
+      <img
+        alt="Vladislav M."
+        src="/images/avatar-bw.jpeg"
+        width="256"
+        height="256"
+        class="rounded-full pointer-events-none select-none"
+      />
+    </div>
+  </div>
+
+  <!-- Recents articles. -->
+
+  <h3 class="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
+    Recent articles
+  </h3>
+
+  <p class="mb-6 text-gray-600 dark:text-gray-300">
+    I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>, and <strong>front-end</strong> stuff.
+  </p>
+
+  <div class="flex gap-6 flex-col md:flex-row w-full">
+    <ArticleCard title="Why IT is full of soylent crybabies and how we could solve this problem" slug="demystifying-monads" />
+    <ArticleCard title="Slice patterns in Rust" slug="slice-patterns-in-rust" />
+    <ArticleCard title="Demystifying Monads" slug="demystifying-monads" />
+  </div>
+
+  <a
+    href="/blog"
+    class="group flex flex-row align-middle mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+  >
+    Read all articles <span class="inline-block font-semibold text-base leading-7 ml-1 group-hover:ml-2 transition-colors">&rarr;</span>
+  </a>
+</LayoutBase>

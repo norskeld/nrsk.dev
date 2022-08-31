@@ -1,0 +1,10 @@
+<script is:inline>
+  const schemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  const schemeStorage = localStorage.getItem('color-scheme')
+
+  document.documentElement.className = schemeStorage
+    ? schemeStorage
+    : schemeMedia.matches
+      ? 'dark'
+      : 'light'
+</script>

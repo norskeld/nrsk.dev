@@ -1,34 +1,17 @@
 {
+  "extends": "astro/tsconfigs/strict",
+
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
-    "strict": true,
-    "allowJs": true,
-    "noEmit": true,
-    "target": "es2020",
-    "lib": ["dom", "esnext"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "target": "esnext",
     "module": "esnext",
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "skipLibCheck": true,
-    "incremental": true,
-    "forceConsistentCasingInFileNames": false,
-    "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["public/*"]
-    },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": ["label"]
-        }
-      }
-    ]
-  },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+    "noEmit": true,
+    "types": ["@astrojs/image/client", "vite/client"]
+  }
 }
