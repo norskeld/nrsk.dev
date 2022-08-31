@@ -1,38 +1,49 @@
-# vm.codes
+# Welcome to [Astro](https://astro.build)
 
-Personal website &amp; blog.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 
-## Features
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- [x] Built with **[Next.js]** + **TypeScript**.
-- [x] Uses **[Framer Motion]** for smooth page transitions.
-- [x] Uses **[Preact]** (compat) instead of **[React]** for smaller bundle size.
-- [x] Uses **[@emotion/react]** for styling.
-- [x] Syntax highlighting with **[Shiki.js]** via **[@nrsk/shikigami]** + [custom theme].
-- [x] Markdown with YAML frontmatter.
-- [x] **[Open Graph]** support.
-- [x] **[Ackee Analytics][ackee]** support _(optional)_.
+![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
 
-## Backlog
 
-- [ ] Add taxonomies (e.g. tags, categories).
-- [ ] Add dark theme support.
+## 🚀 Project Structure
 
-## License
+Inside of your Astro project, you'll see the following folders and files:
 
-> **The content under the `blog` directory is licensed under the [CC BY-NC 4.0](LICENSE_CONTENT) license.**
+```
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-The code is licensed under the [MIT](LICENSE) license.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-[vanilla-extract]: https://vanilla-extract.style/
-[basic a11y best practices]: https://a11yproject.com/checklist/
-[next.js]: https://nextjs.org/
-[shiki.js]: https://github.com/shikijs/shiki
-[custom theme]: src/syntax/norskeld.json
-[open graph]: https://ogp.me/
-[framer motion]: https://framer.com/motion/
-[preact]: https://github.com/preactjs/preact
-[react]: https://github.com/facebook/react
-[@emotion/react]: https://emotion.sh/docs/@emotion/react
-[@nrsk/shikigami]: https://github.com/norskeld/shikigami
-[ackee]: https://ackee.electerious.com
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                | Action                                             |
+| :--------------------- | :------------------------------------------------- |
+| `npm install`          | Installs dependencies                              |
+| `npm run dev`          | Starts local dev server at `localhost:3000`        |
+| `npm run build`        | Build your production site to `./dist/`            |
+| `npm run preview`      | Preview your build locally, before deploying       |
+| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
+| `npm run astro --help` | Get help using the Astro CLI                       |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

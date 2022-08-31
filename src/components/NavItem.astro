@@ -1,0 +1,33 @@
+---
+export interface Props {
+  to: string
+  url: URL
+}
+
+function isActive({ to, url }: Props): boolean {
+  return to === url.pathname
+}
+
+function concat(classes: Array<string>): string {
+  return classes.join(' ')
+}
+
+const { to, url } = Astro.props
+
+const baseClasses = concat([
+  'hidden md:inline-block',
+  'p-1 sm:px-3 sm:py-2 rounded-lg',
+  'hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors'
+])
+
+const inactiveClasses = 'font-normal text-gray-600 dark:text-gray-400'
+const activeClasses = 'font-semibold text-gray-800 dark:text-gray-200'
+
+const classes = isActive({ to, url })
+  ? concat([baseClasses, activeClasses])
+  : concat([baseClasses, inactiveClasses])
+---
+
+<a class={classes} href={to}>
+  <slot />
+</a>

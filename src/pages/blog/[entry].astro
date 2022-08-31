@@ -1,0 +1,26 @@
+---
+import { loadArticles, type Article } from '@/api/loader'
+
+import LayoutBase from '@/layouts/Base.astro'
+import ArticleBase from '@/components/Article.astro'
+
+export interface Props {
+  article: Article
+}
+
+export async function getStaticPaths() {
+  const articlesRaw = await loadArticles()
+
+  return articlesRaw.map((article) => ({
+    params: { entry: article.slug },
+    props: { article }
+  }))
+}
+
+const { article } = Astro.props
+const { frontmatter } = article
+---
+
+<LayoutBase title={frontmatter.title}>
+  <ArticleBase article={article}/>
+</LayoutBase>
