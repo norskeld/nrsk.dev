@@ -1,10 +1,8 @@
 ---
 title: Slice patterns in Rust
-createdAt: '2022-06-05'
----
-
-A short post on slice patterns in Rust, just to memorize how handy they are.
-
+description: A short post on slice patterns in Rust, just to memorize how handy they are.
+createdAt: 2022-06-05
+updatedAt: 2022-09-01
 ---
 
 Coming from the front-end world, where I use TypeScript on a daily basis, I find [destructuring assignment][destructuring-assignment], along with [rest] and [spread] syntax for unpacking and expanding arrays and objects, really helpful in writing concise and expressive code.
@@ -32,9 +30,6 @@ fn head<T: Clone>(items: &[T]) -> Option<T> {
 
 [Playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=f7ca004dc2de27ca52fc5cb41d5a57b6) with tests
 
-<details>
-  <summary>TypeScript alternative</summary>
-
 In TypeScript, we can implement this in a similar, but much less safer fashion, _or_ make use of libraries like [purify-ts]. It provides us with some handy algebraic data structures, e.g. `Maybe<T>`, which in this case is identical to the Rust's `Option<T>`.
 
 ```typescript
@@ -44,8 +39,6 @@ function head<T>([head]: Array<T>): Maybe<T> {
   return head ? Just(head) : Nothing
 }
 ```
-
-</details>
 
 ### tail
 
@@ -64,9 +57,6 @@ fn tail<T: Clone>(items: &[T]) -> Option<Vec<T>> {
 
 [Playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9cd6724ede2425db161c79416e7fc7c1) with tests
 
-<details>
-  <summary>TypeScript alternative</summary>
-
 In TypeScript land, again using [purify-ts]:
 
 ```typescript
@@ -76,8 +66,6 @@ function tail<T>([head, ...tail]: Array<T>): Maybe<Array<T>> {
   return head ? Just(tail) : Nothing
 }
 ```
-
-</details>
 
 ## Rusty tenet
 
@@ -98,9 +86,6 @@ fn is_palindrome(chars: &[char]) -> bool {
 
 Looks neat, if you ask me!
 
-<details>
-  <summary>TypeScript alternative</summary>
-
 In TypeScript, unfortunately, it gets way more imperative, because TypeScript doesn't allow us to destructure an array as flexible, as Rust does. I admit, this is not the best solution in terms of performance, but it roughly maps to what we have above in Rust.
 
 ```typescript
@@ -115,13 +100,11 @@ function isPalindrome(chars: Array<string>): boolean {
 }
 ```
 
-</details>
-
 ## A little trick
 
 There's another handy trick we can use within slice patterns. Turns out, we can not only destructure slices or arrays and bind matches to variables, but also match different variants while doing destructuring!
 
-Let's say, we have some fictional binary format. It has two versions, and each matches to its own sequence of bytes, though they are quite similar. V1 can't be processed, and V2 — can.
+Let's say, we have some fictional binary format. It has two versions, and each matches to its own sequence of bytes, though they are quite similar. V1 can't be processed, and V2 can.
 
 - If a sequence starts with `0x88` followed by `A` or `B`, then it's V1.
 - If a sequence starts with `0x88` followed by `X`, then it's V2.

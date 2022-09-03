@@ -1,0 +1,66 @@
+<script is:inline>
+const DARK = 'dark'
+const LIGHT = 'light'
+const LC_ITEM = 'color-scheme'
+
+const rootEl = document.documentElement
+
+const schemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+const schemeStorage = localStorage.getItem('color-scheme')
+
+if (schemeStorage) {
+  if (schemeStorage === DARK) rootEl.className = DARK
+} else if (schemeMedia.matches) {
+  rootEl.className = DARK
+}
+
+const hasClass = (el, className) =>
+  el?.classList.contains(className) ?? false
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Icons & button.
+  const buttonEl = document.getElementById('js-button')
+  const darkIconEl = document.getElementById('js-dark-icon')
+  const lightIconEl = document.getElementById('js-light-icon')
+
+  const toggleColorScheme = (isDark) => {
+    const isRootDark = hasClass(rootEl, DARK)
+    const isLightHidden = hasClass(lightIconEl, 'hidden')
+    const isDarkHidden = hasClass(darkIconEl, 'hidden')
+
+    if (isDark) {
+      !isRootDark && rootEl.classList.add(DARK)
+
+      // Switch icons.
+      !isLightHidden && lightIconEl?.classList.add('hidden')
+      isDarkHidden && darkIconEl?.classList.remove('hidden')
+
+      buttonEl?.setAttribute('title', 'Activate light mode')
+    } else {
+      isRootDark && rootEl.classList.remove(DARK)
+
+      // Switch icons.
+      isLightHidden && lightIconEl?.classList.remove('hidden')
+      !isDarkHidden && darkIconEl?.classList.add('hidden')
+
+      buttonEl?.setAttribute('title', 'Activate dark mode')
+    }
+
+    localStorage.setItem(LC_ITEM, isDark ? DARK : LIGHT)
+  }
+
+  // State from the `document.documentElement`.
+  let schemeState = hasClass(rootEl, DARK)
+
+  // Initial setting.
+  toggleColorScheme(schemeState)
+
+  // Track changes in media.
+  schemeMedia.addEventListener('change', (event) =>
+    toggleColorScheme(event.matches))
+
+  // Button click.
+  buttonEl?.addEventListener('click', () =>
+    (schemeState = !schemeState, toggleColorScheme(schemeState)))
+})
+</script>

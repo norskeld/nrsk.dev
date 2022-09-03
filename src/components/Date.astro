@@ -1,0 +1,18 @@
+---
+import { formatDate } from '@/utils'
+
+export interface Props {
+  date: Date | string
+  format?: string
+  class?: string
+}
+
+const { date, format = 'd MMMM yyyy', class: className = null } = Astro.props
+
+const createdAt = formatDate(date, format)
+const createdAtDatetime = formatDate(date, 'yyyy-MM-dd')
+---
+
+<time class={className} datetime={createdAtDatetime}>
+  {createdAt}
+</time>

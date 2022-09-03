@@ -1,0 +1,21 @@
+---
+export interface Props {
+  class?: string
+  value?: string
+}
+
+const { value, class: className } = Astro.props
+---
+
+<span
+  aria-hidden="true"
+  role="separator"
+  class:list={['dot', className]}
+  set:html={value ?? '&middot;'}
+/>
+
+<style>
+.dot {
+  @apply select-none px-2 text-gray-500;
+}
+</style>

@@ -1,0 +1,73 @@
+---
+import RecentArticlesGrid from './RecentArticlesGrid.astro'
+import RecentArticlesCard from './RecentArticlesCard.astro'
+
+import { loadRecentArticles } from '@/api/articles'
+
+export interface Props {
+  amount: number
+}
+
+const recentArticles = await loadRecentArticles(Astro.props.amount)
+---
+
+<section>
+  <header>
+    <h2 class="articles-heading">
+      Recent articles
+    </h2>
+  </header>
+
+  <p class="articles-note">
+    I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>,
+    and <strong>front-end</strong> stuff.
+  </p>
+
+  <RecentArticlesGrid>
+    {recentArticles.map((article) => <RecentArticlesCard article={article} />)}
+  </RecentArticlesGrid>
+
+  <footer class="articles-footer">
+    <a href="/blog" class="articles-all-link">
+      Read all articles <span class="articles-all-link-arrow">&rarr;</span>
+    </a>
+  </footer>
+</section>
+
+<style>
+.articles-heading {
+  @apply font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black;
+}
+
+:global(.dark .articles-heading) {
+  @apply text-white;
+}
+
+.articles-note {
+  @apply mb-6 text-gray-700;
+}
+
+:global(.dark .articles-note) {
+  @apply text-gray-300;
+}
+
+.articles-footer {
+  @apply mt-6;
+}
+
+.articles-all-link {
+  @apply leading-7 text-gray-500 hover:text-gray-800 transition;
+}
+
+:global(.dark .articles-all-link) {
+  @apply text-gray-400 hover:text-gray-200;
+}
+
+.articles-all-link-arrow {
+  @apply inline-block font-semibold text-base leading-7 transition-all;
+}
+
+.articles-all-link:hover .articles-all-link-arrow {
+  @apply ml-1;
+}
+</style>

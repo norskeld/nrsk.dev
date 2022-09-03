@@ -1,10 +1,10 @@
 import type { AstroUserConfig } from 'astro'
-import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
+import compress from 'astro-compress'
 import image from '@astrojs/image'
 
-const config: AstroUserConfig = {
-  base: '/',
+export default (): AstroUserConfig => ({
+  site: 'https://vm.codes',
 
   integrations: [
     image(),
@@ -12,8 +12,10 @@ const config: AstroUserConfig = {
       config: {
         applyBaseStyles: false
       }
+    }),
+    compress({
+      css: false,
+      img: false
     })
   ]
-}
-
-export default defineConfig(config)
+})

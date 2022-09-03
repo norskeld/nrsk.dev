@@ -1,0 +1,32 @@
+---
+import FooterItem from './FooterItem.astro'
+import Dot from './Dot.astro'
+
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <FooterItem>
+    &copy; 2021&ndash;{currentYear}
+  </FooterItem>
+
+  <Dot />
+
+  <FooterItem>
+    Built with <a href="https://astro.build" rel="noopener noreferrer" class="footer-link">Astro</a>
+  </FooterItem>
+</footer>
+
+<style>
+.footer {
+  @apply flex flex-col sm:flex-row max-w-2xl items-center mt-auto mx-auto pb-16 select-none;
+}
+
+.footer-link {
+  @apply hover:underline focus:underline text-gray-700;
+}
+
+:global(.dark .footer-link) {
+  @apply text-gray-200;
+}
+</style>

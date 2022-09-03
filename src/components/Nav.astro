@@ -2,21 +2,70 @@
 import ThemeSwitcher from './ThemeSwitcher.astro'
 import NavItem from './NavItem.astro'
 import Logo from './Logo.astro'
+
+import { isActive } from '@/utils'
+
+export interface Props {
+  sticky?: boolean
+}
+
+export interface Item {
+  label: string
+  to: string
+}
+
+const { sticky = false } = Astro.props
+const { pathname } = Astro.url
+
+const navItems: Array<Item> = [
+  { label: 'Blog', to: '/blog' },
+  { label: 'Snippets', to: '/snippets' }
+]
 ---
 
-<nav class="flex items-center justify-between w-full relative border-gray-200 dark:border-gray-700 pt-8 pb-8 sm:pb-16 text-gray-900 dark:text-gray-100">
-  <a href="#skip" class="skip-nav">
-    Skip to content
-  </a>
+<nav class:list={{ 'nav': true, 'nav-sticky': sticky }}>
+  <div class="nav-items">
+    <div class="nav-links">
+      <a href="/" class="nav-links-logo">
+        <Logo />
+      </a>
 
-  <div class="flex items-center">
-    <a href="/">
-      <Logo />
-    </a>
+      {navItems.map(({ label, to }) => (
+        <NavItem to={to} active={isActive(to, pathname)}>
+          {label}
+        </NavItem>
+      ))}
+    </div>
 
-    <NavItem to="/blog" url={Astro.url}>Blog</NavItem>
-    <NavItem to="/snippets" url={Astro.url}>Snippets</NavItem>
+    <ThemeSwitcher />
   </div>
-
-  <ThemeSwitcher />
 </nav>
+
+<style>
+.nav {
+  @apply
+    flex items-center justify-between w-full py-4 mt-6 md:mt-12 top-0 z-10
+    text-gray-900 bg-gray-50/80
+    backdrop-blur-md;
+}
+
+:global(.dark .nav) {
+  @apply text-gray-100 bg-gray-900/75;
+}
+
+.nav-items {
+  @apply flex items-center justify-between w-full max-w-2xl mx-auto px-8 md:px-0;
+}
+
+.nav-links {
+  @apply flex items-center;
+}
+
+.nav-links-logo {
+  @apply mr-6;
+}
+
+.nav-sticky {
+  @apply md:sticky;
+}
+</style>

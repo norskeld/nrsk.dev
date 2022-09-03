@@ -5,5 +5,7 @@
   },
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  // This is to make tailwind intellisense work with special Astro's "class:list" attributes.
+  "tailwindCSS.classAttributes": ["class", "className", "class:list"]
 }

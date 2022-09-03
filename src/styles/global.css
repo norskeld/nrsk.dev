@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: 'Inter';
   font-weight: 100 900;
   font-display: block;
@@ -48,29 +48,16 @@
   font-display: block;
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
   src: url('/fonts/Inter.latin-ext.woff2') format('woff2');
-}
+} */
 
 html {
-  @apply min-w-[360px] scroll-smooth bg-gray-50;
-}
-
-html.light {
-  @apply bg-gray-50;
+  @apply min-w-[360px] scroll-smooth bg-gray-50 scroll-pt-20;
 }
 
 html.dark {
   @apply bg-gray-900;
 }
 
-#skip {
-  scroll-margin-top: 1.125rem;
-}
-
-.skip-nav {
-  @apply absolute px-4 py-3 transition-transform duration-200 transform -translate-y-12 -left-1/4 focus:top-4 focus:translate-y-3 -top-8;
-}
-
 ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+  @apply text-gray-50 bg-crayola-200;
 }
