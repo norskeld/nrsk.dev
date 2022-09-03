@@ -1,0 +1,63 @@
+---
+import { Picture } from '@astrojs/image/components'
+
+import avatarBw from '@/assets/images/avatar-bw.jpeg'
+---
+
+<section class="introduction">
+  <header class="introduction-header">
+    <h1 class="introduction-heading">
+      Howdy! I'm Vlad.
+    </h1>
+
+    <p class="introduction-about">
+      A <strong>TypeScript</strong> devotee, <strong>Rust</strong> tyro, and front-end shepherd.
+      Interested in functional programming, compilers and PL design.
+    </p>
+  </header>
+
+  <Picture
+    src={avatarBw}
+    class="introduction-photo"
+    title="Hey, that's me!"
+    alt="Vladislav's photo, black and white, in full face"
+    aspectRatio={1}
+    widths={[256, 512]}
+    sizes="(min-width: 640px) 512px, 256px"
+  />
+</section>
+
+<style>
+.introduction {
+  @apply flex flex-col-reverse sm:flex-row justify-between;
+}
+
+.introduction-header {
+  @apply flex flex-col w-full pr-0 sm:pr-14;
+}
+
+.introduction-heading {
+  @apply font-bold text-3xl md:text-5xl tracking-tight mb-6 text-black;
+}
+
+:global(.dark .introduction-heading) {
+  @apply text-white;
+}
+
+.introduction-about {
+  @apply mb-16 text-gray-700;
+}
+
+:global(.dark .introduction-about) {
+  @apply text-gray-300;
+}
+
+.introduction-photo {
+  @apply w-24 sm:w-40 mb-8 sm:mb-0 select-none;
+}
+
+.introduction-photo :global(source),
+.introduction-photo :global(img) {
+  @apply rounded-full;
+}
+</style>

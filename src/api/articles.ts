@@ -1,14 +1,18 @@
 import type { MarkdownInstance as Markdown, MarkdownHeading } from 'astro'
 import { basename, extname } from 'path'
 
-import { processMarkdown } from './processor'
+import { processMarkdown } from './markdown'
 
 interface FrontmatterRaw {
   title: string
-  description?: string
+  description: string
   draft?: boolean
-  createdAt?: string
+  createdAt: string
   updatedAt?: string
+}
+
+export interface Frontmatter extends FrontmatterRaw {
+  draft: boolean
 }
 
 export interface Article {
@@ -17,8 +21,6 @@ export interface Article {
   frontmatter: Frontmatter
   headings: Array<MarkdownHeading>
 }
-
-export type Frontmatter = Required<FrontmatterRaw>
 
 export async function loadArticles() {
   const entriesRaw = import.meta.glob<Markdown<FrontmatterRaw>>('../content/blog/*.md', {
@@ -31,10 +33,7 @@ export async function loadArticles() {
       ...entry,
       frontmatter: {
         ...entry.frontmatter,
-        description: entry.frontmatter.description ?? '',
-        draft: entry.frontmatter.draft ?? false,
-        createdAt: entry.frontmatter.createdAt ?? new Date().toISOString(),
-        updatedAt: entry.frontmatter.updatedAt ?? new Date().toISOString()
+        draft: entry.frontmatter.draft ?? false
       }
     }))
 
@@ -47,4 +46,17 @@ export async function loadArticles() {
     }))
 
   return await Promise.all(entries)
+}
+
+export async function loadRecentArticles(amount: number) {
+  const articles = await loadArticles()
+
+  return articles
+    .sort((prev, next) => {
+      const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
+      const nextDate = new Date(next.frontmatter.createdAt).valueOf()
+
+      return nextDate - prevDate
+    })
+    .slice(0, amount)
 }

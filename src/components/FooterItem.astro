@@ -1,0 +1,13 @@
+<div class="footer-item">
+  <slot />
+</div>
+
+<style>
+.footer-item {
+  @apply text-base text-gray-500;
+}
+
+:global(.dark .footer-item) {
+  @apply text-gray-400;
+}
+</style>

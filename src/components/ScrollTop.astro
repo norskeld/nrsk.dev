@@ -1,0 +1,23 @@
+<button
+  type="button"
+  class="scroll-top"
+  onclick="window.scroll({ top: 0, left: 0, behavior: 'smooth' })"
+>
+  <slot />
+</button>
+
+<style>
+.scroll-top {
+  @apply
+    inline-block underline hover:no-underline focus:no-underline
+    text-gray-600 hover:text-gray-900 transition-colors;
+}
+
+:global(.dark .scroll-top) {
+  @apply text-gray-400;
+}
+
+:global(.dark .scroll-top:hover) {
+  @apply text-gray-200;
+}
+</style>

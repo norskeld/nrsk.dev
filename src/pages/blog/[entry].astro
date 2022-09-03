@@ -1,8 +1,8 @@
 ---
-import { loadArticles, type Article } from '@/api/loader'
+import BlogArticle from '@/screens/blog/Article.astro'
+import BlogLayout from '@/layouts/Blog.astro'
 
-import LayoutBase from '@/layouts/Base.astro'
-import ArticleBase from '@/components/Article.astro'
+import { loadArticles, type Article } from '@/api/articles'
 
 export interface Props {
   article: Article
@@ -18,9 +18,8 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props
-const { frontmatter } = article
 ---
 
-<LayoutBase title={frontmatter.title}>
-  <ArticleBase article={article}/>
-</LayoutBase>
+<BlogLayout title={article.frontmatter.title}>
+  <BlogArticle article={article}/>
+</BlogLayout>

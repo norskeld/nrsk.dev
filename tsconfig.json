@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "~/*": ["public/*"],
       "@/*": ["src/*"]
     },
     "target": "esnext",

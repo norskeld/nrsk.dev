@@ -1,33 +1,34 @@
 ---
 export interface Props {
   to: string
-  url: URL
+  active?: boolean
 }
 
-function isActive({ to, url }: Props): boolean {
-  return to === url.pathname
-}
-
-function concat(classes: Array<string>): string {
-  return classes.join(' ')
-}
-
-const { to, url } = Astro.props
-
-const baseClasses = concat([
-  'hidden md:inline-block',
-  'p-1 sm:px-3 sm:py-2 rounded-lg',
-  'hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors'
-])
-
-const inactiveClasses = 'font-normal text-gray-600 dark:text-gray-400'
-const activeClasses = 'font-semibold text-gray-800 dark:text-gray-200'
-
-const classes = isActive({ to, url })
-  ? concat([baseClasses, activeClasses])
-  : concat([baseClasses, inactiveClasses])
+const { to, active = false } = Astro.props
 ---
 
-<a class={classes} href={to}>
+<a href={to} class:list={{ 'nav-item': true, 'nav-item-active': active }}>
   <slot />
 </a>
+
+<style>
+.nav-item {
+  @apply
+    hidden md:inline-block
+    p-1 sm:px-3 sm:py-2 rounded-lg
+    font-semibold transition-colors
+    text-gray-800 hover:bg-gray-200;
+}
+
+:global(.dark .nav-item) {
+  @apply text-gray-400 hover:bg-gray-800;
+}
+
+.nav-item-active {
+  @apply underline text-gray-800;
+}
+
+:global(.dark .nav-item-active) {
+  @apply text-gray-200;
+}
+</style>

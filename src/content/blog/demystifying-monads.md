@@ -1,17 +1,15 @@
 ---
-title: Demystifying Monads
-createdAt: '2021-12-01'
----
-
-In this article we're going to find out, without diving into tangled mathematical jargon, what Monads are and what for we may want to use them.
-
+title: Demystifying monads
+description: In this article we're going to find out, without diving into tangled mathematical jargon, what Monads are and what for we may want to use them.
+createdAt: 2021-12-01
+updatedAt: 2022-09-01
 ---
 
 Googling _"what a monad is"_ may yield [this answer on StackOverflow], which explains, in exquisitely painful mathematical jargon, what a monad in fact is. But, no worries! Understanding monads doesn't actually require you to learn the nuances of [category theory] or [_F_-algebra]. I rather suggest that the concept of monads can be distilled into a clearer single sentence:
 
 > A monad is a control abstraction that defines the composition of effectful functions.
 
-Sounds way better than _"A monad is just a monoid in the category of endofunctors"_, isn't it?
+Sounds way better than the notorious _"A monad is just a monoid in the category of endofunctors"_, if you ask me!
 
 Now, let's unpack.
 
@@ -85,7 +83,7 @@ unit :: a -> m a
 bind :: (a -> m b) -> (m a -> m b)
 ```
 
-For those unfamiliar with Haskell syntax, the type ` t1 -> t2` is a function type, where `t1` is an argument and `t2` is a return type. And, the construction `m t1` refers to the type `t1` combined with the effect `m`.
+For those unfamiliar with Haskell syntax, the type `t1 -> t2` is a function type, where `t1` is an argument and `t2` is a return type. And, the construction `m t1` refers to the type `t1` combined with the effect `m`.
 
 The `unit` operator takes a plain value and produces that same value, but within the associated effect. And, importantly, the `bind` operator takes an effectful function and produces an equivalent effectful function _that accepts the associated effect as an argument_. With `bind`, one can compose two effectful functions by `f` and `g` by simply using plain function composition on `bind f` and `g`.
 
