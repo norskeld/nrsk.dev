@@ -10,7 +10,7 @@ const currentYear = new Date().getFullYear()
     &copy; 2021&ndash;{currentYear}
   </FooterItem>
 
-  <Dot />
+  <Dot class="footer-dot" />
 
   <FooterItem>
     Built with <a href="https://astro.build" rel="noopener noreferrer" class="footer-link">Astro</a>
@@ -28,5 +28,9 @@ const currentYear = new Date().getFullYear()
 
 :global(.dark .footer-link) {
   @apply text-gray-200;
+}
+
+.footer-dot {
+  @apply hidden sm:inline-block;
 }
 </style>
