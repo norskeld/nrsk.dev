@@ -47,7 +47,7 @@ async function createHighlighter(themeName: string) {
 
 /** Creates permalink handler for the `markdown-it-anchor` plugin. */
 function createPermalinkTransformer() {
-  return anchor.permalink.ariaHidden({ placement: 'after' })
+  return anchor.permalink.linkInsideHeader({ placement: 'after' })
 }
 
 /** Creates slugifier for the `markdown-it-anchor` plugin. **It doesn't work with Unicode**. */
