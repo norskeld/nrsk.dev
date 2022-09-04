@@ -20,6 +20,9 @@ export async function getStaticPaths() {
 const { article } = Astro.props
 ---
 
-<BlogLayout title={article.frontmatter.title}>
+<BlogLayout
+  title={article.frontmatter.title}
+  description={article.frontmatter.description}
+>
   <BlogArticle article={article}/>
 </BlogLayout>
