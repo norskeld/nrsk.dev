@@ -1,6 +1,6 @@
 {
-  "name": "solid-vm-codes",
-  "version": "0.0.1",
+  "name": "vm-codes",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -12,12 +12,11 @@
   "devDependencies": {
     "@astrojs/image": "^0.3.6",
     "@astrojs/tailwind": "^1.0.0",
-    "@fontsource/inter": "^4.5.12",
     "@nrsk/shikigami": "^1.1.2",
-    "@tailwindcss/line-clamp": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.4",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.7",
     "@types/node": "^18.7.14",
-    "astro": "^1.1.1",
+    "astro": "^1.1.5",
     "astro-compress": "1.0.6",
     "autoprefixer": "^10.4.8",
     "date-fns": "^2.29.2",
