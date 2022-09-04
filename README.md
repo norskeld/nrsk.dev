@@ -1,49 +1,35 @@
-# Welcome to [Astro](https://astro.build)
+# vm.codes
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+Personal website &amp; blog.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Features
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+- [x] Built with **[Astro]** and **TypeScript**.
+- [x] Ships _only ~500 bytes (gzipped)_ of vanilla JavaScript for theme switching.
+- [x] Uses **[Tailwind]** for styling.
+- [x] Uses good old Markdown with YAML frontmatter for authoring articles.
+- [x] Uses **[Shiki]** via **[@nrsk/shikigami]** (with [custom theme][custom-theme]) for syntax highlighting.
+- [x] Supports **dark theme** and respects `prefers-color-scheme`.
+- [x] Supports **[Open Graph][open-graph]**.
 
+## Backlog
 
-## 🚀 Project Structure
+- [ ] Add taxonomies (e.g. tags, categories).
+- [ ] Add article series.
+- [ ] _Maybe_ adopt [MDC].
 
-Inside of your Astro project, you'll see the following folders and files:
+## License
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+> **The content under the `content` directory is [licensed](LICENSE-CONTENT) under the [CC BY 4.0][cc-by-license] license.**
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The code is licensed under the [MIT](LICENSE) license.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[Astro]: https://astro.build
+[Tailwind]: https://tailwindcss.com
+[Shiki]: https://github.com/shikijs/shiki
+[custom-theme]: src/syntax/norskeld.json
+[open-graph]: https://ogp.me
+[@nrsk/shikigami]: https://github.com/norskeld/shikigami
+[ackee]: https://ackee.electerious.com
+[MDC]: https://content.nuxtjs.org/guide/writing/mdc
+[cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
