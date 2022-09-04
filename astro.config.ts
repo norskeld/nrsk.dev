@@ -15,7 +15,7 @@ export default (): AstroUserConfig => ({
     }),
     compress({
       css: false,
-      img: false
+      img: true
     })
   ]
 })
