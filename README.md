@@ -12,6 +12,10 @@ Personal website &amp; blog.
 - [x] Supports **dark theme** and respects `prefers-color-scheme`.
 - [x] Supports **[Open Graph][open-graph]**.
 
+## Acknowledgements
+
+The design and layout are highly inspired by the [Lee Robinson's portfolio][leerob], which is built with [Next.js][next-js], [Tailwind], [Prisma], and is more powerful. Check the sources [here][leerob-gh]!
+
 ## Backlog
 
 - [ ] Add taxonomies (e.g. tags, categories).
@@ -33,3 +37,7 @@ The code is licensed under the [MIT](LICENSE) license.
 [ackee]: https://ackee.electerious.com
 [MDC]: https://content.nuxtjs.org/guide/writing/mdc
 [cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
+[leerob]: https://leerob.io
+[leerob-gh]: https://github.com/leerob/leerob.io
+[next-js]: https://nextjs.org
+[prisma]: https://prisma.io
