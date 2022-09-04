@@ -23,7 +23,7 @@ export interface Article {
 }
 
 export async function loadArticles() {
-  const entriesRaw = import.meta.glob<Markdown<FrontmatterRaw>>('../content/blog/*.md', {
+  const entriesRaw = import.meta.glob<Markdown<FrontmatterRaw>>('../../content/blog/*.md', {
     eager: true
   })
 
