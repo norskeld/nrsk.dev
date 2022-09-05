@@ -13,7 +13,7 @@ export function inflect([single, plural]: [single: string, plural: string], leng
   return length === 1 ? single : plural
 }
 
-export function readingTime(text: string, wordsPerMinute = 200 ): string {
+export function readingTime(text: string, wordsPerMinute = 200): string {
   const { minutes } = timeToRead(text, { wordsPerMinute })
 
   const minutesCeiled = Math.ceil(minutes)
@@ -24,6 +24,10 @@ export function readingTime(text: string, wordsPerMinute = 200 ): string {
 
 /** Naively checks if `sub` is a subpath of `parent` path. */
 export function isActive(parent: string, sub: string): boolean {
+  if (parent === sub) {
+    return true
+  }
+
   const solved = relative(parent, sub)
 
   if (solved.length) {
