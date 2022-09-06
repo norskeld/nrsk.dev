@@ -1,0 +1,60 @@
+---
+import Date from '@/components/Date.astro'
+import Link from '@/components/Link.astro'
+
+import type { Article } from '@/api/articles'
+
+export interface Props {
+  article: Article
+}
+
+const { frontmatter, slug } = Astro.props.article
+---
+
+<article class="article">
+  <header class="article-header">
+    <h2 class="article-heading">
+      <Link to={'/blog/' + slug} class="article-link">{frontmatter.title}</Link>
+    </h2>
+
+    <Date date={frontmatter.createdAt} class="article-date" />
+  </header>
+
+  <p class="article-excerpt">
+    {frontmatter.description}
+  </p>
+</article>
+
+<style>
+.article {
+  @apply w-full;
+}
+
+.article-header {
+  @apply flex flex-col justify-between;
+}
+
+.article-heading {
+  @apply w-full mb-2 text-xl md:text-2xl font-bold text-gray-900;
+}
+
+.article-link {
+  @apply no-underline hover:underline;
+}
+
+:global(.dark .article-heading) {
+  @apply text-gray-100;
+}
+
+.article-date {
+  @apply text-gray-400;
+}
+
+.article-excerpt {
+  @apply pt-2;
+}
+
+:global(.dark .article-excerpt) {
+  @apply text-gray-200;
+}
+</style>

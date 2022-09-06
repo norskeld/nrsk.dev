@@ -1,5 +1,6 @@
 ---
 import FooterItem from './FooterItem.astro'
+import Link from './Link.astro'
 import Dot from './Dot.astro'
 
 const currentYear = new Date().getFullYear()
@@ -13,17 +14,17 @@ const currentYear = new Date().getFullYear()
   <Dot class="footer-dot" />
 
   <FooterItem>
-    Built with <a href="https://astro.build" rel="noopener noreferrer" class="footer-link">Astro</a>
+    Built with <Link to="https://astro.build" class="footer-link" external>Astro</Link>
   </FooterItem>
 </footer>
 
 <style>
 .footer {
-  @apply flex flex-col sm:flex-row max-w-2xl items-center mt-auto mx-auto pb-16 select-none;
+  @apply flex flex-col sm:flex-row max-w-2xl items-center mt-auto mx-auto pt-8 pb-16 select-none;
 }
 
 .footer-link {
-  @apply hover:underline focus:underline text-gray-700;
+  @apply !no-underline hover:underline focus:underline text-gray-700;
 }
 
 :global(.dark .footer-link) {
