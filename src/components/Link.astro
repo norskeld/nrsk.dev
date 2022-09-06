@@ -1,0 +1,17 @@
+---
+export interface Props {
+  to: string
+  class?: string
+  blank?: boolean
+  external?: boolean
+}
+
+const { to, class: className, blank = false, external = false } = Astro.props
+
+const linkTarget = blank ? '_blank' : '_self'
+const linkRel = external ? 'noopener noreferrer external' : null
+---
+
+<a href={to} class={className} target={linkTarget} rel={linkRel}>
+  <slot />
+</a>

@@ -1,0 +1,12 @@
+---
+export interface Props {
+  class?: string
+}
+
+const { class: className = null } = Astro.props
+---
+
+<header class:list={['flex flex-col w-full gap-4', className]}>
+  <slot name="heading" />
+  <slot name="sub" />
+</header>

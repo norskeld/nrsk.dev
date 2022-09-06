@@ -22,12 +22,17 @@ export interface Article {
   headings: Array<MarkdownHeading>
 }
 
-export async function loadArticles() {
+export interface LoaderOptions {
+  limit?: number
+  sort?: 'asc' | 'none' | 'desc'
+}
+
+export async function loadArticles({ limit = -1, sort = 'none' }: LoaderOptions = {}) {
   const entriesRaw = import.meta.glob<Markdown<FrontmatterRaw>>('../../content/blog/*.md', {
     eager: true
   })
 
-  const entriesWithDefaults = Object
+  const entriesDefaulted = Object
     .values(entriesRaw)
     .map<Markdown<Frontmatter>>((entry) => ({
       ...entry,
@@ -37,7 +42,24 @@ export async function loadArticles() {
       }
     }))
 
-  const entries = entriesWithDefaults
+  const entriesLimited = limit > 0
+    ? entriesDefaulted.slice(0, limit)
+    : entriesDefaulted
+
+  const entriesSorted = sort === 'none'
+    ? entriesLimited
+    : entriesLimited
+      .sort((prev, next) => {
+        const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
+        const nextDate = new Date(next.frontmatter.createdAt).valueOf()
+
+        switch (sort) {
+          case 'asc': return prevDate - nextDate
+          case 'desc': return nextDate - prevDate
+        }
+      })
+
+  const entries = entriesSorted
     .map<Promise<Article>>(async (article) => ({
       content: await processMarkdown(article.rawContent(), 'norskeld'),
       slug: basename(article.file, extname(article.file)),
@@ -46,17 +68,4 @@ export async function loadArticles() {
     }))
 
   return await Promise.all(entries)
-}
-
-export async function loadRecentArticles(amount: number) {
-  const articles = await loadArticles()
-
-  return articles
-    .sort((prev, next) => {
-      const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
-      const nextDate = new Date(next.frontmatter.createdAt).valueOf()
-
-      return nextDate - prevDate
-    })
-    .slice(0, amount)
 }
