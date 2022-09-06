@@ -1,42 +1,52 @@
 ---
-import RecentArticlesGrid from './RecentArticlesGrid.astro'
-import RecentArticlesCard from './RecentArticlesCard.astro'
+import CardGrid from '@/components/CardGrid.astro'
+import Header from '@/components/Header.astro'
+import Link from '@/components/Link.astro'
 
-import { loadRecentArticles } from '@/api/articles'
+import { loadArticles } from '@/api/articles'
+
+import RecentArticlesCard from './RecentArticlesCard.astro'
 
 export interface Props {
   amount: number
 }
 
-const recentArticles = await loadRecentArticles(Astro.props.amount)
+const recentArticles = await loadArticles({
+  limit: Astro.props.amount,
+  sort: 'desc'
+})
 ---
 
-<section>
-  <header>
-    <h2 class="articles-heading">
+<section class="articles">
+  <Header>
+    <h2 slot="heading" class="articles-heading">
       Recent articles
     </h2>
-  </header>
 
-  <p class="articles-note">
-    I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>,
-    and <strong>front-end</strong> stuff.
-  </p>
+    <p slot="sub" class="articles-note">
+      I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>,
+      and <strong>front-end</strong> stuff.
+    </p>
+  </Header>
 
-  <RecentArticlesGrid>
+  <CardGrid>
     {recentArticles.map((article) => <RecentArticlesCard article={article} />)}
-  </RecentArticlesGrid>
+  </CardGrid>
 
-  <footer class="articles-footer">
-    <a href="/blog" class="articles-all-link">
-      Read all articles <span class="articles-all-link-arrow">&rarr;</span>
-    </a>
+  <footer>
+    <Link to="/blog" class="articles-all-link">
+      Read all articles <span class="articles-all-link-arrow">&srarr;</span>
+    </Link>
   </footer>
 </section>
 
 <style>
+.articles {
+  @apply flex flex-col gap-8;
+}
+
 .articles-heading {
-  @apply font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black;
+  @apply font-bold text-2xl md:text-4xl tracking-tight text-black;
 }
 
 :global(.dark .articles-heading) {
@@ -44,19 +54,15 @@ const recentArticles = await loadRecentArticles(Astro.props.amount)
 }
 
 .articles-note {
-  @apply mb-6 text-gray-700;
+  @apply text-gray-700;
 }
 
 :global(.dark .articles-note) {
   @apply text-gray-300;
 }
 
-.articles-footer {
-  @apply mt-6;
-}
-
 .articles-all-link {
-  @apply leading-7 text-gray-500 hover:text-gray-800 transition;
+  @apply !no-underline leading-7 text-gray-500 hover:text-gray-800 transition;
 }
 
 :global(.dark .articles-all-link) {
@@ -64,7 +70,7 @@ const recentArticles = await loadRecentArticles(Astro.props.amount)
 }
 
 .articles-all-link-arrow {
-  @apply inline-block font-semibold text-base leading-7 transition-all;
+  @apply font-semibold leading-7 transition-all;
 }
 
 .articles-all-link:hover .articles-all-link-arrow {

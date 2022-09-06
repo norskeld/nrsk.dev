@@ -1,4 +1,5 @@
 ---
+import Card from '@/components/Card.astro'
 import Date from '@/components/Date.astro'
 
 import type { Article } from '@/api/articles'
@@ -10,57 +11,20 @@ export interface Props {
 const { slug, frontmatter } = Astro.props.article
 ---
 
-<a href={'/blog/' + slug} class="card-link">
-  <article class="card-container">
-    <header class="card-header">
-      <h3 class="card-heading">
-        {frontmatter.title}
-      </h3>
-    </header>
+<Card tag="a" to={'/blog/' + slug} justify>
+  <h3 slot="header" class="card-heading">
+    {frontmatter.title}
+  </h3>
 
-    <footer class="card-footer">
-      <Date date={frontmatter.createdAt} />
-    </footer>
-  </article>
-</a>
+  <Date slot="footer" date={frontmatter.createdAt} />
+</Card>
 
 <style>
-.card-link {
-  @apply
-    block w-full p-1 hover:scale-[1.01] rounded-xl
-    hover:shadow-xl hover:bg-gradient-to-br transition
-    hover:from-crayola-200 hover:to-crayola-500 bg-gray-800;
-}
-
-:global(.dark .card-link) {
-  @apply bg-gray-200;
-}
-
-.card-container {
-  @apply flex flex-col justify-between h-full rounded-lg p-4 bg-white;
-}
-
-:global(.dark .card-container) {
-  @apply bg-gray-900;
-}
-
-.card-header {
-  @apply flex flex-col md:flex-row justify-between;
-}
-
 .card-heading {
-  @apply text-lg md:text-lg font-semibold tracking-tight mb-4 w-full line-clamp-3 text-gray-900;
+  @apply text-lg font-semibold tracking-tight mb-4 w-full line-clamp-3 text-gray-900;
 }
 
 :global(.dark .card-heading) {
   @apply text-gray-100;
-}
-
-.card-footer {
-  @apply flex items-center text-gray-800;
-}
-
-:global(.dark .card-footer) {
-  @apply text-gray-200;
 }
 </style>
