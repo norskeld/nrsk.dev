@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply min-w-[360px] scroll-smooth bg-gray-50 scroll-pt-20;
+  @apply min-w-[360px] scroll-smooth bg-gray-50 scroll-pt-20 [text-size-adjust:none];
 }
 
 html.dark {
