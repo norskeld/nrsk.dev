@@ -1,5 +1,6 @@
 import type { AstroUserConfig } from 'astro'
 import tailwind from '@astrojs/tailwind'
+import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import image from '@astrojs/image'
 
@@ -12,6 +13,9 @@ export default (): AstroUserConfig => ({
       config: {
         applyBaseStyles: false
       }
+    }),
+    sitemap({
+      lastmod: new Date()
     }),
     compress({
       css: false,
