@@ -1,0 +1,71 @@
+---
+import CardGrid from '@/components/CardGrid.astro'
+import Header from '@/components/Header.astro'
+import Link from '@/components/Link.astro'
+
+import { loadProjects } from '@/api/projects'
+
+import ProjectsCard from './ProjectsCard.astro'
+
+const projects = await loadProjects()
+---
+
+<section class="projects">
+  <Header>
+    <h2 slot="heading" class="projects-heading">
+      Projects
+    </h2>
+
+    <p slot="sub" class="projects-note">
+      Some of my OSS projects.
+    </p>
+  </Header>
+
+  <CardGrid>
+    {projects.map((project) => <ProjectsCard project={project} />)}
+  </CardGrid>
+
+  <footer>
+    <Link to="https://github.com/norskeld" class="projects-all-link" external>
+      See all projects &amp; repositories <span class="projects-all-link-arrow">&srarr;</span>
+    </Link>
+  </footer>
+</section>
+
+<style>
+.projects {
+  @apply flex flex-col gap-8;
+}
+
+.projects-heading {
+  @apply font-bold text-2xl md:text-4xl tracking-tight text-black;
+}
+
+:global(.dark .projects-heading) {
+  @apply text-white;
+}
+
+.projects-note {
+  @apply text-gray-700;
+}
+
+:global(.dark .projects-note) {
+  @apply text-gray-300;
+}
+
+.projects-all-link {
+  @apply !no-underline leading-7 text-gray-500 hover:text-gray-800 transition;
+}
+
+:global(.dark .projects-all-link) {
+  @apply text-gray-400 hover:text-gray-200;
+}
+
+.projects-all-link-arrow {
+  @apply font-semibold leading-7 transition-all;
+}
+
+.projects-all-link:hover .projects-all-link-arrow {
+  @apply ml-1;
+}
+</style>

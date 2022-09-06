@@ -1,0 +1,56 @@
+---
+import Card from '@/components/Card.astro'
+import Link from '@/components/Link.astro'
+
+import type { Project } from '@/api/projects'
+
+export interface Props {
+  project: Project
+}
+
+const { name, description, language, url } = Astro.props.project
+
+const languageCssVariables = {
+  'language-color-light': language.color.at(0),
+  'language-color-dark': language.color.at(1)
+}
+---
+
+<Card>
+  <h3 slot="header" class="card-heading">
+    <Link to={url} external>
+      {name} <span class="card-language">{language.ext}</span>
+    </Link>
+  </h3>
+
+  <p slot="footer" set:html={description} />
+</Card>
+
+<style define:vars={languageCssVariables}>
+.card-container {
+  @apply gap-4 justify-start;
+}
+
+:global(.card-container a) {
+  @apply font-semibold hover:underline;
+}
+
+.card-heading {
+  @apply
+    flex items-center w-full
+    text-lg font-semibold tracking-tight
+    text-gray-900;
+}
+
+:global(.dark .card-heading) {
+  @apply text-gray-100;
+}
+
+.card-language {
+  @apply font-semibold italic [color:var(--language-color-light)];
+}
+
+:global(.dark .card-language) {
+  @apply [color:var(--language-color-dark)];
+}
+</style>
