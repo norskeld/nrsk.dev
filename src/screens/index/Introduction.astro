@@ -1,20 +1,21 @@
 ---
 import { Picture } from '@astrojs/image/components'
 
+import Header from '@/components/Header.astro'
 import avatarBw from '@/assets/images/avatar-bw.jpeg'
 ---
 
 <section class="introduction">
-  <header class="introduction-header">
-    <h1 class="introduction-heading">
+  <Header class="introduction-header">
+    <h1 slot="heading" class="introduction-heading">
       Howdy! I'm Vlad.
     </h1>
 
-    <p class="introduction-about">
+    <p slot="sub" class="introduction-about">
       A <strong>TypeScript</strong> devotee, <strong>Rust</strong> tyro, and front-end shepherd.
       Interested in functional programming, compilers and PL design.
     </p>
-  </header>
+  </Header>
 
   <Picture
     src={avatarBw}
@@ -33,11 +34,11 @@ import avatarBw from '@/assets/images/avatar-bw.jpeg'
 }
 
 .introduction-header {
-  @apply flex flex-col w-full pr-0 sm:pr-14;
+  @apply pr-0 sm:pr-14;
 }
 
 .introduction-heading {
-  @apply font-bold text-3xl md:text-5xl tracking-tight mb-6 text-black;
+  @apply font-bold text-3xl md:text-5xl tracking-tight text-black;
 }
 
 :global(.dark .introduction-heading) {
@@ -45,7 +46,7 @@ import avatarBw from '@/assets/images/avatar-bw.jpeg'
 }
 
 .introduction-about {
-  @apply mb-16 text-gray-700;
+  @apply text-gray-700;
 }
 
 :global(.dark .introduction-about) {
@@ -53,7 +54,7 @@ import avatarBw from '@/assets/images/avatar-bw.jpeg'
 }
 
 .introduction-photo {
-  @apply w-24 sm:w-40 mb-8 sm:mb-0 select-none;
+  @apply w-24 sm:w-32 mb-8 sm:mb-0 select-none;
 }
 
 .introduction-photo :global(source),

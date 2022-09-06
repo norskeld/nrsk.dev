@@ -1,5 +1,6 @@
 ---
 import ScrollTop from '@/components/ScrollTop.astro'
+import Header from '@/components/Header.astro'
 import Date from '@/components/Date.astro'
 import Dot from '@/components/Dot.astro'
 
@@ -14,17 +15,17 @@ const { content, frontmatter } = Astro.props.article
 ---
 
 <article class="article">
-  <header class="article-header">
-    <h1 class="article-heading">
+  <Header>
+    <h1 slot="heading" class="article-heading">
       {frontmatter.title}
     </h1>
 
-    <p class="article-meta">
+    <p slot="sub" class="article-meta">
       <Date date={frontmatter.createdAt} />
       <Dot />
       {readingTime(content)}
     </p>
-  </header>
+  </Header>
 
   <section
     set:html={content}
@@ -38,15 +39,11 @@ const { content, frontmatter } = Astro.props.article
 
 <style>
 .article {
-  @apply flex flex-col justify-center items-start gap-12 w-full;
-}
-
-.article-header {
-  @apply flex flex-col w-full;
+  @apply flex flex-col justify-center items-start gap-10 w-full;
 }
 
 .article-heading {
-  @apply mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl;
+  @apply text-3xl font-bold tracking-tight text-black md:text-5xl;
 }
 
 :global(.dark .article-heading) {
@@ -54,7 +51,7 @@ const { content, frontmatter } = Astro.props.article
 }
 
 .article-meta {
-  @apply flex items-center mt-2 text-gray-700;
+  @apply flex items-center text-gray-700;
 }
 
 :global(.dark .article-meta) {
