@@ -42,13 +42,13 @@ export async function loadArticles({ limit = -1, sort = 'none' }: LoaderOptions 
       }
     }))
 
-  const entriesLimited = limit > 0
+  const entriesSorted = limit > 0
     ? entriesDefaulted.slice(0, limit)
     : entriesDefaulted
 
-  const entriesSorted = sort === 'none'
-    ? entriesLimited
-    : entriesLimited
+  const entriesLimited = sort === 'none'
+    ? entriesSorted
+    : entriesSorted
       .sort((prev, next) => {
         const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
         const nextDate = new Date(next.frontmatter.createdAt).valueOf()
@@ -59,7 +59,7 @@ export async function loadArticles({ limit = -1, sort = 'none' }: LoaderOptions 
         }
       })
 
-  const entries = entriesSorted
+  const entries = entriesLimited
     .map<Promise<Article>>(async (article) => ({
       content: await processMarkdown(article.rawContent(), 'norskeld'),
       slug: basename(article.file, extname(article.file)),
