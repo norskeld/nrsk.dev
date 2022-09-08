@@ -1,19 +1,29 @@
 ---
+import { Site } from '@/site.config'
+
 export interface Props {
   title: string
   description: string
 }
 
 const { title, description } = Astro.props
+const { themeLight, canonical } = Site
 ---
 
 <Fragment>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content={description} />
-
   <title>{title}</title>
+
+  <meta name="description" content={description} />
+  <meta name="theme-color" content={themeLight} />
+
+  <!-- OpenGraph -->
+
+  <link rel="canonical" href={canonical} />
+
+  <!-- Fonts. -->
 
   <link
     rel="preload"
@@ -36,6 +46,8 @@ const { title, description } = Astro.props
         U+FEFF, U+FFFD;
     }
   </style>
+
+  <!-- Favicons & Webmanifest. -->
 
   <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />

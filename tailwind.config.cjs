@@ -1,15 +1,16 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
-// Used (so far) weights: normal (400), semibold (600), bold (700).
+/** Used (so far) weights: normal (400), semibold (600), bold (700). */
 const fonts = {
   fontFamily: {
     sans: ['Inter', ...fontFamily.sans]
   }
 }
 
+/** Custom color palettes. */
 const colors = {
   colors: {
-    // Accents.
+    // Used as accent.
     crayola: {
       0: '#e5f1ff',
       100: '#b3d6ff',
@@ -26,6 +27,7 @@ const colors = {
     // Re-defining default gray colors.
     gray: {
       0: '#ffffff',
+      50: '#f9fafb',
       100: '#f4f5f5',
       200: '#e2e3e4',
       300: '#999c9f',
@@ -39,8 +41,17 @@ const colors = {
   }
 }
 
+/** This is a completely custom pair of values to be used in the `site.config.ts`. */
+const themePair = {
+  light: colors.colors.gray[50],
+  dark: colors.colors.gray[900]
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // NOTE: This is not the part of Tailwind config, but w/e.
+  themePair,
+
   darkMode: 'class',
   content: [
     './src/**/*.{astro,html,mdx,ts,tsx}'
