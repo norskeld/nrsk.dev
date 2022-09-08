@@ -4,14 +4,14 @@ export interface Props {
   value?: string
 }
 
-const { value, class: className } = Astro.props
+const { value = '&middot;', class: className } = Astro.props
 ---
 
 <span
   aria-hidden="true"
   role="separator"
   class:list={['dot', className]}
-  set:html={value ?? '&middot;'}
+  set:html={value}
 />
 
 <style>

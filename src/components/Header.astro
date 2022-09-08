@@ -3,7 +3,7 @@ export interface Props {
   class?: string
 }
 
-const { class: className = null } = Astro.props
+const { class: className } = Astro.props
 ---
 
 <header class:list={['flex flex-col w-full gap-4', className]}>
