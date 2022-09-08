@@ -26,5 +26,6 @@ export const Site = {
   themeLight: config.themePair.light,
 
   title: 'Vladislav M.',
-  description: 'A TypeScript devotee, Rust tyro, and front-end shepherd. Interested in functional programming, compilers and PL design.'
+  description:
+    'A TypeScript devotee, Rust tyro, and front-end shepherd. Interested in functional programming, compilers and PL design.'
 } as const

@@ -53,13 +53,8 @@ module.exports = {
   themePair,
 
   darkMode: 'class',
-  content: [
-    './src/**/*.{astro,html,mdx,ts,tsx}'
-  ],
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp')
-  ],
+  content: ['./src/**/*.{astro,html,mdx,ts,tsx}'],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
   theme: {
     extend: {
       ...fonts,

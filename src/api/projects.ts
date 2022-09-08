@@ -48,13 +48,15 @@ async function produceProjects(): Promise<Array<Project>> {
   return [
     {
       name: 'sigma',
-      description: 'TypeScript [parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) library for building fast and convenient parsers.',
+      description:
+        'TypeScript [parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) library for building fast and convenient parsers.',
       url: `${GH_BASE}/sigma`,
       language: language('typescript')
     },
     {
       name: 'shikigami',
-      description: 'Opinionated syntax highlighting with [shiki](https://github.com/shikijs/shiki) for [markdown-it](https://github.com/markdown-it/markdown-it).',
+      description:
+        'Opinionated syntax highlighting with [shiki](https://github.com/shikijs/shiki) for [markdown-it](https://github.com/markdown-it/markdown-it).',
       url: `${GH_BASE}/shikigami`,
       language: language('typescript')
     },
@@ -72,7 +74,8 @@ async function produceProjects(): Promise<Array<Project>> {
     },
     {
       name: 'diceware',
-      description: 'Rust crate and CLI for generating [Diceware](https://en.wikipedia.org/wiki/Diceware) passphrases.',
+      description:
+        'Rust crate and CLI for generating [Diceware](https://en.wikipedia.org/wiki/Diceware) passphrases.',
       url: `${GH_BASE}/diceware`,
       language: language('rust')
     }
