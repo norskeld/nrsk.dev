@@ -63,6 +63,10 @@ module.exports = {
       typography: ({ theme }) => ({
         astro: {
           css: {
+            // Disable quotes on blockquotes.
+            'blockquote p:first-of-type::before': false,
+            'blockquote p:first-of-type::after': false,
+
             // Light theme.
             '--tw-prose-body': theme('colors.gray[700]'),
             '--tw-prose-headings': theme('colors.gray[900]'),

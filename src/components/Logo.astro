@@ -1,16 +1,12 @@
 ---
-import { Site } from '@/site.config'
 import { tw } from '@/utils'
 
 const containerClasses = tw`group hover:cursor-pointer`
 const containerSvgClasses = tw`h-8`
 
 const stopClasses = tw`
-  [--stop-light:${Site.themeDark}]
-  [--stop-dark:${Site.themeLight}]
-
-  text-[color:var(--stop-light)] dark:text-[color:var(--stop-dark)]
-  [stop-color:currentColor] transition-all
+  transition-[color,stop-color]
+  [stop-color:theme(colors.gray.900)] dark:[stop-color:theme(colors.gray.50)]
 `
 
 const stopFromClasses = tw`group-hover:[stop-color:theme(colors.crayola.200)]`
