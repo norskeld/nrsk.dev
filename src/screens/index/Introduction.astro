@@ -3,15 +3,27 @@ import { Picture } from '@astrojs/image/components'
 
 import Header from '@/components/Header.astro'
 import avatarBw from '@/assets/images/avatar-bw.jpeg'
+import { tw } from '@/utils'
+
+const sectionClasses = tw`flex flex-col-reverse sm:flex-row justify-between`
+const headerClasses = tw`pr-0 sm:pr-14`
+
+const headingClasses = tw`
+  text-3xl md:text-5xl font-bold tracking-tight
+  text-black dark:text-white
+`
+
+const aboutClasses = tw`text-gray-700 dark:text-gray-300`
+const photoClasses = tw`w-24 sm:w-32 mb-8 sm:mb-0 select-none [&_img]:rounded-full`
 ---
 
-<section class="introduction">
-  <Header class="introduction-header">
-    <h1 slot="heading" class="introduction-heading">
+<section class={sectionClasses}>
+  <Header class={headerClasses}>
+    <h1 slot="heading" class={headingClasses}>
       Howdy! I'm Vlad.
     </h1>
 
-    <p slot="sub" class="introduction-about">
+    <p slot="sub" class={aboutClasses}>
       A <strong>TypeScript</strong> devotee, <strong>Rust</strong> tyro, and front-end shepherd.
       Interested in functional programming, compilers and PL design.
     </p>
@@ -19,7 +31,7 @@ import avatarBw from '@/assets/images/avatar-bw.jpeg'
 
   <Picture
     src={avatarBw}
-    class="introduction-photo"
+    class={photoClasses}
     title="Hey, that's me!"
     alt="Vladislav's photo, black and white, in full face"
     aspectRatio={1}
@@ -27,38 +39,3 @@ import avatarBw from '@/assets/images/avatar-bw.jpeg'
     sizes="(min-width: 640px) 512px, 256px"
   />
 </section>
-
-<style>
-.introduction {
-  @apply flex flex-col-reverse sm:flex-row justify-between;
-}
-
-.introduction-header {
-  @apply pr-0 sm:pr-14;
-}
-
-.introduction-heading {
-  @apply font-bold text-3xl md:text-5xl tracking-tight text-black;
-}
-
-:global(.dark .introduction-heading) {
-  @apply text-white;
-}
-
-.introduction-about {
-  @apply text-gray-700;
-}
-
-:global(.dark .introduction-about) {
-  @apply text-gray-300;
-}
-
-.introduction-photo {
-  @apply w-24 sm:w-32 mb-8 sm:mb-0 select-none;
-}
-
-.introduction-photo :global(source),
-.introduction-photo :global(img) {
-  @apply rounded-full;
-}
-</style>

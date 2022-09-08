@@ -1,9 +1,12 @@
-<main class="content">
+---
+import { tw } from '@/utils'
+
+const contentClasses = tw`
+  flex flex-col justify-center gap-10 sm:gap-12
+  w-full max-w-2xl mx-auto px-8 md:px-0
+`
+---
+
+<main class={contentClasses}>
   <slot />
 </main>
-
-<style>
-.content {
-  @apply flex flex-col justify-center gap-10 sm:gap-12 w-full max-w-2xl mx-auto px-8 md:px-0;
-}
-</style>

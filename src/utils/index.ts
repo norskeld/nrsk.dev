@@ -1,5 +1,5 @@
 export { readingTime } from './reading-time'
+export { tw, withVariables } from './tw'
 export { formatDate } from './date'
 export { inflect } from './inflect'
 export { isActive } from './paths'
-export { tw } from './tw'

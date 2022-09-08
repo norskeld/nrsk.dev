@@ -3,58 +3,40 @@ import Date from '@/components/Date.astro'
 import Link from '@/components/Link.astro'
 
 import type { Article } from '@/api/articles'
+import { tw } from '@/utils'
 
 export interface Props {
   article: Article
 }
 
 const { frontmatter, slug } = Astro.props.article
+
+const articleClasses = tw`w-full`
+const headerClasses = tw`flex flex-col justify-between`
+
+const headingClasses = tw`
+  w-full mb-2
+  text-xl md:text-2xl font-bold
+  text-gray-900 dark:text-gray-100
+`
+
+const linkClasses = tw`no-underline hover:underline`
+const dateClasses = tw`text-gray-400`
+const excerptClasses = tw`pt-2 dark:text-gray-200`
 ---
 
-<article class="article">
-  <header class="article-header">
-    <h2 class="article-heading">
-      <Link to={'/blog/' + slug} class="article-link">{frontmatter.title}</Link>
+<article class={articleClasses}>
+  <header class={headerClasses}>
+    <h2 class={headingClasses}>
+      <Link to={'/blog/' + slug} class={linkClasses}>
+        {frontmatter.title}
+      </Link>
     </h2>
 
-    <Date date={frontmatter.createdAt} class="article-date" />
+    <Date date={frontmatter.createdAt} class={dateClasses} />
   </header>
 
-  <p class="article-excerpt">
+  <p class={excerptClasses}>
     {frontmatter.description}
   </p>
 </article>
-
-<style>
-.article {
-  @apply w-full;
-}
-
-.article-header {
-  @apply flex flex-col justify-between;
-}
-
-.article-heading {
-  @apply w-full mb-2 text-xl md:text-2xl font-bold text-gray-900;
-}
-
-.article-link {
-  @apply no-underline hover:underline;
-}
-
-:global(.dark .article-heading) {
-  @apply text-gray-100;
-}
-
-.article-date {
-  @apply text-gray-400;
-}
-
-.article-excerpt {
-  @apply pt-2;
-}
-
-:global(.dark .article-excerpt) {
-  @apply text-gray-200;
-}
-</style>

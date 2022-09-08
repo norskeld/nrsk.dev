@@ -3,28 +3,25 @@ import Card from '@/components/Card.astro'
 import Date from '@/components/Date.astro'
 
 import type { Article } from '@/api/articles'
+import { tw } from '@/utils'
 
 export interface Props {
   article: Article
 }
 
 const { slug, frontmatter } = Astro.props.article
+
+const headingClasses = tw`
+  text-lg font-semibold tracking-tight
+  mb-4 w-full line-clamp-3
+  text-gray-900 dark:text-gray-100
+`
 ---
 
 <Card tag="a" to={'/blog/' + slug} justify>
-  <h3 slot="header" class="card-heading">
+  <h3 slot="header" class={headingClasses}>
     {frontmatter.title}
   </h3>
 
   <Date slot="footer" date={frontmatter.createdAt} />
 </Card>
-
-<style>
-.card-heading {
-  @apply text-lg font-semibold tracking-tight mb-4 w-full line-clamp-3 text-gray-900;
-}
-
-:global(.dark .card-heading) {
-  @apply text-gray-100;
-}
-</style>

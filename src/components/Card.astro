@@ -1,59 +1,40 @@
 ---
+import { tw } from '@/utils'
+
 export interface Props {
   tag?: keyof HTMLElementTagNameMap
+  class?: string
   to?: string
   justify?: boolean
 }
 
-const { tag: Element = 'div', justify = false, to } = Astro.props
+const { tag: Element = 'div', class: className, justify = false, to } = Astro.props
 
-const containerClasses = {
-  'card-container': true,
-  'justify-between': justify
-}
+const wrapperClasses = tw`
+  block w-full p-1 hover:scale-[1.01] rounded-xl
+  hover:shadow-xl hover:bg-gradient-to-br transition-[background-color,transform,box-shadow]
+  hover:from-crayola-200 hover:to-crayola-500
+  bg-gray-800 dark:bg-gray-200
+`
+
+const containerClasses = tw`
+  flex flex-col gap-4 h-full p-4 rounded-lg
+  bg-white dark:bg-gray-900
+  ${justify && 'justify-between'}
+`
+
+const headerClasses = tw`flex flex-col md:flex-row justify-between`
+const footerClasses = tw`text-gray-800 dark:text-gray-200`
 ---
 
-<Element class="card-wrapper" href={to}>
+<Element class:list={[wrapperClasses, className]} href={to}>
   <article class:list={containerClasses}>
-    <header class="card-header">
+    <header class={headerClasses}>
       <slot name="header" />
     </header>
 
-    <footer class="card-footer">
+    <footer class={footerClasses}>
       <slot name="footer" />
     </footer>
   </article>
 </Element>
-
-<style>
-.card-wrapper {
-  @apply
-    block w-full p-1 hover:scale-[1.01] rounded-xl
-    hover:shadow-xl hover:bg-gradient-to-br transition
-    hover:from-crayola-200 hover:to-crayola-500 bg-gray-800;
-}
-
-:global(.dark .card-wrapper) {
-  @apply bg-gray-200;
-}
-
-.card-container {
-  @apply flex flex-col gap-4 h-full p-4 rounded-lg bg-white;
-}
-
-:global(.dark .card-container) {
-  @apply bg-gray-900;
-}
-
-.card-header {
-  @apply flex flex-col md:flex-row justify-between;
-}
-
-.card-footer {
-  @apply text-gray-800;
-}
-
-:global(.dark .card-footer) {
-  @apply text-gray-200;
-}
-</style>

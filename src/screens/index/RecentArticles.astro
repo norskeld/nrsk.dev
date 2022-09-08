@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro'
 import Link from '@/components/Link.astro'
 
 import { loadArticles } from '@/api/articles'
+import { tw } from '@/utils'
 
 import RecentArticlesCard from './RecentArticlesCard.astro'
 
@@ -15,15 +16,33 @@ const recentArticles = await loadArticles({
   limit: Astro.props.amount,
   sort: 'desc'
 })
+
+const sectionClasses = tw`flex flex-col gap-8`
+const noteClasses = tw`text-gray-700 dark:text-gray-300`
+
+const headingClasses = tw`
+  text-2xl md:text-4xl font-bold tracking-tight
+  text-black dark:text-white
+`
+
+const linkClasses = tw`
+  group !no-underline leading-7 transition-[color]
+  text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200
+`
+
+const linkArrowClasses = tw`
+  font-semibold leading-7 transition-[margin-left]
+  group-hover:ml-1
+`
 ---
 
-<section class="articles">
+<section class={sectionClasses}>
   <Header>
-    <h2 slot="heading" class="articles-heading">
+    <h2 slot="heading" class={headingClasses}>
       Recent articles
     </h2>
 
-    <p slot="sub" class="articles-note">
+    <p slot="sub" class={noteClasses}>
       I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>,
       and <strong>front-end</strong> stuff.
     </p>
@@ -34,46 +53,8 @@ const recentArticles = await loadArticles({
   </CardGrid>
 
   <footer>
-    <Link to="/blog" class="articles-all-link">
-      Read all articles <span class="articles-all-link-arrow">&srarr;</span>
+    <Link to="/blog" class={linkClasses}>
+      Read all articles <span class={linkArrowClasses}>&srarr;</span>
     </Link>
   </footer>
 </section>
-
-<style>
-.articles {
-  @apply flex flex-col gap-8;
-}
-
-.articles-heading {
-  @apply font-bold text-2xl md:text-4xl tracking-tight text-black;
-}
-
-:global(.dark .articles-heading) {
-  @apply text-white;
-}
-
-.articles-note {
-  @apply text-gray-700;
-}
-
-:global(.dark .articles-note) {
-  @apply text-gray-300;
-}
-
-.articles-all-link {
-  @apply !no-underline leading-7 text-gray-500 hover:text-gray-800 transition;
-}
-
-:global(.dark .articles-all-link) {
-  @apply text-gray-400 hover:text-gray-200;
-}
-
-.articles-all-link-arrow {
-  @apply font-semibold leading-7 transition-all;
-}
-
-.articles-all-link:hover .articles-all-link-arrow {
-  @apply ml-1;
-}
-</style>

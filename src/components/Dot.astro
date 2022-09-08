@@ -1,21 +1,22 @@
 ---
+import { tw } from '@/utils'
+
 export interface Props {
   class?: string
   value?: string
 }
 
 const { value = '&middot;', class: className } = Astro.props
+
+const dotClasses = tw`
+  select-none px-2
+  text-gray-500
+`
 ---
 
 <span
   aria-hidden="true"
   role="separator"
-  class:list={['dot', className]}
+  class:list={[dotClasses, className]}
   set:html={value}
 />
-
-<style>
-.dot {
-  @apply select-none px-2 text-gray-500;
-}
-</style>

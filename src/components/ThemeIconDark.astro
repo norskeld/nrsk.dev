@@ -1,10 +1,19 @@
+---
+import { tw } from '@/utils'
+
+const darkIconClasses = tw`
+  hidden w-5 h-5
+  text-gray-800 dark:text-gray-200
+`
+---
+
 <svg
-  aria-hidden="true"
-  focusable="false"
   id="js-dark-icon"
-  class="hidden w-5 h-5 text-gray-800 dark:text-gray-200"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
+  class={darkIconClasses}
+  aria-hidden="true"
+  focusable="false"
   fill="currentColor"
 >
   <path

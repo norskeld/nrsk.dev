@@ -97,7 +97,7 @@ const { content, frontmatter } = Astro.props.article
 }
 
 .prose :global(.header-anchor) {
-  @apply border-none no-underline text-gray-300 opacity-100 transition;
+  @apply border-none no-underline text-gray-300 opacity-100 transition-[color,opacity];
 }
 
 .prose :global(.header-anchor:is(:hover, :focus)) {

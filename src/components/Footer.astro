@@ -1,37 +1,34 @@
 ---
+import { tw } from '@/utils'
+
 import FooterItem from './FooterItem.astro'
 import Link from './Link.astro'
 import Dot from './Dot.astro'
 
 const currentYear = new Date().getFullYear()
+
+const footerClasses = tw`
+  flex flex-col sm:flex-row items-center
+  max-w-2xl mt-auto mx-auto pt-8 pb-16
+  select-none
+`
+
+const footerLinkClasses = tw`
+  no-underline hover:underline focus:underline
+  text-gray-700 dark:text-gray-200
+`
+
+const footerDotClasses = tw`hidden sm:inline-block`
 ---
 
-<footer class="footer">
+<footer class={footerClasses}>
   <FooterItem>
     &copy; 2021&ndash;{currentYear}
   </FooterItem>
 
-  <Dot class="footer-dot" />
+  <Dot class={footerDotClasses} />
 
   <FooterItem>
-    Built with <Link to="https://astro.build" class="footer-link" external>Astro</Link>
+    Built with <Link to="https://astro.build" class={footerLinkClasses} external>Astro</Link>
   </FooterItem>
 </footer>
-
-<style>
-.footer {
-  @apply flex flex-col sm:flex-row max-w-2xl items-center mt-auto mx-auto pt-8 pb-16 select-none;
-}
-
-.footer-link {
-  @apply !no-underline hover:underline focus:underline text-gray-700;
-}
-
-:global(.dark .footer-link) {
-  @apply text-gray-200;
-}
-
-.footer-dot {
-  @apply hidden sm:inline-block;
-}
-</style>

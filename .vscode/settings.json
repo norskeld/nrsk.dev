@@ -11,5 +11,5 @@
   // This is to make tailwind intellisense work with special Astro's "class:list" attributes.
   "tailwindCSS.classAttributes": ["class", "className", "class:list"],
   // This is to make tailwind intellisense work with tw`...` utility.
-  "tailwindCSS.experimental.classRegex": ["tw`([^`]*)"]
+  "tailwindCSS.experimental.classRegex": ["[tT]w`([^`]+)"]
 }
