@@ -32,40 +32,37 @@ export async function loadArticles({ limit = -1, sort = 'none' }: LoaderOptions 
     eager: true
   })
 
-  const entriesDefaulted = Object
-    .values(entriesRaw)
-    .map<Markdown<Frontmatter>>((entry) => ({
-      ...entry,
-      frontmatter: {
-        ...entry.frontmatter,
-        draft: entry.frontmatter.draft ?? false
-      }
-    }))
+  const entriesDefaulted = Object.values(entriesRaw).map<Markdown<Frontmatter>>((entry) => ({
+    ...entry,
+    frontmatter: {
+      ...entry.frontmatter,
+      draft: entry.frontmatter.draft ?? false
+    }
+  }))
 
-  const entriesSorted = limit > 0
-    ? entriesDefaulted.slice(0, limit)
-    : entriesDefaulted
+  const entriesSorted =
+    sort === 'none'
+      ? entriesDefaulted
+      : entriesDefaulted.sort((prev, next) => {
+          const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
+          const nextDate = new Date(next.frontmatter.createdAt).valueOf()
 
-  const entriesLimited = sort === 'none'
-    ? entriesSorted
-    : entriesSorted
-      .sort((prev, next) => {
-        const prevDate = new Date(prev.frontmatter.createdAt).valueOf()
-        const nextDate = new Date(next.frontmatter.createdAt).valueOf()
+          switch (sort) {
+            case 'asc':
+              return prevDate - nextDate
+            case 'desc':
+              return nextDate - prevDate
+          }
+        })
 
-        switch (sort) {
-          case 'asc': return prevDate - nextDate
-          case 'desc': return nextDate - prevDate
-        }
-      })
+  const entriesLimited = limit > 0 ? entriesSorted.slice(0, limit) : entriesSorted
 
-  const entries = entriesLimited
-    .map<Promise<Article>>(async (article) => ({
-      content: await processMarkdown(article.rawContent(), 'norskeld'),
-      slug: basename(article.file, extname(article.file)),
-      frontmatter: article.frontmatter,
-      headings: article.getHeadings()
-    }))
+  const entries = entriesLimited.map<Promise<Article>>(async (article) => ({
+    content: await processMarkdown(article.rawContent(), 'norskeld'),
+    slug: basename(article.file, extname(article.file)),
+    frontmatter: article.frontmatter,
+    headings: article.getHeadings()
+  }))
 
   return await Promise.all(entries)
 }

@@ -21,8 +21,8 @@ export function tw(strings: TemplateStringsArray, ...exprs: Array<Expression>): 
   // Flatten, then evaluate all lazy expressions if any.
   const values = exprs
     .filter(isDefined)
-    .map(expr =>
-      (Array.isArray(expr) ? expr.flat(Infinity) : [expr]).map(normalizedExpr =>
+    .map((expr) =>
+      (Array.isArray(expr) ? expr.flat(Infinity) : [expr]).map((normalizedExpr) =>
         isFunction(normalizedExpr) ? normalizedExpr() : normalizedExpr
       )
     )
@@ -37,7 +37,7 @@ export function tw(strings: TemplateStringsArray, ...exprs: Array<Expression>): 
     // convertible value without `toString`, e.g. a naked object created with `Object.create(null)`.
     if (
       flattenedTuple.some(
-        flattenedValue =>
+        (flattenedValue) =>
           flattenedValue !== null &&
           flattenedValue !== undefined &&
           (typeof flattenedValue.toString !== 'function' ||
@@ -49,9 +49,7 @@ export function tw(strings: TemplateStringsArray, ...exprs: Array<Expression>): 
 
     const normalizedValue = flattenedTuple.join('')
 
-    const next = index >= values.length
-      ? current
-      : current + normalizedValue
+    const next = index >= values.length ? current : current + normalizedValue
 
     return accumulator + next
   }, String())
