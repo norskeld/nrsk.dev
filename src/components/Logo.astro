@@ -1,3 +1,12 @@
+---
+import { Site } from '@/site.config'
+
+const cssVariables = {
+  'theme-dark': Site.themeDark,
+  'theme-light': Site.themeLight
+}
+---
+
 <div class="logo-container">
   <svg
     aria-labelledby="logo-title"
@@ -25,25 +34,25 @@
   </svg>
 </div>
 
-<style>
+<style define:vars={cssVariables}>
 .stop {
   @apply transition-[stop-color];
 }
 
 .stop-from {
-  @apply [stop-color:theme(colors.gray.900)];
+  @apply [stop-color:var(--theme-dark)];
 }
 
 :global(.dark .stop-from) {
-  @apply [stop-color:theme(colors.gray.100)];
+  @apply [stop-color:var(--theme-light)];
 }
 
 .stop-to {
-  @apply [stop-color:theme(colors.gray.900)];
+  @apply [stop-color:var(--theme-dark)];
 }
 
 :global(.dark .stop-to) {
-  @apply [stop-color:theme(colors.gray.100)];
+  @apply [stop-color:var(--theme-light)];
 }
 
 .logo-container {

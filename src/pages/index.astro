@@ -3,12 +3,11 @@ import IndexRecentArticles from '@/screens/index/RecentArticles.astro'
 import IndexIntroduction from '@/screens/index/Introduction.astro'
 import IndexProjects from '@/screens/index/Projects.astro'
 import IndexLayout from '@/layouts/Index.astro'
+
+import { Site } from '@/site.config'
 ---
 
-<IndexLayout
-  title="Vladislav M."
-  description="A TypeScript devotee, Rust tyro, and front-end shepherd. Interested in functional programming, compilers and PL design."
->
+<IndexLayout title={Site.title} description={Site.description}>
   <IndexIntroduction />
   <IndexRecentArticles amount={3} />
   <IndexProjects />

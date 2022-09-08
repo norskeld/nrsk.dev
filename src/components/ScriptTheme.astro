@@ -1,9 +1,19 @@
-<script is:inline>
+---
+import { Site } from '@/site.config'
+
+const jsVariables = {
+  themeDark: Site.themeDark,
+  themeLight: Site.themeLight
+}
+---
+
+<script is:inline define:vars={jsVariables}>
 const DARK = 'dark'
 const LIGHT = 'light'
 const LC_ITEM = 'color-scheme'
 
 const rootEl = document.documentElement
+const metaThemeEl = document.querySelector('meta[name="theme-color"]')
 
 const schemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
 const schemeStorage = localStorage.getItem('color-scheme')
@@ -36,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isDarkHidden && darkIconEl?.classList.remove('hidden')
 
       buttonEl?.setAttribute('title', 'Activate light mode')
+      metaThemeEl?.setAttribute('content', themeDark)
     } else {
       isRootDark && rootEl.classList.remove(DARK)
 
@@ -44,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       !isDarkHidden && darkIconEl?.classList.add('hidden')
 
       buttonEl?.setAttribute('title', 'Activate dark mode')
+      metaThemeEl?.setAttribute('content', themeLight)
     }
 
     localStorage.setItem(LC_ITEM, isDark ? DARK : LIGHT)
