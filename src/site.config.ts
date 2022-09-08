@@ -19,8 +19,8 @@ export const Site = {
   url: 'https://vm.codes',
   canonical: 'https://vm.codes',
 
-  localeSite: 'en-GB',
-  localeOpenGraph: 'en_GB',
+  localeSite: 'en-US',
+  localeOpenGraph: 'en_US',
 
   themeDark: config.themePair.dark,
   themeLight: config.themePair.light,

@@ -1,10 +1,18 @@
 type Primitive = string | number | boolean
 
+type TwNullable<T> = T | undefined | null
+type TwFunction<T> = (strings: TemplateStringsArray, ...exprs: Array<Expression>) => T
+
 type FunctionExpression = (...props: Array<unknown>) => Primitive | Array<Primitive>
 type PrimitiveExpression = Primitive | Array<Primitive>
 type SingularExpression = FunctionExpression | PrimitiveExpression
 type NullableExpression = undefined | null
 type Expression = SingularExpression | Array<SingularExpression> | NullableExpression
+
+interface ExpandableResult {
+  class?: string | undefined | null
+  style?: string | Record<string, any> | undefined | null
+}
 
 const SPACE_CH = String.fromCharCode(32)
 const SPACE_RE = /\s{2,}/g
@@ -17,7 +25,7 @@ function isDefined(x: unknown): boolean {
   return x !== undefined && x !== null
 }
 
-export function tw(strings: TemplateStringsArray, ...exprs: Array<Expression>): string {
+export const tw: TwFunction<string> = (strings, ...exprs) => {
   // Flatten, then evaluate all lazy expressions if any.
   const values = exprs
     .filter(isDefined)
@@ -48,11 +56,22 @@ export function tw(strings: TemplateStringsArray, ...exprs: Array<Expression>): 
     }
 
     const normalizedValue = flattenedTuple.join('')
-
     const next = index >= values.length ? current : current + normalizedValue
 
     return accumulator + next
   }, String())
 
   return reduced.trim().replace(SPACE_RE, SPACE_CH)
+}
+
+export const withVariables = (
+  variables: Record<string, TwNullable<string>>
+): TwFunction<ExpandableResult> => {
+  const filteredCssVariables = Object.entries(variables).filter(([_, value]) => Boolean(value))
+  const collectedCssVariables = Object.fromEntries(filteredCssVariables)
+
+  return (strings: TemplateStringsArray, ...exprs: Array<Expression>) => ({
+    class: tw(strings, ...exprs),
+    style: collectedCssVariables
+  })
 }

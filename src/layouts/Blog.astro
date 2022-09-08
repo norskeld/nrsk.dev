@@ -6,6 +6,8 @@ import Footer from '@/components/Footer.astro'
 import Head from '@/components/Head.astro'
 import Nav from '@/components/Nav.astro'
 
+import { Site } from '@/site.config'
+
 import '@/styles/global.css'
 
 export interface Props {
@@ -15,7 +17,7 @@ export interface Props {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={Site.localeSite}>
   <head>
     <Head {...Astro.props} />
   </head>

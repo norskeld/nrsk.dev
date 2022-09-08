@@ -1,20 +1,30 @@
 ---
 import { Site } from '@/site.config'
+import { tw } from '@/utils'
 
-const cssVariables = {
-  'theme-dark': Site.themeDark,
-  'theme-light': Site.themeLight
-}
+const containerClasses = tw`group hover:cursor-pointer`
+const containerSvgClasses = tw`h-8`
+
+const stopClasses = tw`
+  [--stop-light:${Site.themeDark}]
+  [--stop-dark:${Site.themeLight}]
+
+  text-[color:var(--stop-light)] dark:text-[color:var(--stop-dark)]
+  [stop-color:currentColor] transition-all
+`
+
+const stopFromClasses = tw`group-hover:[stop-color:theme(colors.crayola.200)]`
+const stopToClasses = tw`group-hover:[stop-color:theme(colors.crayola.500)]`
 ---
 
-<div class="logo-container">
+<div class={containerClasses}>
   <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 384 384"
+    class={containerSvgClasses}
     aria-labelledby="logo-title"
     focusable="false"
     role="img"
-    class="h-8"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 384 384"
   >
     <title id="logo-title">
       Go to the main page
@@ -22,8 +32,8 @@ const cssVariables = {
 
     <defs>
       <linearGradient id="gradient" gradientTransform="rotate(45)">
-        <stop offset="0%" class="stop stop-from" />
-        <stop offset="100%" class="stop stop-to" />
+        <stop offset="0%" class:list={[stopClasses, stopFromClasses]} />
+        <stop offset="100%" class:list={[stopClasses, stopToClasses]} />
       </linearGradient>
     </defs>
 
@@ -34,37 +44,3 @@ const cssVariables = {
     />
   </svg>
 </div>
-
-<style define:vars={cssVariables}>
-.stop {
-  @apply transition-[stop-color];
-}
-
-.stop-from {
-  @apply [stop-color:var(--theme-dark)];
-}
-
-:global(.dark .stop-from) {
-  @apply [stop-color:var(--theme-light)];
-}
-
-.stop-to {
-  @apply [stop-color:var(--theme-dark)];
-}
-
-:global(.dark .stop-to) {
-  @apply [stop-color:var(--theme-light)];
-}
-
-.logo-container {
-  @apply hover:cursor-pointer;
-}
-
-.logo-container:hover .stop-from {
-  @apply [stop-color:theme(colors.crayola.200)];
-}
-
-.logo-container:hover .stop-to {
-  @apply [stop-color:theme(colors.crayola.500)];
-}
-</style>

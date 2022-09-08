@@ -1,6 +1,14 @@
 ---
+import { tw } from '@/utils'
+
 import ThemeIconLight from './ThemeIconLight.astro'
 import ThemeIconDark from './ThemeIconDark.astro'
+
+const buttonClasses = tw`
+  flex items-center justify-center
+  w-9 h-9 rounded-lg transition-all hover:ring-2
+  bg-gray-200 dark:bg-gray-600 ring-gray-300
+`
 ---
 
 <button
@@ -8,20 +16,8 @@ import ThemeIconDark from './ThemeIconDark.astro'
   type="button"
   aria-label="auto"
   aria-live="polite"
-  class="theme-button"
+  class={buttonClasses}
 >
   <ThemeIconDark />
   <ThemeIconLight />
 </button>
-
-<style>
-button.theme-button {
-  @apply
-    flex items-center justify-center w-9 h-9 rounded-lg
-    bg-gray-200 hover:ring-2 ring-gray-300 transition-all;
-}
-
-:global(.dark button.theme-button) {
-  @apply bg-gray-600;
-}
-</style>

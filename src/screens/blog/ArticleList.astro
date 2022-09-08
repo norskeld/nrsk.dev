@@ -2,7 +2,7 @@
 import Header from '@/components/Header.astro'
 
 import { loadArticles } from '@/api/articles'
-import { inflect } from '@/utils'
+import { inflect, tw } from '@/utils'
 
 import ArticlePreview from './ArticlePreview.astro'
 
@@ -17,46 +17,33 @@ const articlesNoteInflected = inflect(
   ],
   articles.length
 )
+
+const sectionClasses = tw`
+  flex flex-col gap-10
+  w-full
+`
+
+const headingClasses = tw`
+  text-3xl md:text-5xl font-bold tracking-tight
+  text-black dark:text-white
+`
+
+const noteClasses = tw`text-gray-600 dark:text-gray-400`
+const contentClasses = tw`flex flex-col gap-8`
 ---
 
-<section class="articles">
+<section class={sectionClasses}>
   <Header>
-    <h1 slot="heading" class="articles-heading">
+    <h1 slot="heading" class={headingClasses}>
       Blog
     </h1>
 
-    <p slot="sub" class="articles-note">
+    <p slot="sub" class={noteClasses}>
       So far <span set:html={articlesNoteInflected} />, but I'm working on new stuff!
     </p>
   </Header>
 
-  <section class="articles-content">
+  <section class={contentClasses}>
     {articles.map((article) => <ArticlePreview article={article}/>)}
   </section>
 </section>
-
-<style>
-.articles {
-  @apply flex flex-col gap-10 w-full;
-}
-
-.articles-heading {
-  @apply text-3xl font-bold tracking-tight text-black md:text-5xl;
-}
-
-:global(.dark .articles-heading) {
-  @apply text-white;
-}
-
-.articles-note {
-  @apply text-gray-600;
-}
-
-:global(.dark .articles-note) {
-  @apply text-gray-400;
-}
-
-.articles-content {
-  @apply flex flex-col gap-8;
-}
-</style>

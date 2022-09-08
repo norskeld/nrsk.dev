@@ -1,9 +1,12 @@
-<div class="wrapper">
+---
+import { tw } from '@/utils'
+
+const wrapperClasses = tw`
+  flex flex-col gap-8 sm:gap-10
+  min-h-screen
+`
+---
+
+<div class={wrapperClasses}>
   <slot />
 </div>
-
-<style>
-.wrapper {
-  @apply flex flex-col gap-8 sm:gap-10 min-h-screen;
-}
-</style>

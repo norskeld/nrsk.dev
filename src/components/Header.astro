@@ -1,12 +1,19 @@
 ---
+import { tw } from '@/utils'
+
 export interface Props {
   class?: string
 }
 
 const { class: className } = Astro.props
+
+const headerClasses = tw`
+  flex flex-col gap-4
+  w-full
+`
 ---
 
-<header class:list={['flex flex-col w-full gap-4', className]}>
+<header class:list={[headerClasses, className]}>
   <slot name="heading" />
   <slot name="sub" />
 </header>

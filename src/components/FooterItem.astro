@@ -1,13 +1,12 @@
-<div class="footer-item">
+---
+import { tw } from '@/utils'
+
+const footerItemClasses = tw`
+  text-base
+  text-gray-500 dark:text-gray-400
+`
+---
+
+<div class={footerItemClasses}>
   <slot />
 </div>
-
-<style>
-.footer-item {
-  @apply text-base text-gray-500;
-}
-
-:global(.dark .footer-item) {
-  @apply text-gray-400;
-}
-</style>
