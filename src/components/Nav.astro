@@ -17,10 +17,7 @@ export interface Item {
 const { sticky = false } = Astro.props
 const { pathname } = Astro.url
 
-const navItems: Array<Item> = [
-  { label: 'Blog', to: '/blog' },
-  { label: 'Snippets', to: '/snippets' }
-]
+const navItems: Array<Item> = [{ label: 'Blog', to: '/blog' }]
 ---
 
 <nav class:list={{ 'nav': true, 'nav-sticky': sticky }}>
