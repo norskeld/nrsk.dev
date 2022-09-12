@@ -1,13 +1,35 @@
 ---
+import type { Props as SeoProps } from 'astro-seo'
+
 import IndexRecentArticles from '@/screens/index/RecentArticles.astro'
 import IndexIntroduction from '@/screens/index/Introduction.astro'
 import IndexProjects from '@/screens/index/Projects.astro'
 import IndexLayout from '@/layouts/Index.astro'
 
 import { Site } from '@/site.config'
+
+const props: SeoProps = {
+  title: Site.title,
+  description: Site.description,
+  openGraph: {
+    basic: {
+      type: 'website',
+      title: Site.title,
+      image: Site.url + '/images/og-image.png',
+      url: Site.url
+    },
+    image: {
+      secureUrl: Site.url + '/images/og-image.png',
+      type: 'image/png',
+      width: 1280,
+      height: 640,
+      alt: 'Logotype'
+    },
+  }
+}
 ---
 
-<IndexLayout title={Site.title} description={Site.description}>
+<IndexLayout {...props}>
   <IndexIntroduction />
   <IndexRecentArticles amount={3} />
   <IndexProjects />

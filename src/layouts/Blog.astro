@@ -1,38 +1,25 @@
 ---
-import ScriptTheme from '@/components/ScriptTheme.astro'
+import type { Props as SeoProps } from 'astro-seo'
+
+import Document from '@/components/Document.astro'
 import Content from '@/components/Content.astro'
 import Wrapper from '@/components/Wrapper.astro'
 import Footer from '@/components/Footer.astro'
-import Head from '@/components/Head.astro'
 import Nav from '@/components/Nav.astro'
-
-import { Site } from '@/site.config'
 
 import '@/styles/global.css'
 
-export interface Props {
-  title: string
-  description: string
-}
+export interface Props extends SeoProps {}
 ---
 
-<!DOCTYPE html>
-<html lang={Site.localeSite}>
-  <head>
-    <Head {...Astro.props} />
-  </head>
+<Document {...Astro.props}>
+  <Wrapper>
+    <Nav sticky={true} />
 
-  <body>
-    <ScriptTheme />
+    <Content>
+      <slot />
+    </Content>
 
-    <Wrapper>
-      <Nav sticky={true} />
-
-      <Content>
-        <slot />
-      </Content>
-
-      <Footer />
-    </Wrapper>
-  </body>
-</html>
+    <Footer />
+  </Wrapper>
+</Document>
