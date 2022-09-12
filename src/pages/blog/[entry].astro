@@ -1,8 +1,11 @@
 ---
+import type { Props as SeoProps } from 'astro-seo'
+
 import BlogArticle from '@/screens/blog/Article.astro'
 import BlogLayout from '@/layouts/Blog.astro'
 
 import { loadArticles, type Article } from '@/api/articles'
+import { Site } from '@/site.config'
 
 export interface Props {
   article: Article
@@ -18,11 +21,34 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props
+const { title, description, createdAt, updatedAt } = article.frontmatter
+
+const props: SeoProps = {
+  title: [title, Site.title].join(' – '),
+  description,
+  openGraph: {
+    basic: {
+      title,
+      type: 'article',
+      url: Site.url,
+      image: Site.url + '/images/og-image.png'
+    },
+    image: {
+      secureUrl: Site.url + '/images/og-image.png',
+      type: 'image/png',
+      width: 1280,
+      height: 640,
+      alt: 'Logotype'
+    },
+    article: {
+      authors: ['Vladislav Mamon'],
+      publishedTime: createdAt,
+      modifiedTime: updatedAt
+    }
+  }
+}
 ---
 
-<BlogLayout
-  title={article.frontmatter.title}
-  description={article.frontmatter.description}
->
-  <BlogArticle article={article}/>
+<BlogLayout {...props}>
+  <BlogArticle article={article} />
 </BlogLayout>
