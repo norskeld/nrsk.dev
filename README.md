@@ -10,14 +10,14 @@ Personal website &amp; blog.
 - [x] Uses good old Markdown with YAML frontmatter for authoring articles.
 - [x] Uses **[Shiki]** via **[@nrsk/shikigami]** (with [custom theme][custom-theme]) for syntax highlighting.
 - [x] Supports **dark theme** and respects `prefers-color-scheme`.
-- [x] Supports **[Open Graph][open-graph]**.
 
 ## Acknowledgements
 
-The design and layout are highly inspired by the [Lee Robinson's portfolio][leerob], which is built with [Next.js][next-js], [Tailwind], [Prisma], and is more powerful. Check the sources [here][leerob-gh]!
+The design and layout are highly inspired by the [Lee Robinson's portfolio][leerob], which is built with [Next.js][next-js], [Tailwind], [Prisma], and has more features. Check the sources [here][leerob-gh]!
 
 ## Backlog
 
+- [ ] Add **[Open Graph][open-graph]** support.
 - [ ] Add taxonomies (e.g. tags, categories).
 - [ ] Add article series.
 - [ ] _Maybe_ adopt [MDC].
