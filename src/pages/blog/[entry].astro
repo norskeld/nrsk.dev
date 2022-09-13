@@ -1,11 +1,10 @@
 ---
-import type { Props as SeoProps } from 'astro-seo'
-
 import BlogArticle from '@/screens/blog/Article.astro'
 import BlogLayout from '@/layouts/Blog.astro'
 
 import { loadArticles, type Article } from '@/api/articles'
-import { Site } from '@/site.config'
+import { withSeoOptions, Common } from '@/site.config'
+import { formatDate } from '@/utils'
 
 export interface Props {
   article: Article
@@ -23,30 +22,24 @@ export async function getStaticPaths() {
 const { article } = Astro.props
 const { title, description, createdAt, updatedAt } = article.frontmatter
 
-const props: SeoProps = {
-  title: [title, Site.title].join(' – '),
+const props = withSeoOptions({
+  title: `${title} – ${Common.title}`,
   description,
   openGraph: {
     basic: {
       title,
       type: 'article',
-      url: Site.url,
-      image: Site.url + '/images/og-image.png'
-    },
-    image: {
-      secureUrl: Site.url + '/images/og-image.png',
-      type: 'image/png',
-      width: 1280,
-      height: 640,
-      alt: 'Logotype'
+      url: Astro.url.href
     },
     article: {
       authors: ['Vladislav Mamon'],
-      publishedTime: createdAt,
-      modifiedTime: updatedAt
+      publishedTime: formatDate(createdAt, 'yyyy-LL-dd'),
+      ...updatedAt && {
+        modifiedTime: formatDate(updatedAt, 'yyyy-LL-dd')
+      }
     }
   }
-}
+})
 ---
 
 <BlogLayout {...props}>

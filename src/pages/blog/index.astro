@@ -1,30 +1,20 @@
 ---
-import type { Props as SeoProps } from 'astro-seo'
-
 import ArticleList from '@/screens/blog/ArticleList.astro'
 import BlogLayout from '@/layouts/Blog.astro'
 
-import { Site } from '@/site.config'
+import { withSeoOptions, Common } from '@/site.config'
 
-const props: SeoProps = {
-  title: ['Blog', Site.title].join(' – '),
+const props = withSeoOptions({
+  title: `Blog – ${Common.title}`,
   description: 'Articles and notes about software development.',
   openGraph: {
     basic: {
-      type: 'website',
       title: 'Blog',
-      image: Site.url + '/images/og-image.png',
+      type: 'website',
       url: Astro.url.href
-    },
-    image: {
-      secureUrl: Site.url + '/images/og-image.png',
-      type: 'image/png',
-      width: 1280,
-      height: 640,
-      alt: 'Logotype'
-    },
+    }
   }
-}
+})
 ---
 
 <BlogLayout {...props}>

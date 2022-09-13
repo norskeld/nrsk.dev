@@ -1,13 +1,15 @@
 ---
-import { SEO, type Props } from 'astro-seo'
+import { SEO, type Props as AstroSeo } from 'astro-seo'
+
 import ScriptTheme from '@/components/ScriptTheme.astro'
 
-import { Site } from '@/site.config'
+import { Common } from '@/site.config'
 
 import '@/styles/global.css'
 
-const { localeSite, themeLight } = Site
-const { title, description } = Astro.props as Props
+export interface Props extends AstroSeo {}
+
+const { localeSite, themeLight } = Common
 ---
 
 <!DOCTYPE html>
@@ -15,13 +17,9 @@ const { title, description } = Astro.props as Props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{title}</title>
-
-    <meta name="description" content={description} />
     <meta name="theme-color" content={themeLight} />
 
-    <!-- OpenGraph -->
+    <!-- OpenGraph & other essential props like `title` and `description`. -->
 
     <SEO {...Astro.props} />
 
