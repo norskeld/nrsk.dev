@@ -4,7 +4,7 @@ import BlogLayout from '@/layouts/Blog.astro'
 
 import { loadArticles, type Article } from '@/api/articles'
 import { withSeoOptions, Common } from '@/site.config'
-import { formatDate } from '@/utils'
+import { formatDate, unslash } from '@/utils'
 
 export interface Props {
   article: Article
@@ -25,11 +25,15 @@ const { title, description, createdAt, updatedAt } = article.frontmatter
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
   description,
+  canonical: unslash(Astro.url.href),
   openGraph: {
     basic: {
       title,
       type: 'article',
-      url: Astro.url.href
+      url: unslash(Astro.url.href)
+    },
+    optional: {
+      description
     },
     article: {
       authors: ['Vladislav Mamon'],

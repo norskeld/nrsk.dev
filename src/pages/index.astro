@@ -5,8 +5,11 @@ import IndexProjects from '@/screens/index/Projects.astro'
 import IndexLayout from '@/layouts/Index.astro'
 
 import { withSeoOptions } from '@/site.config'
+import { unslash } from '@/utils'
 
-const props = withSeoOptions()
+const props = withSeoOptions({
+  canonical: unslash(Astro.url.href),
+})
 ---
 
 <IndexLayout {...props}>

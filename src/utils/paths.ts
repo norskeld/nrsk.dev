@@ -1,6 +1,6 @@
 import { relative, isAbsolute } from 'path'
 
-function unslash(path: string): string {
+export function unslash(path: string): string {
   return path.endsWith('/') ? path.slice(0, -1) : path
 }
 

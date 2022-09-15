@@ -3,15 +3,23 @@ import ArticleList from '@/screens/blog/ArticleList.astro'
 import BlogLayout from '@/layouts/Blog.astro'
 
 import { withSeoOptions, Common } from '@/site.config'
+import { unslash } from '@/utils'
+
+const title = `Blog – ${Common.title}`
+const description = 'Articles and notes about software development.'
 
 const props = withSeoOptions({
-  title: `Blog – ${Common.title}`,
-  description: 'Articles and notes about software development.',
+  title,
+  description,
+  canonical: unslash(Astro.url.href),
   openGraph: {
     basic: {
       title: 'Blog',
       type: 'website',
-      url: Astro.url.href
+      url: unslash(Astro.url.href)
+    },
+    optional: {
+      description
     }
   }
 })
