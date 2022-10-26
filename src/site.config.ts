@@ -38,7 +38,7 @@ export const Common = {
 } as const
 
 export const Seo: AstroSeo = {
-  title: Common.title,
+  title: `A TypeScript devotee, Rust tyro, and front-end shepherd — ${Common.title}`,
   description: Common.description,
   openGraph: {
     basic: {
