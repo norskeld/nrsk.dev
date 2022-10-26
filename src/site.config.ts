@@ -16,10 +16,10 @@ type ThemePair = {
   }
 }
 
-/** Creating Node `require` manually to load Tailwind's config. */
+// Creating Node `require` manually to load Tailwind's config.
 const require = createRequire(import.meta.url)
 
-/** Load Tailwind's config and type cast it to reflect the monkey-patched prop `themePair`. */
+// Load Tailwind's config and type cast it to reflect the monkey-patched prop `themePair`.
 const config = require('../tailwind.config.cjs') as Config & ThemePair
 
 export const Common = {

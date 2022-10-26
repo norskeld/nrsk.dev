@@ -4,8 +4,6 @@ import { Picture } from '@astrojs/image/components'
 import Header from '@/components/Header.astro'
 import { tw } from '@/utils'
 
-import avatarBw from '~/images/avatar-bw.png'
-
 const sectionClasses = tw`flex flex-col-reverse sm:flex-row justify-between`
 const headerClasses = tw`pr-0 sm:pr-14`
 
@@ -31,7 +29,7 @@ const photoClasses = tw`w-24 sm:w-32 mb-8 sm:mb-0 select-none [&_img]:rounded-fu
   </Header>
 
   <Picture
-    src={avatarBw}
+    src="/images/avatar-bw.png"
     class={photoClasses}
     title="Hey, that's me!"
     alt="Vladislav's photo, black and white, in full face"
