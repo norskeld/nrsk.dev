@@ -6,4 +6,4 @@ Allow: /
 Host: https://vm.codes
 
 # Sitemap
-Sitemap: http://vm.codes/sitemap-index.xml
+Sitemap: https://vm.codes/sitemap-index.xml
