@@ -9,16 +9,20 @@ export interface Props {
   project: Project
 }
 
-const { name, description, language, url } = Astro.props.project
-
-const containerClasses = tw`
-  [&_a]:font-semibold [&_a:hover]:underline
-`
+const { name, description, language, url, wip } = Astro.props.project
 
 const headingClasses = tw`
-  flex items-center w-full
+  flex items-center w-full justify-between
   text-lg font-semibold tracking-tight
   text-gray-900 dark:text-gray-100
+  [&_a]:no-underline [&_a:hover]:underline
+`
+
+const wipClasses = tw`
+  px-1.5 py-1 rounded-[0.250rem]
+  text-xs font-semibold
+  select-none cursor-help
+  bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-50
 `
 
 const languageTw = withVariables({
@@ -26,18 +30,22 @@ const languageTw = withVariables({
   '--language-color-dark': language.color.at(1) ?? 'inherit',
 })
 
-const languageCss = languageTw`
+const languageClasses = languageTw`
   font-semibold italic
   text-[color:var(--language-color-light)] dark:text-[color:var(--language-color-dark)]
 `
+
+const footerClasses = tw`[&_a]:font-semibold [&_a]:underline [&_a:hover]:no-underline`
 ---
 
-<Card class={containerClasses}>
+<Card>
   <h3 slot="header" class={headingClasses}>
     <Link to={url} external>
-      {name} <span {...languageCss}>{language.ext}</span>
+      {name} <span {...languageClasses}>{language.ext}</span>
     </Link>
+
+    {wip && <span class={wipClasses} title="Work-in-progress project">wip</span>}
   </h3>
 
-  <p slot="footer" set:html={description} />
+  <p slot="footer" class={footerClasses} set:html={description} />
 </Card>
