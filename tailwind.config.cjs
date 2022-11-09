@@ -61,11 +61,17 @@ module.exports = {
       ...colors,
 
       typography: ({ theme }) => ({
-        astro: {
+        vm: {
           css: {
             // Disable quotes on blockquotes.
-            'blockquote p:first-of-type::before': false,
-            'blockquote p:first-of-type::after': false,
+            'blockquote p:first-of-type::before': { content: `''` },
+            'blockquote p:last-of-type::after': { content: `''` },
+
+            // Make <li> elements tighter.
+            'li': {
+              marginTop: '0.25em',
+              marginBottom: '0.25em'
+            },
 
             // Light theme.
             '--tw-prose-body': theme('colors.gray[700]'),
