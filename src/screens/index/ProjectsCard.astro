@@ -1,6 +1,5 @@
 ---
 import Card from '@/components/Card.astro'
-import Link from '@/components/Link.astro'
 
 import type { Project } from '@/api/projects'
 import { tw, withVariables } from '@/utils'
@@ -15,7 +14,6 @@ const headingClasses = tw`
   flex items-center w-full justify-between
   text-lg font-semibold tracking-tight
   text-gray-900 dark:text-gray-100
-  [&_a]:no-underline [&_a:hover]:underline
 `
 
 const wipClasses = tw`
@@ -34,18 +32,16 @@ const languageClasses = languageTw`
   font-semibold italic
   text-[color:var(--language-color-light)] dark:text-[color:var(--language-color-dark)]
 `
-
-const footerClasses = tw`[&_a]:font-semibold [&_a]:underline [&_a:hover]:no-underline`
 ---
 
-<Card>
+<Card tag="a" to={url}>
   <h3 slot="header" class={headingClasses}>
-    <Link to={url} external>
+    <span>
       {name} <span {...languageClasses}>{language.ext}</span>
-    </Link>
+    </span>
 
     {wip && <span class={wipClasses} title="Work-in-progress project">wip</span>}
   </h3>
 
-  <p slot="footer" class={footerClasses} set:html={description} />
+  <p slot="footer" set:html={description} />
 </Card>

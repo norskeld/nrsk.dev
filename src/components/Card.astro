@@ -18,9 +18,8 @@ const wrapperClasses = tw`
 `
 
 const containerClasses = tw`
-  flex flex-col gap-4 h-full p-4 rounded-lg
+  flex flex-col gap-4 h-full p-4 rounded-lg ${justify && 'justify-between'}
   bg-white dark:bg-gray-900
-  ${justify && 'justify-between'}
 `
 
 const headerClasses = tw`flex flex-col md:flex-row justify-between`

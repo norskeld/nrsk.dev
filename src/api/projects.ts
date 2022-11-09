@@ -50,37 +50,35 @@ async function produceProjects(): Promise<Array<Project>> {
     {
       name: 'sigma',
       description:
-        'TypeScript [parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) library for building fast and convenient parsers.',
+        'TypeScript **parser combinator** library for building fast and convenient parsers',
       url: `${GH_BASE}/sigma`,
       language: language('typescript'),
       wip: false
     },
     {
       name: 'shikigami',
-      description:
-        'Opinionated syntax highlighting with [shiki](https://github.com/shikijs/shiki) for [markdown-it](https://github.com/markdown-it/markdown-it).',
+      description: 'Opinionated syntax highlighting with **shiki** for **markdown-it**',
       url: `${GH_BASE}/shikigami`,
       language: language('typescript'),
       wip: false
     },
     {
       name: 'rsx',
-      description: 'Micro CLI for interactive execution of npm & yarn scripts.',
+      description: 'Micro CLI for interactive execution of npm & yarn scripts',
       url: `${GH_BASE}/rsx`,
       language: language('rust'),
       wip: true
     },
     {
       name: 'arx',
-      description: 'Simple CLI for scaffolding projects from templates in a touch.',
+      description: 'Simple CLI for scaffolding projects from templates in a touch',
       url: `${GH_BASE}/arx`,
       language: language('rust'),
       wip: true
     },
     {
       name: 'diceware',
-      description:
-        'Rust crate and CLI for generating [Diceware](https://en.wikipedia.org/wiki/Diceware) passphrases.',
+      description: 'Rust crate and CLI for generating **Diceware** passphrases',
       url: `${GH_BASE}/diceware`,
       language: language('rust'),
       wip: false
