@@ -10,7 +10,7 @@ import ProjectsCard from './ProjectsCard.astro'
 
 const projects = await loadProjects()
 
-const sectionClasses = tw`flex flex-col gap-8`
+const sectionClasses = tw`flex flex-col gap-6`
 const noteClasses = tw`text-gray-700 dark:text-gray-300`
 
 const headingClasses = tw`
@@ -24,8 +24,8 @@ const linkClasses = tw`
 `
 
 const linkArrowClasses = tw`
-  font-semibold leading-7 transition-[margin-left]
   group-hover:ml-1
+  font-semibold leading-7 transition-[margin-left]
 `
 ---
 

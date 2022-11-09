@@ -18,10 +18,7 @@ const articlesNoteInflected = inflect(
   articles.length
 )
 
-const sectionClasses = tw`
-  flex flex-col gap-10
-  w-full
-`
+const sectionClasses = tw`flex flex-col gap-10 w-full`
 
 const headingClasses = tw`
   text-3xl md:text-5xl font-bold tracking-tight
@@ -29,7 +26,7 @@ const headingClasses = tw`
 `
 
 const noteClasses = tw`text-gray-600 dark:text-gray-400`
-const contentClasses = tw`flex flex-col gap-8`
+const contentClasses = tw`flex flex-col gap-10`
 ---
 
 <section class={sectionClasses}>
@@ -42,8 +39,8 @@ const contentClasses = tw`flex flex-col gap-8`
       So far <span set:html={articlesNoteInflected} />, but I'm working on new stuff!
     </p>
   </Header>
+</section>
 
-  <section class={contentClasses}>
-    {articles.map((article) => <ArticlePreview article={article}/>)}
-  </section>
+<section class={contentClasses}>
+  {articles.map((article) => <ArticlePreview article={article}/>)}
 </section>

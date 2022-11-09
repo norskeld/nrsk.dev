@@ -29,7 +29,7 @@ const { content, frontmatter } = Astro.props.article
 
   <section
     set:html={content}
-    class="w-full prose prose-astro dark:prose-invert max-w-none"
+    class="w-full prose prose-vm dark:prose-invert max-w-none"
   />
 
   <footer class="article-footer">
@@ -39,7 +39,7 @@ const { content, frontmatter } = Astro.props.article
 
 <style>
 .article {
-  @apply flex flex-col justify-center items-start gap-10 w-full;
+  @apply flex flex-col justify-center items-start gap-10 sm:gap-12 w-full;
 }
 
 .article-heading {

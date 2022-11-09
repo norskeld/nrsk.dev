@@ -1,12 +1,18 @@
 ---
 import { tw } from '@/utils'
 
+export interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+
 const contentClasses = tw`
-  flex flex-col justify-center gap-10 sm:gap-12
+  flex flex-col justify-center gap-12
   w-full max-w-2xl mx-auto px-8 md:px-0
 `
 ---
 
-<main class={contentClasses}>
+<main class:list={[contentClasses, className]}>
   <slot />
 </main>

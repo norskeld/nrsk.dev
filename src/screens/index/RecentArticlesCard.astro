@@ -12,10 +12,12 @@ export interface Props {
 const { slug, frontmatter } = Astro.props.article
 
 const headingClasses = tw`
-  text-lg font-semibold tracking-tight
-  mb-4 w-full line-clamp-3
+  mb-4 w-full
+  text-lg font-semibold tracking-tight line-clamp-3
   text-gray-900 dark:text-gray-100
 `
+
+const footerClasses = tw`text-gray-500 dark:text-gray-400`
 ---
 
 <Card tag="a" to={'/blog/' + slug} justify>
@@ -23,5 +25,5 @@ const headingClasses = tw`
     {frontmatter.title}
   </h3>
 
-  <Date slot="footer" date={frontmatter.createdAt} />
+  <Date slot="footer" class={footerClasses} date={frontmatter.createdAt} />
 </Card>
