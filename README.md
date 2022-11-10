@@ -12,12 +12,15 @@ Personal website &amp; blog.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
 - [x] **[Open Graph][open-graph]** support.
 
+Also, well, not a feature, but... **100/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
+
 ## Acknowledgements
 
 The design and layout are highly inspired by the [Lee Robinson's portfolio][leerob], which is built with [Next.js][next-js], [Tailwind], [Prisma], and has more features. Check the sources [here][leerob-gh]!
 
 ## Backlog
 
+- [ ] Add dynamic Open Graph image generation.
 - [ ] Add taxonomies (e.g. tags, categories).
 - [ ] Add article series.
 - [ ] _Maybe_ adopt [MDC].
@@ -41,3 +44,5 @@ The code is licensed under the [MIT](LICENSE) license.
 [leerob-gh]: https://github.com/leerob/leerob.io
 [next-js]: https://nextjs.org
 [prisma]: https://prisma.io
+[yellowlab.tools]: https://yellowlab.tools/result/gfay5mlb41
+[pagespeed.web.dev]: https://pagespeed.web.dev/report?url=https%3A%2F%2Fvm.codes%2F
