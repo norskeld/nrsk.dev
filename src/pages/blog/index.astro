@@ -1,9 +1,14 @@
 ---
 import ArticleList from '@/screens/blog/ArticleList.astro'
-import BlogLayout from '@/layouts/Blog.astro'
+import Page from '@/layouts/Page.astro'
 
 import { withSeoOptions, Common } from '@/site.config'
+import { loadArticles } from '@/api/articles'
 import { unslash } from '@/utils'
+
+const articles = await loadArticles({
+  sort: 'desc'
+})
 
 const title = `Blog – ${Common.title}`
 const description = 'Articles and notes about software development.'
@@ -25,6 +30,6 @@ const props = withSeoOptions({
 })
 ---
 
-<BlogLayout {...props}>
-  <ArticleList />
-</BlogLayout>
+<Page {...props}>
+  <ArticleList articles={articles} />
+</Page>

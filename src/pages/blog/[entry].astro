@@ -1,6 +1,6 @@
 ---
 import BlogArticle from '@/screens/blog/Article.astro'
-import BlogLayout from '@/layouts/Blog.astro'
+import Page from '@/layouts/Page.astro'
 
 import { loadArticles, type Article } from '@/api/articles'
 import { withSeoOptions, Common } from '@/site.config'
@@ -46,6 +46,6 @@ const props = withSeoOptions({
 })
 ---
 
-<BlogLayout {...props}>
+<Page {...props}>
   <BlogArticle article={article} />
-</BlogLayout>
+</Page>

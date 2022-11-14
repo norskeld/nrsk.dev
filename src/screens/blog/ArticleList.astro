@@ -1,14 +1,16 @@
 ---
 import Header from '@/components/Header.astro'
 
-import { loadArticles } from '@/api/articles'
+import type { Article } from '@/api/articles'
 import { inflect, tw } from '@/utils'
 
 import ArticlePreview from './ArticlePreview.astro'
 
-const articles = await loadArticles({
-  sort: 'desc'
-})
+export interface Props {
+  articles: Array<Article>
+}
+
+const { articles } = Astro.props
 
 const articlesNoteInflected = inflect(
   [
