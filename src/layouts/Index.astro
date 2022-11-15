@@ -1,12 +1,16 @@
 ---
+import type { Props as SeoProps } from 'astro-seo'
+
 import Content from '@/components/Content.astro'
 import Footer from '@/components/Footer.astro'
 import Nav from '@/components/Nav.astro'
 
 import Base from './Base.astro'
+
+export interface Props extends SeoProps {}
 ---
 
-<Base>
+<Base {...Astro.props}>
   <Nav sticky={false} />
 
   <Content class="gap-10 sm:gap-16">
