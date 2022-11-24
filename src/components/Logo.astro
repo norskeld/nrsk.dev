@@ -1,16 +1,26 @@
 ---
-import { tw } from '@/utils'
+import { tw } from '@nrsk/tw'
 
-const containerClasses = tw`group hover:cursor-pointer`
-const containerSvgClasses = tw`h-8`
+const containerSvgClasses = tw`
+  h-8
+`
+
+const containerClasses = tw`
+  group hover:cursor-pointer
+`
 
 const stopClasses = tw`
   transition-[color,stop-color]
   [stop-color:theme(colors.gray.900)] dark:[stop-color:theme(colors.gray.50)]
 `
 
-const stopFromClasses = tw`group-hover:[stop-color:theme(colors.crayola.200)]`
-const stopToClasses = tw`group-hover:[stop-color:theme(colors.crayola.500)]`
+const stopFromClasses = tw`
+  group-hover:[stop-color:theme(colors.crayola.200)]
+`
+
+const stopToClasses = tw`
+  group-hover:[stop-color:theme(colors.crayola.500)]
+`
 ---
 
 <div class={containerClasses}>

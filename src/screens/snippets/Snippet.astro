@@ -1,24 +1,23 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
-import { readingTime } from '@/api/utils'
+import type { SnippetEntry } from '@/api/content/snippets'
 
-import ScrollTop from '@/components/ScrollTop.astro'
 import Header from '@/components/Header.astro'
 import Prose from '@/components/Prose.astro'
 import Date from '@/components/Date.astro'
 import Dot from '@/components/Dot.astro'
 
+import SnippetTags from './SnippetTags.astro'
+
 export interface Props {
-  item: ArticleEntry
+  item: SnippetEntry
 }
 
 const { content, frontmatter } = Astro.props.item
 
-const articleClasses = tw`
-  flex flex-col justify-center items-start gap-10 sm:gap-12
-  w-full
+const snippetClasses = tw`
+  flex flex-col justify-center items-start gap-10 sm:gap-12 w-full
 `
 
 const headingClasses = tw`
@@ -30,13 +29,9 @@ const metaClasses = tw`
   flex items-center
   text-gray-700 dark:text-gray-300
 `
-
-const footerClasses = tw`
-  flex justify-center w-full
-`
 ---
 
-<article class={articleClasses}>
+<article class={snippetClasses}>
   <Header>
     <h1 slot="heading" class={headingClasses}>
       {frontmatter.title}
@@ -45,13 +40,9 @@ const footerClasses = tw`
     <p slot="sub" class={metaClasses}>
       <Date date={frontmatter.createdAt} />
       <Dot />
-      {readingTime(content)}
+      {frontmatter.tags && <SnippetTags tags={frontmatter.tags} />}
     </p>
   </Header>
 
   <Prose content={content} />
-
-  <footer class={footerClasses}>
-    <ScrollTop>Scroll to top &uarr;</ScrollTop>
-  </footer>
 </article>

@@ -1,14 +1,16 @@
-import type { AstroUserConfig } from 'astro'
+import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import image from '@astrojs/image'
 
-export default (): AstroUserConfig => ({
+export default defineConfig({
   site: 'https://vm.codes',
 
   integrations: [
-    image(),
+    image({
+      serviceEntryPoint: '@astrojs/image/sharp'
+    }),
     tailwind({
       config: {
         applyBaseStyles: false

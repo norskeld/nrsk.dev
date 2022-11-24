@@ -1,27 +1,27 @@
 ---
-import { loadArticles, type ArticleEntry } from '@/api/content/articles'
+import { loadSnippets, type SnippetEntry } from '@/api/content/snippets'
 import { formatDate, unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import Article from '@/screens/blog/Article.astro'
+import Snippet from '@/screens/snippets/Snippet.astro'
 import Page from '@/layouts/Page.astro'
 
 export interface Props {
-  article: ArticleEntry
+  snippet: SnippetEntry
 }
 
 export async function getStaticPaths() {
-  const articlesRaw = await loadArticles()
+  const snippetsRaw = await loadSnippets()
 
-  return articlesRaw.map((article) => ({
-    params: { entry: article.slug },
-    props: { article }
+  return snippetsRaw.map((snippet) => ({
+    params: { entry: snippet.slug },
+    props: { snippet }
   }))
 }
 
-const { article } = Astro.props
-const { title, description, createdAt, updatedAt } = article.frontmatter
+const { snippet } = Astro.props
+const { title, description, createdAt, updatedAt } = snippet.frontmatter
 
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
@@ -48,5 +48,5 @@ const props = withSeoOptions({
 ---
 
 <Page {...props}>
-  <Article item={article} />
+  <Snippet item={snippet} />
 </Page>

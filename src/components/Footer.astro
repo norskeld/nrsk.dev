@@ -1,5 +1,5 @@
 ---
-import { tw } from '@/utils'
+import { tw } from '@nrsk/tw'
 
 import FooterItem from './FooterItem.astro'
 import Link from './Link.astro'
@@ -18,7 +18,9 @@ const footerLinkClasses = tw`
   text-gray-700 dark:text-gray-200
 `
 
-const footerDotClasses = tw`hidden sm:inline-block`
+const footerDotClasses = tw`
+  hidden sm:inline-block
+`
 ---
 
 <footer class={footerClasses}>

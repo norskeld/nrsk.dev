@@ -1,9 +1,11 @@
 ---
+import { tw } from '@nrsk/tw'
+
+import { isActive } from '@/api/utils'
+
 import ThemeSwitcher from './ThemeSwitcher.astro'
 import NavItem from './NavItem.astro'
 import Logo from './Logo.astro'
-
-import { isActive, tw } from '@/utils'
 
 export interface Props {
   sticky?: boolean
@@ -17,7 +19,10 @@ export interface Item {
 const { sticky = false } = Astro.props
 const { pathname } = Astro.url
 
-const navItems: Array<Item> = [{ label: 'Blog', to: '/blog' }]
+const navItems: Array<Item> = [
+  { label: 'Blog', to: '/blog' },
+  { label: 'Snippets', to: '/snippets' }
+]
 
 const navClasses = tw`
   flex items-center justify-between
@@ -31,8 +36,13 @@ const navItemsClasses = tw`
   w-full max-w-2xl mx-auto px-8 md:px-0
 `
 
-const navLinksClasses = tw`flex items-center`
-const navLogoClasses = tw`mr-6`
+const navLinksClasses = tw`
+  flex items-center
+`
+
+const navLogoClasses = tw`
+  mr-6
+`
 ---
 
 <nav class={navClasses}>

@@ -1,8 +1,9 @@
 ---
-import Card from '@/components/Card.astro'
+import { tw, withVariables } from '@nrsk/tw'
 
-import type { Project } from '@/api/projects'
-import { tw, withVariables } from '@/utils'
+import type { Project } from '@/api/content/projects'
+
+import Card from '@/components/Card.astro'
 
 export interface Props {
   project: Project
@@ -12,12 +13,12 @@ const { name, description, language, url, wip } = Astro.props.project
 
 const headingClasses = tw`
   flex items-center w-full justify-between
-  text-lg font-semibold tracking-tight
+  text-lg font-semibold tracking-tight leading-tight
   text-gray-900 dark:text-gray-100
 `
 
 const wipClasses = tw`
-  px-1.5 py-1 rounded-[0.250rem]
+  px-1.5 py-1 rounded-[0.25rem]
   text-xs font-semibold
   select-none cursor-help
   bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-50

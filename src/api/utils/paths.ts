@@ -1,4 +1,4 @@
-import { relative, isAbsolute } from 'path'
+import { relative, isAbsolute } from 'node:path'
 
 export function unslash(path: string): string {
   return path.endsWith('/') ? path.slice(0, -1) : path

@@ -1,18 +1,24 @@
 ---
+import { tw } from '@nrsk/tw'
+
+import type { ArticleEntry } from '@/api/content/articles'
+
 import Date from '@/components/Date.astro'
 import Link from '@/components/Link.astro'
 
-import type { Article } from '@/api/articles'
-import { tw } from '@/utils'
-
 export interface Props {
-  article: Article
+  item: ArticleEntry
 }
 
-const { frontmatter, slug } = Astro.props.article
+const { frontmatter, slug } = Astro.props.item
 
-const articleClasses = tw`w-full`
-const headerClasses = tw`flex flex-col justify-between`
+const articleClasses = tw`
+  w-full
+`
+
+const headerClasses = tw`
+  flex flex-col justify-between
+`
 
 const headingClasses = tw`
   w-full mb-2
@@ -20,8 +26,13 @@ const headingClasses = tw`
   text-gray-900 dark:text-gray-100
 `
 
-const linkClasses = tw`no-underline hover:underline`
-const dateClasses = tw`text-gray-400`
+const linkClasses = tw`
+  no-underline hover:underline
+`
+
+const dateClasses = tw`
+  text-gray-400
+`
 
 const excerptClasses = tw`
   pt-2

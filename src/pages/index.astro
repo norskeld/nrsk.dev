@@ -1,23 +1,29 @@
 ---
+import { loadArticles } from '@/api/content/articles'
+import { loadProjects } from '@/api/content/projects'
+import { unslash } from '@/api/utils'
+
+import { withSeoOptions } from '@/config'
+
 import IndexRecentArticles from '@/screens/index/RecentArticles.astro'
 import IndexIntroduction from '@/screens/index/Introduction.astro'
 import IndexProjects from '@/screens/index/Projects.astro'
 import IndexSections from '@/screens/index/Sections.astro'
 import IndexLayout from '@/layouts/Index.astro'
 
-import { withSeoOptions } from '@/site.config'
-import { unslash } from '@/utils'
-
 const props = withSeoOptions({
   canonical: unslash(Astro.url.href),
 })
+
+const recentArticles = await loadArticles({ limit: 3, sort: 'desc' })
+const projects = await loadProjects()
 ---
 
 <IndexLayout {...props}>
   <IndexIntroduction />
 
   <IndexSections>
-    <IndexRecentArticles amount={3} />
-    <IndexProjects />
+    <IndexRecentArticles items={recentArticles} />
+    <IndexProjects items={projects} />
   </IndexSections>
 </IndexLayout>

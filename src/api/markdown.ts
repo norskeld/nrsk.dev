@@ -1,9 +1,11 @@
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { shikigami, loadTheme } from '@nrsk/shikigami'
 import anchor from 'markdown-it-anchor'
 import markdown from 'markdown-it'
+
+import { Common } from '@/config'
 
 /**
  * Extremely hacky workaround. When building for production, the `import.meta.url` for whatever
@@ -17,8 +19,8 @@ function resolveSourceDir() {
     : dirname(dirname(url))
 }
 
-export async function processMarkdown(input: string, theme: string) {
-  const highlighter = await createHighlighter(theme)
+export async function render(input: string) {
+  const highlighter = await createHighlighter(Common.themeSyntax)
   const permalink = createPermalinkTransformer()
   const slugify = createSlugTransformer()
 
@@ -38,7 +40,7 @@ async function createHighlighter(themeName: string) {
 
   return await shikigami({
     withLanguage: true,
-    withLineNumbers: true,
+    withLineNumbers: false,
     highlighter: {
       theme
     }
