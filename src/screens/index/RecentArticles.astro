@@ -1,24 +1,27 @@
 ---
+import { tw } from '@nrsk/tw'
+
+import type { ArticleEntry } from '@/api/content/articles'
+
 import CardGrid from '@/components/CardGrid.astro'
 import Header from '@/components/Header.astro'
 import Link from '@/components/Link.astro'
 
-import { loadArticles } from '@/api/articles'
-import { tw } from '@/utils'
-
 import RecentArticlesCard from './RecentArticlesCard.astro'
 
 export interface Props {
-  amount: number
+  items: Array<ArticleEntry>
 }
 
-const recentArticles = await loadArticles({
-  limit: Astro.props.amount,
-  sort: 'desc'
-})
+const { items } = Astro.props
 
-const sectionClasses = tw`flex flex-col gap-6`
-const noteClasses = tw`text-gray-700 dark:text-gray-300`
+const sectionClasses = tw`
+  flex flex-col gap-6
+`
+
+const noteClasses = tw`
+  text-gray-700 dark:text-gray-300
+`
 
 const headingClasses = tw`
   text-2xl md:text-4xl font-bold tracking-tight
@@ -26,13 +29,13 @@ const headingClasses = tw`
 `
 
 const linkClasses = tw`
-  group !no-underline leading-7 transition-[color]
+  group transition-[color]
   text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200
 `
 
 const linkArrowClasses = tw`
   group-hover:ml-1
-  font-semibold leading-7 transition-[margin-left]
+  font-semibold transition-[margin-left]
 `
 ---
 
@@ -49,7 +52,7 @@ const linkArrowClasses = tw`
   </Header>
 
   <CardGrid>
-    {recentArticles.map((article) => <RecentArticlesCard article={article} />)}
+    {items.map((article) => <RecentArticlesCard item={article} />)}
   </CardGrid>
 
   <footer>

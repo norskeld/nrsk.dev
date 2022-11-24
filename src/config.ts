@@ -1,15 +1,15 @@
-import { createRequire } from 'module'
+import { createRequire } from 'node:module'
 
 import type { Props as AstroSeo } from 'astro-seo'
 import type { Config } from 'tailwindcss'
 
-import { merge } from '@/utils'
+import { merge } from '@/api/utils'
 
 type Optional<T> = {
   [P in keyof T]?: Optional<T[P]> | undefined
 }
 
-type ThemePair = {
+interface ThemePair {
   themePair: {
     light: string
     dark: string
@@ -28,13 +28,15 @@ export const Common = {
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
 
-  themeDark: config.themePair.dark,
-  themeLight: config.themePair.light,
-
   title: 'Vladislav M.',
   description:
     `A TypeScript devotee, Rust tyro, and front-end shepherd. ` +
-    `Interested in functional programming, compilers and PL design.`
+    `Interested in functional programming, compilers and PL design.`,
+
+  themeDark: config.themePair.dark,
+  themeLight: config.themePair.light,
+
+  themeSyntax: 'norskeld'
 } as const
 
 export const Seo: AstroSeo = {

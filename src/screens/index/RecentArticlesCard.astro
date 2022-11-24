@@ -1,19 +1,20 @@
 ---
+import { tw } from '@nrsk/tw'
+
+import type { ArticleEntry } from '@/api/content/articles'
+
 import Card from '@/components/Card.astro'
 import Date from '@/components/Date.astro'
 
-import type { Article } from '@/api/articles'
-import { tw } from '@/utils'
-
 export interface Props {
-  article: Article
+  item: ArticleEntry
 }
 
-const { slug, frontmatter } = Astro.props.article
+const { slug, frontmatter } = Astro.props.item
 
 const headingClasses = tw`
   mb-4 w-full
-  text-lg font-semibold tracking-tight line-clamp-3
+  text-lg font-semibold leading-tight tracking-tight line-clamp-3
   text-gray-900 dark:text-gray-100
 `
 

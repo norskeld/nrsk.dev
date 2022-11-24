@@ -1,0 +1,35 @@
+---
+import { tw } from '@nrsk/tw'
+
+import type { SnippetEntry } from '@/api/content/snippets'
+
+import Card from '@/components/Card.astro'
+
+import SnippetTags from './SnippetTags.astro'
+
+export interface Props {
+  item: SnippetEntry
+}
+
+const { slug, frontmatter } = Astro.props.item
+
+const headingClasses = tw`
+  mb-4 w-full
+  text-lg font-semibold tracking-tight leading-tight line-clamp-3
+  text-gray-900 dark:text-gray-100
+`
+
+const footerClasses = tw`
+  text-gray-500 dark:text-gray-400
+`
+---
+
+<Card tag="a" to={'/snippets/' + slug} justify>
+  <h3 slot="header" class={headingClasses}>
+    {frontmatter.title}
+  </h3>
+
+  <p slot="footer" class={footerClasses}>
+    {frontmatter.tags && <SnippetTags tags={frontmatter.tags} />}
+  </p>
+</Card>

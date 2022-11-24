@@ -1,0 +1,23 @@
+---
+import { tw } from '@nrsk/tw'
+
+export interface Props {
+  tags: Array<string>
+}
+
+const { tags } = Astro.props
+
+const tagsClasses = tw`
+  flex flex-row gap-2
+`
+
+const tagClasses = tw`
+  px-1.5 py-1 rounded-[0.250rem]
+  text-xs font-semibold
+  bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-50
+`
+---
+
+<span class={tagsClasses}>
+  {tags.map((tag) => <span class={tagClasses}>#{tag}</span>)}
+</span>

@@ -1,18 +1,18 @@
 ---
-import { loadArticles } from '@/api/content/articles'
+import { loadSnippets } from '@/api/content/snippets'
 import { unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import ArticleList from '@/screens/blog/ArticleList.astro'
+import SnippetList from '@/screens/snippets/SnippetList.astro'
 import Page from '@/layouts/Page.astro'
 
-const articles = await loadArticles({
+const snippets = await loadSnippets({
   sort: 'desc'
 })
 
-const title = `Blog – ${Common.title}`
-const description = 'Articles and notes about software development.'
+const title = `Snippets – ${Common.title}`
+const description = 'Code snippets in a variety of programming languages for various purposes.'
 
 const props = withSeoOptions({
   title,
@@ -20,7 +20,7 @@ const props = withSeoOptions({
   canonical: unslash(Astro.url.href),
   openGraph: {
     basic: {
-      title: 'Blog',
+      title: 'Snippets',
       type: 'website',
       url: unslash(Astro.url.href)
     },
@@ -32,5 +32,5 @@ const props = withSeoOptions({
 ---
 
 <Page {...props}>
-  <ArticleList items={articles} />
+  <SnippetList items={snippets} />
 </Page>

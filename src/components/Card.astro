@@ -1,5 +1,5 @@
 ---
-import { tw } from '@/utils'
+import { tw } from '@nrsk/tw'
 
 export interface Props {
   tag?: keyof HTMLElementTagNameMap
@@ -22,8 +22,13 @@ const containerClasses = tw`
   bg-white dark:bg-gray-900
 `
 
-const headerClasses = tw`flex flex-col md:flex-row justify-between`
-const footerClasses = tw`text-gray-800 dark:text-gray-200`
+const headerClasses = tw`
+  flex flex-col md:flex-row justify-between
+`
+
+const footerClasses = tw`
+  text-gray-800 dark:text-gray-200
+`
 ---
 
 <Element class:list={[wrapperClasses, className]} href={to}>

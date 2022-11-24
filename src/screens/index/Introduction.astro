@@ -1,19 +1,31 @@
 ---
 import { Picture } from '@astrojs/image/components'
+import { tw } from '@nrsk/tw'
 
 import Header from '@/components/Header.astro'
-import { tw } from '@/utils'
+import avatar from '@/assets/images/avatar-bw.png'
 
-const sectionClasses = tw`flex flex-col-reverse sm:flex-row justify-between`
-const headerClasses = tw`pr-0 sm:pr-14`
+const sectionClasses = tw`
+  flex flex-col-reverse sm:flex-row justify-between
+`
+
+const headerClasses = tw`
+  pr-0 sm:pr-14
+`
 
 const headingClasses = tw`
   text-3xl md:text-5xl font-bold tracking-tight
   text-black dark:text-white
 `
 
-const aboutClasses = tw`text-gray-700 dark:text-gray-300`
-const photoClasses = tw`w-24 sm:w-32 mb-8 sm:mb-0 select-none [&_img]:rounded-full`
+const aboutClasses = tw`
+  text-gray-700 dark:text-gray-300
+`
+
+const photoClasses = tw`
+  w-24 sm:w-32 mb-8 sm:mb-0
+  select-none rounded-full
+`
 ---
 
 <section class={sectionClasses}>
@@ -29,7 +41,7 @@ const photoClasses = tw`w-24 sm:w-32 mb-8 sm:mb-0 select-none [&_img]:rounded-fu
   </Header>
 
   <Picture
-    src="/images/avatar-bw.png"
+    src={avatar}
     class={photoClasses}
     title="Hey, that's me!"
     alt="Vladislav's photo, black and white, in full face"

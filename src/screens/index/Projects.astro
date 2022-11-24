@@ -1,17 +1,27 @@
 ---
+import { tw } from '@nrsk/tw'
+
+import type { Project } from '@/api/content/projects'
+
 import CardGrid from '@/components/CardGrid.astro'
 import Header from '@/components/Header.astro'
 import Link from '@/components/Link.astro'
 
-import { loadProjects } from '@/api/projects'
-import { tw } from '@/utils'
-
 import ProjectsCard from './ProjectsCard.astro'
 
-const projects = await loadProjects()
+export interface Props {
+  items: Array<Project>
+}
 
-const sectionClasses = tw`flex flex-col gap-6`
-const noteClasses = tw`text-gray-700 dark:text-gray-300`
+const { items } = Astro.props
+
+const sectionClasses = tw`
+  flex flex-col gap-6
+`
+
+const noteClasses = tw`
+  text-gray-700 dark:text-gray-300
+`
 
 const headingClasses = tw`
   text-2xl md:text-4xl font-bold tracking-tight
@@ -41,7 +51,7 @@ const linkArrowClasses = tw`
   </Header>
 
   <CardGrid>
-    {projects.map((project) => <ProjectsCard project={project} />)}
+    {items.map((project) => <ProjectsCard project={project} />)}
   </CardGrid>
 
   <footer>

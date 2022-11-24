@@ -1,30 +1,21 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
-import { inflect } from '@/api/utils'
+import type { SnippetEntry } from '@/api/content/snippets'
 
+import CardGrid from '@/components/CardGrid.astro'
 import Header from '@/components/Header.astro'
 
-import ArticlePreview from './ArticlePreview.astro'
+import SnippetPreview from './SnippetPreview.astro'
 
 export interface Props {
-  items: Array<ArticleEntry>
+  items: Array<SnippetEntry>
 }
 
 const { items } = Astro.props
 
-const articlesNoteInflected = inflect(
-  [
-    `there's <strong>${items.length}</strong> article`,
-    `there're <strong>${items.length}</strong> articles`
-  ],
-  items.length
-)
-
 const sectionClasses = tw`
-  flex flex-col gap-10
-  w-full
+  flex flex-col gap-10 w-full
 `
 
 const headingClasses = tw`
@@ -44,15 +35,17 @@ const contentClasses = tw`
 <section class={sectionClasses}>
   <Header>
     <h1 slot="heading" class={headingClasses}>
-      Blog
+      Snippets
     </h1>
 
     <p slot="sub" class={noteClasses}>
-      So far <span set:html={articlesNoteInflected} />, but I'm working on new stuff!
+      This is a collection of code snippets and short notes that will serve as quick reminders.
     </p>
   </Header>
 </section>
 
 <section class={contentClasses}>
-  {items.map((article) => <ArticlePreview item={article}/>)}
+  <CardGrid>
+    {items.map((snippet) => <SnippetPreview item={snippet}/>)}
+  </CardGrid>
 </section>
