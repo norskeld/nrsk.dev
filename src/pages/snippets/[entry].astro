@@ -39,9 +39,9 @@ const props = withSeoOptions({
     article: {
       authors: ['Vladislav Mamon'],
       publishedTime: formatDate(createdAt, 'yyyy-LL-dd'),
-      ...updatedAt && {
+      ...(updatedAt && {
         modifiedTime: formatDate(updatedAt, 'yyyy-LL-dd')
-      }
+      })
     }
   }
 })

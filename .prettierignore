@@ -4,6 +4,3 @@ dist
 
 # Ignore Markdown at the root.
 /*.md
-
-# Ignore Astro files.
-**/*.astro

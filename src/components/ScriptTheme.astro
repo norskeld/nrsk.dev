@@ -8,71 +8,71 @@ const jsVariables = {
 ---
 
 <script is:inline define:vars={jsVariables}>
-const DARK = 'dark'
-const LIGHT = 'light'
-const LC_ITEM = 'color-scheme'
+  const DARK = 'dark'
+  const LIGHT = 'light'
+  const LC_ITEM = 'color-scheme'
 
-const rootEl = document.documentElement
-const metaThemeEl = document.querySelector('meta[name="theme-color"]')
+  const rootEl = document.documentElement
+  const metaThemeEl = document.querySelector('meta[name="theme-color"]')
 
-const schemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
-const schemeStorage = localStorage.getItem('color-scheme')
+  const schemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  const schemeStorage = localStorage.getItem('color-scheme')
 
-if (schemeStorage) {
-  if (schemeStorage === DARK) rootEl.className = DARK
-} else if (schemeMedia.matches) {
-  rootEl.className = DARK
-}
-
-const hasClass = (el, className) =>
-  el?.classList.contains(className) ?? false
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Icons & button.
-  const buttonEl = document.getElementById('js-button')
-  const darkIconEl = document.getElementById('js-dark-icon')
-  const lightIconEl = document.getElementById('js-light-icon')
-
-  const toggleColorScheme = (isDark) => {
-    const isRootDark = hasClass(rootEl, DARK)
-    const isLightHidden = hasClass(lightIconEl, 'hidden')
-    const isDarkHidden = hasClass(darkIconEl, 'hidden')
-
-    if (isDark) {
-      !isRootDark && rootEl.classList.add(DARK)
-
-      // Switch icons.
-      !isLightHidden && lightIconEl?.classList.add('hidden')
-      isDarkHidden && darkIconEl?.classList.remove('hidden')
-
-      buttonEl?.setAttribute('title', 'Activate light mode')
-      metaThemeEl?.setAttribute('content', themeDark)
-    } else {
-      isRootDark && rootEl.classList.remove(DARK)
-
-      // Switch icons.
-      isLightHidden && lightIconEl?.classList.remove('hidden')
-      !isDarkHidden && darkIconEl?.classList.add('hidden')
-
-      buttonEl?.setAttribute('title', 'Activate dark mode')
-      metaThemeEl?.setAttribute('content', themeLight)
-    }
-
-    localStorage.setItem(LC_ITEM, isDark ? DARK : LIGHT)
+  if (schemeStorage) {
+    if (schemeStorage === DARK) rootEl.className = DARK
+  } else if (schemeMedia.matches) {
+    rootEl.className = DARK
   }
 
-  // State from the `document.documentElement`.
-  let schemeState = hasClass(rootEl, DARK)
+  const hasClass = (el, className) => el?.classList.contains(className) ?? false
 
-  // Initial setting.
-  toggleColorScheme(schemeState)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Icons & button.
+    const buttonEl = document.getElementById('js-button')
+    const darkIconEl = document.getElementById('js-dark-icon')
+    const lightIconEl = document.getElementById('js-light-icon')
 
-  // Track changes in media.
-  schemeMedia.addEventListener('change', (event) =>
-    toggleColorScheme(event.matches))
+    const toggleColorScheme = (isDark) => {
+      const isRootDark = hasClass(rootEl, DARK)
+      const isLightHidden = hasClass(lightIconEl, 'hidden')
+      const isDarkHidden = hasClass(darkIconEl, 'hidden')
 
-  // Button click.
-  buttonEl?.addEventListener('click', () =>
-    (schemeState = !schemeState, toggleColorScheme(schemeState)))
-})
+      if (isDark) {
+        !isRootDark && rootEl.classList.add(DARK)
+
+        // Switch icons.
+        !isLightHidden && lightIconEl?.classList.add('hidden')
+        isDarkHidden && darkIconEl?.classList.remove('hidden')
+
+        buttonEl?.setAttribute('title', 'Activate light mode')
+        metaThemeEl?.setAttribute('content', themeDark)
+      } else {
+        isRootDark && rootEl.classList.remove(DARK)
+
+        // Switch icons.
+        isLightHidden && lightIconEl?.classList.remove('hidden')
+        !isDarkHidden && darkIconEl?.classList.add('hidden')
+
+        buttonEl?.setAttribute('title', 'Activate dark mode')
+        metaThemeEl?.setAttribute('content', themeLight)
+      }
+
+      localStorage.setItem(LC_ITEM, isDark ? DARK : LIGHT)
+    }
+
+    // State from the `document.documentElement`.
+    let schemeState = hasClass(rootEl, DARK)
+
+    // Initial setting.
+    toggleColorScheme(schemeState)
+
+    // Track changes in media.
+    schemeMedia.addEventListener('change', (event) => toggleColorScheme(event.matches))
+
+    // Button click.
+    buttonEl?.addEventListener(
+      'click',
+      () => ((schemeState = !schemeState), toggleColorScheme(schemeState))
+    )
+  })
 </script>
