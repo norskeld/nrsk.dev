@@ -3,8 +3,8 @@ import { tw } from '@nrsk/tw'
 
 import type { SnippetEntry } from '@/api/content/snippets'
 
+import PageProse from '@/components/PageProse.astro'
 import Header from '@/components/Header.astro'
-import Prose from '@/components/Prose.astro'
 import Date from '@/components/Date.astro'
 import Dot from '@/components/Dot.astro'
 
@@ -44,5 +44,5 @@ const metaClasses = tw`
     </p>
   </Header>
 
-  <Prose content={content} />
+  <PageProse content={content} />
 </article>
