@@ -14,9 +14,7 @@ const navItemClasses = tw`
   text-gray-800 hover:bg-gray-200 dark:hover:bg-gray-800
 `
 
-const navItemExtendClasses = active
-  ? tw`dark:text-gray-200 underline`
-  : tw`dark:text-gray-400`
+const navItemExtendClasses = active ? tw`dark:text-gray-200 underline` : tw`dark:text-gray-400`
 ---
 
 <a href={to} class:list={[navItemClasses, navItemExtendClasses]}>

@@ -52,11 +52,13 @@ const navLogoClasses = tw`
         <Logo />
       </a>
 
-      {navItems.map(({ label, to }) => (
-        <NavItem to={to} active={isActive(to, pathname)}>
-          {label}
-        </NavItem>
-      ))}
+      {
+        navItems.map(({ label, to }) => (
+          <NavItem to={to} active={isActive(to, pathname)}>
+            {label}
+          </NavItem>
+        ))
+      }
     </div>
 
     <ThemeSwitcher />

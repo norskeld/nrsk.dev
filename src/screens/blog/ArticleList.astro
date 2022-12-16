@@ -43,9 +43,7 @@ const contentClasses = tw`
 
 <section class={sectionClasses}>
   <Header>
-    <h1 slot="heading" class={headingClasses}>
-      Blog
-    </h1>
+    <h1 slot="heading" class={headingClasses}>Blog</h1>
 
     <p slot="sub" class={noteClasses}>
       So far <span set:html={articlesNoteInflected} />, but I'm working on new stuff!
@@ -54,5 +52,5 @@ const contentClasses = tw`
 </section>
 
 <section class={contentClasses}>
-  {items.map((article) => <ArticlePreview item={article}/>)}
+  {items.map((article) => <ArticlePreview item={article} />)}
 </section>

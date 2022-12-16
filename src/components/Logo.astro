@@ -32,14 +32,12 @@ const stopToClasses = tw`
     focusable="false"
     role="img"
   >
-    <title id="logo-title">
-      Go to the main page
-    </title>
+    <title id="logo-title">Go to the main page</title>
 
     <defs>
       <linearGradient id="gradient" gradientTransform="rotate(45)">
-        <stop offset="0%" class:list={[stopClasses, stopFromClasses]} />
-        <stop offset="100%" class:list={[stopClasses, stopToClasses]} />
+        <stop offset="0%" class:list={[stopClasses, stopFromClasses]}></stop>
+        <stop offset="100%" class:list={[stopClasses, stopToClasses]}></stop>
       </linearGradient>
     </defs>
 
@@ -47,6 +45,6 @@ const stopToClasses = tw`
       fill="url(#gradient)"
       fill-rule="evenodd"
       d="M96 208v160a16 16 0 0 1-16 16H0V208a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16Zm288 0v176h-80a16 16 0 0 1-16-16V208a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16ZM86.4 0a16 16 0 0 1 14.1 8.5L240.1 273a16 16 0 0 1 .1 14.7L210 348a16 16 0 0 1-28.5.3L0 0h86.4ZM384 0l-91.6 183.2a16 16 0 0 1-14.3 8.8H218a16 16 0 0 1-14.3-23.2l80-160A16 16 0 0 1 297.9 0H384Z"
-    />
+    ></path>
   </svg>
 </div>
