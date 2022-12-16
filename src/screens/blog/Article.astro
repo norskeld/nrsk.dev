@@ -5,8 +5,8 @@ import type { ArticleEntry } from '@/api/content/articles'
 import { readingTime } from '@/api/utils'
 
 import ScrollTop from '@/components/ScrollTop.astro'
+import PageProse from '@/components/PageProse.astro'
 import Header from '@/components/Header.astro'
-import Prose from '@/components/Prose.astro'
 import Date from '@/components/Date.astro'
 import Dot from '@/components/Dot.astro'
 
@@ -49,7 +49,7 @@ const footerClasses = tw`
     </p>
   </Header>
 
-  <Prose content={content} />
+  <PageProse content={content} />
 
   <footer class={footerClasses}>
     <ScrollTop>Scroll to top &uarr;</ScrollTop>
