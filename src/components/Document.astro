@@ -1,5 +1,6 @@
 ---
 import { SEO, type Props as AstroSeo } from 'astro-seo'
+import { tw } from '@nrsk/tw'
 
 import ScriptTheme from '@/components/ScriptTheme.astro'
 
@@ -9,15 +10,18 @@ import '@/styles/global.css'
 
 export interface Props extends AstroSeo {}
 
-const { localeSite, themeLight } = Common
+const wrapperClasses = tw`
+  flex flex-col gap-12 sm:gap-16
+  min-h-screen
+`
 ---
 
 <!DOCTYPE html>
-<html lang={localeSite} prefix="og: https://ogp.me/ns#">
+<html lang={Common.localeSite} prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content={themeLight} />
+    <meta name="theme-color" content={Common.themeLight} />
 
     <!-- OpenGraph & other essential props like `title` and `description`. -->
 
@@ -40,10 +44,8 @@ const { localeSite, themeLight } = Common
         font-weight: 100 900;
         font-display: optional;
         src: url('/fonts/inter-var-latin.woff2') format('woff2');
-        unicode-range:
-          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-          U+FEFF, U+FFFD;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
     </style>
 
@@ -62,6 +64,8 @@ const { localeSite, themeLight } = Common
   <body>
     <ScriptTheme />
 
-    <slot />
+    <div class={wrapperClasses}>
+      <slot />
+    </div>
   </body>
 </html>
