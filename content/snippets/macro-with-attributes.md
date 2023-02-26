@@ -26,7 +26,7 @@ Compiler will even warn us:
   [0;34;1m| [0;33;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [0;33;1mrustdoc does not generate documentation for macro invocations[0m
   [0;34;1m|[0m
   [0;34;1m= [0;1mhelp[0m: to document an item produced by a macro, the macro must produce the documentation as part of its expansion
-  [0;34;1m= [0;1mnote[0m: \`#[warn(unused_doc_comments)]\` on by default
+  [0;34;1m= [0;1mnote[0m: `#[warn(unused_doc_comments)]` on by default
 ```
 
 The solution is to move the doc comment into macro body and actually capture it, since doc comment desugars into an attribute on the next token. So the example above can be rewritten as:
