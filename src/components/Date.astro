@@ -7,7 +7,7 @@ export interface Props {
   class?: string
 }
 
-const { date, format = 'd MMMM yyyy', class: className } = Astro.props
+const { date, format = 'd MMM yyyy', class: className } = Astro.props
 
 const createdAt = formatDate(date, format)
 const createdAtDatetime = formatDate(date, 'yyyy-MM-dd')
