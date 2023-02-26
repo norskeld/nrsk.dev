@@ -21,7 +21,6 @@
     "@astrojs/tailwind": "^2.1.2",
     "@commitlint/cli": "^17.2.0",
     "@nrsk/config-conventional": "^1.0.0",
-    "@nrsk/shikigami": "^1.1.5",
     "@nrsk/tw": "^1.0.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
@@ -50,6 +49,7 @@
     ]
   },
   "dependencies": {
+    "@nrsk/shikigami": "^1.2.0",
     "sharp": "^0.31.2"
   }
 }
