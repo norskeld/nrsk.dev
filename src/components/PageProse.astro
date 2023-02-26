@@ -72,7 +72,15 @@ const proseClasses = tw`
   /** Blockquotes. */
 
   .prose :global(blockquote) {
-    @apply font-normal border-l-gray-500/25;
+    @apply font-normal not-italic border-l-4 border-l-gray-500/25;
+  }
+
+  .prose :global(blockquote > p:first-of-type) {
+    margin-top: 0;
+  }
+
+  .prose :global(blockquote > p:last-of-type) {
+    margin-bottom: 0;
   }
 
   :global(.dark .prose blockquote) {
