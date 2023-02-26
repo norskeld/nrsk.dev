@@ -1,0 +1,39 @@
+---
+import { tw } from '@nrsk/tw'
+
+import Header from '@/components/Header.astro'
+
+export interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+
+const sectionClasses = tw`
+  flex flex-col gap-10 w-full
+`
+
+const headingClasses = tw`
+  text-3xl md:text-5xl font-bold tracking-tight
+  text-black dark:text-white
+`
+
+const noteClasses = tw`
+  text-gray-600 dark:text-gray-400
+`
+---
+
+<section class={sectionClasses}>
+  <Header>
+    <h1 slot="heading" class={headingClasses}>{title}</h1>
+
+    {
+      description && (
+        <p slot="sub" class={noteClasses}>
+          {description}
+        </p>
+      )
+    }
+  </Header>
+</section>
