@@ -24,6 +24,11 @@ const headingClasses = tw`
 const footerClasses = tw`
   text-gray-500 dark:text-gray-400
 `
+
+const footerTagsClasses = tw`
+  flex flex-wrap w-full
+  [&_span]:hover:no-underline
+`
 ---
 
 <Card tag="a" to={'/snippets/' + slug} justify>
@@ -32,6 +37,6 @@ const footerClasses = tw`
   </h3>
 
   <p slot="footer" class={footerClasses}>
-    <Tags items={tags} />
+    <Tags class={footerTagsClasses} items={tags} />
   </p>
 </Card>
