@@ -1,7 +1,8 @@
 import { defaultLoaderOptions, fromRaw, sortEntries, limitEntries, toEntries } from './shared'
 import type { Entry, Loader, Frontmatter } from './shared'
+import type { WithTags } from './tags'
 
-export type ArticleFrontmatter = Frontmatter
+export type ArticleFrontmatter = WithTags<Frontmatter>
 export type ArticleEntry = Entry<ArticleFrontmatter>
 
 export const loadArticles: Loader<ArticleFrontmatter> = async (options) => {

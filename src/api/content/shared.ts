@@ -34,7 +34,6 @@ export function defaultLoaderOptions(options?: Partial<LoaderOptions>): LoaderOp
   return {
     sort: 'none',
     limit: -1,
-
     ...options
   }
 }
@@ -64,9 +63,9 @@ export function sortEntries<F extends Frontmatter>(
 
         // prettier-ignore
         switch (sort) {
-        case 'asc': return prevDate - nextDate
-        case 'desc': return nextDate - prevDate
-      }
+          case 'asc': return prevDate - nextDate
+          case 'desc': return nextDate - prevDate
+        }
       })
 }
 
