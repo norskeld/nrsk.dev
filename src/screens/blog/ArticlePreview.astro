@@ -2,15 +2,17 @@
 import { tw } from '@nrsk/tw'
 
 import type { ArticleEntry } from '@/api/content/articles'
+import { readingTime } from '@/api/utils'
 
 import Date from '@/components/Date.astro'
 import Link from '@/components/Link.astro'
+import Dot from '@/components/Dot.astro'
 
 export interface Props {
   item: ArticleEntry
 }
 
-const { frontmatter, slug } = Astro.props.item
+const { content, frontmatter, slug } = Astro.props.item
 
 const articleClasses = tw`
   w-full
@@ -30,8 +32,8 @@ const linkClasses = tw`
   no-underline hover:underline
 `
 
-const dateClasses = tw`
-  text-gray-400
+const metaClasses = tw`
+text-gray-500 dark:text-gray-400
 `
 
 const excerptClasses = tw`
@@ -48,7 +50,11 @@ const excerptClasses = tw`
       </Link>
     </h2>
 
-    <Date date={frontmatter.createdAt} class={dateClasses} />
+    <p class={metaClasses}>
+      <Date date={frontmatter.createdAt} />
+      <Dot />
+      <span>{readingTime(content)}</span>
+    </p>
   </header>
 
   <p class={excerptClasses}>

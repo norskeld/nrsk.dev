@@ -2,9 +2,6 @@
 import { tw } from '@nrsk/tw'
 
 import type { ArticleEntry } from '@/api/content/articles'
-import { inflect } from '@/api/utils'
-
-import Header from '@/components/Header.astro'
 
 import ArticlePreview from './ArticlePreview.astro'
 
@@ -14,42 +11,10 @@ export interface Props {
 
 const { items } = Astro.props
 
-const articlesNoteInflected = inflect(
-  [
-    `there's <strong>${items.length}</strong> article`,
-    `there're <strong>${items.length}</strong> articles`
-  ],
-  items.length
-)
-
-const sectionClasses = tw`
-  flex flex-col gap-10
-  w-full
-`
-
-const headingClasses = tw`
-  text-3xl md:text-5xl font-bold tracking-tight
-  text-black dark:text-white
-`
-
-const noteClasses = tw`
-  text-gray-600 dark:text-gray-400
-`
-
 const contentClasses = tw`
   flex flex-col gap-10
 `
 ---
-
-<section class={sectionClasses}>
-  <Header>
-    <h1 slot="heading" class={headingClasses}>Blog</h1>
-
-    <p slot="sub" class={noteClasses}>
-      So far <span set:html={articlesNoteInflected} />, but I'm working on new stuff!
-    </p>
-  </Header>
-</section>
 
 <section class={contentClasses}>
   {items.map((article) => <ArticlePreview item={article} />)}

@@ -2,11 +2,13 @@
 import { tw } from '@nrsk/tw'
 
 import type { ArticleEntry } from '@/api/content/articles'
+import { toTagsWithURL } from '@/api/frontmatter'
 import { readingTime } from '@/api/utils'
 
 import ScrollTop from '@/components/ScrollTop.astro'
 import PageProse from '@/components/PageProse.astro'
 import Header from '@/components/Header.astro'
+import Tags from '@/components/Tags.astro'
 import Date from '@/components/Date.astro'
 import Dot from '@/components/Dot.astro'
 
@@ -15,6 +17,8 @@ export interface Props {
 }
 
 const { content, frontmatter } = Astro.props.item
+
+const tags = toTagsWithURL('/blog/tags/', frontmatter.tags ?? [])
 
 const articleClasses = tw`
   flex flex-col justify-center items-start gap-10 sm:gap-12
@@ -27,8 +31,19 @@ const headingClasses = tw`
 `
 
 const metaClasses = tw`
-  flex items-center
   text-gray-700 dark:text-gray-300
+`
+
+const metaEssentialClasses = tw`
+  block sm:inline mb-2 sm:mb-0
+`
+
+const metaTagsClasses = tw`
+  block sm:inline
+`
+
+const metaInlineableClasses = tw`
+  hidden sm:inline
 `
 
 const footerClasses = tw`
@@ -43,9 +58,16 @@ const footerClasses = tw`
     </h1>
 
     <p slot="sub" class={metaClasses}>
-      <Date date={frontmatter.createdAt} />
-      <Dot />
-      {readingTime(content)}
+      <span class={metaEssentialClasses}>
+        <Date date={frontmatter.createdAt} />
+        <Dot />
+        <span>{readingTime(content)}</span>
+      </span>
+
+      <span class={metaTagsClasses}>
+        <Dot class={metaInlineableClasses} />
+        <Tags items={tags} />
+      </span>
     </p>
   </Header>
 
