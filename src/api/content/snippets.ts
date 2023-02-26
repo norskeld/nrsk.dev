@@ -1,7 +1,8 @@
 import { defaultLoaderOptions, fromRaw, sortEntries, limitEntries, toEntries } from './shared'
 import type { Entry, Loader, Frontmatter } from './shared'
+import type { WithTags } from './tags'
 
-export type SnippetFrontmatter = Frontmatter & { tags?: Array<string> }
+export type SnippetFrontmatter = WithTags<Frontmatter>
 export type SnippetEntry = Entry<SnippetFrontmatter>
 
 export const loadSnippets: Loader<SnippetFrontmatter> = async (options) => {

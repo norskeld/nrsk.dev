@@ -1,0 +1,52 @@
+---
+import { loadSnippets, type SnippetEntry } from '@/api/content/snippets'
+import { resolveTagsStaticPaths } from '@/api/content/tags'
+import { unslash } from '@/api/utils'
+
+import { withSeoOptions, Common } from '@/config'
+
+import SnippetList from '@/screens/snippets/SnippetList.astro'
+import PageHeader from '@/components/PageHeader.astro'
+import Page from '@/layouts/Page.astro'
+
+export interface Props {
+  tag: string
+  snippets: Array<SnippetEntry>
+}
+
+export async function getStaticPaths() {
+  const snippets = await loadSnippets()
+
+  return resolveTagsStaticPaths(snippets, ([tag, snippets]) => ({
+    params: { tag },
+    props: { tag, snippets }
+  }))
+}
+
+const { tag, snippets } = Astro.props
+
+const title = `Snippets tagged '${tag}' – ${Common.title}`
+const description = `Snippets tagged '${tag}'.`
+
+const props = withSeoOptions({
+  title,
+  description,
+  canonical: unslash(Astro.url.href),
+  openGraph: {
+    basic: {
+      title: `Snippets tagged '${tag}'`,
+      type: 'website',
+      url: unslash(Astro.url.href)
+    },
+    optional: {
+      description
+    }
+  }
+})
+---
+
+<Page {...props}>
+  <PageHeader title={`#${tag}`} />
+
+  <SnippetList items={snippets} />
+</Page>

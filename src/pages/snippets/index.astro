@@ -5,6 +5,7 @@ import { unslash } from '@/api/utils'
 import { withSeoOptions, Common } from '@/config'
 
 import SnippetList from '@/screens/snippets/SnippetList.astro'
+import PageHeader from '@/components/PageHeader.astro'
 import Page from '@/layouts/Page.astro'
 
 const snippets = await loadSnippets({
@@ -32,5 +33,10 @@ const props = withSeoOptions({
 ---
 
 <Page {...props}>
+  <PageHeader
+    title="Snippets"
+    description="This is a collection of code snippets and short notes that will serve as quick reminders."
+  />
+
   <SnippetList items={snippets} />
 </Page>

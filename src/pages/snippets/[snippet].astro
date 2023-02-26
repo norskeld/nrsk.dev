@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   const snippetsRaw = await loadSnippets()
 
   return snippetsRaw.map((snippet) => ({
-    params: { entry: snippet.slug },
+    params: { snippet: snippet.slug },
     props: { snippet }
   }))
 }
