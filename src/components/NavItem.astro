@@ -9,12 +9,14 @@ export interface Props {
 const { to, active = false } = Astro.props
 
 const navItemClasses = tw`
-  hidden md:inline-block p-1 sm:px-3 sm:py-2
+  inline-block p-3 py-2 mr-2 last:mr-0
   font-semibold transition-[color,background-color] rounded-lg
   text-gray-800 hover:bg-gray-200 dark:hover:bg-gray-800
 `
 
-const navItemExtendClasses = active ? tw`dark:text-gray-200 underline` : tw`dark:text-gray-400`
+const navItemExtendClasses = active
+  ? tw`dark:text-gray-200 bg-gray-200 dark:bg-gray-800`
+  : tw`dark:text-gray-400`
 ---
 
 <a href={to} class:list={[navItemClasses, navItemExtendClasses]}>
