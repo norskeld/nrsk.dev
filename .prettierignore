@@ -3,4 +3,5 @@ coverage
 dist
 
 # Ignore Markdown at the root.
+/content/
 /*.md
