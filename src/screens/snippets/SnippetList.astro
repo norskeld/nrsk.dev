@@ -4,7 +4,6 @@ import { tw } from '@nrsk/tw'
 import type { SnippetEntry } from '@/api/content/snippets'
 
 import CardGrid from '@/components/CardGrid.astro'
-import Header from '@/components/Header.astro'
 
 import SnippetPreview from './SnippetPreview.astro'
 
@@ -14,38 +13,13 @@ export interface Props {
 
 const { items } = Astro.props
 
-const sectionClasses = tw`
-  flex flex-col gap-10 w-full
-`
-
-const headingClasses = tw`
-  text-3xl md:text-5xl font-bold tracking-tight
-  text-black dark:text-white
-`
-
-const noteClasses = tw`
-  text-gray-600 dark:text-gray-400
-`
-
 const contentClasses = tw`
   flex flex-col gap-10
 `
 ---
 
-<section class={sectionClasses}>
-  <Header>
-    <h1 slot="heading" class={headingClasses}>
-      Snippets
-    </h1>
-
-    <p slot="sub" class={noteClasses}>
-      This is a collection of code snippets and short notes that will serve as quick reminders.
-    </p>
-  </Header>
-</section>
-
 <section class={contentClasses}>
   <CardGrid>
-    {items.map((snippet) => <SnippetPreview item={snippet}/>)}
+    {items.map((snippet) => <SnippetPreview item={snippet} />)}
   </CardGrid>
 </section>

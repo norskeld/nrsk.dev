@@ -2,19 +2,21 @@
 import { tw } from '@nrsk/tw'
 
 import type { SnippetEntry } from '@/api/content/snippets'
+import { toTagsWithURL } from '@/api/frontmatter'
 
 import PageProse from '@/components/PageProse.astro'
 import Header from '@/components/Header.astro'
 import Date from '@/components/Date.astro'
+import Tags from '@/components/Tags.astro'
 import Dot from '@/components/Dot.astro'
-
-import SnippetTags from './SnippetTags.astro'
 
 export interface Props {
   item: SnippetEntry
 }
 
 const { content, frontmatter } = Astro.props.item
+
+const tags = toTagsWithURL('/snippets/tags/', frontmatter.tags ?? [])
 
 const snippetClasses = tw`
   flex flex-col justify-center items-start gap-10 sm:gap-12 w-full
@@ -26,7 +28,6 @@ const headingClasses = tw`
 `
 
 const metaClasses = tw`
-  flex items-center
   text-gray-700 dark:text-gray-300
 `
 ---
@@ -40,7 +41,7 @@ const metaClasses = tw`
     <p slot="sub" class={metaClasses}>
       <Date date={frontmatter.createdAt} />
       <Dot />
-      {frontmatter.tags && <SnippetTags tags={frontmatter.tags} />}
+      <Tags items={tags} />
     </p>
   </Header>
 

@@ -2,16 +2,18 @@
 import { tw } from '@nrsk/tw'
 
 import type { SnippetEntry } from '@/api/content/snippets'
+import { toTags } from '@/api/frontmatter'
 
 import Card from '@/components/Card.astro'
-
-import SnippetTags from './SnippetTags.astro'
+import Tags from '@/components/Tags.astro'
 
 export interface Props {
   item: SnippetEntry
 }
 
 const { slug, frontmatter } = Astro.props.item
+
+const tags = toTags(frontmatter.tags ?? [])
 
 const headingClasses = tw`
   mb-4 w-full
@@ -30,6 +32,6 @@ const footerClasses = tw`
   </h3>
 
   <p slot="footer" class={footerClasses}>
-    {frontmatter.tags && <SnippetTags tags={frontmatter.tags} />}
+    <Tags items={tags} />
   </p>
 </Card>
