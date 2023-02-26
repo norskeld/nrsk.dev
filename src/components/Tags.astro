@@ -1,0 +1,39 @@
+---
+import { tw } from '@nrsk/tw'
+
+import { hasLinkableTags, type Tag } from '@/api/frontmatter'
+
+export interface Props {
+  class?: string
+  items: Array<Tag>
+}
+
+const { class: className, items } = Astro.props
+
+const commonLabelClasses = tw`
+  before:content-['#']
+  text-gray-600 dark:text-gray-100
+`
+
+const labelClasses = hasLinkableTags(items)
+  ? tw`${commonLabelClasses} hover:underline`
+  : commonLabelClasses
+
+const spacingClasses = tw`
+  mr-2 last:mr-0
+`
+---
+
+<span class={className}>
+  {
+    items.map((item) =>
+      item.url ? (
+        <a href={item.url} class={spacingClasses}>
+          <span class={labelClasses}>{item.name}</span>
+        </a>
+      ) : (
+        <span class:list={[labelClasses, spacingClasses]}>{item.name}</span>
+      )
+    )
+  }
+</span>
