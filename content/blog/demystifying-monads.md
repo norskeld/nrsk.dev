@@ -1,8 +1,11 @@
 ---
 title: Demystifying monads
-description: In this article we're going to find out, without diving into tangled mathematical jargon, what Monads are and what for we may want to use them.
+description: In this article we're going to find out, without diving into tangled mathematical jargon, what monads are and what for we may want to use them.
 createdAt: 2021-12-01
-updatedAt: 2022-09-01
+updatedAt: 2023-02-26
+tags:
+  - fp
+  - monads
 ---
 
 Googling _"what a monad is"_ may yield [this answer on StackOverflow], which explains, in exquisitely painful mathematical jargon, what a monad in fact is. But, no worries! Understanding monads doesn't actually require you to learn the nuances of [category theory] or [_F_-algebra]. I rather suggest that the concept of monads can be distilled into a clearer single sentence:
