@@ -41,17 +41,8 @@ const colors = {
   }
 }
 
-/** This is a completely custom pair of values to be used in the `site.config.ts`. */
-const themePair = {
-  light: colors.colors.gray[50],
-  dark: colors.colors.gray[900]
-}
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: This is not the part of Tailwind config, but w/e.
-  themePair,
-
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,mdx,ts,tsx}'],
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
