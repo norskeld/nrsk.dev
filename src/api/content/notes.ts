@@ -2,12 +2,12 @@ import { getCollection, type CollectionEntry } from 'astro:content'
 
 import { defaults, type LoaderOptions } from '@/api/content'
 
-export type ArticleEntry = CollectionEntry<'articles'>
+export type NoteEntry = CollectionEntry<'notes'>
 
-export async function loadArticles(options?: Partial<LoaderOptions>): Promise<Array<ArticleEntry>> {
+export async function loadNotes(options?: Partial<LoaderOptions>): Promise<Array<NoteEntry>> {
   const { sort, limit } = defaults(options)
 
-  let entries = await getCollection('articles')
+  let entries = await getCollection('notes')
 
   if (sort !== 'none') {
     entries.sort((prev, next) => {

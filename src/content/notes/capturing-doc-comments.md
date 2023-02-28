@@ -1,6 +1,6 @@
 ---
 title: Capturing doc comments in declarative macros
-description: 'How to: capture doc comments in Rust macros.'
+description: How to capture doc comments in Rust macros.
 createdAt: 2022-11-18
 updatedAt: 2023-02-26
 tags:
@@ -8,7 +8,7 @@ tags:
   - macros
 ---
 
-Sometimes it's handy (and generally a good idea!) to capture not only the code itself, but also doc comments. There's a catch though, because there's no way to capture comment placed outside of a macro. This won't work:
+Sometimes it may be handy to capture not only the code itself, but also doc comments. There's a problem though, because there's no way to capture comment placed outside of a macro. This won't work:
 
 ```rust
 macro_rules! create (($name:ident, $bytes:expr) => (

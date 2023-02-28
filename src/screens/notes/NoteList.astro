@@ -1,14 +1,14 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { SnippetEntry } from '@/api/content/snippets'
+import type { NoteEntry } from '@/api/content'
 
 import CardGrid from '@/components/CardGrid.astro'
 
-import SnippetPreview from './SnippetPreview.astro'
+import NotePreview from './NotePreview.astro'
 
 export interface Props {
-  items: Array<SnippetEntry>
+  items: Array<NoteEntry>
 }
 
 const { items } = Astro.props
@@ -20,6 +20,6 @@ const contentClasses = tw`
 
 <section class={contentClasses}>
   <CardGrid>
-    {items.map((snippet) => <SnippetPreview item={snippet} />)}
+    {items.map((snippet) => <NotePreview item={snippet} />)}
   </CardGrid>
 </section>

@@ -1,15 +1,15 @@
 ---
 import { tw, withVariables } from '@nrsk/tw'
 
-import type { Project } from '@/api/content/projects'
+import type { ProjectEntry } from '@/api/content'
 
 import Card from '@/components/Card.astro'
 
 export interface Props {
-  project: Project
+  project: ProjectEntry
 }
 
-const { name, description, language, url, wip } = Astro.props.project
+const { name, description, language, url, wip } = Astro.props.project.data
 
 const headingClasses = tw`
   flex items-center w-full justify-between
@@ -26,7 +26,7 @@ const wipClasses = tw`
 
 const languageTw = withVariables({
   '--language-color-light': language.color.at(0) ?? 'inherit',
-  '--language-color-dark': language.color.at(1) ?? 'inherit',
+  '--language-color-dark': language.color.at(1) ?? 'inherit'
 })
 
 const languageClasses = languageTw`
@@ -38,10 +38,17 @@ const languageClasses = languageTw`
 <Card tag="a" to={url}>
   <h3 slot="header" class={headingClasses}>
     <span>
-      {name} <span {...languageClasses}>{language.ext}</span>
+      {name}
+      <span {...languageClasses}>{language.ext}</span>
     </span>
 
-    {wip && <span class={wipClasses} title="Work-in-progress project">wip</span>}
+    {
+      wip && (
+        <span class={wipClasses} title="Work-in-progress project">
+          wip
+        </span>
+      )
+    }
   </h3>
 
   <p slot="footer" set:html={description} />

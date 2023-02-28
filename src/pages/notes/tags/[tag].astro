@@ -1,37 +1,37 @@
 ---
-import { loadArticles, type ArticleEntry } from '@/api/content'
+import { loadNotes, type NoteEntry } from '@/api/content'
 import { unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import ArticleList from '@/screens/blog/ArticleList.astro'
 import PageHeader from '@/components/PageHeader.astro'
+import NoteList from '@/screens/notes/NoteList.astro'
 import Page from '@/layouts/Page.astro'
 
 export interface Props {
   tag: string
-  articles: Array<ArticleEntry>
+  notes: Array<NoteEntry>
 }
 
 export async function getStaticPaths() {
-  const entries = await loadArticles()
+  const entries = await loadNotes()
 
   const tags = new Set(entries.map((entry) => entry.data.tags).flat())
 
   return [...tags].map((tag) => {
-    const articles = entries.filter((entry) => entry.data.tags.includes(tag))
+    const notes = entries.filter((entry) => entry.data.tags.includes(tag))
 
     return {
       params: { tag },
-      props: { tag, articles }
+      props: { tag, notes }
     }
   })
 }
 
-const { tag, articles } = Astro.props
+const { tag, notes } = Astro.props
 
-const title = `Articles tagged '${tag}' – ${Common.title}`
-const description = `Articles tagged '${tag}'.`
+const title = `Notes tagged '${tag}' – ${Common.title}`
+const description = `Notes tagged '${tag}'.`
 
 const props = withSeoOptions({
   title,
@@ -39,7 +39,7 @@ const props = withSeoOptions({
   canonical: unslash(Astro.url.href),
   openGraph: {
     basic: {
-      title: `Articles tagged '${tag}'`,
+      title: `Notes tagged '${tag}'`,
       type: 'website',
       url: unslash(Astro.url.href)
     },
@@ -53,5 +53,5 @@ const props = withSeoOptions({
 <Page {...props}>
   <PageHeader title={`#${tag}`} />
 
-  <ArticleList items={articles} />
+  <NoteList items={notes} />
 </Page>

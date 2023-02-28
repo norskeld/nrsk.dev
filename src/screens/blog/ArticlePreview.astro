@@ -1,7 +1,7 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
+import type { ArticleEntry } from '@/api/content'
 import { readingTime } from '@/api/utils'
 
 import Date from '@/components/Date.astro'
@@ -12,7 +12,7 @@ export interface Props {
   item: ArticleEntry
 }
 
-const { content, frontmatter, slug } = Astro.props.item
+const { body, data, slug } = Astro.props.item
 
 const articleClasses = tw`
   w-full
@@ -46,18 +46,18 @@ const excerptClasses = tw`
   <header class={headerClasses}>
     <h2 class={headingClasses}>
       <Link to={'/blog/' + slug} class={linkClasses}>
-        {frontmatter.title}
+        {data.title}
       </Link>
     </h2>
 
     <p class={metaClasses}>
-      <Date date={frontmatter.createdAt} />
+      <Date date={data.createdAt} />
       <Dot />
-      <span>{readingTime(content)}</span>
+      <span>{readingTime(body)}</span>
     </p>
   </header>
 
   <p class={excerptClasses}>
-    {frontmatter.description}
+    {data.description}
   </p>
 </article>
