@@ -13,14 +13,18 @@ import { Common } from '@/config'
  * The `import.meta.url`, when building for production, for whatever reason contains the
  * `/path/to/dist/entry.mjs`, not the *actual* file url.
  */
-function resolveSourceDir(metaUrl: string, level: number) {
+function resolveSourceDir(metaUrl: string, level: number): string {
   let url = fileURLToPath(metaUrl)
 
-  for (let index = 0; index < level; index += 1) {
-    url = dirname(url)
+  if (import.meta.env.MODE === 'production') {
+    for (let index = 0; index < level; index += 1) {
+      url = dirname(url)
+    }
+
+    return join(url, 'src')
   }
 
-  return import.meta.env.MODE === 'production' ? join(url, 'src') : url
+  return dirname(dirname(url))
 }
 
 export async function render(input: string) {
