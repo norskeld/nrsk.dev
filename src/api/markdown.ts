@@ -8,15 +8,19 @@ import markdown from 'markdown-it'
 import { Common } from '@/config'
 
 /**
- * Extremely hacky workaround. When building for production, the `import.meta.url` for whatever
- * reason contains the `/path/to/dist/entry.mjs`, not the *actual* file url...
+ * Extremely hacky workaround for building for production.
+ *
+ * The `import.meta.url`, when building for production, for whatever reason contains the
+ * `/path/to/dist/entry.mjs`, not the *actual* file url.
  */
-function resolveSourceDir() {
-  const url = fileURLToPath(import.meta.url)
+function resolveSourceDir(metaUrl: string, level: number) {
+  let url = fileURLToPath(metaUrl)
 
-  return import.meta.env.MODE === 'production'
-    ? join(dirname(dirname(url)), 'src')
-    : dirname(dirname(url))
+  for (let index = 0; index < level; index += 1) {
+    url = dirname(url)
+  }
+
+  return import.meta.env.MODE === 'production' ? join(url, 'src') : url
 }
 
 export async function render(input: string) {
@@ -36,7 +40,7 @@ export async function render(input: string) {
 }
 
 async function createHighlighter(themeName: string) {
-  const theme = await loadTheme(`${resolveSourceDir()}/syntax/${themeName}.json`)
+  const theme = await loadTheme(`${resolveSourceDir(import.meta.url, 4)}/syntax/${themeName}.json`)
 
   return await shikigami({
     withLanguage: true,
