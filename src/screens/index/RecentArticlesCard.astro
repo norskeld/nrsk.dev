@@ -1,7 +1,7 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
+import type { ArticleEntry } from '@/api/content'
 
 import Card from '@/components/Card.astro'
 import Date from '@/components/Date.astro'
@@ -10,7 +10,7 @@ export interface Props {
   item: ArticleEntry
 }
 
-const { slug, frontmatter } = Astro.props.item
+const { slug, data } = Astro.props.item
 
 const headingClasses = tw`
   mb-4 w-full
@@ -23,8 +23,8 @@ const footerClasses = tw`text-gray-500 dark:text-gray-400`
 
 <Card tag="a" to={'/blog/' + slug} justify>
   <h3 slot="header" class={headingClasses}>
-    {frontmatter.title}
+    {data.title}
   </h3>
 
-  <Date slot="footer" class={footerClasses} date={frontmatter.createdAt} />
+  <Date slot="footer" class={footerClasses} date={data.createdAt} />
 </Card>

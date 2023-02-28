@@ -15,19 +15,23 @@
     "prepare": "husky install",
     "preview": "astro preview"
   },
+  "dependencies": {
+    "@nrsk/shikigami": "^1.2.0",
+    "sharp": "^0.31.3"
+  },
   "devDependencies": {
-    "@astrojs/image": "^0.11.6",
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/tailwind": "^2.1.2",
+    "@astrojs/image": "^0.15.1",
+    "@astrojs/sitemap": "^1.1.0",
+    "@astrojs/tailwind": "^3.0.1",
     "@commitlint/cli": "^17.2.0",
     "@nrsk/config-conventional": "^1.0.0",
     "@nrsk/tw": "^1.0.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "@types/node": "^18.11.9",
-    "astro": "^1.6.10",
-    "astro-compress": "^1.1.7",
-    "astro-seo": "^0.6.0",
+    "astro": "^2.0.15",
+    "astro-compress": "^1.1.35",
+    "astro-seo": "^0.7.1",
     "autoprefixer": "^10.4.13",
     "date-fns": "^2.29.3",
     "husky": "^8.0.2",
@@ -47,9 +51,5 @@
     "*.{cjs,ts,json}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "@nrsk/shikigami": "^1.2.0",
-    "sharp": "^0.31.2"
   }
 }

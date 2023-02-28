@@ -1,27 +1,27 @@
 ---
-import { loadArticles, type ArticleEntry } from '@/api/content/articles'
+import { loadNotes, type NoteEntry } from '@/api/content'
 import { formatDate, unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import Article from '@/screens/blog/Article.astro'
+import Note from '@/screens/notes/Note.astro'
 import Page from '@/layouts/Page.astro'
 
 export interface Props {
-  article: ArticleEntry
+  note: NoteEntry
 }
 
 export async function getStaticPaths() {
-  const articlesRaw = await loadArticles()
+  const notes = await loadNotes()
 
-  return articlesRaw.map((article) => ({
-    params: { entry: article.slug },
-    props: { article }
+  return notes.map((note) => ({
+    params: { note: note.slug },
+    props: { note }
   }))
 }
 
-const { article } = Astro.props
-const { title, description, createdAt, updatedAt } = article.frontmatter
+const { note } = Astro.props
+const { title, description, createdAt, updatedAt } = note.data
 
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
@@ -48,5 +48,5 @@ const props = withSeoOptions({
 ---
 
 <Page {...props}>
-  <Article item={article} />
+  <Note item={note} />
 </Page>

@@ -1,9 +1,10 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
+import type { ArticleEntry } from '@/api/content'
 import { toTagsWithURL } from '@/api/frontmatter'
 import { readingTime } from '@/api/utils'
+import { render } from '@/api/markdown'
 
 import ScrollTop from '@/components/ScrollTop.astro'
 import PageProse from '@/components/PageProse.astro'
@@ -16,9 +17,10 @@ export interface Props {
   item: ArticleEntry
 }
 
-const { content, frontmatter } = Astro.props.item
+const { body, data } = Astro.props.item
 
-const tags = toTagsWithURL('/blog/tags/', frontmatter.tags ?? [])
+const content = await render(body)
+const tags = toTagsWithURL('/blog/tags/', data.tags ?? [])
 
 const articleClasses = tw`
   flex flex-col justify-center items-start gap-10 sm:gap-12
@@ -54,14 +56,14 @@ const footerClasses = tw`
 <article class={articleClasses}>
   <Header>
     <h1 slot="heading" class={headingClasses}>
-      {frontmatter.title}
+      {data.title}
     </h1>
 
     <p slot="sub" class={metaClasses}>
       <span class={metaEssentialClasses}>
-        <Date date={frontmatter.createdAt} />
+        <Date date={data.createdAt} />
         <Dot />
-        <span>{readingTime(content)}</span>
+        <span>{readingTime(body)}</span>
       </span>
 
       <span class={metaTagsClasses}>

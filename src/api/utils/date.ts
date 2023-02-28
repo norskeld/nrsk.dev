@@ -1,5 +1,13 @@
-import { format, parseISO } from 'date-fns'
+import { format, parseISO, toDate } from 'date-fns'
 
-export function formatDate(date: Date | string, template: string): string {
-  return date instanceof Date ? format(date, template) : format(parseISO(date), template)
+export function formatDate(date: Date | string | number, template: string): string {
+  if (date instanceof Date) {
+    return format(date, template)
+  } else if (typeof date === 'string') {
+    return format(parseISO(date), template)
+  } else if (typeof date === 'number') {
+    return format(toDate(date), template)
+  }
+
+  return format(new Date(date), template)
 }

@@ -1,7 +1,7 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { Project } from '@/api/content/projects'
+import type { ProjectEntry } from '@/api/content'
 
 import CardGrid from '@/components/CardGrid.astro'
 import Header from '@/components/Header.astro'
@@ -10,7 +10,7 @@ import Link from '@/components/Link.astro'
 import ProjectsCard from './ProjectsCard.astro'
 
 export interface Props {
-  items: Array<Project>
+  items: Array<ProjectEntry>
 }
 
 const { items } = Astro.props
@@ -41,13 +41,9 @@ const linkArrowClasses = tw`
 
 <section class={sectionClasses}>
   <Header>
-    <h2 slot="heading" class={headingClasses}>
-      Projects
-    </h2>
+    <h2 slot="heading" class={headingClasses}>Projects</h2>
 
-    <p slot="sub" class={noteClasses}>
-      Some of my OSS projects.
-    </p>
+    <p slot="sub" class={noteClasses}>Some of my OSS projects.</p>
   </Header>
 
   <CardGrid>

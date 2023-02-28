@@ -1,18 +1,18 @@
 ---
-import { loadSnippets } from '@/api/content/snippets'
+import { loadNotes } from '@/api/content'
 import { unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import SnippetList from '@/screens/snippets/SnippetList.astro'
+import NoteList from '@/screens/notes/NoteList.astro'
 import PageHeader from '@/components/PageHeader.astro'
 import Page from '@/layouts/Page.astro'
 
-const snippets = await loadSnippets({
+const snippets = await loadNotes({
   sort: 'desc'
 })
 
-const title = `Snippets – ${Common.title}`
+const title = `Notes – ${Common.title}`
 const description = 'Code snippets in a variety of programming languages for various purposes.'
 
 const props = withSeoOptions({
@@ -21,7 +21,7 @@ const props = withSeoOptions({
   canonical: unslash(Astro.url.href),
   openGraph: {
     basic: {
-      title: 'Snippets',
+      title: 'Notes',
       type: 'website',
       url: unslash(Astro.url.href)
     },
@@ -34,9 +34,9 @@ const props = withSeoOptions({
 
 <Page {...props}>
   <PageHeader
-    title="Snippets"
+    title="Notes"
     description="This is a collection of code snippets and short notes that will serve as quick reminders."
   />
 
-  <SnippetList items={snippets} />
+  <NoteList items={snippets} />
 </Page>

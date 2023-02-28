@@ -1,8 +1,9 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { SnippetEntry } from '@/api/content/snippets'
 import { toTagsWithURL } from '@/api/frontmatter'
+import type { NoteEntry } from '@/api/content'
+import { render } from '@/api/markdown'
 
 import PageProse from '@/components/PageProse.astro'
 import Header from '@/components/Header.astro'
@@ -11,12 +12,13 @@ import Tags from '@/components/Tags.astro'
 import Dot from '@/components/Dot.astro'
 
 export interface Props {
-  item: SnippetEntry
+  item: NoteEntry
 }
 
-const { content, frontmatter } = Astro.props.item
+const { body, data } = Astro.props.item
 
-const tags = toTagsWithURL('/snippets/tags/', frontmatter.tags ?? [])
+const content = await render(body)
+const tags = toTagsWithURL('/notes/tags/', data.tags ?? [])
 
 const snippetClasses = tw`
   flex flex-col justify-center items-start gap-10 sm:gap-12 w-full
@@ -35,11 +37,11 @@ const metaClasses = tw`
 <article class={snippetClasses}>
   <Header>
     <h1 slot="heading" class={headingClasses}>
-      {frontmatter.title}
+      {data.title}
     </h1>
 
     <p slot="sub" class={metaClasses}>
-      <Date date={frontmatter.createdAt} />
+      <Date date={data.createdAt} />
       <Dot />
       <Tags items={tags} />
     </p>

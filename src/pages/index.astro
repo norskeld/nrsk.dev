@@ -1,6 +1,5 @@
 ---
-import { loadArticles } from '@/api/content/articles'
-import { loadProjects } from '@/api/content/projects'
+import { loadArticles, loadProjects } from '@/api/content'
 import { unslash } from '@/api/utils'
 
 import { withSeoOptions } from '@/config'
@@ -12,7 +11,7 @@ import IndexSections from '@/screens/index/Sections.astro'
 import IndexLayout from '@/layouts/Index.astro'
 
 const props = withSeoOptions({
-  canonical: unslash(Astro.url.href),
+  canonical: unslash(Astro.url.href)
 })
 
 const recentArticles = await loadArticles({ limit: 3, sort: 'desc' })

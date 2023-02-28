@@ -1,7 +1,7 @@
 ---
 import { tw } from '@nrsk/tw'
 
-import type { ArticleEntry } from '@/api/content/articles'
+import type { ArticleEntry } from '@/api/content'
 
 import CardGrid from '@/components/CardGrid.astro'
 import Header from '@/components/Header.astro'
@@ -41,13 +41,12 @@ const linkArrowClasses = tw`
 
 <section class={sectionClasses}>
   <Header>
-    <h2 slot="heading" class={headingClasses}>
-      Recent articles
-    </h2>
+    <h2 slot="heading" class={headingClasses}>Recent articles</h2>
 
     <p slot="sub" class={noteClasses}>
-      I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>,
-      and <strong>front-end</strong> stuff.
+      I occasionally write about <strong>Rust</strong>, <strong>functional programming</strong>, and <strong
+        >front-end</strong
+      > stuff.
     </p>
   </Header>
 

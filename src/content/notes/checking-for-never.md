@@ -1,6 +1,6 @@
 ---
 title: Checking for `never`
-description: Tricks for working with `never` type in TypeScript.
+description: How to check for `never` type in TypeScript.
 createdAt: 2023-01-22
 updatedAt: 2023-01-22
 tags:
@@ -19,10 +19,10 @@ type IsNever<T> = T extends never ? true : false
 Unfortunately, it's not gonna work as you'd expect:
 
 ```ts
-type A = IsNever<never>  // never
+type A = IsNever<never> // never
 type B = IsNever<number> // false
-type C = IsNever<true>   // false
-type D = IsNever<any>    // boolean
+type C = IsNever<true> // false
+type D = IsNever<any> // boolean
 ```
 
 Huh? The explanation boils down to the following:
@@ -34,10 +34,10 @@ To make it work, you should enclose `T` and `never` in a tuple to limit type dis
 ```ts
 type IsNever<T> = [T] extends [never] ? true : false
 
-type A = IsNever<never>  // true
+type A = IsNever<never> // true
 type B = IsNever<number> // false
-type C = IsNever<true>   // false
-type D = IsNever<any>    // false
+type C = IsNever<true> // false
+type D = IsNever<any> // false
 ```
 
 <!-- Links. -->

@@ -1,18 +1,17 @@
 {
   "extends": "astro/tsconfigs/strict",
-
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["public/*"],
-      "@/*": ["src/*"]
-    },
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "paths": {
+      "~/*": ["public/*"],
+      "@/*": ["src/*"]
+    },
     "types": ["@astrojs/image/client", "vite/client"]
   }
 }
