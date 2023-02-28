@@ -1,26 +1,10 @@
-import { createRequire } from 'node:module'
-
 import type { Props as AstroSeo } from 'astro-seo'
-import type { Config } from 'tailwindcss'
 
 import { merge } from '@/api/utils'
 
 type Optional<T> = {
   [P in keyof T]?: Optional<T[P]> | undefined
 }
-
-interface ThemePair {
-  themePair: {
-    light: string
-    dark: string
-  }
-}
-
-// Creating Node `require` manually to load Tailwind's config.
-const require = createRequire(import.meta.url)
-
-// Load Tailwind's config and type cast it to reflect the monkey-patched prop `themePair`.
-const config = require('../tailwind.config.cjs') as Config & ThemePair
 
 export const Common = {
   host: 'https://vm.codes',
@@ -33,8 +17,8 @@ export const Common = {
     `A TypeScript devotee, Rust tyro, and front-end shepherd. ` +
     `Interested in functional programming, compilers and PL design.`,
 
-  themeDark: config.themePair.dark,
-  themeLight: config.themePair.light,
+  themeDark: '#141415',
+  themeLight: '#f9fafb',
 
   themeSyntax: 'norskeld'
 } as const
