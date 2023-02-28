@@ -4,8 +4,8 @@ import { unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import NoteList from '@/screens/notes/NoteList.astro'
 import PageHeader from '@/components/PageHeader.astro'
+import NoteList from '@/screens/notes/NoteList.astro'
 import Page from '@/layouts/Page.astro'
 
 const snippets = await loadNotes({
@@ -13,7 +13,8 @@ const snippets = await loadNotes({
 })
 
 const title = `Notes – ${Common.title}`
-const description = 'Code snippets in a variety of programming languages for various purposes.'
+const description =
+  'Short notes and code snippets in a variety of programming languages for various purposes.'
 
 const props = withSeoOptions({
   title,
@@ -35,7 +36,7 @@ const props = withSeoOptions({
 <Page {...props}>
   <PageHeader
     title="Notes"
-    description="This is a collection of code snippets and short notes that will serve as quick reminders."
+    description="This is a collection of short notes and code snippets that will serve as quick reminders."
   />
 
   <NoteList items={snippets} />
