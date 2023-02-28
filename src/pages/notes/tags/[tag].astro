@@ -37,6 +37,7 @@ const props = withSeoOptions({
   title,
   description,
   canonical: unslash(Astro.url.href),
+  noindex: true,
   openGraph: {
     basic: {
       title: `Notes tagged '${tag}'`,
