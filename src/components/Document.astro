@@ -6,7 +6,7 @@ import ScriptTheme from '@/components/ScriptTheme.astro'
 
 import { Common } from '@/config'
 
-import '@/styles/global.css'
+import globalCss from '@/styles/global.css?inline'
 
 export interface Props extends AstroSeo {}
 
@@ -36,12 +36,35 @@ const wrapperClasses = tw`
     <style is:inline>
       @font-face {
         font-family: 'Inter';
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: optional;
+        font-weight: 400 900;
+        font-display: fallback;
         src: url('/fonts/inter-var-latin.woff2') format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
           U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: 'Inter';
+        font-weight: 400;
+        src: local('Inter Regular');
+      }
+
+      @font-face {
+        font-family: 'Inter';
+        font-weight: 500;
+        src: local('Inter Medium');
+      }
+
+      @font-face {
+        font-family: 'Inter';
+        font-weight: 600;
+        src: local('Inter SemiBold');
+      }
+
+      @font-face {
+        font-family: 'Inter';
+        font-weight: 700;
+        src: local('Inter Bold');
       }
     </style>
 
@@ -55,6 +78,8 @@ const wrapperClasses = tw`
     <link href="/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
     <link href="/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
     <link href="/favicons/safari-pinned-tab.svg" rel="mask-icon" color="#006ae6" />
+
+    <style is:inline set:html={globalCss}></style>
 
     <!-- OpenGraph & other essential props like `title` and `description`. -->
 
