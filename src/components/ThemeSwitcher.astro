@@ -3,15 +3,27 @@ import { tw } from '@nrsk/tw'
 
 import ThemeIconLight from './ThemeIconLight.astro'
 import ThemeIconDark from './ThemeIconDark.astro'
+import ThemeIconNoop from './ThemeIconNoop.astro'
 
 const buttonClasses = tw`
   flex items-center justify-center
-  w-9 h-9 rounded-lg transition-all hover:ring-2
+  w-9 h-9 p-2 rounded-lg transition-all hover:ring-2
   bg-gray-200 dark:bg-gray-600 ring-gray-300
+`
+
+const iconClasses = tw`
+  hidden cursor-pointer
+  text-gray-800 dark:text-gray-200
+`
+
+const noopIconClasses = tw`
+  cursor-pointer
+  text-gray-800 dark:text-gray-200
 `
 ---
 
 <button id="js-button" type="button" aria-label="auto" aria-live="polite" class={buttonClasses}>
-  <ThemeIconDark />
-  <ThemeIconLight />
+  <ThemeIconNoop class={noopIconClasses} />
+  <ThemeIconDark class={iconClasses} />
+  <ThemeIconLight class={iconClasses} />
 </button>

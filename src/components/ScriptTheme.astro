@@ -31,6 +31,10 @@ const jsVariables = {
     const buttonEl = document.getElementById('js-button')
     const darkIconEl = document.getElementById('js-dark-icon')
     const lightIconEl = document.getElementById('js-light-icon')
+    const noopIconEl = document.getElementById('js-noop-icon')
+
+    // Remove noop icon if JS enabled.
+    noopIconEl.remove()
 
     const toggleColorScheme = (isDark) => {
       const isRootDark = hasClass(rootEl, DARK)
@@ -44,7 +48,6 @@ const jsVariables = {
         !isLightHidden && lightIconEl?.classList.add('hidden')
         isDarkHidden && darkIconEl?.classList.remove('hidden')
 
-        buttonEl?.setAttribute('title', 'Activate light mode')
         metaThemeEl?.setAttribute('content', themeDark)
       } else {
         isRootDark && rootEl.classList.remove(DARK)
@@ -53,7 +56,6 @@ const jsVariables = {
         isLightHidden && lightIconEl?.classList.remove('hidden')
         !isDarkHidden && darkIconEl?.classList.add('hidden')
 
-        buttonEl?.setAttribute('title', 'Activate dark mode')
         metaThemeEl?.setAttribute('content', themeLight)
       }
 
