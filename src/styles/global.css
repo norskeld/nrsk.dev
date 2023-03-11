@@ -2,16 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply min-w-[360px] [text-size-adjust:none]
-    scroll-smooth scroll-pt-10 sm:scroll-pt-20
-    bg-gray-50;
+@layer base {
+  html {
+    @apply min-w-[360px] [text-size-adjust:none]
+      scroll-smooth scroll-pt-10 sm:scroll-pt-20
+      bg-gray-50;
+  }
+
+  html.dark {
+    @apply bg-gray-900;
+  }
+
+  ::selection {
+    @apply text-gray-50 bg-crayola-200;
+  }
 }
 
-html.dark {
-  @apply bg-gray-900;
-}
-
-::selection {
-  @apply text-gray-50 bg-crayola-200;
+@layer utilities {
+  .preload * {
+    transition: none !important;
+  }
 }
