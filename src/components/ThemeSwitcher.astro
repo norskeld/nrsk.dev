@@ -11,19 +11,16 @@ const buttonClasses = tw`
   bg-gray-200 dark:bg-gray-600 ring-gray-300
 `
 
-const iconClasses = tw`
-  hidden cursor-pointer
-  text-gray-800 dark:text-gray-200
-`
-
-const noopIconClasses = tw`
-  cursor-pointer
-  text-gray-800 dark:text-gray-200
-`
+function iconClasses(isHidden = false) {
+  return tw`
+    ${isHidden && 'hidden'} cursor-pointer
+    text-gray-800 dark:text-gray-200
+  `
+}
 ---
 
 <button id="js-button" type="button" aria-label="auto" aria-live="polite" class={buttonClasses}>
-  <ThemeIconNoop class={noopIconClasses} />
-  <ThemeIconDark class={iconClasses} />
-  <ThemeIconLight class={iconClasses} />
+  <ThemeIconNoop class={iconClasses()} />
+  <ThemeIconDark class={iconClasses(true)} />
+  <ThemeIconLight class={iconClasses(true)} />
 </button>
