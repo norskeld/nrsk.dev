@@ -27,9 +27,6 @@ const jsVariables = {
   const hasClass = (el, className) => el?.classList.contains(className) ?? false
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Unfortunate hack for Chrome. See: https://stackoverflow.com/q/25404206
-    setTimeout(() => document.body.classList.remove('preload'))
-
     // Icons & button.
     const buttonEl = document.getElementById('js-button')
     const darkIconEl = document.getElementById('js-dark-icon')
