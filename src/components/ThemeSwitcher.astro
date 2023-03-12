@@ -7,13 +7,13 @@ import ThemeIconNoop from './ThemeIconNoop.astro'
 
 const buttonClasses = tw`
   flex items-center justify-center
-  w-9 h-9 p-2 rounded-lg transition-all hover:ring-2
+  w-9 h-9 rounded-lg transition-all hover:ring-2
   bg-gray-200 dark:bg-gray-600 ring-gray-300
 `
 
 function iconClasses(isHidden = false) {
   return tw`
-    ${isHidden && 'hidden'} cursor-pointer
+    ${isHidden && 'hidden'} w-5 cursor-pointer
     text-gray-800 dark:text-gray-200
   `
 }
