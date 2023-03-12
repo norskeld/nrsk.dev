@@ -5,8 +5,8 @@ Personal website &amp; blog.
 ## Features
 
 - [x] Built with **[Astro]** and **TypeScript**.
-- [x] Uses **Astro [Content Collections][collections]** w/ **[Zod]** schemas.
-- [x] Ships _only ~500 bytes (gzipped)_ of vanilla JavaScript for theme switching.
+- [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
+- [x] Ships _only ~475 bytes (gzipped)_ of vanilla JavaScript for theme switching.
 - [x] Uses **[Tailwind]** for styling.
 - [x] Uses good old Markdown with YAML frontmatter for authoring articles.
 - [x] Uses **[Shiki]** via **[@nrsk/shikigami]** (with [custom theme][custom-theme]) for syntax highlighting.
@@ -17,12 +17,11 @@ Also, well, not a feature, but... **100/100 on [yellowlab.tools]** and **all 100
 
 ## Acknowledgements
 
-The design and layout are highly inspired by the [Lee Robinson's old portfolio][leerob], which was built with [Next.js][next-js], [Tailwind], [Prisma], and had more features. Check the sources [here][leerob-gh]!
+The design and layout are highly inspired by the [Lee Robinson's old portfolio][leerob], which was built with [Next.js][next-js], [Tailwind], [Prisma]. Check the sources [here][leerob-gh]!
 
 ## Backlog
 
 - [ ] Add dynamic Open Graph image generation.
-- [x] Add taxonomies (e.g. tags, categories).
 - [ ] Add article series.
 - [ ] _Maybe_ adopt [MDC].
 
@@ -32,20 +31,20 @@ The design and layout are highly inspired by the [Lee Robinson's old portfolio][
 
 The code is licensed under the [MIT](LICENSE) license.
 
-[Astro]: https://astro.build
-[Tailwind]: https://tailwindcss.com
-[Shiki]: https://github.com/shikijs/shiki
+[astro]: https://astro.build
+[tailwind]: https://tailwindcss.com
+[shiki]: https://github.com/shikijs/shiki
 [custom-theme]: src/syntax/norskeld.json
 [open-graph]: https://ogp.me
 [@nrsk/shikigami]: https://github.com/norskeld/shikigami
 [ackee]: https://ackee.electerious.com
-[MDC]: https://content.nuxtjs.org/guide/writing/mdc
+[mdc]: https://content.nuxtjs.org/guide/writing/mdc
 [cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
 [leerob]: https://leerob.io
 [leerob-gh]: https://github.com/leerob/leerob.io
 [next-js]: https://nextjs.org
 [prisma]: https://prisma.io
-[yellowlab.tools]: https://yellowlab.tools/result/gfay5mlb41
+[yellowlab.tools]: https://yellowlab.tools/result/gj0qj4eaxw
 [pagespeed.web.dev]: https://pagespeed.web.dev/report?url=https%3A%2F%2Fvm.codes%2F
 [collections]: https://docs.astro.build/en/guides/content-collections/
-[Zod]: https://zod.dev
+[zod]: https://zod.dev
