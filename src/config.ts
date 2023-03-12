@@ -14,7 +14,7 @@ export const Common = {
 
   title: 'Vladislav M.',
   description:
-    `A TypeScript devotee, Rust tyro, and front-end shepherd. ` +
+    `A TypeScript and Rust aficionado doing front-end for a living. ` +
     `Interested in functional programming, compilers and PL design.`,
 
   themeDark: '#141415',
@@ -24,7 +24,7 @@ export const Common = {
 } as const
 
 export const Seo: AstroSeo = {
-  title: `A TypeScript devotee, Rust tyro, and front-end shepherd — ${Common.title}`,
+  title: `A TypeScript and Rust aficionado doing front-end for a living. — ${Common.title}`,
   description: Common.description,
   openGraph: {
     basic: {
@@ -54,5 +54,5 @@ export const Seo: AstroSeo = {
 }
 
 export function withSeoOptions(options: Optional<AstroSeo> = {}): AstroSeo {
-  return merge(Seo, options)
+  return merge({ ...Seo }, options)
 }

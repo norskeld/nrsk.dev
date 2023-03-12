@@ -13,7 +13,7 @@ const articles = await loadArticles({
 })
 
 const title = `Blog – ${Common.title}`
-const description = 'Articles and notes about software development.'
+const description = 'Articles and notes about Rust, functional programming, and front-end stuff.'
 
 const descriptionInflected = inflect(
   [`there's ${articles.length} article`, `there're ${articles.length} articles`],

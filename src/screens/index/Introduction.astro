@@ -6,11 +6,7 @@ import Header from '@/components/Header.astro'
 import avatar from '@/assets/images/avatar-bw.png'
 
 const sectionClasses = tw`
-  flex flex-col-reverse sm:flex-row justify-between
-`
-
-const headerClasses = tw`
-  pr-0 sm:pr-14
+  flex flex-col-reverse sm:flex-row justify-between gap-0 sm:gap-10
 `
 
 const headingClasses = tw`
@@ -23,19 +19,19 @@ const aboutClasses = tw`
 `
 
 const photoClasses = tw`
-  w-24 sm:w-32 mb-8 sm:mb-0
+  [--size:7rem]
+
+  max-w-[var(--size)] min-h-[var(--size)] mb-8 sm:mb-0
   select-none rounded-full
 `
 ---
 
 <section class={sectionClasses}>
-  <Header class={headerClasses}>
-    <h1 slot="heading" class={headingClasses}>
-      Howdy! I'm Vlad.
-    </h1>
+  <Header>
+    <h1 slot="heading" class={headingClasses}>Howdy! I'm Vlad.</h1>
 
     <p slot="sub" class={aboutClasses}>
-      A <strong>TypeScript</strong> devotee, <strong>Rust</strong> tyro, and front-end shepherd.
+      A <strong>TypeScript</strong> and <strong>Rust</strong> aficionado doing front-end for a living.
       Interested in functional programming, compilers and PL design.
     </p>
   </Header>
