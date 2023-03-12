@@ -19,10 +19,7 @@ export interface Item {
 const { sticky = false } = Astro.props
 const { pathname } = Astro.url
 
-const navItems: Array<Item> = [
-  { label: 'Blog', to: '/blog' },
-  { label: 'Notes', to: '/notes' }
-]
+const navItems: Array<Item> = [{ label: 'Blog', to: '/blog' }]
 
 const navClasses = tw`
   flex items-center justify-between

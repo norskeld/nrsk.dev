@@ -1,5 +1,4 @@
 export * from './content/articles'
-export * from './content/notes'
 export * from './content/projects'
 
 export type Order = 'asc' | 'none' | 'desc'

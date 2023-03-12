@@ -1,14 +1,14 @@
 ---
 title: Checking for `never`
-description: How to check for `never` type in TypeScript.
+description: Let's see how to check for the `never` type in TypeScript.
 createdAt: 2023-01-22
-updatedAt: 2023-01-22
+updatedAt: 2023-03-12
 tags:
   - typescript
   - types
 ---
 
-> [Playground] @ TypeScript v4.9.4
+> [Playground] @ TypeScript v4.9.5
 
 Checking if some type is `never` may seem trivial, and one _could_ write something like:
 
