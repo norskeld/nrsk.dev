@@ -5,6 +5,5 @@ import projectSchema from '@/schemas/project.schema'
 
 export const collections = {
   articles: defineCollection({ schema: articleSchema }),
-  notes: defineCollection({ schema: articleSchema }),
   projects: defineCollection({ schema: projectSchema })
 }
