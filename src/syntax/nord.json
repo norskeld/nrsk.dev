@@ -2,8 +2,9 @@
   "$schema": "vscode://schemas/color-theme",
   "name": "norskeld",
   "type": "dark",
+  // "semanticHighlighting": true,
   "colors": {
-    "editor.background": "#1e1f24",
+    "editor.background": "#1a1b1e",
     "editor.foreground": "#eaeff7",
     "terminal.background": "#2e3440",
     "terminal.foreground": "#d8dee9",
@@ -28,7 +29,7 @@
   "tokenColors": [
     {
       "settings": {
-        "foreground": "#eaeff7ff"
+        "foreground": "#d8dee9ff"
       }
     },
     {
@@ -47,8 +48,7 @@
       "name": "Comment",
       "scope": "comment",
       "settings": {
-        "foreground": "#4C566A",
-        "fontStyle": "italic"
+        "foreground": "#616E88"
       }
     },
     {
@@ -118,7 +118,6 @@
       "name": "Entity Other Inherited Class",
       "scope": "entity.other.inherited-class",
       "settings": {
-        "fontStyle": "bold",
         "foreground": "#8FBCBB"
       }
     },
@@ -126,14 +125,14 @@
       "name": "Invalid Deprecated",
       "scope": "invalid.deprecated",
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
       "name": "Invalid Illegal",
       "scope": "invalid.illegal",
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -225,7 +224,7 @@
         "punctuation.start.definition.comment"
       ],
       "settings": {
-        "foreground": "#4C566A"
+        "foreground": "#616E88"
       }
     },
     {
@@ -351,7 +350,7 @@
       "name": "Variable",
       "scope": "variable.other",
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -365,42 +364,7 @@
       "name": "Variable Parameter",
       "scope": "variable.parameter",
       "settings": {
-        "foreground": "#eaeff7"
-      }
-    },
-    {
-      "name": "Language Constant This",
-      "scope": ["variable.language.php"],
-      "settings": {
-        "foreground": "#bf616a",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Language Constant This $",
-      "scope": ["variable.language.this.php"],
-      "settings": {
-        "foreground": "#bf616a",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Blade @",
-      "scope": [
-        "custom.compiler.blade.php",
-        "punctuation.section.embedded.php",
-        "constant.other.inline-data.html"
-      ],
-      "settings": {
-        "foreground": "#f5f5f5"
-      }
-    },
-
-    {
-      "name": "Blade Functions",
-      "scope": ["entity.name.function.laravel-blade"],
-      "settings": {
-        "foreground": "#88C0D0"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -426,8 +390,7 @@
         "source.c punctuation.definition.directive"
       ],
       "settings": {
-        "foreground": "#5E81AC",
-        "fontStyle": "bold"
+        "foreground": "#5E81AC"
       }
     },
     {
@@ -465,7 +428,7 @@
       "name": "[CSS] Support Type Property Name",
       "scope": "source.css support.type.property-name",
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -504,6 +467,34 @@
       }
     },
     {
+      "name": "[Elixir](JakeBecker.elixir-ls) module names",
+      "scope": "entity.name.type.module.elixir",
+      "settings": {
+        "foreground": "#8FBCBB"
+      }
+    },
+    {
+      "name": "[Elixir](JakeBecker.elixir-ls) module attributes",
+      "scope": "variable.other.readwrite.module.elixir",
+      "settings": {
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
+      "name": "[Elixir](JakeBecker.elixir-ls) atoms",
+      "scope": "constant.other.symbol.elixir",
+      "settings": {
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
+      "name": "[Elixir](JakeBecker.elixir-ls) modules",
+      "scope": "variable.other.constant.elixir",
+      "settings": {
+        "foreground": "#8FBCBB"
+      }
+    },
+    {
       "name": "[Go] String Format Placeholder",
       "scope": "source.go constant.other.placeholder.go",
       "settings": {
@@ -521,7 +512,7 @@
       "name": "[Java](JavaDoc) Constant Other",
       "scope": "source.java constant.other",
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -593,7 +584,7 @@
         "source.java punctuation.definition.tag.end.javadoc"
       ],
       "settings": {
-        "foreground": "#4C566A"
+        "foreground": "#616E88"
       }
     },
     {
@@ -665,9 +656,20 @@
     },
     {
       "name": "[JavaScript] String Template Literals Punctuation",
-      "scope": "source.js string.template punctuation.definition.template-expression",
+      "scope": [
+        "source.js string.quoted.template punctuation.quasi.element.begin",
+        "source.js string.quoted.template punctuation.quasi.element.end",
+        "source.js string.template punctuation.definition.template-expression"
+      ],
       "settings": {
-        "foreground": "#5E81AC"
+        "foreground": "#81A1C1"
+      }
+    },
+    {
+      "name": "[JavaScript] Interpolated String Template Punctuation Functions",
+      "scope": "source.js string.quoted.template meta.method-call.with-arguments",
+      "settings": {
+        "foreground": "#ECEFF4"
       }
     },
     {
@@ -677,7 +679,7 @@
         "source.js string.template meta.template.expression variable.other.object"
       ],
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -689,9 +691,9 @@
     },
     {
       "name": "[JavaScript] Variable Other Object",
-      "scope": "source.js meta.var.expr variable.other.object",
+      "scope": "source.js variable.other.object",
       "settings": {
-        "foreground": "#8FBCBB"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -699,6 +701,19 @@
       "scope": "source.js variable.other.readwrite.alias",
       "settings": {
         "foreground": "#8FBCBB"
+      }
+    },
+    {
+      "name": "[JavaScript] Parentheses in Template Strings",
+      "scope": [
+        "source.js meta.embedded.line meta.brace.square",
+        "source.js meta.embedded.line meta.brace.round",
+        /* Required for extension `mgmcdermott.vscode-language-babel`. */
+        "source.js string.quoted.template meta.brace.square",
+        "source.js string.quoted.template meta.brace.round"
+      ],
+      "settings": {
+        "foreground": "#ECEFF4"
       }
     },
     {
@@ -779,6 +794,13 @@
       }
     },
     {
+      "name": "[Markdown] Markup Link",
+      "scope": "text.html.markdown markup.underline.link",
+      "settings": {
+        "fontStyle": "underline"
+      }
+    },
+    {
       "name": "[Markdown] Markup List Numbered/Unnumbered",
       "scope": "text.html.markdown beginning.punctuation.definition.list",
       "settings": {
@@ -796,7 +818,38 @@
       "name": "[Markdown] Markup Quote Punctuation Definition",
       "scope": "text.html.markdown markup.quote",
       "settings": {
-        "foreground": "#4C566A"
+        "foreground": "#616E88"
+      }
+    },
+    {
+      "name": "[Markdown] Markup Math Constant",
+      "scope": "text.html.markdown constant.character.math.tex",
+      "settings": {
+        "foreground": "#81A1C1"
+      }
+    },
+    {
+      "name": "[Markdown] Markup Math Definition Marker",
+      "scope": [
+        "text.html.markdown punctuation.definition.math.begin",
+        "text.html.markdown punctuation.definition.math.end"
+      ],
+      "settings": {
+        "foreground": "#5E81AC"
+      }
+    },
+    {
+      "name": "[Markdown] Markup Math Function Definition Marker",
+      "scope": "text.html.markdown punctuation.definition.function.math.tex",
+      "settings": {
+        "foreground": "#88C0D0"
+      }
+    },
+    {
+      "name": "[Markdown] Markup Math Operator",
+      "scope": "text.html.markdown punctuation.math.operator.latex",
+      "settings": {
+        "foreground": "#81A1C1"
       }
     },
     {
@@ -828,6 +881,13 @@
       }
     },
     {
+      "name": "[Perl] Perl Sigils",
+      "scope": "source.perl punctuation.definition.variable",
+      "settings": {
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
       "name": "[PHP] Meta Function-Call Object",
       "scope": ["source.php meta.function-call", "source.php meta.function-call.object"],
       "settings": {
@@ -846,7 +906,7 @@
     },
     {
       "name": "[Python] Function Call",
-      "scope": ["source.python meta.function-call", "source.python meta.function-call.generic"],
+      "scope": "source.python meta.function-call.generic",
       "settings": {
         "foreground": "#88C0D0"
       }
@@ -862,7 +922,7 @@
       "name": "[Python] Function Parameter",
       "scope": ["source.python variable.parameter.function.language"],
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -872,6 +932,38 @@
       ],
       "settings": {
         "foreground": "#81A1C1"
+      }
+    },
+    {
+      "name": "[Rust] Entity types",
+      "scope": "source.rust entity.name.type",
+      "settings": {
+        "foreground": "#8FBCBB"
+      }
+    },
+    {
+      "name": "[Rust] Macro",
+      "scope": "source.rust meta.macro entity.name.function",
+      "settings": {
+        "foreground": "#88C0D0"
+      }
+    },
+    {
+      "name": "[Rust] Attributes",
+      "scope": [
+        "source.rust meta.attribute",
+        "source.rust meta.attribute punctuation",
+        "source.rust meta.attribute keyword.operator"
+      ],
+      "settings": {
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
+      "name": "[Rust] Interpolation Bracket Curly",
+      "scope": "source.rust punctuation.definition.interpolation",
+      "settings": {
+        "foreground": "#EBCB8B"
       }
     },
     {
@@ -888,8 +980,7 @@
       "name": "[SCSS] Variable Interpolation",
       "scope": "source.css.scss variable.interpolation",
       "settings": {
-        "foreground": "#eaeff7",
-        "fontStyle": "italic"
+        "foreground": "#D8DEE9"
       }
     },
     {
@@ -897,7 +988,10 @@
       "scope": [
         "source.ts punctuation.decorator",
         "source.ts meta.decorator variable.other.readwrite",
-        "source.ts meta.decorator entity.name.function"
+        "source.ts meta.decorator entity.name.function",
+        "source.tsx punctuation.decorator",
+        "source.tsx meta.decorator variable.other.readwrite",
+        "source.tsx meta.decorator entity.name.function"
       ],
       "settings": {
         "foreground": "#D08770"
@@ -905,14 +999,17 @@
     },
     {
       "name": "[TypeScript] Object-literal keys",
-      "scope": "source.ts meta.object-literal.key",
+      "scope": ["source.ts meta.object-literal.key", "source.tsx meta.object-literal.key"],
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
       }
     },
     {
       "name": "[TypeScript] Object-literal functions",
-      "scope": "source.ts meta.object-literal.key entity.name.function",
+      "scope": [
+        "source.ts meta.object-literal.key entity.name.function",
+        "source.tsx meta.object-literal.key entity.name.function"
+      ],
       "settings": {
         "foreground": "#88C0D0"
       }
@@ -923,7 +1020,11 @@
         "source.ts support.class",
         "source.ts support.type",
         "source.ts entity.name.type",
-        "source.ts entity.name.class"
+        "source.ts entity.name.class",
+        "source.tsx support.class",
+        "source.tsx support.type",
+        "source.tsx entity.name.type",
+        "source.tsx entity.name.class"
       ],
       "settings": {
         "foreground": "#8FBCBB"
@@ -934,7 +1035,10 @@
       "scope": [
         "source.ts support.constant.math",
         "source.ts support.constant.dom",
-        "source.ts support.constant.json"
+        "source.ts support.constant.json",
+        "source.tsx support.constant.math",
+        "source.tsx support.constant.dom",
+        "source.tsx support.constant.json"
       ],
       "settings": {
         "foreground": "#8FBCBB"
@@ -942,9 +1046,21 @@
     },
     {
       "name": "[TypeScript] Variables",
-      "scope": ["source.ts support.variable"],
+      "scope": ["source.ts support.variable", "source.tsx support.variable"],
       "settings": {
-        "foreground": "#eaeff7"
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
+      "name": "[TypeScript] Parentheses in Template Strings",
+      "scope": [
+        "source.ts meta.embedded.line meta.brace.square",
+        "source.ts meta.embedded.line meta.brace.round",
+        "source.tsx meta.embedded.line meta.brace.square",
+        "source.tsx meta.embedded.line meta.brace.round"
+      ],
+      "settings": {
+        "foreground": "#ECEFF4"
       }
     },
     {
@@ -984,12 +1100,6 @@
       "scope": "source.yaml entity.name.tag",
       "settings": {
         "foreground": "#8FBCBB"
-      }
-    },
-    {
-      "scope": "comment",
-      "settings": {
-        "fontStyle": "italic"
       }
     }
   ]
