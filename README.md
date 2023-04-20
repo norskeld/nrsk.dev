@@ -13,7 +13,7 @@ Personal website &amp; blog.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
 - [x] **[Open Graph][open-graph]** support.
 
-Also, well, not a feature, but... **100/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
+Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
 
 ## Backlog
 
@@ -35,7 +35,7 @@ The code is licensed under the [MIT](LICENSE) license.
 [@nrsk/shikigami]: https://github.com/norskeld/shikigami
 [mdc]: https://content.nuxtjs.org/guide/writing/mdc
 [cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
-[yellowlab.tools]: https://yellowlab.tools/result/gj0qj4eaxw
-[pagespeed.web.dev]: https://pagespeed.web.dev/report?url=https%3A%2F%2Fvm.codes%2F
+[yellowlab.tools]: https://yellowlab.tools/result/gk7b2fdj0y
+[pagespeed.web.dev]: https://pagespeed.web.dev/analysis/https-vm-codes/0m52xtvgee?form_factor=mobile
 [collections]: https://docs.astro.build/en/guides/content-collections/
 [zod]: https://zod.dev
