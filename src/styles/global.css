@@ -4,8 +4,9 @@
 
 @layer base {
   html {
-    @apply min-w-[360px] [text-size-adjust:none]
+    @apply min-w-[320px] [text-size-adjust:none]
       scroll-smooth scroll-pt-10 sm:scroll-pt-20
+      text-[14px] sm:text-[16px]
       bg-gray-50;
   }
 
@@ -14,6 +15,6 @@
   }
 
   ::selection {
-    @apply text-gray-50 bg-crayola-200;
+    @apply text-gray-800 bg-gray-200;
   }
 }
