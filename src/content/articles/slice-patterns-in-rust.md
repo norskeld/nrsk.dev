@@ -1,12 +1,11 @@
 ---
-title: Slice patterns in Rust
-description: A short post on slice patterns in Rust, just to memorize how handy they are.
+title: 'Slice patterns in Rust'
+description: 'A short post on slice patterns in Rust, just to memorize how handy they are.'
 createdAt: 2022-06-05
-updatedAt: 2023-02-25
+updatedAt: 2023-04-19
 tags:
   - rust
-  - slices
-  - pattern matching
+  - pattern-matching
 ---
 
 Coming from the front-end world, where I use TypeScript on a daily basis, I find [destructuring assignment][destructuring-assignment], along with [rest] and [spread] syntax for unpacking and expanding arrays and objects, really helpful in writing concise and expressive code.

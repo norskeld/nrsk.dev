@@ -1,6 +1,6 @@
 ---
-title: Demystifying monads
-description: In this article we're going to find out, without diving into tangled mathematical jargon, what monads are and what for we may want to use them.
+title: 'Demystifying monads'
+description: "In this article we're going to find out, without diving into tangled mathematical jargon, what monads are and what for we may want to use them."
 createdAt: 2021-12-01
 updatedAt: 2023-02-26
 tags:
