@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
+import astrowind from '@nrsk/astrowind'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import image from '@astrojs/image'
@@ -11,8 +11,9 @@ export default defineConfig({
     image({
       serviceEntryPoint: '@astrojs/image/sharp'
     }),
-    tailwind({
+    astrowind({
       config: {
+        path: 'tailwind.config.ts',
         applyBaseStyles: false
       }
     }),

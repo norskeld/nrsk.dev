@@ -1,4 +1,6 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+import type { Config, PluginAPI } from 'tailwindcss/types/config'
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import typography from '@tailwindcss/typography'
 
 /** Used (so far) weights: normal (400), semibold (600), bold (700). */
 const fonts = {
@@ -30,28 +32,57 @@ const colors = {
       50: '#f9fafb',
       100: '#f4f5f5',
       200: '#e2e3e4',
+      250: '#bdbfc2',
       300: '#999c9f',
       400: '#888c90',
+      450: '#7c7f83',
       500: '#686b6e',
       600: '#45474a',
       700: '#3d4042',
       800: '#252628',
+      850: '#1c1c1c',
       900: '#141415'
+    },
+
+    // Nord.
+    nord: {
+      100: '#1a1b1e',
+      200: '#25272d'
     }
   }
 }
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,mdx,ts,tsx}'],
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
+  plugins: [typography()],
   theme: {
     extend: {
       ...fonts,
       ...colors,
 
-      typography: ({ theme }) => ({
+      transitionTimingFunction: {
+        'in-out-expo': 'cubic-bezier(0.87, 0, 0.13, 1)'
+      },
+
+      boxShadow: {
+        neon: '0 25px 50px -12px #006ae620'
+      },
+
+      animation: {
+        boing: 'boing 700ms ease-in-out 1'
+      },
+
+      keyframes: {
+        boing: {
+          '16.65%': { transform: 'scale(1.05)' },
+          '49.95%': { transform: 'scale(0.95)' },
+          '83.25%': { transform: 'scale(1.01)' },
+          '100%': { transform: 'scale(1)' }
+        }
+      },
+
+      typography: ({ theme }: PluginAPI) => ({
         vm: {
           css: {
             // Disable quotes on blockquotes.
@@ -65,7 +96,7 @@ module.exports = {
             },
 
             // Light theme.
-            '--tw-prose-body': theme('colors.gray[700]'),
+            '--tw-prose-body': theme('colors.gray[800]'),
             '--tw-prose-headings': theme('colors.gray[900]'),
             '--tw-prose-lead': theme('colors.gray[600]'),
             '--tw-prose-links': theme('colors.gray[900]'),
@@ -83,7 +114,7 @@ module.exports = {
             '--tw-prose-td-borders': theme('colors.gray[200]'),
 
             // Dark theme.
-            '--tw-prose-invert-body': theme('colors.gray[200]'),
+            '--tw-prose-invert-body': theme('colors.gray[250]'),
             '--tw-prose-invert-headings': theme('colors.white'),
             '--tw-prose-invert-lead': theme('colors.gray[400]'),
             '--tw-prose-invert-links': theme('colors.white'),
@@ -104,4 +135,4 @@ module.exports = {
       })
     }
   }
-}
+} satisfies Config

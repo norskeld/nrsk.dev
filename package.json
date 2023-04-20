@@ -15,32 +15,30 @@
     "prepare": "husky install",
     "preview": "astro preview"
   },
-  "dependencies": {
-    "@nrsk/shikigami": "^1.2.0",
-    "sharp": "^0.31.3"
-  },
   "devDependencies": {
     "@astrojs/image": "^0.15.1",
-    "@astrojs/sitemap": "^1.1.0",
-    "@astrojs/tailwind": "^3.0.1",
-    "@commitlint/cli": "^17.2.0",
+    "@astrojs/sitemap": "^1.2.2",
+    "@commitlint/cli": "^17.5.1",
+    "@nrsk/astrowind": "^1.0.1",
     "@nrsk/config-conventional": "^1.0.0",
+    "@nrsk/shikigami": "^1.2.0",
     "@nrsk/tw": "^1.0.0",
-    "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.8",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.11.9",
-    "astro": "^2.0.15",
+    "astro": "2.2.0",
     "astro-compress": "^1.1.35",
-    "astro-seo": "^0.7.1",
-    "autoprefixer": "^10.4.13",
+    "astro-seo": "^0.7.2",
+    "autoprefixer": "^10.4.14",
     "date-fns": "^2.29.3",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
     "markdown-it": "^12.3.2",
-    "markdown-it-anchor": "^8.6.5",
-    "prettier": "^2.7.1",
+    "markdown-it-anchor": "^8.6.7",
+    "prettier": "^2.8.7",
     "reading-time": "^1.5.0",
-    "tailwindcss": "^3.2.4"
+    "sharp": "^0.31.3",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^4.9.5"
   },
   "commitlint": {
     "extends": [
