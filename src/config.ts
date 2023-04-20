@@ -12,7 +12,7 @@ export const Common = {
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
 
-  title: 'Vladislav M.',
+  title: 'Vladislav Mamon',
   description:
     `A TypeScript and Rust aficionado doing front-end for a living. ` +
     `Interested in functional programming, compilers and PL design.`,
@@ -20,11 +20,11 @@ export const Common = {
   themeDark: '#141415',
   themeLight: '#f9fafb',
 
-  themeSyntax: 'norskeld'
+  themeSyntax: 'nord'
 } as const
 
 export const Seo: AstroSeo = {
-  title: `A TypeScript and Rust aficionado doing front-end for a living. — ${Common.title}`,
+  title: `${Common.title}`,
   description: Common.description,
   openGraph: {
     basic: {
