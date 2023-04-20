@@ -1,0 +1,39 @@
+---
+import { tw } from '@nrsk/tw'
+
+import type { ArticleEntry } from '@/api/content'
+
+import ArticleList from '@/components/ArticleList.astro'
+import Date from '@/components/Date.astro'
+import Link from '@/components/Link.astro'
+
+export interface Props {
+  items: Array<ArticleEntry>
+}
+
+const { items } = Astro.props
+
+const sectionClasses = tw`
+  flex flex-col gap-4
+`
+
+const noteClasses = tw`
+  mb-2
+  text-gray-800 dark:text-gray-300
+`
+
+const headingClasses = tw`
+  text-2xl font-semibold
+  text-gray-900 dark:text-gray-50
+`
+---
+
+<section class={sectionClasses}>
+  <h2 class={headingClasses}>Articles</h2>
+
+  <p class={noteClasses}>
+    I occasionally write about Rust, TypeScript, functional programming, and front-end stuff.
+  </p>
+
+  <ArticleList items={items} />
+</section>
