@@ -4,25 +4,23 @@ import { unslash } from '@/api/utils'
 
 import { withSeoOptions } from '@/config'
 
-import IndexRecentArticles from '@/screens/index/RecentArticles.astro'
-import IndexIntroduction from '@/screens/index/Introduction.astro'
-import IndexProjects from '@/screens/index/Projects.astro'
-import IndexSections from '@/screens/index/Sections.astro'
-import IndexLayout from '@/layouts/Index.astro'
+import Introduction from '@/screens/index/Introduction.astro'
+import Articles from '@/screens/index/Articles.astro'
+import Projects from '@/screens/index/Projects.astro'
+
+import Index from '@/layouts/Index.astro'
 
 const props = withSeoOptions({
   canonical: unslash(Astro.url.href)
 })
 
-const recentArticles = await loadArticles({ limit: 3, sort: 'desc' })
+const articles = await loadArticles({ sort: 'desc' })
 const projects = await loadProjects()
 ---
 
-<IndexLayout {...props}>
-  <IndexIntroduction />
+<Index {...props}>
+  <Introduction />
 
-  <IndexSections>
-    <IndexRecentArticles items={recentArticles} />
-    <IndexProjects items={projects} />
-  </IndexSections>
-</IndexLayout>
+  <Articles items={articles} />
+  <Projects items={projects} />
+</Index>
