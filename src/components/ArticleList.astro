@@ -1,0 +1,53 @@
+---
+import { tw } from '@nrsk/tw'
+
+import type { ArticleEntry } from '@/api/content'
+
+import Date from './Date.astro'
+import Link from './Link.astro'
+
+export interface Props {
+  items: Array<ArticleEntry>
+}
+
+const { items } = Astro.props
+
+const articlesClasses = tw`
+  flex flex-col gap-4
+`
+
+const articleClasses = tw`
+  flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4
+`
+
+const linkClasses = tw`
+  font-medium flex-none
+`
+
+const dividerClasses = tw`
+  hidden sm:block w-full
+  border-b-2 border-dotted
+  border-gray-200 dark:border-gray-800
+`
+
+const dateClasses = tw`
+  flex-none text-sm
+  text-gray-500 dark:text-gray-450
+`
+---
+
+<ul class={articlesClasses}>
+  {
+    items.map((article) => (
+      <li class={articleClasses}>
+        <Link to={'/articles/' + article.slug} class={linkClasses} underline={false}>
+          {article.data.title}
+        </Link>
+
+        <div class={dividerClasses} />
+
+        <Date date={article.data.createdAt} class={dateClasses} />
+      </li>
+    ))
+  }
+</ul>

@@ -10,6 +10,7 @@ const { content, class: className } = Astro.props
 
 const proseClasses = tw`
   prose prose-vm dark:prose-invert
+  prose-headings:font-semibold
   w-full max-w-none
 `
 ---
@@ -20,10 +21,21 @@ const proseClasses = tw`
   /** Horizontal divider. */
 
   .prose :global(hr) {
-    @apply block w-3/4 mt-8 mx-auto border border-solid border-gray-200;
+    @apply block w-3/4 mt-8 mx-auto border-t-2 border-solid border-gray-200;
   }
 
   /** Links. */
+
+  .prose :global(a) {
+    @apply inline leading-5 no-underline font-normal transition-colors
+    text-black hover:text-crayola-500
+    border-b border-dotted border-black hover:border-crayola-500;
+  }
+
+  :global(.dark .prose a) {
+    @apply text-white hover:text-crayola-300
+    border-white hover:border-crayola-300;
+  }
 
   .prose :global(a:focus),
   .prose :global(a:hover) {
@@ -38,25 +50,20 @@ const proseClasses = tw`
 
   /** -- Headers & anchor links re-styling. */
 
-  .prose :global(h1),
-  .prose :global(h2) {
-    @apply pb-2 border-b-2 border-gray-200/75;
-  }
-
-  :global(.dark .prose :is(h1, h2)) {
-    @apply border-gray-600/40;
-  }
-
-  .prose :global(h1:first-of-type) {
-    @apply border-none;
-  }
-
   .prose :global(.header-anchor) {
     @apply border-none no-underline text-gray-300 opacity-100 transition-[color,opacity];
   }
 
+  :global(.dark .prose .header-anchor) {
+    @apply text-gray-500;
+  }
+
   .prose :global(.header-anchor:is(:hover, :focus)) {
-    @apply text-current opacity-100;
+    @apply text-gray-900 opacity-100;
+  }
+
+  :global(.dark .prose .header-anchor:is(:hover, :focus)) {
+    @apply text-gray-50 opacity-100;
   }
 
   @media screen and (min-width: 768px) {
@@ -76,11 +83,11 @@ const proseClasses = tw`
   }
 
   .prose :global(blockquote > p:first-of-type) {
-    margin-top: 0;
+    @apply mt-0;
   }
 
   .prose :global(blockquote > p:last-of-type) {
-    margin-bottom: 0;
+    @apply mb-0;
   }
 
   :global(.dark .prose blockquote) {
@@ -92,7 +99,7 @@ const proseClasses = tw`
   /** -- General. */
 
   .prose :global(.shiki) {
-    @apply rounded-none sm:rounded-lg -mx-8 sm:mx-0 my-4 sm:my-6 p-0;
+    @apply relative rounded-none sm:rounded-lg -mx-8 sm:mx-0 my-4 sm:my-6 p-0;
   }
 
   .prose blockquote :global(.shiki) {
@@ -124,7 +131,7 @@ const proseClasses = tw`
   }
 
   .prose :global(.shiki .lines .line) {
-    @apply px-4 whitespace-pre;
+    @apply px-8 sm:px-4 whitespace-pre;
   }
 
   .prose :global(.shiki .line-numbers + .lines .line) {
@@ -138,18 +145,20 @@ const proseClasses = tw`
   }
 
   .prose
-    :global(.shiki
-      :where(.lines, .line-numbers)
-      :where(.highlight, .highlight-start, .highlight-inner, .highlight-end)) {
-    @apply bg-[#434c5e58] opacity-100;
+    :global(
+      .shiki
+        :where(.lines, .line-numbers)
+        :where(.highlight, .highlight-start, .highlight-inner, .highlight-end)
+    ) {
+    @apply bg-nord-200 opacity-100;
   }
 
   /** -- Language label. */
 
   .prose :global(.shiki .language-id) {
-    @apply select-none py-2 px-4 rounded-none sm:rounded-tl-lg sm:rounded-tr-lg
-    bg-[#202327] text-gray-300
-    border-b border-solid border-gray-700;
+    @apply absolute right-0 sm:right-2 top-2 rounded-md z-10 opacity-0 transition-opacity
+    select-none py-1 px-2 text-sm
+    bg-nord-100 text-gray-300;
   }
 
   .prose :global(blockquote .shiki) {
@@ -160,14 +169,7 @@ const proseClasses = tw`
     @apply rounded-tl-lg rounded-tr-lg;
   }
 
-  /** Inline code. */
-
-  .prose :global(:not(pre) > code) {
-    @apply py-0.5 px-1 rounded-md border border-gray-400/25;
-  }
-
-  .prose :global(code::before),
-  .prose :global(code::after) {
-    content: '';
+  .prose :global(.shiki:hover .language-id) {
+    @apply opacity-100;
   }
 </style>

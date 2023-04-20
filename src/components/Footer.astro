@@ -8,29 +8,17 @@ import Dot from './Dot.astro'
 const currentYear = new Date().getFullYear()
 
 const footerClasses = tw`
-  flex flex-col sm:flex-row items-center
-  max-w-2xl mt-auto mx-auto pt-8 pb-16
-  select-none
-`
-
-const footerLinkClasses = tw`
-  no-underline hover:underline focus:underline
-  text-gray-700 dark:text-gray-200
-`
-
-const footerDotClasses = tw`
-  hidden sm:inline-block
+  flex w-full max-w-2xl
+  mt-auto px-8 md:px-0 pt-8 pb-16
 `
 ---
 
 <footer class={footerClasses}>
-  <FooterItem>
-    &copy; 2021&ndash;{currentYear}
-  </FooterItem>
+  <FooterItem>&copy; 2021&ndash;{currentYear}</FooterItem>
 
-  <Dot class={footerDotClasses} />
+  <Dot />
 
   <FooterItem>
-    Built with <Link to="https://astro.build" class={footerLinkClasses} external>Astro</Link>
+    Built with <Link to="https://astro.build" external underline>Astro</Link>
   </FooterItem>
 </footer>
