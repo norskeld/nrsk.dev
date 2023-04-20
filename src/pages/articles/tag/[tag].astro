@@ -1,11 +1,14 @@
 ---
+import { tw } from '@nrsk/tw'
+
 import { loadArticles, type ArticleEntry } from '@/api/content'
 import { unslash } from '@/api/utils'
 
 import { withSeoOptions, Common } from '@/config'
 
-import ArticleList from '@/screens/blog/ArticleList.astro'
-import PageHeader from '@/components/PageHeader.astro'
+import ArticleList from '@/components/ArticleList.astro'
+import Heading from '@/components/Heading.astro'
+
 import Page from '@/layouts/Page.astro'
 
 export interface Props {
@@ -30,8 +33,8 @@ export async function getStaticPaths() {
 
 const { tag, articles } = Astro.props
 
-const title = `Articles tagged '${tag}' – ${Common.title}`
-const description = `Articles tagged '${tag}'.`
+const title = `Articles tagged as '${tag}' – ${Common.title}`
+const description = `Articles tagged as '${tag}'.`
 
 const props = withSeoOptions({
   title,
@@ -49,10 +52,14 @@ const props = withSeoOptions({
     }
   }
 })
+
+const headingClasses = tw`
+  before:content-['#'] before:font-mono
+  before:text-gray-400 dark:before:text-gray-400
+`
 ---
 
 <Page {...props}>
-  <PageHeader title={`#${tag}`} />
-
+  <Heading class={headingClasses} title={tag} />
   <ArticleList items={articles} />
 </Page>
