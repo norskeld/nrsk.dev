@@ -3,11 +3,7 @@ import { tw } from '@nrsk/tw'
 
 import type { ProjectEntry } from '@/api/content'
 
-import CardGrid from '@/components/CardGrid.astro'
-import Header from '@/components/Header.astro'
 import Link from '@/components/Link.astro'
-
-import ProjectsCard from './ProjectsCard.astro'
 
 export interface Props {
   items: Array<ProjectEntry>
@@ -16,43 +12,77 @@ export interface Props {
 const { items } = Astro.props
 
 const sectionClasses = tw`
-  flex flex-col gap-6
+  flex flex-col gap-4
 `
 
 const noteClasses = tw`
-  text-gray-700 dark:text-gray-300
+  mb-2
+  text-gray-800 dark:text-gray-300
 `
 
 const headingClasses = tw`
-  text-2xl md:text-4xl font-bold tracking-tight
-  text-black dark:text-white
+  text-2xl font-semibold
+  text-gray-900 dark:text-gray-50
+`
+
+const projectsClasses = tw`
+  grid gap-4 w-full max-w-[100vw]
+  grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+  [grid-auto-rows:minmax(0,auto)]
+`
+
+const projectClasses = tw`
+  flex flex-col gap-2 p-4 rounded-lg transition-all ease-in-out duration-200
+  bg-gray-100 dark:bg-gray-400/5
+  hover:bg-gray-50 dark:hover:bg-gray-400/10
+  hover:shadow-neon
 `
 
 const linkClasses = tw`
-  group !no-underline leading-7 transition-[color]
-  text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200
+  group font-medium
 `
 
-const linkArrowClasses = tw`
-  group-hover:ml-1
-  font-semibold leading-7 transition-[margin-left]
+const descriptionClasses = tw`
+  cursor-default
+  text-gray-500 dark:text-gray-400
+`
+
+const seeAllClasses = tw`
+  text-gray-800 dark:text-gray-300
+`
+
+const languageClasses = tw`
+  transition-colors
+  text-gray-500 dark:text-gray-400
+  group-hover:text-crayola-500 dark:group-hover:text-crayola-300
 `
 ---
 
 <section class={sectionClasses}>
-  <Header>
-    <h2 slot="heading" class={headingClasses}>Projects</h2>
+  <h2 class={headingClasses}>Projects</h2>
 
-    <p slot="sub" class={noteClasses}>Some of my OSS projects.</p>
-  </Header>
+  <p class={noteClasses}>Some of my OSS projects.</p>
 
-  <CardGrid>
-    {items.map((project) => <ProjectsCard project={project} />)}
-  </CardGrid>
+  <ul class={projectsClasses}>
+    {
+      items.map((project) => (
+        <li class={projectClasses}>
+          <div>
+            <Link to={project.data.url} class={linkClasses} external underline={false}>
+              {project.data.name}
+              <span class={languageClasses}>{project.data.language.ext}</span>
+            </Link>
+          </div>
 
-  <footer>
-    <Link to="https://github.com/norskeld" class={linkClasses} external>
-      See all projects &amp; repositories <span class={linkArrowClasses}>&srarr;</span>
+          <div class={descriptionClasses} set:html={project.data.description} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class={seeAllClasses}>
+    <Link to="https://github.com/norskeld" external underline={false}>
+      See all projects &srarr;
     </Link>
-  </footer>
+  </p>
 </section>

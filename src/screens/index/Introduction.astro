@@ -1,48 +1,50 @@
 ---
-import { Picture } from '@astrojs/image/components'
 import { tw } from '@nrsk/tw'
 
-import Header from '@/components/Header.astro'
-import avatar from '@/assets/images/avatar-bw.png'
+import Link from '@/components/Link.astro'
 
 const sectionClasses = tw`
-  flex flex-col-reverse sm:flex-row justify-between gap-0 sm:gap-10
+  flex flex-col gap-4
 `
 
 const headingClasses = tw`
-  text-3xl md:text-5xl font-bold tracking-tight
-  text-black dark:text-white
+  text-2xl font-semibold
+  text-gray-900 dark:text-gray-50
 `
 
-const aboutClasses = tw`
-  text-gray-700 dark:text-gray-300
+const noteClasses = tw`
+  text-gray-800 dark:text-gray-300
 `
 
-const photoClasses = tw`
-  [--size:7rem]
-
-  max-w-[var(--size)] min-h-[var(--size)] mb-8 sm:mb-0
-  select-none rounded-full
+const hrClasses = tw`
+  my-2 w-1/12 border-t-2 border-gray-200 dark:border-gray-800
 `
+
+const email = `mailto:hello@vm.codes`
+
+const bandcamp = 'https://hypnosense.bandcamp.com'
+const spotify = 'https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzSwm0RSCnS70g_sVZXQ'
 ---
 
 <section class={sectionClasses}>
-  <Header>
-    <h1 slot="heading" class={headingClasses}>Howdy! I'm Vlad.</h1>
+  <h2 class={headingClasses}>Hello!</h2>
 
-    <p slot="sub" class={aboutClasses}>
-      A <strong>TypeScript</strong> and <strong>Rust</strong> aficionado doing front-end for a living.
-      Interested in functional programming, compilers and PL design.
-    </p>
-  </Header>
+  <p class={noteClasses}>
+    I'm a front-end engineer building polished products and web experiences using modern tech stack.
+    My expertise ranges from working independently to leading teams towards project success as a
+    tech/team lead.
+  </p>
 
-  <Picture
-    src={avatar}
-    class={photoClasses}
-    title="Hey, that's me!"
-    alt="Vladislav's photo, black and white, in full face"
-    aspectRatio={1}
-    widths={[256, 512]}
-    sizes="(min-width: 640px) 512px, 256px"
-  />
+  <p class={noteClasses}>
+    I'm also a Rust and functional programming aficionado fascinated by design of compilers and
+    programming languages. Sometimes I write music, mostly drone-ambient, which is available for
+    free on my <Link to={bandcamp} external>Bandcamp</Link> and
+    <Link to={spotify} external>Spotify</Link>.
+  </p>
+
+  <hr class={hrClasses} />
+
+  <p class={noteClasses}>
+    You can reach me via <Link to={email}>email</Link>.
+  </p>
 </section>
