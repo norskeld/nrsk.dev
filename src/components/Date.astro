@@ -1,8 +1,10 @@
 ---
 import { formatDate } from '@/api/utils'
 
+type DateLike = Date | string | number
+
 export interface Props {
-  date: Date | string | number
+  date: DateLike
   format?: string
   class?: string
 }

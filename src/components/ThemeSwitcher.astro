@@ -6,15 +6,15 @@ import ThemeIconDark from './ThemeIconDark.astro'
 import ThemeIconNoop from './ThemeIconNoop.astro'
 
 const buttonClasses = tw`
-  flex items-center justify-center
-  w-9 h-9 rounded-lg transition-all hover:ring-2
-  bg-gray-200 dark:bg-gray-600 ring-gray-300
+  group flex items-center justify-center
+  w-9 h-9 rounded-lg transition-all
 `
 
 function iconClasses(isHidden = false) {
   return tw`
     ${isHidden && 'hidden'} w-5 cursor-pointer
-    text-gray-800 dark:text-gray-200
+    text-gray-800 dark:text-gray-200 transition-colors
+    group-hover:text-crayola-500 dark:group-hover:text-crayola-300
   `
 }
 ---
