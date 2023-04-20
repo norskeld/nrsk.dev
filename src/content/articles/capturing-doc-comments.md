@@ -1,6 +1,6 @@
 ---
-title: Capturing doc comments in declarative macros
-description: How to capture doc comments in Rust macros.
+title: 'Capturing doc comments in declarative macros'
+description: "How to: Capture doc comments in Rust's declarative macros."
 createdAt: 2022-11-18
 updatedAt: 2023-03-12
 tags:
