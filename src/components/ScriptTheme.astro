@@ -1,13 +1,13 @@
 ---
 import { Common } from '@/config'
 
-const jsVariables = {
+const vars = {
   themeDark: Common.themeDark,
   themeLight: Common.themeLight
 }
 ---
 
-<script is:inline define:vars={jsVariables}>
+<script is:inline define:vars={vars}>
   const DARK = 'dark'
   const LIGHT = 'light'
   const LC_ITEM = 'color-scheme'
@@ -27,6 +27,9 @@ const jsVariables = {
   const hasClass = (el, className) => el?.classList.contains(className) ?? false
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Text node for disabling transitions.
+    const noTransitionsNode = document.createTextNode(`* { transition: none !important }`)
+
     // Icons & button.
     const buttonEl = document.getElementById('js-button')
     const darkIconEl = document.getElementById('js-dark-icon')
@@ -40,6 +43,12 @@ const jsVariables = {
       const isRootDark = hasClass(rootEl, DARK)
       const isLightHidden = hasClass(lightIconEl, 'hidden')
       const isDarkHidden = hasClass(darkIconEl, 'hidden')
+
+      // Temporarily removing transitions from all elements so toggling between themes feels snappy.
+      const css = document.createElement('style')
+
+      css.appendChild(noTransitionsNode)
+      document.head.appendChild(css)
 
       if (isDark) {
         !isRootDark && rootEl.classList.add(DARK)
@@ -60,6 +69,10 @@ const jsVariables = {
       }
 
       localStorage.setItem(LC_ITEM, isDark ? DARK : LIGHT)
+
+      // Force a repaint and remove the stylesheet.
+      const _ = window.getComputedStyle(css).transition
+      document.head.removeChild(css)
     }
 
     // State from the `document.documentElement`.
