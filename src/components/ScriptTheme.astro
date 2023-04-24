@@ -19,7 +19,7 @@ const vars = {
   const schemeStorage = localStorage.getItem('color-scheme')
 
   if (schemeStorage) {
-    if (schemeStorage === DARK) rootEl.className = DARK
+    rootEl.className = schemeStorage === DARK ? DARK : LIGHT
   } else if (schemeMedia.matches) {
     rootEl.className = DARK
   }

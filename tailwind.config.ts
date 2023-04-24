@@ -52,6 +52,11 @@ const colors = {
   }
 }
 
+export const theme = {
+  light: colors.colors.gray[50],
+  dark: colors.colors.gray[900]
+} as const
+
 export default {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,mdx,ts,tsx}'],

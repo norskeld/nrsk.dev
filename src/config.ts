@@ -2,6 +2,8 @@ import type { Props as AstroSeo } from 'astro-seo'
 
 import { merge } from '@/api/utils'
 
+import { theme } from '../tailwind.config'
+
 type Optional<T> = {
   [P in keyof T]?: Optional<T[P]> | undefined
 }
@@ -17,8 +19,8 @@ export const Common = {
     `A TypeScript and Rust aficionado doing front-end for a living. ` +
     `Interested in functional programming, compilers and PL design.`,
 
-  themeDark: '#141415',
-  themeLight: '#f9fafb',
+  themeDark: theme.dark,
+  themeLight: theme.light,
 
   themeSyntax: 'nord'
 } as const
