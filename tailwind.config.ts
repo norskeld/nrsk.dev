@@ -2,6 +2,8 @@ import type { Config, PluginAPI } from 'tailwindcss/types/config'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 import typography from '@tailwindcss/typography'
 
+// const { fontFamily } = defaultTheme
+
 /** Used (so far) weights: normal (400), semibold (600), bold (700). */
 const fonts = {
   fontFamily: {
@@ -51,11 +53,6 @@ const colors = {
     }
   }
 }
-
-export const theme = {
-  light: colors.colors.gray[50],
-  dark: colors.colors.gray[900]
-} as const
 
 export default {
   darkMode: 'class',
