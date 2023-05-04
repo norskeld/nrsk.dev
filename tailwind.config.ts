@@ -2,8 +2,6 @@ import type { Config, PluginAPI } from 'tailwindcss/types/config'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 import typography from '@tailwindcss/typography'
 
-// const { fontFamily } = defaultTheme
-
 /** Used (so far) weights: normal (400), semibold (600), bold (700). */
 const fonts = {
   fontFamily: {
@@ -62,10 +60,6 @@ export default {
     extend: {
       ...fonts,
       ...colors,
-
-      transitionTimingFunction: {
-        'in-out-expo': 'cubic-bezier(0.87, 0, 0.13, 1)'
-      },
 
       boxShadow: {
         neon: '0 25px 50px -12px #006ae620'
