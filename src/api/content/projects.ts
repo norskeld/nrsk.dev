@@ -18,17 +18,12 @@ export function language(lang: string): Language {
       ext: '.ts',
       color: ['#3178c6', '#4c83bd']
     },
+
     {
-      kind: 'rust',
-      name: 'Rust',
-      ext: '.rs',
-      color: ['#a9643d', '#dea584']
-    },
-    {
-      kind: 'haskell',
-      name: 'Haskell',
-      ext: '.hs',
-      color: ['#5e5086', '#8576ad']
+      kind: 'golang',
+      name: 'Go',
+      ext: '.go',
+      color: ['#00ADD8', '#4DC1F7']
     }
   ]
 

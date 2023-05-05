@@ -3,7 +3,7 @@ import { Picture } from '@astrojs/image/components'
 import { tw } from '@nrsk/tw'
 
 import Header from '@/components/Header.astro'
-import avatar from '@/assets/images/avatar-bw.png'
+import avatar from '@/assets/images/saif.jpg'
 
 const sectionClasses = tw`
   flex flex-col-reverse sm:flex-row justify-between gap-0 sm:gap-10
@@ -19,7 +19,7 @@ const aboutClasses = tw`
 `
 
 const photoClasses = tw`
-  [--size:7rem]
+  [--size:15rem]
 
   max-w-[var(--size)] min-h-[var(--size)] mb-8 sm:mb-0
   select-none rounded-full
@@ -28,11 +28,11 @@ const photoClasses = tw`
 
 <section class={sectionClasses}>
   <Header>
-    <h1 slot="heading" class={headingClasses}>Howdy! I'm Vlad.</h1>
+    <h1 slot="heading" class={headingClasses}>Hi! I'm Saif.</h1>
 
     <p slot="sub" class={aboutClasses}>
-      A <strong>TypeScript</strong> and <strong>Rust</strong> aficionado doing front-end for a living.
-      Interested in functional programming, compilers and PL design.
+      FullStack Software Developer with experience in <strong>Go</strong>, <strong>Python</strong>,
+      <strong>Dart</strong> , <strong>JavaScript</strong>, and <strong>TypeScript</strong>.
     </p>
   </Header>
 
@@ -40,7 +40,7 @@ const photoClasses = tw`
     src={avatar}
     class={photoClasses}
     title="Hey, that's me!"
-    alt="Vladislav's photo, black and white, in full face"
+    alt="Saif's photo"
     aspectRatio={1}
     widths={[256, 512]}
     sizes="(min-width: 640px) 512px, 256px"

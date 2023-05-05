@@ -5,7 +5,7 @@ import compress from 'astro-compress'
 import image from '@astrojs/image'
 
 export default defineConfig({
-  site: 'https://vm.codes',
+  site: 'https://1saifj.me',
 
   integrations: [
     image({

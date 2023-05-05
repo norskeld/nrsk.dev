@@ -7,15 +7,15 @@ type Optional<T> = {
 }
 
 export const Common = {
-  host: 'https://vm.codes',
+  host: 'https://1saifj.me',
 
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
 
-  title: 'Vladislav M.',
+  title: 'Saif Aljanahi - Software Developer',
   description:
-    `A TypeScript and Rust aficionado doing front-end for a living. ` +
-    `Interested in functional programming, compilers and PL design.`,
+    `A Golang developer, love to work on front-end projects too.` +
+    `Passionate about embedded systems and databases.`,
 
   themeDark: '#141415',
   themeLight: '#f9fafb',
@@ -24,7 +24,7 @@ export const Common = {
 } as const
 
 export const Seo: AstroSeo = {
-  title: `A TypeScript and Rust aficionado doing front-end for a living. — ${Common.title}`,
+  title: `A Golang developer, love to work on front-end projects too. — ${Common.title}`,
   description: Common.description,
   openGraph: {
     basic: {

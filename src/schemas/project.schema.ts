@@ -6,6 +6,7 @@ const languages = z.union([
   z.literal('typescript'),
   z.literal('rust'),
   z.literal('haskell'),
+  z.literal('go'),
   z.literal('ocaml')
 ])
 

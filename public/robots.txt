@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://vm.codes
+Host: https://1saifj.me
 
 # Sitemap
-Sitemap: https://vm.codes/sitemap-index.xml
+Sitemap: https://1saifj.me/sitemap-index.xml
