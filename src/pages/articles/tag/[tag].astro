@@ -36,16 +36,18 @@ const { tag, articles } = Astro.props
 const title = `Articles tagged as '${tag}' – ${Common.title}`
 const description = `Articles tagged as '${tag}'.`
 
+const canonical = unslash(Astro.url.href)
+
 const props = withSeoOptions({
   title,
   description,
-  canonical: unslash(Astro.url.href),
+  canonical,
   noindex: true,
   openGraph: {
     basic: {
       title: `Articles tagged '${tag}'`,
       type: 'website',
-      url: unslash(Astro.url.href)
+      url: canonical
     },
     optional: {
       description

@@ -11,7 +11,8 @@ import Projects from '@/screens/index/Projects.astro'
 import Index from '@/layouts/Index.astro'
 
 const props = withSeoOptions({
-  canonical: unslash(Astro.url.href)
+  // NOTE: Sitemap integration is kinda dumb and always generates an url with trailing slash.
+  canonical: Astro.url.href
 })
 
 const articles = await loadArticles({ sort: 'desc' })

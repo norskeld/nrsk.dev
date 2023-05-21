@@ -24,15 +24,17 @@ export async function getStaticPaths() {
 const { article } = Astro.props
 const { title, description, createdAt, updatedAt } = article.data
 
+const canonical = unslash(Astro.url.href)
+
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
   description,
-  canonical: unslash(Astro.url.href),
+  canonical,
   openGraph: {
     basic: {
       title,
       type: 'article',
-      url: unslash(Astro.url.href)
+      url: canonical
     },
     optional: {
       description
