@@ -17,7 +17,7 @@ Gorm is an exceptional Object-Relational Mapping (ORM) library for Golang, equip
 
 Although the Gorm documentation is comprehensive, it does not always include all the minor details that a developer might need. I encountered a specific problem where I needed to manage two schemas with one database, as illustrated below. The aim was to maintain a schema of APP and another schema of AUTH within the same database. This separation can be useful for breaking down the application into smaller services or for managing the app database from a different viewpoint.
 
-![image](https://github.com/1saifj/1saifj.me/blob/master/src/assets/images/gorm_schema.drawio.png)
+![image](https://i.imgur.com/2p8e8GV.png)
 
 Upon reading the Gorm documentation, I did not find a direct solution to my problem. However, by exploring the Gorm [source code](https://github.com/go-gorm/gorm/blob/master/schema/schema.go#L98), I was able to devise a solution.
 
@@ -49,6 +49,7 @@ func (ct *CustomTabler) TableName() string {
 	return "custom_table_name"
 }
 ```
+
 Now let's implement our database schemas as per the diagram above, using a full code example that utilizes Gorm's table renaming, scopes, and clauses.
 
 ```go
