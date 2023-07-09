@@ -1,6 +1,5 @@
-
 ---
-title: Getting Started with Apiman: An Introduction to API Management
+title: An Introduction to API Management with Apiman
 description: Learn how to install and utilize Apiman as an API management platform to streamline your API development and documentation.
 createdAt: 2023-05-26
 updatedAt: 2023-05-26
