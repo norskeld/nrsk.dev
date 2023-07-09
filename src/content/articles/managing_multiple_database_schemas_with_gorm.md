@@ -150,3 +150,7 @@ func main() {
 We begin by creating our models, such as the user and order models. We then define scope functions to enhance the reusability of database queries. In this example, we utilize these scopes as schema queries. We then establish a database connection and ensure our database includes these schemas, creating them if necessary. clause.Associations is used to specify associations to be preloaded or eager-loaded when querying the database. It allows you to load related associations in a single query to minimize the number of database round-trips and improve performance.
 
 That's it! Thank you for reading this blog, and stay tuned for future posts.
+
+# source code
+
+[Github](https://github.com/1saifj/gorm_multipe_schemas)
