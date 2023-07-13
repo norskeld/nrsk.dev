@@ -2,6 +2,8 @@
 
 Personal website &amp; blog.
 
+![How it looks like (with dark theme)](.github/assets/screenshot.png)
+
 ## Features
 
 - [x] Built with **[Astro]** and **TypeScript**.
