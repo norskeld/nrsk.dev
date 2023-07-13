@@ -1,15 +1,15 @@
 ---
 import { tw } from '@nrsk/tw'
 
+import { withSeoOptions, Common } from '@/config'
+
 import { loadArticles, type ArticleEntry } from '@/api/content'
 import { unslash } from '@/api/utils'
 
-import { withSeoOptions, Common } from '@/config'
+import Layout from '@/layouts/Page.astro'
 
 import ArticleList from '@/components/ArticleList.astro'
 import Heading from '@/components/Heading.astro'
-
-import Page from '@/layouts/Page.astro'
 
 export interface Props {
   tag: string
@@ -61,7 +61,7 @@ const headingClasses = tw`
 `
 ---
 
-<Page {...props}>
+<Layout {...props}>
   <Heading class={headingClasses} title={tag} />
   <ArticleList items={articles} />
-</Page>
+</Layout>

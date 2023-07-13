@@ -1,12 +1,12 @@
 ---
+import { withSeoOptions, Common } from '@/config'
+
 import { loadArticles, type ArticleEntry } from '@/api/content'
 import { formatDate, unslash } from '@/api/utils'
 
-import { withSeoOptions, Common } from '@/config'
+import Layout from '@/layouts/Page.astro'
 
 import Article from '@/components/Article.astro'
-
-import Page from '@/layouts/Page.astro'
 
 export interface Props {
   article: ArticleEntry
@@ -50,6 +50,6 @@ const props = withSeoOptions({
 })
 ---
 
-<Page {...props}>
+<Layout {...props}>
   <Article item={article} />
-</Page>
+</Layout>
