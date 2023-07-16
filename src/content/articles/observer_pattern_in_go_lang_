@@ -1,0 +1,20 @@
+---
+title: Oberver Pattern In Golang
+description: A quick review of the useability of design observer patterns in Golang.
+createdAt: 2023-06-25
+updatedAt: 2023-06-25
+tags:
+  - Golang
+  - Design-patterns
+  - Observer pattern
+---
+
+
+## Introduction
+
+Although go is not an oop language, it can be applicable to design patterns too, in this blog, I will guide you through an extensive explanation of how to use observer patterns in golang.
+first of all, the observer pattern is a behavioral design pattern. the observer pattern is defined in the [the Gang of four books](https://www.digitalocean.com/community/tutorials/gangs-of-four-gof-design-patterns)
+defines a one-to-many dependency between objects. When one object changes its state, all its dependents are notified and updated automatically.
+
+
+
