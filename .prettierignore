@@ -3,5 +3,5 @@ coverage
 dist
 
 # Ignore Markdown at the root.
-/content/
+/src/content/articles
 /*.md

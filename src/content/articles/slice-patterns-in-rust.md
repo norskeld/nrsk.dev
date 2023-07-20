@@ -60,7 +60,7 @@ fn tail<T: Clone>(items: &[T]) -> Option<Vec<T>> {
 
 [Playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=9cd6724ede2425db161c79416e7fc7c1) with tests
 
-In TypeScript land, again using [purify-ts]:
+The same in TypeScript land with [purify-ts]:
 
 ```typescript
 import { Just, Nothing, type Maybe } from 'purify-ts/Maybe'
@@ -89,7 +89,7 @@ fn is_palindrome(chars: &[char]) -> bool {
 
 Looks neat, if you ask me!
 
-In TypeScript, unfortunately, it gets way more imperative, because TypeScript doesn't allow us to destructure an array as flexible, as Rust does. I admit, this is not the best solution in terms of performance, but it roughly maps to what we have above in Rust.
+In TypeScript, unfortunately, it gets way more imperative, because TypeScript doesn't allow us to destructure an array as flexible, as Rust does. I admit, this is not the best solution in terms of performance, but at least it roughly maps to what we have above in Rust.
 
 ```typescript
 function isPalindrome(chars: Array<string>): boolean {
@@ -105,14 +105,14 @@ function isPalindrome(chars: Array<string>): boolean {
 
 ## A little trick
 
-There's another handy trick we can use within slice patterns. Turns out, we can not only destructure slices or arrays and bind matches to variables, but also match different variants while doing destructuring!
+There's another handy trick we can use within slice patterns. We can not only destructure slices or arrays and bind matches to variables, but also match different variants while doing destructuring.
 
 Let's say, we have some fictional binary format. It has two versions, and each matches to its own sequence of bytes, though they are quite similar. V1 can't be processed, and V2 can.
 
 - If a sequence starts with `0x88` followed by `A` or `B`, then it's V1.
 - If a sequence starts with `0x88` followed by `X`, then it's V2.
 
-```rust {{ highlight: [6] }}
+```rust {{ highlight: [6, 7] }}
 #[derive(Debug, PartialEq)]
 pub enum Version { V1, V2 }
 
@@ -129,9 +129,34 @@ pub fn parse_header(header: &[u8]) -> Option<(Version, Vec<u8>)> {
 
 In the first branch we first check if slice starts with `0x88`, and then check for two alternatives: `b'A'` and `b'B'`.
 
+In TypeScript something similar would look less terse and pretty.
+
+```typescript {{ highlight: [[13, 16]] }}
+import { Just, Nothing, type Maybe } from 'purify-ts/Maybe'
+
+enum Version { V1, V2 }
+
+function parseHeader(header: Array<number>): Maybe<[Version, Array<number>]> {
+  const [magic, version, ...rest] = header
+
+  if (magic !== 0x88) {
+    return Nothing
+  }
+
+  switch (version) {
+    case 'A'.charCodeAt(0):
+    case 'B'.charCodeAt(0): return Just([Version.V1, rest])
+    case 'X'.charCodeAt(0): return Just([Version.V2, rest])
+    default: return Nothing
+  }
+}
+```
+
+Nothing special here, except using enums, which most TypeScript devs don't recommend to use (and for a good reason, especially before 5.0), but [they've got an overhaul in 5.0][enums-overhaul] and finally are typesafe.
+
 ## Conclusion
 
-As you can see, slice patterns aren't overly complex compared to other features in Rust, and they can greatly improve the expressiveness of your code. I really like how fine-grain you can be when defining patterns, and it's one of the functional features — among others, like iterators and immutability by default — that probably outmatches (pun intended) the very same feature in Haskell.
+As you can see, slice patterns aren't that complex compared to other features in Rust, and they can greatly improve the expressiveness of your code. I really like how fine-grain you can be when defining patterns, and it's one of the functional features — among others, like iterators and immutability by default — that probably outmatches (pun intended) the very same feature in Haskell.
 
 <!-- Links -->
 
@@ -140,3 +165,4 @@ As you can see, slice patterns aren't overly complex compared to other features 
 [spread]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 [purify-ts]: https://github.com/gigobyte/purify
 [guard]: https://doc.rust-lang.org/rust-by-example/flow_control/match/guard.html
+[enums-overhaul]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html#enum-overhaul
