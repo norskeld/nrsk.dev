@@ -1,0 +1,8 @@
+---
+order: 3
+name: backpack
+description: MessagePack implementation with back-referencing
+url: https://github.com/norskeld/backpack#readme
+language: typescript
+wip: false
+---
