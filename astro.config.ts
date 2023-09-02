@@ -2,18 +2,14 @@ import { defineConfig } from 'astro/config'
 import astrowind from '@nrsk/astrowind'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
-import image from '@astrojs/image'
 
 import { unslash } from './src/api/utils'
 
 export default defineConfig({
   site: 'https://vm.codes',
   trailingSlash: 'never',
+  compressHTML: false,
   integrations: [
-    image({
-      serviceEntryPoint: '@astrojs/image/sharp'
-    }),
-
     astrowind({
       config: {
         path: 'tailwind.config.ts',
@@ -38,6 +34,7 @@ export default defineConfig({
 
     compress({
       css: false,
+      html: true,
       img: true
     })
   ]

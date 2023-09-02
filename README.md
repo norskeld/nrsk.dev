@@ -6,7 +6,7 @@ Personal website &amp; blog.
 
 ## Features
 
-- [x] Built with **[Astro]** and **TypeScript**.
+- [x] Built with **[Astro 3][astro]** and **TypeScript**.
 - [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
 - [x] Ships _only ~581 bytes (gzipped)_ of vanilla JavaScript for theme switching.
 - [x] Uses **[Tailwind]** for styling.
