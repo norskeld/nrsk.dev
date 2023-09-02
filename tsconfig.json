@@ -12,6 +12,6 @@
       "~/*": ["public/*"],
       "@/*": ["src/*"]
     },
-    "types": ["@astrojs/image/client", "vite/client"]
+    "types": ["astro/client", "vite/client"]
   }
 }

@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 import { tw } from '@nrsk/tw'
 
 import avatar from '@/assets/images/avatar-bw.png'
@@ -15,12 +15,11 @@ const pictureClasses = tw`
 `
 ---
 
-<Picture
+<Image
   src={avatar}
   class:list={[pictureClasses, className]}
   title="Hey, that's me!"
   alt="Vladislav's photo, black and white, in full face"
-  aspectRatio={1}
-  widths={[128, 256]}
-  sizes="(min-width: 640px) 256px, 128px"
+  width={256}
+  height={256}
 />
