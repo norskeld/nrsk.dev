@@ -5,7 +5,7 @@
 @layer base {
   html {
     @apply min-w-[320px] [text-size-adjust:none]
-      scroll-smooth scroll-pt-10 sm:scroll-pt-20
+      scroll-smooth scroll-pt-10 sm:scroll-pt-20 overscroll-y-none
       text-[14px] sm:text-[16px]
       bg-gray-50;
   }
@@ -14,7 +14,47 @@
     @apply bg-gray-900;
   }
 
+  body {
+    @apply overscroll-y-none;
+  }
+
   ::selection {
     @apply text-gray-800 bg-gray-200;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(40px);
+  }
+}
+
+@keyframes slideToTop {
+  to {
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes slideToBottom {
+  to {
+    transform: translateY(40px);
   }
 }

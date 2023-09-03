@@ -1,6 +1,8 @@
 ---
 import { tw } from '@nrsk/tw'
 
+import { Theme } from '@/config'
+
 import ThemeIconLight from './ThemeIconLight.astro'
 import ThemeIconDark from './ThemeIconDark.astro'
 import ThemeIconNoop from './ThemeIconNoop.astro'
@@ -24,3 +26,78 @@ function iconClasses(isHidden = false) {
   <ThemeIconDark class={iconClasses(true)} />
   <ThemeIconLight class={iconClasses(true)} />
 </button>
+
+<script is:inline define:vars={Theme}>
+// Text node for disabling transitions.
+const noTransitionsNode = document.createTextNode(`* { transition: none !important }`)
+
+// Elements.
+const rootEl = document.documentElement
+const metaThemeEl = document.querySelector('meta[name="theme-color"]')
+
+const darkIconEl = document.getElementById('js-dark-icon')
+const lightIconEl = document.getElementById('js-light-icon')
+const noopIconEl = document.getElementById('js-noop-icon')
+
+// Remove noop icon if JS enabled.
+noopIconEl.remove()
+
+// State from the `document.documentElement`.
+let schemeState = hasClass(rootEl, classDark)
+
+// Switch icons according to state.
+toggleIcons(schemeState)
+
+function hasClass(el, className) {
+  return el?.classList.contains(className) ?? false
+}
+
+function toggleColorScheme(isDark) {
+  const isRootDark = hasClass(rootEl, classDark)
+
+  // Temporarily removing transitions from all elements so toggling between themes feels snappy.
+  const css = document.createElement('style')
+
+  css.appendChild(noTransitionsNode)
+  document.head.appendChild(css)
+
+  if (isDark) {
+    !isRootDark && rootEl.classList.add(classDark)
+    toggleIcons(true)
+  } else {
+    isRootDark && rootEl.classList.remove(classDark)
+    toggleIcons(false)
+  }
+
+  metaThemeEl?.setAttribute('content', isDark ? themeDark : themeLight)
+  localStorage.setItem(localStorageKey, isDark ? classDark : classLight)
+
+  // Force a repaint and remove the stylesheet.
+  const _ = window.getComputedStyle(css).transition
+  document.head.removeChild(css)
+}
+
+function toggleIcons(isDark) {
+  const isLightHidden = hasClass(lightIconEl, classHidden)
+  const isDarkHidden = hasClass(darkIconEl, classHidden)
+
+  if (isDark) {
+    !isLightHidden && lightIconEl?.classList.add(classHidden)
+    isDarkHidden && darkIconEl?.classList.remove(classHidden)
+  } else {
+    isLightHidden && lightIconEl?.classList.remove(classHidden)
+    !isDarkHidden && darkIconEl?.classList.add(classHidden)
+  }
+}
+
+// Button click.
+document.getElementById('js-button')?.addEventListener('click', () => {
+  schemeState = !schemeState
+  toggleColorScheme(schemeState)
+})
+
+// Track changes in media.
+window
+  .matchMedia('(prefers-color-scheme: dark)')
+  .addEventListener('change', (event) => toggleColorScheme(event.matches))
+</script>

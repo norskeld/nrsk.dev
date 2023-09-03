@@ -1,6 +1,8 @@
 ---
 import { tw } from '@nrsk/tw'
 
+import { slideVertically } from '@/api/transitions'
+
 export interface Props {
   class?: string
 }
@@ -13,6 +15,6 @@ const contentClasses = tw`
 `
 ---
 
-<main class:list={[contentClasses, className]}>
+<main class:list={[contentClasses, className]} transition:animate={slideVertically()}>
   <slot />
 </main>

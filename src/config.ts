@@ -15,12 +15,18 @@ export const Common = {
   title: 'Vladislav Mamon',
   description:
     `A TypeScript and Rust aficionado doing front-end for a living. ` +
-    `Interested in functional programming, compilers and PL design.`,
+    `Interested in functional programming, compilers and PL design.`
+} as const
 
+export const Theme = {
   themeLight: '#f9fafb',
   themeDark: '#141415',
+  themeSyntax: 'nord',
 
-  themeSyntax: 'nord'
+  classDark: 'dark',
+  classLight: 'light',
+  classHidden: 'hidden',
+  localStorageKey: 'color-scheme'
 } as const
 
 export const Seo: AstroSeo = {

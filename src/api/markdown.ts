@@ -5,7 +5,7 @@ import { shikigami, loadTheme } from '@nrsk/shikigami'
 import anchor from 'markdown-it-anchor'
 import markdown from 'markdown-it'
 
-import { Common } from '@/config'
+import { Theme } from '@/config'
 
 /**
  * Extremely hacky workaround for building for production.
@@ -28,7 +28,7 @@ function resolveSourceDir(metaUrl: string, level: number): string {
 }
 
 export async function render(input: string) {
-  const highlighter = await createHighlighter(Common.themeSyntax)
+  const highlighter = await createHighlighter(Theme.themeSyntax)
   const permalink = createPermalinkTransformer()
   const slugify = createSlugTransformer()
 
