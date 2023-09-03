@@ -8,11 +8,11 @@ Personal website &amp; blog.
 
 - [x] Built with **[Astro 3][astro]** and **TypeScript**.
 - [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
-- [x] Ships _only ~581 bytes (gzipped)_ of vanilla JavaScript for theme switching.
-- [x] Uses **[Tailwind]** for styling.
 - [x] Uses good old Markdown with YAML frontmatter for authoring articles.
 - [x] Uses **[Shiki]** via **[@nrsk/shikigami]** (with [custom theme][custom-theme]) for syntax highlighting.
+- [x] Ships ~2.5 KB (gzipped) of JS to support [View Transitions][vts] and theme switching. Also works with JS disabled.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
+- [x] Uses **[Tailwind]** for styling.
 - [x] **[Open Graph][open-graph]** support.
 
 Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
@@ -41,3 +41,4 @@ The code is licensed under the [MIT](LICENSE) license.
 [pagespeed.web.dev]: https://pagespeed.web.dev/analysis/https-vm-codes/0m52xtvgee?form_factor=mobile
 [collections]: https://docs.astro.build/en/guides/content-collections/
 [zod]: https://zod.dev
+[vts]: https://docs.astro.build/en/guides/view-transitions/
