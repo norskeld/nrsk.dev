@@ -1,9 +1,14 @@
 /** Easing: in-out-back */
 const easing = 'cubic-bezier(0.68, -0.6, 0.32, 1.6)'
 
+interface SlideVerticallyOptions {
+  duration?: string
+  delay?: string
+}
+
 /** Transition: slide vertically. */
-export function slideVertically(options: { duration?: string } = {}) {
-  const { duration = '500ms' } = options
+export function slideVertically(options: SlideVerticallyOptions = {}) {
+  const { duration = '500ms', delay = '100ms' } = options
 
   return {
     forwards: {
@@ -26,7 +31,7 @@ export function slideVertically(options: { duration?: string } = {}) {
           name: 'fadeIn',
           duration,
           easing,
-          delay: '200ms',
+          delay,
           fillMode: 'both'
         },
         {

@@ -48,8 +48,8 @@ const signatureClasses = tw`
 `
 ---
 
-<nav class={navClasses} transition:animate={slideVertically({ duration: '600ms' })}>
-  <div class={navItemsClasses}>
+<nav class={navClasses}>
+  <div class={navItemsClasses} transition:animate={slideVertically({ duration: '600ms' })}>
     <Link to="/" underline={false}>
       <div class={navLinksClasses}>
         <Avatar class={avatarClasses} />
