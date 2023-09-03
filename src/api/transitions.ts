@@ -1,5 +1,5 @@
 /** Easing: in-out-back */
-const easing = 'cubic-bezier(0.68, -0.6, 0.32, 1.6)'
+export const easing = 'cubic-bezier(0.68, -0.6, 0.32, 1.6)'
 
 interface SlideVerticallyOptions {
   duration?: string
