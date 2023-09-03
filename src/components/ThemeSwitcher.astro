@@ -22,9 +22,9 @@ function iconClasses(isHidden = false) {
 ---
 
 <button id="js-button" type="button" aria-label="auto" aria-live="polite" class={buttonClasses}>
-  <ThemeIconNoop class={iconClasses()} />
-  <ThemeIconDark class={iconClasses(true)} />
-  <ThemeIconLight class={iconClasses(true)} />
+  <ThemeIconNoop id="js-noop-icon" class={iconClasses()} />
+  <ThemeIconDark id="js-dark-icon" class={iconClasses(true)} />
+  <ThemeIconLight id="js-light-icon" class={iconClasses(true)} />
 </button>
 
 <script is:inline define:vars={Theme}>
@@ -35,6 +35,7 @@ const noTransitionsNode = document.createTextNode(`* { transition: none !importa
 const rootEl = document.documentElement
 const metaThemeEl = document.querySelector('meta[name="theme-color"]')
 
+const buttonEl = document.getElementById('js-button')
 const darkIconEl = document.getElementById('js-dark-icon')
 const lightIconEl = document.getElementById('js-light-icon')
 const noopIconEl = document.getElementById('js-noop-icon')
@@ -91,7 +92,7 @@ function toggleIcons(isDark) {
 }
 
 // Button click.
-document.getElementById('js-button')?.addEventListener('click', () => {
+buttonEl?.addEventListener('click', () => {
   schemeState = !schemeState
   toggleColorScheme(schemeState)
 })
