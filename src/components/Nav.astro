@@ -7,16 +7,10 @@ import ThemeSwitcher from './ThemeSwitcher.astro'
 import Avatar from './Avatar.astro'
 import Link from './Link.astro'
 
-export interface Props {
-  sticky?: boolean
-}
-
 export interface Item {
   label: string
   to: string
 }
-
-const { sticky = false } = Astro.props
 
 const navClasses = tw`
   flex items-center justify-between
