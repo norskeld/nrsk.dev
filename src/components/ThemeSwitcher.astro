@@ -5,7 +5,6 @@ import { Theme } from '@/config'
 
 import ThemeIconLight from './ThemeIconLight.astro'
 import ThemeIconDark from './ThemeIconDark.astro'
-import ThemeIconNoop from './ThemeIconNoop.astro'
 
 const buttonClasses = tw`
   group flex items-center justify-center
@@ -15,14 +14,13 @@ const buttonClasses = tw`
 function iconClasses(isHidden = false) {
   return tw`
     ${isHidden && 'hidden'} w-5 cursor-pointer
-    text-gray-800 dark:text-gray-200 transition-colors
+    animate-appear text-gray-800 dark:text-gray-200 transition-colors
     group-hover:text-crayola-500 dark:group-hover:text-crayola-300
   `
 }
 ---
 
 <button id="js-button" type="button" aria-label="auto" aria-live="polite" class={buttonClasses}>
-  <ThemeIconNoop id="js-noop-icon" class={iconClasses()} />
   <ThemeIconDark id="js-dark-icon" class={iconClasses(true)} />
   <ThemeIconLight id="js-light-icon" class={iconClasses(true)} />
 </button>
@@ -38,10 +36,6 @@ const metaThemeEl = document.querySelector('meta[name="theme-color"]')
 const buttonEl = document.getElementById('js-button')
 const darkIconEl = document.getElementById('js-dark-icon')
 const lightIconEl = document.getElementById('js-light-icon')
-const noopIconEl = document.getElementById('js-noop-icon')
-
-// Remove noop icon if JS enabled.
-noopIconEl.remove()
 
 // State from the `document.documentElement`.
 let schemeState = hasClass(rootEl, classDark)

@@ -33,24 +33,24 @@
 
 @keyframes slideFromTop {
   from {
-    transform: translateY(-40px);
+    transform: translate3d(0, -40px, 0);
   }
 }
 
 @keyframes slideFromBottom {
   from {
-    transform: translateY(40px);
+    transform: translate3d(0, 40px, 0);
   }
 }
 
 @keyframes slideToTop {
   to {
-    transform: translateY(-40px);
+    transform: translate3d(0, -40px, 0);
   }
 }
 
 @keyframes slideToBottom {
   to {
-    transform: translateY(40px);
+    transform: translate3d(0, 40px, 0);
   }
 }
