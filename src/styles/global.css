@@ -5,17 +5,13 @@
 @layer base {
   html {
     @apply min-w-[320px] [text-size-adjust:none]
-      scroll-smooth scroll-pt-10 sm:scroll-pt-20 overscroll-y-none
+      scroll-smooth scroll-pt-10 sm:scroll-pt-20
       text-[14px] sm:text-[16px]
       bg-gray-50;
   }
 
   html.dark {
     @apply bg-gray-900;
-  }
-
-  body {
-    @apply overscroll-y-none;
   }
 
   ::selection {
