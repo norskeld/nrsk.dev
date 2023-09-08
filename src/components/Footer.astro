@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import { slideVertically } from '@/api/transitions'
 
 import FooterItem from './FooterItem.astro'
@@ -8,14 +6,15 @@ import Link from './Link.astro'
 import Dot from './Dot.astro'
 
 const currentYear = new Date().getFullYear()
-
-const footerClasses = tw`
-  flex w-full max-w-2xl
-  mt-auto px-8 md:px-0 pt-8 pb-16
-`
 ---
 
-<footer class={footerClasses} transition:animate={slideVertically({ duration: '200ms' })}>
+<footer
+  class:list={[
+    "flex w-full max-w-2xl",
+    "mt-auto px-8 md:px-0 pt-8 pb-16"
+  ]}
+  transition:animate={slideVertically({ duration: '200ms' })}
+>
   <FooterItem>&copy; 2021&ndash;{currentYear}</FooterItem>
 
   <Dot />

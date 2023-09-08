@@ -15,7 +15,7 @@ const linkTarget = blank ? '_blank' : '_self'
 const linkRel = external ? 'noopener noreferrer external' : null
 
 const linkClassesBase = tw`
-  inline leading-5 font-normal no-underline transition-colors
+  inline-flex leading-5 font-normal no-underline transition-colors
   text-black dark:text-white
   hover:text-crayola-500 dark:hover:text-crayola-300
 `
@@ -28,4 +28,6 @@ const linkBorderClasses = tw`
 const linkClasses = underline ? tw`${linkClassesBase} ${linkBorderClasses}` : linkClassesBase
 ---
 
-<a href={to} class:list={[linkClasses, className]} target={linkTarget} rel={linkRel}><slot /></a>
+<a href={to} class:list={[linkClasses, className]} target={linkTarget} rel={linkRel}>
+  <slot />
+</a>

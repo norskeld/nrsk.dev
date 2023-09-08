@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import { slideVertically } from '@/api/transitions'
 
 export interface Props {
@@ -8,13 +6,15 @@ export interface Props {
 }
 
 const { class: className } = Astro.props
-
-const contentClasses = tw`
-  flex flex-col justify-center gap-12
-  w-full max-w-2xl mx-auto px-8 md:px-0
-`
 ---
 
-<main class:list={[contentClasses, className]} transition:animate={slideVertically()}>
+<main
+  class:list={[
+    "flex flex-col justify-center gap-12",
+    "w-full max-w-2xl mx-auto px-8 md:px-0",
+    className
+  ]}
+  transition:animate={slideVertically()}
+>
   <slot />
 </main>

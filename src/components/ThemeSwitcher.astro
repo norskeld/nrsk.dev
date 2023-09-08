@@ -6,11 +6,6 @@ import { Theme } from '@/config'
 import ThemeIconLight from './ThemeIconLight.astro'
 import ThemeIconDark from './ThemeIconDark.astro'
 
-const buttonClasses = tw`
-  group flex items-center justify-center
-  w-9 h-9 rounded-lg transition-all
-`
-
 function iconClasses(isHidden = false) {
   return tw`
     ${isHidden && 'hidden'} w-5 cursor-pointer
@@ -20,9 +15,25 @@ function iconClasses(isHidden = false) {
 }
 ---
 
-<button id="js-button" type="button" aria-label="auto" aria-live="polite" class={buttonClasses}>
-  <ThemeIconDark id="js-dark-icon" class={iconClasses(true)} />
-  <ThemeIconLight id="js-light-icon" class={iconClasses(true)} />
+<button
+  id="js-button"
+  type="button"
+  aria-label="auto"
+  aria-live="polite"
+  class:list={[
+    "group flex items-center justify-center",
+    "w-9 h-9 rounded-lg transition-all"
+  ]}
+>
+  <ThemeIconDark
+    id="js-dark-icon"
+    class={iconClasses(true)}
+  />
+
+  <ThemeIconLight
+    id="js-light-icon"
+    class={iconClasses(true)}
+  />
 </button>
 
 <script is:inline define:vars={Theme}>

@@ -10,16 +10,12 @@ import Nav from '@/components/Nav.astro'
 import '@/styles/global.css'
 
 export interface Props extends SeoProps {}
-
-const mainClasses = tw`
-  gap-16 sm:gap-20
-`
 ---
 
 <Document {...Astro.props}>
   <Nav />
 
-  <Main class={mainClasses}>
+  <Main class="gap-16 sm:gap-20">
     <slot />
   </Main>
 

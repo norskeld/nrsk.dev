@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import type { ArticleEntry } from '@/api/content'
 
 import ArticleList from '@/components/ArticleList.astro'
@@ -10,26 +8,24 @@ export interface Props {
 }
 
 const { items } = Astro.props
-
-const sectionClasses = tw`
-  flex flex-col gap-4
-`
-
-const noteClasses = tw`
-  mb-2
-  text-gray-800 dark:text-gray-300
-`
-
-const headingClasses = tw`
-  text-2xl font-semibold
-  text-gray-900 dark:text-gray-50
-`
 ---
 
-<section class={sectionClasses}>
-  <h2 class={headingClasses}>Articles</h2>
+<section class="flex flex-col gap-4">
+  <h2
+    class:list={[
+      "text-2xl font-semibold",
+      "text-gray-900 dark:text-gray-50"
+    ]
+  }>
+    Articles
+  </h2>
 
-  <p class={noteClasses}>
+  <p
+    class:list={[
+      "mb-2",
+      "text-gray-800 dark:text-gray-300"
+    ]}
+  >
     I occasionally write about Rust, TypeScript, functional programming, and front-end stuff.
   </p>
 

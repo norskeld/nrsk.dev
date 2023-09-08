@@ -1,17 +1,19 @@
 ---
-import { tw } from '@nrsk/tw'
-
 export interface Props {
   class?: string
   value?: string
 }
 
 const { value = '&middot;', class: className } = Astro.props
-
-const dotClasses = tw`
-  select-none px-2
-  text-gray-500 dark:text-gray-400
-`
 ---
 
-<span aria-hidden="true" role="separator" class:list={[dotClasses, className]} set:html={value} />
+<span
+  aria-hidden="true"
+  role="separator"
+  class:list={[
+    "select-none px-2",
+    "text-gray-500 dark:text-gray-400",
+    className
+  ]}
+  set:html={value}
+/>

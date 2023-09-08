@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets'
-import { tw } from '@nrsk/tw'
 
 import avatar from '@/assets/images/avatar-bw.png'
 
@@ -9,15 +8,11 @@ interface Props {
 }
 
 const { class: className } = Astro.props
-
-const pictureClasses = tw`
-  rounded-full
-`
 ---
 
 <Image
   src={avatar}
-  class:list={[pictureClasses, className]}
+  class:list={["rounded-full", className]}
   title="Hey, that's me!"
   alt="Vladislav's photo, black and white, in full face"
   width={256}

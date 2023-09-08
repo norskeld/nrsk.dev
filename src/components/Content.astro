@@ -1,21 +1,21 @@
 ---
-import { tw } from '@nrsk/tw'
-
 export interface Props {
   content: string
   class?: string
 }
 
 const { content, class: className } = Astro.props
-
-const proseClasses = tw`
-  prose prose-vm dark:prose-invert
-  prose-headings:font-semibold
-  w-full max-w-none
-`
 ---
 
-<section set:html={content} class:list={[proseClasses, className]} />
+<section
+  set:html={content}
+  class:list={[
+    "prose prose-vm dark:prose-invert",
+    "prose-headings:font-semibold",
+    "w-full max-w-none",
+    className
+  ]}
+/>
 
 <style>
   /** Horizontal divider. */

@@ -2,18 +2,12 @@
 import { ViewTransitions } from 'astro:transitions'
 
 import { SEO, type Props as AstroSeo } from 'astro-seo'
-import { tw } from '@nrsk/tw'
-
-import ThemeScript from '@/components/ThemeScript.astro'
 
 import { Common, Theme } from '@/config'
 
-export interface Props extends AstroSeo {}
+import ThemeScript from '@/components/ThemeScript.astro'
 
-const wrapperClasses = tw`
-  flex flex-col items-center gap-16 sm:gap-20
-  min-h-screen
-`
+export interface Props extends AstroSeo {}
 ---
 
 <!DOCTYPE html>
@@ -23,7 +17,7 @@ const wrapperClasses = tw`
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content={Theme.themeDark} />
 
-    <!-- Fonts. -->
+    {/* Fonts. */}
     <link
       rel="preload"
       href="/fonts/inter-var-latin.woff2"
@@ -41,23 +35,28 @@ const wrapperClasses = tw`
       }
     </style>
 
-    <!-- Favicons & Webmanifest. -->
+    {/* Favicons & Webmanifest. */}
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- OpenGraph & other essential props like `title` and `description`. -->
+    {/* OpenGraph & other essential props like `title` and `description`. */}
     <SEO {...Astro.props} />
 
-    <!-- View transitions. -->
+    {/* View transitions. */}
     <ViewTransitions />
   </head>
 
   <body>
     <ThemeScript transition:persist />
 
-    <div class={wrapperClasses}>
+    <div
+      class:list={[
+        "flex flex-col items-center gap-16 sm:gap-20",
+        "min-h-screen"
+      ]}
+    >
       <slot />
     </div>
   </body>

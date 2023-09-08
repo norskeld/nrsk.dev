@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 export interface Props {
   title: string
   class?: string
@@ -8,24 +6,23 @@ export interface Props {
 }
 
 const { title, class: className, description } = Astro.props
-
-const headingClasses = tw`
-  text-2xl font-semibold
-  text-black dark:text-white
-`
-
-const descriptionClasses = tw`
-  text-gray-500 dark:text-gray-400
-`
-
-const headerClasses = tw`
-  flex flex-col gap-4
-  w-full
-`
 ---
 
-<header class={headerClasses}>
-  <h1 class:list={[headingClasses, className]}>{title}</h1>
+<header
+  class:list={[
+    "flex flex-col gap-4",
+    "w-full"
+  ]}
+>
+  <h1
+    class:list={[
+      "text-2xl font-semibold",
+      "text-black dark:text-white",
+      className
+    ]}
+  >
+    {title}
+  </h1>
 
-  {description && <p class={descriptionClasses}>{description}</p>}
+  {description && <p class="text-gray-500 dark:text-gray-400">{description}</p>}
 </header>

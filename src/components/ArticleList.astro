@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import type { ArticleEntry } from '@/api/content'
 
 import Date from './Date.astro'
@@ -11,42 +9,35 @@ export interface Props {
 }
 
 const { items } = Astro.props
-
-const articlesClasses = tw`
-  flex flex-col gap-4
-`
-
-const articleClasses = tw`
-  flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4
-`
-
-const linkClasses = tw`
-  font-medium flex-none
-`
-
-const dividerClasses = tw`
-  hidden sm:block w-full
-  border-b-2 border-dotted
-  border-gray-200 dark:border-gray-800
-`
-
-const dateClasses = tw`
-  flex-none text-sm
-  text-gray-500 dark:text-gray-450
-`
 ---
 
-<ul class={articlesClasses}>
+<ul class="flex flex-col gap-4">
   {
     items.map((article) => (
-      <li class={articleClasses}>
-        <Link to={'/articles/' + article.slug} class={linkClasses} underline={false}>
+      <li class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+        <Link
+          to={'/articles/' + article.slug}
+          class="font-medium flex-none"
+          underline={false}
+        >
           {article.data.title}
         </Link>
 
-        <div class={dividerClasses} />
+        <div
+          class:list={[
+            "hidden sm:block w-full",
+            "border-b-2 border-dotted",
+            "border-gray-200 dark:border-gray-800"
+          ]}
+        />
 
-        <Date date={article.data.createdAt} class={dateClasses} />
+        <Date
+          date={article.data.createdAt}
+          class:list={[
+            "flex-none text-sm",
+            "text-gray-500 dark:text-gray-450"
+          ]}
+        />
       </li>
     ))
   }

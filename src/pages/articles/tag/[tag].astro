@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import { withSeoOptions, Common } from '@/config'
 
 import { loadArticles, type ArticleEntry } from '@/api/content'
@@ -45,7 +43,7 @@ const props = withSeoOptions({
   noindex: true,
   openGraph: {
     basic: {
-      title: `Articles tagged '${tag}'`,
+      title: `Articles tagged as '${tag}'`,
       type: 'website',
       url: canonical
     },
@@ -54,14 +52,15 @@ const props = withSeoOptions({
     }
   }
 })
-
-const headingClasses = tw`
-  before:content-['#'] before:font-mono
-  before:text-gray-400 dark:before:text-gray-400
-`
 ---
 
 <Layout {...props}>
-  <Heading class={headingClasses} title={tag} />
+  <Heading
+    class:list={[
+      "before:content-['#'] before:font-mono",
+      "before:text-gray-400 dark:before:text-gray-400"
+    ]}
+    title={tag}
+  />
   <ArticleList items={articles} />
 </Layout>

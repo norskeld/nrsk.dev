@@ -1,6 +1,4 @@
 ---
-import { tw } from '@nrsk/tw'
-
 import { slideVertically } from '@/api/transitions'
 
 import ThemeSwitcher from './ThemeSwitcher.astro'
@@ -11,52 +9,41 @@ export interface Item {
   label: string
   to: string
 }
-
-const navClasses = tw`
-  flex items-center justify-between
-  w-full py-4 mt-6 md:mt-12
-  border-b border-gray-50/40 dark:border-gray-900/40
-  text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900
-`
-
-const navItemsClasses = tw`
-  flex items-center justify-between
-  w-full max-w-2xl mx-auto px-8 md:px-0
-`
-
-const navLinksClasses = tw`
-  group flex items-center gap-4
-`
-
-const avatarClasses = tw`
-  [--size:3rem]
-
-  w-[var(--size)]
-  h-[var(--size)]
-
-  group-hover:animate-boing
-`
-
-const positionClasses = tw`
-  text-gray-500 dark:text-gray-400
-`
-
-const signatureClasses = tw`
-  transition-colors
-  fill-gray-900 dark:fill-gray-50
-  group-hover:fill-crayola-500 dark:group-hover:fill-crayola-400
-`
 ---
 
-<nav class={navClasses}>
-  <div class={navItemsClasses} transition:animate={slideVertically({ duration: '600ms' })}>
+<nav
+  class:list={[
+    "flex items-center justify-between",
+    "w-full py-4 mt-6 md:mt-12",
+    "border-b border-gray-50/40 dark:border-gray-900/40",
+    "text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900"
+  ]}
+>
+  <div
+    class:list={[
+      "flex items-center justify-between",
+      "w-full max-w-2xl mx-auto px-8 md:px-0"
+    ]}
+    transition:animate={slideVertically({ duration: '600ms' })}
+  >
     <Link to="/" underline={false}>
-      <div class={navLinksClasses}>
-        <Avatar class={avatarClasses} />
+      <div class="group flex items-center gap-4">
+        <Avatar
+          class:list={[
+            "w-[3rem] h-[3rem]",
+            "group-hover:animate-boing",
+          ]}
+        />
 
-        <div class={signatureClasses}>
+        <div
+          class:list={[
+            "transition-colors",
+            "fill-gray-900 dark:fill-gray-50",
+            "group-hover:fill-crayola-500 dark:group-hover:fill-crayola-400"
+          ]}
+        >
           <div>Vladislav Mamon</div>
-          <div class={positionClasses}>Front-end developer</div>
+          <div class="text-gray-500 dark:text-gray-400">Front-end developer</div>
         </div>
       </div>
     </Link>
