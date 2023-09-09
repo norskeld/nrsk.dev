@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { shikigami, loadTheme } from '@nrsk/shikigami'
 import anchor from 'markdown-it-anchor'
+import footnote from 'markdown-it-footnote'
 import markdown from 'markdown-it'
 
 import { Theme } from '@/config'
@@ -38,7 +39,10 @@ export async function render(input: string) {
     typographer: true
   })
     .use(anchor, { permalink, slugify })
+    .use(footnote)
     .use(highlighter)
+
+  customizeFootnotes(parser)
 
   return parser.render(input)
 }
@@ -53,6 +57,69 @@ async function createHighlighter(themeName: string) {
       theme
     }
   })
+}
+
+function customizeFootnotes(markdown: markdown) {
+  markdown.renderer.rules.footnote_ref = (tokens, idx, options, env, renderer) => {
+    const id = renderer.rules.footnote_anchor_name!(tokens, idx, options, env, renderer)
+    const caption = renderer.rules.footnote_caption!(tokens, idx, options, env, renderer)
+
+    let refid = id
+
+    if (tokens[idx].meta.subId > 0) {
+      refid += `:${tokens[idx].meta.subId}`
+    }
+
+    return `
+      <sup class="footnotes-ref">
+        <a id="ref:${refid}" href="#note:${id}">${caption}</a>
+      </sup>
+    `
+  }
+
+  markdown.renderer.rules.footnote_block_open = () => {
+    return `
+      <hr class="footnotes-sep">
+
+      <div class="footnotes">
+        <ol class="footnotes-list">
+    `
+  }
+
+  markdown.renderer.rules.footnote_block_close = () => {
+    return `
+        </ol>
+      </div>
+    `
+  }
+
+  markdown.renderer.rules.footnote_open = (tokens, idx, options, env, renderer) => {
+    let id = renderer.rules.footnote_anchor_name!(tokens, idx, options, env, renderer)
+
+    if (tokens[idx].meta.subId > 0) {
+      id += `:${tokens[idx].meta.subId}`
+    }
+
+    return `<li id="note:${id}" class="footnotes-item">`
+  }
+
+  markdown.renderer.rules.footnote_close = () => {
+    return '</li>'
+  }
+
+  markdown.renderer.rules.footnote_anchor = (tokens, idx, options, env, renderer) => {
+    let id = renderer.rules.footnote_anchor_name!(tokens, idx, options, env, renderer)
+
+    if (tokens[idx].meta.subId > 0) {
+      id += `:${tokens[idx].meta.subId}`
+    }
+
+    return `
+      <a href="#ref:${id}" class="footnotes-backref">
+        &#10548;
+      </a>
+    `
+  }
 }
 
 /** Creates permalink handler for the `markdown-it-anchor` plugin. */

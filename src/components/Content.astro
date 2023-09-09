@@ -183,4 +183,10 @@ const { content, class: className } = Astro.props
   .prose :global(.shiki:hover .language-id) {
     @apply opacity-100;
   }
+
+  /** Footnotes. */
+
+  .prose :global(.footnotes-item) {
+    @apply break-all;
+  }
 </style>
