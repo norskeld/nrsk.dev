@@ -21,7 +21,11 @@ const { content, class: className } = Astro.props
   /** Horizontal divider. */
 
   .prose :global(hr) {
-    @apply block w-3/4 mt-8 mx-auto border-t-2 border-solid border-gray-200;
+    @apply block w-1/6 mt-12 border-t-2 border-solid border-gray-200;
+  }
+
+  :global(.dark .prose hr) {
+    @apply border-gray-800;
   }
 
   /** Links. */
