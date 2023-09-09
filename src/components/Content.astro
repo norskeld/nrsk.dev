@@ -191,6 +191,10 @@ const { content, class: className } = Astro.props
   /** Footnotes. */
 
   .prose :global(.footnotes-item) {
-    @apply break-all;
+    @apply break-words;
+  }
+
+  .prose :global(.footnotes-backref) {
+    @apply text-xl leading-none ml-2;
   }
 </style>
