@@ -86,9 +86,16 @@ export default {
       typography: ({ theme }: PluginAPI) => ({
         vm: {
           css: {
+            'lineHeight': '1.5',
+
             // Disable quotes on blockquotes.
-            'blockquote p:first-of-type::before': { content: `''` },
-            'blockquote p:last-of-type::after': { content: `''` },
+            'blockquote p:first-of-type::before': {
+              content: `''`
+            },
+
+            'blockquote p:last-of-type::after': {
+              content: `''`
+            },
 
             // Make <li> elements tighter.
             'li': {
