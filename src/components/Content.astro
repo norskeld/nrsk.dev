@@ -55,7 +55,8 @@ const { content, class: className } = Astro.props
   /** -- Headers & anchor links re-styling. */
 
   .prose :global(.header-anchor) {
-    @apply border-none no-underline text-gray-300 opacity-100 transition-[color,opacity];
+    @apply select-none border-none no-underline
+      text-gray-300 opacity-100 transition-[color,opacity];
   }
 
   :global(.dark .prose .header-anchor) {
