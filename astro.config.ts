@@ -8,7 +8,7 @@ import { unslash } from './src/api/utils'
 export default defineConfig({
   site: 'https://vm.codes',
   trailingSlash: 'never',
-  compressHTML: false,
+  compressHTML: true,
   integrations: [
     astrowind({
       config: {
@@ -34,7 +34,7 @@ export default defineConfig({
 
     compress({
       css: false,
-      html: true,
+      html: false,
       img: true
     })
   ]
