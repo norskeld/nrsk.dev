@@ -40,6 +40,7 @@ const { items } = Astro.props
       items.map((project) => (
         <li
           class:list={[
+            "group/card",
             "flex flex-col gap-2 p-4 rounded-lg transition-all ease-in-out duration-200",
             "bg-gray-100 dark:bg-gray-400/5",
             "hover:bg-gray-50 dark:hover:bg-gray-400/10",
@@ -49,7 +50,7 @@ const { items } = Astro.props
           <Link
             to={project.data.url}
             class:list={[
-              "group inline-flex w-min",
+              "group/title inline-flex w-min",
               "font-medium"
             ]}
             underline={false}
@@ -58,9 +59,9 @@ const { items } = Astro.props
             <span class="inline">{project.data.name}</span>
             <span
               class:list={[
-                "inline transition-colors",
+                "inline select-none transition-colors",
                 "text-gray-500 dark:text-gray-400",
-                "group-hover:text-crayola-500 dark:group-hover:text-crayola-300"
+                "group-hover/title:text-crayola-500 dark:group-hover/title:text-crayola-300"
               ]}
             >
               {project.data.language.ext}
@@ -69,8 +70,9 @@ const { items } = Astro.props
 
           <div
             class:list={[
-              "cursor-default",
-              "text-gray-500 dark:text-gray-400"
+              "cursor-default transition-colors",
+              "text-gray-500 dark:text-gray-400",
+              "group-hover/card:text-gray-700 dark:group-hover/card:text-gray-300"
             ]}
             set:html={project.data.description}
           />
