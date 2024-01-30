@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  title: string
+  title?: string
   class?: string
   description?: string
 }
@@ -21,8 +21,13 @@ const { title, class: className, description } = Astro.props
       className
     ]}
   >
-    {title}
+    {Astro.slots.has('title') ? <slot name="title" /> : title}
   </h1>
 
-  {description && <p class="text-gray-500 dark:text-gray-400">{description}</p>}
+  {
+    (Astro.slots.has('description') || description) &&
+      <p class="text-gray-500 dark:text-gray-400">
+        {Astro.slots.has('description') ? <slot name="description" /> : description}
+      </p>
+  }
 </header>
