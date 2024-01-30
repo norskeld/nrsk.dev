@@ -124,7 +124,10 @@ function customizeFootnotes(markdown: markdown) {
 
 /** Creates permalink handler for the `markdown-it-anchor` plugin. */
 function createPermalinkTransformer() {
-  return anchor.permalink.linkInsideHeader({ placement: 'after' })
+  return anchor.permalink.linkInsideHeader({
+    placement: 'after',
+    symbol: '§'
+  })
 }
 
 /** Creates slugifier for the `markdown-it-anchor` plugin. **It doesn't work with Unicode**. */
