@@ -88,13 +88,24 @@ export default {
           css: {
             'lineHeight': '1.5',
 
-            // Disable quotes on blockquotes.
+            // Re-style blockquotes.
             'blockquote p:first-of-type::before': {
               content: `''`
             },
 
             'blockquote p:last-of-type::after': {
               content: `''`
+            },
+
+            // Re-style inline code blocks.
+            'code::before': {
+              content: `''`,
+              display: 'none'
+            },
+
+            'code::after': {
+              content: `''`,
+              display: 'none'
             },
 
             // Make <li> elements tighter.
