@@ -4,8 +4,6 @@ import { slideVertically } from '@/api/transitions'
 import FooterItem from './FooterItem.astro'
 import Link from './Link.astro'
 import Dot from './Dot.astro'
-
-const currentYear = new Date().getFullYear()
 ---
 
 <footer
@@ -15,7 +13,7 @@ const currentYear = new Date().getFullYear()
   ]}
   transition:animate={slideVertically({ duration: '200ms' })}
 >
-  <FooterItem>&copy; 2021&ndash;{currentYear}</FooterItem>
+  <FooterItem>&copy; 2021&ndash;present</FooterItem>
 
   <Dot />
 
