@@ -2,7 +2,7 @@
 title: '(De)serializing sets, maps and dates'
 description: 'How to: Serialize and deserialize Set, Map, or Date using JSON.stringify and JSON.parse.'
 createdAt: 2023-08-30
-updatedAt: 2023-08-30
+updatedAt: 2024-03-31
 tags:
   - typescript
   - serialization
@@ -16,17 +16,17 @@ In this article I'll show how I did that.
 
 ## Representation
 
-Before we start actually serializing and deserializing custom objects, let's first think how we could represent them in plain JSON. The idea I came up with is simple: we encode values as tuples/arrays with custom string markers as the first element and the rest as our custom representation of the value. Some examples:
+Before we start actually serializing and deserializing custom objects, let's first think how we could represent them in plain JSON. The idea I came up with is simple: we encode values as tuples with custom string markers as the first element and our custom representation of the value as the second. Some examples:
 
 ```typescript
 serialize(new Set([1, 2, 3]))
-// => ["@set", [1, 2, 3]]
+// => ['@set', [1, 2, 3]]
 
-serialize(new Map([["a", 1], ["b", 2], ["c", 3]]))
-// => ["@map", [["a", 1], ["b", 2], ["c", 3]]]
+serialize(new Map([['a', 1], ['b', 2], ['c', 3]]))
+// => ['@map', [['a', 1], ['b', 2], ['c', 3]]]
 
 serialize(new Date("2023-08-30"))
-// => ["@date", "2023-08-30T00:00:00.000Z"]
+// => ['@date', '2023-08-30T00:00:00.000Z']
 ```
 
 Then, when deserializing, we check if we're looking at a tuple and check if its first element is a marker. If it is, we deserialize it into the object we need. Simple and easy.
@@ -60,17 +60,17 @@ interface Codec<T, S> {
 
 ## Serialize
 
-Let's take a look at serialization with [`JSON.stringify`][json.stringify]. It accepts not only an object to convert to a JSON string, but also a `replacer` function as second parameter that can be used to alter the behavior of serialization process:
+Let's take a look at serialization with [`JSON.stringify`][json.stringify]. It accepts not only an object to convert to a JSON string, but also a `replacer` function as a second parameter that can be used to alter the behavior of the serialization process:
 
 ```typescript
 JSON.stringify(object, (key, value) => /* ... */)
 ```
 
-Here the `key` is the property being converted and `value` is a property value, either raw or pre-transformed, i.e. serialized, if it implements `toJSON` method.
+Here the `key` is the property being converted and `value` is a property value, either raw or pre-transformed (i.e. serialized if it implements `toJSON` method).
 
 ### `Set`
 
-Armed with this knowledge, let's try to serialize a `Set`. We first define a codec that will contain the actual serialization and deserialization functions:
+Armed with this knowledge, let's implement `Set` serialization and actually some part of deserialization. We first define a codec that will contain the actual serialization and deserialization functions:
 
 ```typescript
 const SetCodec: Codec<Set<unknown>, unknown[]> = {
@@ -93,7 +93,7 @@ function serialize(value: unknown): string {
 
 ### `Map`
 
-Essentially the same as `Set`, but for `Map` objects. Define `MapCodec`:
+Essentially the same principle as with `Set`. We first define a codec:
 
 ```typescript
 const MapCodec: Codec<Map<string, unknown>, [string, unknown][]> = {
@@ -102,7 +102,7 @@ const MapCodec: Codec<Map<string, unknown>, [string, unknown][]> = {
 }
 ```
 
-And then add another case to actually handle maps:
+And then add a case to the replacer function to actually handle `Map` objects:
 
 ```typescript {{ highlight: [4], highlightInvert: true }}
 function serialize(value: unknown): string {
@@ -117,7 +117,7 @@ function serialize(value: unknown): string {
 
 ### `Date`
 
-At last, the dates. Define `DateCodec`:
+At last, let's handle `Date` objects. As we did with `Set` and `Map` we first define a codec:
 
 ```typescript
 const DateCodec: Codec<Date, string> = {
@@ -126,7 +126,7 @@ const DateCodec: Codec<Date, string> = {
 }
 ```
 
-But this time we need to slightly change the replacer function and check `this[key]` instead of `value`:
+We also need to slightly change the replacer function to be a regular function instead of an arrow function, and check `this[key]` instead of `value` to properly handle `Date` objects:
 
 ```typescript {{ highlight: [2, 5], highlightInvert: true }}
 function serialize(value: unknown): string {
@@ -160,7 +160,7 @@ This only works with `function` declarations though, not arrow functions, becaus
 
 ## Deserialize
 
-Now that we have a working serializer, let's write a deserializer. Similarly to `JSON.stringify`, it accepts `reviver` function as second parameter that can be used to alter the behavior of _deserialization_ process:
+Now that we have a working serializer, let's write a deserializer. Similarly to `JSON.stringify`, it accepts a `reviver` function as a second parameter that can be used to alter the behavior of the _deserialization_ process:
 
 ```typescript
 JSON.parse(serialized, (key, value) => /* ... */)
@@ -178,7 +178,7 @@ function deserialize<T = unknown>(value: string): T {
 
 Right now this does nothing with our special tuples. We need somehow to detect them and deserialize. For this we'll need to access the raw value and check if it's marked:
 
-```typescript {{ highlight: [[1, 3], [5,7], [9, 11], 15, [17, 19]], highlightInvert: true }}
+```typescript {{ highlight: [[1, 11], [15, 19]], highlightInvert: true }}
 const isSet =
   (value: unknown): value is Serialized<Mark.Set, unknown[]> =>
     Array.isArray(value) && value[0] === Mark.Set
@@ -214,5 +214,5 @@ And that's it! The complete code [can be found here][gist].
 
 [json.stringify]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#syntax
 [json.parse]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#syntax
-[this-parameter]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
+[this-parameter]: https://typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
 [gist]: https://gist.github.com/norskeld/f59eb5a2ee1bde9b7047a9d4bb1af08a
