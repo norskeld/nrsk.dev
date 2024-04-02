@@ -30,15 +30,13 @@ function resolveSourceDir(metaUrl: string, level: number): string {
 
 export async function render(input: string) {
   const highlighter = await createHighlighter(Theme.themeSyntax)
-  const permalink = createPermalinkTransformer()
-  const slugify = createSlugTransformer()
 
   const parser = markdown('default', {
     html: true,
     linkify: true,
     typographer: true
   })
-    .use(anchor, { permalink, slugify })
+    .use(anchor, createAnchorOptions())
     .use(footnote)
     .use(highlighter)
 
@@ -58,6 +56,27 @@ async function createHighlighter(themeName: string) {
       theme
     }
   })
+}
+
+function createAnchorOptions(): anchor.AnchorOptions {
+  const slugify = (string: string) =>
+    string
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+
+  const permalink = anchor.permalink.linkInsideHeader({
+    placement: 'after',
+    symbol: '§'
+  })
+
+  return {
+    slugify,
+    permalink,
+    tabIndex: false
+  }
 }
 
 function customizeFootnotes(markdown: markdown) {
@@ -120,25 +139,5 @@ function customizeFootnotes(markdown: markdown) {
         &#10548;
       </a>
     `
-  }
-}
-
-/** Creates permalink handler for the `markdown-it-anchor` plugin. */
-function createPermalinkTransformer() {
-  return anchor.permalink.linkInsideHeader({
-    placement: 'after',
-    symbol: '§'
-  })
-}
-
-/** Creates slugifier for the `markdown-it-anchor` plugin. **It doesn't work with Unicode**. */
-function createSlugTransformer() {
-  return function (string: string) {
-    return string
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '')
   }
 }
