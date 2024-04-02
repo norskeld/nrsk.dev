@@ -48,7 +48,8 @@ export async function render(input: string) {
 }
 
 async function createHighlighter(themeName: string) {
-  const theme = await loadTheme(`${resolveSourceDir(import.meta.url, 4)}/syntax/${themeName}.json`)
+  const source = resolveSourceDir(import.meta.url, 3)
+  const theme = await loadTheme(`${source}/syntax/${themeName}.json`)
 
   return await shikigami({
     withLanguage: true,

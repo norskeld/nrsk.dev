@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config'
-import astrowind from '@nrsk/astrowind'
+import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
+import icon from 'astro-icon'
 
 import { unslash } from './src/api/utils'
 
@@ -10,11 +11,9 @@ export default defineConfig({
   trailingSlash: 'never',
   compressHTML: true,
   integrations: [
-    astrowind({
-      config: {
-        path: 'tailwind.config.ts',
-        applyBaseStyles: false
-      }
+    tailwind({
+      configFile: 'tailwind.config.ts',
+      applyBaseStyles: false
     }),
 
     sitemap({
@@ -36,6 +35,8 @@ export default defineConfig({
       css: false,
       html: false,
       img: true
-    })
+    }),
+
+    icon()
   ]
 })
