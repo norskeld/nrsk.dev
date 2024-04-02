@@ -1,0 +1,44 @@
+---
+import { tw } from '@nrsk/tw'
+
+export interface Props {
+  open?: boolean
+  prose?: boolean
+  class?: string
+}
+
+const { open = false, prose = false, class: className } = Astro.props
+
+const proseClasses = tw`
+  prose prose-vm dark:prose-invert
+  prose-headings:font-semibold
+`
+---
+
+<details
+  open={open}
+  class:list={[prose && proseClasses, "group/collapsible w-full max-w-none", className]}
+>
+  <summary
+    class:list={[
+      "flex gap-2 p-4 list-none",
+      "cursor-pointer text-xl font-semibold",
+      "rounded-lg transition-all ease-in-out duration-200",
+      "text-gray-900 bg-gray-200/50 dark:text-gray-50 dark:bg-gray-400/5",
+      "hover:bg-gray-100 dark:hover:bg-gray-400/10",
+    ]}
+  >
+    <div
+      class:list={[
+        "before:content-['↓'] before:mr-2",
+        "group-open/collapsible:before:content-['↑']"
+      ]}
+    />
+
+    <div>
+      <slot name="title" />
+    </div>
+  </summary>
+
+  <slot name="content" />
+</details>
