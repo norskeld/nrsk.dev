@@ -37,7 +37,7 @@ const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
       ]}
     >
       <div>
-        <Date date={data.createdAt} />
+        <Date created={data.createdAt} updated={data.updatedAt} />
         <Dot />
         <span>{time}</span>
       </div>

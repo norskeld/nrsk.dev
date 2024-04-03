@@ -1,20 +1,33 @@
 ---
+import { tw } from '@nrsk/tw'
+
 import { formatDate } from '@/api/utils'
 
 type DateLike = Date | string | number
 
 export interface Props {
-  date: DateLike
+  created: DateLike
+  updated?: DateLike
   format?: string
   class?: string
 }
 
-const { date, format = 'd MMM yyyy', class: className } = Astro.props
+const { created, updated, format = 'd MMM yyyy', class: className } = Astro.props
 
-const createdAt = formatDate(date, format)
-const createdAtDatetime = formatDate(date, 'yyyy-MM-dd')
+const isUpdated = typeof updated !== 'undefined'
+
+const createdAt = formatDate(created, 'yyyy-MM-dd')
+const updatedAt = isUpdated ? `Updated: ${formatDate(updated, format)}` : null
+
+const updatedClasses = tw`
+  border-b border-dotted border-b-gray-400 transition-colors
+  hover:cursor-help hover:border-b-gray-200 hover:text-gray-200
+`
 ---
 
-<time class={className} datetime={createdAtDatetime}>
-  {createdAt}
-</time>
+<time
+  class:list={[isUpdated && updatedClasses, className]}
+  set:text={formatDate(created, format)}
+  datetime={createdAt}
+  title={updatedAt}
+/>
