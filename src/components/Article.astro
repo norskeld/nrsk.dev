@@ -141,5 +141,16 @@ const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
   :global(.dark .prose blockquote) {
     @apply border-l-gray-400/50;
   }
+
+  /** Code blocks. */
+
+  .prose :global(.expressive-code) {
+    @apply relative -mx-8 sm:mx-0 my-4 sm:my-6 p-0;
+  }
+
+  .prose :global(.expressive-code figure),
+  .prose :global(.expressive-code pre) {
+    @apply rounded-none sm:rounded-lg;
+  }
 </style>
 
