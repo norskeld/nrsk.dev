@@ -2,9 +2,7 @@
 import type { ArticleEntry } from '@/api/content'
 import { toTagsWithURL } from '@/api/frontmatter'
 import { readingTime } from '@/api/utils'
-import { render } from '@/api/markdown'
 
-import Content from './Content.astro'
 import TagList from './TagList.astro'
 import Date from './Date.astro'
 import Dot from './Dot.astro'
@@ -13,9 +11,11 @@ export interface Props {
   item: ArticleEntry
 }
 
-const { body, data } = Astro.props.item
+const { body, data, render } = Astro.props.item
 
-const content = await render(body)
+const { Content } = await render()
+
+const time = readingTime(body)
 const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
 ---
 
@@ -39,7 +39,7 @@ const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
       <div>
         <Date date={data.createdAt} />
         <Dot />
-        <span>{readingTime(body)}</span>
+        <span>{time}</span>
       </div>
 
       <div class="flex">
@@ -49,5 +49,97 @@ const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
     </div>
   </header>
 
-  <Content content={content} />
+  <section
+    class:list={[
+      "prose prose-vm dark:prose-invert",
+      "prose-headings:font-semibold",
+      "w-full max-w-none"
+    ]}
+  >
+    <Content />
+  </section>
 </article>
+
+<style>
+  /** Horizontal divider. */
+
+  .prose :global(hr) {
+    @apply block w-1/6 mt-12 border-t-2 border-solid border-gray-200;
+  }
+
+  :global(.dark .prose hr) {
+    @apply border-gray-800;
+  }
+
+  /** Links. */
+
+  .prose :global(a) {
+    @apply inline leading-5 no-underline font-normal transition-colors
+    text-black hover:text-crayola-500
+    border-b border-dotted border-black hover:border-crayola-500;
+  }
+
+  :global(.dark .prose a) {
+    @apply text-white hover:text-crayola-300
+    border-white hover:border-crayola-300;
+  }
+
+  .prose :global(a:focus),
+  .prose :global(a:hover) {
+    @apply no-underline;
+  }
+
+  /** Headers. */
+
+  .prose :global(:where(h1, h2, h3, h4, h5, h6):focus-visible) {
+    @apply outline-none;
+  }
+
+  /** -- Headers & anchor links re-styling. */
+
+  .prose :global(.heading-anchor) {
+    @apply select-none ml-2 border-none no-underline
+      text-gray-300 opacity-100 transition-[color,opacity];
+  }
+
+  :global(.dark .prose .heading-anchor) {
+    @apply text-gray-500;
+  }
+
+  .prose :global(.heading-anchor:is(:hover, :focus)) {
+    @apply text-gray-900 opacity-100;
+  }
+
+  :global(.dark .prose .heading-anchor:is(:hover, :focus)) {
+    @apply text-gray-50 opacity-100;
+  }
+
+  @media screen and (min-width: 768px) {
+    .prose :global(.heading-anchor) {
+      @apply opacity-0;
+    }
+
+    .prose :global(:is(h1, h2, h3, h4, h5, h5):hover .heading-anchor) {
+      @apply opacity-100;
+    }
+  }
+
+  /** Blockquotes. */
+
+  .prose :global(blockquote) {
+    @apply font-normal not-italic border-l-4 border-l-gray-500/25;
+  }
+
+  .prose :global(blockquote > p:first-of-type) {
+    @apply mt-0;
+  }
+
+  .prose :global(blockquote > p:last-of-type) {
+    @apply mb-0;
+  }
+
+  :global(.dark .prose blockquote) {
+    @apply border-l-gray-400/50;
+  }
+</style>
+
