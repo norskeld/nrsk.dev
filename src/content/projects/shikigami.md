@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 8
 name: shikigami
 description: Opinionated syntax highlighting with shiki for markdown-it
 url: https://github.com/norskeld/shikigami#readme

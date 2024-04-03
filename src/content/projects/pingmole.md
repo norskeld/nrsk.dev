@@ -1,0 +1,8 @@
+---
+order: 3
+name: pingmole
+description: CLI that helps to filter Mullvad VPN servers and pick the closest one
+url: https://github.com/norskeld/pingmole#readme
+language: rust
+wip: false
+---
