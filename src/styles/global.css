@@ -6,6 +6,7 @@
   --ec-code-bg: theme(colors.nord.100);
   --ec-frames-shadow: none;
   --ec-frames-inline-button-border: none;
+  --ec-frames-tooltip-bg: theme(colors.nord.200);
   --ec-markers-bg: theme(colors.nord.200);
   --ec-markers-lb: theme(colors.slate.500);
   --ec-markers-del-bg: theme(colors.red.500 / 25%);

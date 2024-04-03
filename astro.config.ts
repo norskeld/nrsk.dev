@@ -54,6 +54,7 @@ export default defineConfig({
         frames: {
           frameBoxShadowCssValue: 'var(--ec-frames-shadow)',
           inlineButtonBorder: 'var(--ec-frames-inline-button-border)',
+          tooltipSuccessBackground: 'var(--ec-frames-tooltip-bg)',
           terminalBackground: 'var(--ec-code-bg)',
           terminalTitlebarBackground: 'var(--ec-code-bg)'
         },
