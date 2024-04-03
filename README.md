@@ -6,11 +6,11 @@ Personal website &amp; blog.
 
 ## Features
 
-- [x] Built with **[Astro 3][astro]** and **TypeScript**.
+- [x] Built with **[Astro 4][astro]** and **TypeScript**.
 - [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
 - [x] Uses good old Markdown with YAML frontmatter for authoring articles.
-- [x] Uses **[Shiki]** via **[@nrsk/shikigami]** (with [custom theme][custom-theme]) for syntax highlighting.
-- [x] Ships ~2.5 KB (gzipped) of JS to support [View Transitions][vts] and theme switching. Also works with JS disabled.
+- [x] Uses **[Expressive Code][expressive]** for syntax highlighting.
+- [x] Ships ~5-7 KB (gzipped) of JS to support [View Transitions][vts] and theme switching. Also works with JS disabled.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
 - [x] Uses **[Tailwind]** for styling.
 - [x] **[Open Graph][open-graph]** support.
@@ -21,7 +21,6 @@ Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s
 
 - [ ] Add dynamic Open Graph image generation.
 - [ ] Add article series.
-- [ ] _Maybe_ adopt [MDC].
 
 ## License
 
@@ -31,11 +30,8 @@ The code is licensed under the [MIT](LICENSE) license.
 
 [astro]: https://astro.build
 [tailwind]: https://tailwindcss.com
-[shiki]: https://github.com/shikijs/shiki
-[custom-theme]: src/syntax/nord.json
+[expressive]: https://expressive-code.com
 [open-graph]: https://ogp.me
-[@nrsk/shikigami]: https://github.com/norskeld/shikigami
-[mdc]: https://content.nuxtjs.org/guide/writing/mdc
 [cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
 [yellowlab.tools]: https://yellowlab.tools/result/gk7b2fdj0y
 [pagespeed.web.dev]: https://pagespeed.web.dev/analysis/https-vm-codes/0m52xtvgee?form_factor=mobile
