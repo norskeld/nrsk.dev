@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
+import type { AstroIntegration } from 'astro'
 import fg from 'fast-glob'
 import kleur from 'kleur'
 import sharp from 'sharp'
