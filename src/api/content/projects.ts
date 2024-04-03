@@ -28,6 +28,12 @@ export function language(lang: string): Language {
       name: 'Haskell',
       ext: '.hs',
       color: ['#5e5086', '#8576ad']
+    },
+    {
+      kind: 'fsharp',
+      name: 'F#',
+      ext: '.fs',
+      color: ['#b845fc', '#b845fc']
     }
   ]
 

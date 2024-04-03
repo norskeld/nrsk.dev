@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 6
 name: backpack
 description: MessagePack implementation with back-referencing
 url: https://github.com/norskeld/backpack#readme

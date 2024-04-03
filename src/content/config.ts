@@ -21,7 +21,7 @@ const languages = z.union([
   z.literal('typescript'),
   z.literal('rust'),
   z.literal('haskell'),
-  z.literal('ocaml')
+  z.literal('fsharp')
 ])
 
 const projects = defineCollection({
