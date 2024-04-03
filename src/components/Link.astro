@@ -26,8 +26,13 @@ const linkBorderClasses = tw`
 `
 
 const linkClasses = underline ? tw`${linkClassesBase} ${linkBorderClasses}` : linkClassesBase
+const linkContent = await Astro.slots.render('default')
 ---
 
-<a href={to} class:list={[linkClasses, className]} target={linkTarget} rel={linkRel}>
-  <slot />
-</a>
+<a
+  href={to}
+  class:list={[linkClasses, className]}
+  set:html={linkContent}
+  target={linkTarget}
+  rel={linkRel}
+/>
