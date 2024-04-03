@@ -1,5 +1,4 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
-import markdown from 'markdown-it'
 
 export type ProjectEntry = CollectionEntry<'projects'>
 
@@ -36,19 +35,5 @@ export function language(lang: string): Language {
 }
 
 export async function loadProjects(): Promise<Array<ProjectEntry>> {
-  const entries = await getCollection('projects')
-
-  const parser = markdown('default', {
-    typographer: true
-  })
-
-  return entries
-    .sort((prev, next) => prev.data.order - next.data.order)
-    .map((entry) => ({
-      ...entry,
-      data: {
-        ...entry.data,
-        description: parser.renderInline(entry.data.description)
-      }
-    }))
+  return (await getCollection('projects')).sort((prev, next) => prev.data.order - next.data.order)
 }

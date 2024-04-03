@@ -2,7 +2,7 @@
 title: 'Capturing doc comments in declarative macros'
 description: "How to: Capture doc comments in Rust's declarative macros."
 createdAt: 2022-11-18
-updatedAt: 2023-03-12
+updatedAt: 2024-04-03
 tags:
   - rust
   - macros
@@ -21,7 +21,7 @@ create!(SomeType, 42);
 
 Unfortunately, it's not gonna work, and compiler will even warn us:
 
-```ansi
+```ansi title="$ cargo check"
 [0;34;1m8[0m [0;34;1m|[0m /// Really important comment.
   [0;34;1m| [0;33;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [0;33;1mrustdoc does not generate documentation for macro invocations[0m
   [0;34;1m|[0m

@@ -2,7 +2,7 @@
 title: '(De)serializing sets, maps and dates'
 description: 'How to: Serialize and deserialize Set, Map, or Date using JSON.stringify and JSON.parse.'
 createdAt: 2023-08-30
-updatedAt: 2024-03-31
+updatedAt: 2024-04-03
 tags:
   - typescript
   - serialization
@@ -81,7 +81,7 @@ const SetCodec: Codec<Set<unknown>, unknown[]> = {
 
 After that let's wrap `JSON.stringify` in a function and pass a replacer function, where we check if the value is a `Set` object and use our `SetCodec` to serialize it:
 
-```typescript
+```typescript ins={3}
 function serialize(value: unknown): string {
   return JSON.stringify(value, (key: string, value: unknown) => {
     if (value instanceof Set) return SetCodec.serialize(value)
@@ -104,7 +104,7 @@ const MapCodec: Codec<Map<string, unknown>, [string, unknown][]> = {
 
 And then add a case to the replacer function to actually handle `Map` objects:
 
-```typescript {{ highlight: [4], highlightInvert: true }}
+```typescript ins={4}
 function serialize(value: unknown): string {
   return JSON.stringify(value, (key: string, value: unknown) => {
     if (value instanceof Set) return SetCodec.serialize(value)
@@ -128,8 +128,9 @@ const DateCodec: Codec<Date, string> = {
 
 We also need to slightly change the replacer function to be a regular function instead of an arrow function, and check `this[key]` instead of `value` to properly handle `Date` objects:
 
-```typescript {{ highlight: [2, 5], highlightInvert: true }}
+```typescript del={2} ins={3, 5}
 function serialize(value: unknown): string {
+  return JSON.stringify(value, (key: string, value: unknown) => {
   return JSON.stringify(value, function (this: any, key: string, value: unknown) {
     if (value instanceof Set) return SetCodec.serialize(value)
     if (value instanceof Map) return MapCodec.serialize(value)
@@ -178,7 +179,7 @@ function deserialize<T = unknown>(value: string): T {
 
 Right now this does nothing with our special tuples. We need somehow to detect them and deserialize. For this we'll need to access the raw value and check if it's marked:
 
-```typescript {{ highlight: [[1, 11], [15, 19]], highlightInvert: true }}
+```typescript ins={1-12, 15-20}
 const isSet =
   (value: unknown): value is Serialized<Mark.Set, unknown[]> =>
     Array.isArray(value) && value[0] === Mark.Set
