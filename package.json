@@ -11,7 +11,7 @@
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev",
-    "fmt": "prettier --write \"**/*.{cjs,ts,json}\"",
+    "fmt": "prettier --write \"**/*.{js,ts,json}\"",
     "prepare": "husky",
     "preview": "astro preview"
   },
@@ -19,8 +19,6 @@
     "@astrojs/mdx": "^2.2.3",
     "@astrojs/sitemap": "^3.1.2",
     "@astrojs/tailwind": "^5.1.0",
-    "@commitlint/cli": "^19.2.1",
-    "@nrsk/config-conventional": "^1.0.0",
     "@nrsk/tw": "^2.0.0",
     "@tailwindcss/typography": "^0.5.12",
     "@types/node": "^20.12.2",
@@ -45,13 +43,8 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.3"
   },
-  "commitlint": {
-    "extends": [
-      "@nrsk/config-conventional"
-    ]
-  },
   "lint-staged": {
-    "*.{cjs,ts,json}": [
+    "*.{js,ts,json}": [
       "prettier --write"
     ]
   }
