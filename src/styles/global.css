@@ -26,7 +26,7 @@
   }
 
   ::selection {
-    @apply text-gray-800 bg-gray-200;
+    @apply text-gray-800 bg-crayola-200;
   }
 }
 
