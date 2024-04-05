@@ -8,10 +8,8 @@ type Optional<T> = {
 
 export const Common = {
   host: 'https://vm.codes',
-
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
-
   title: 'Vladislav Mamon',
   description:
     `A TypeScript and Rust aficionado doing front-end for a living. ` +
@@ -22,7 +20,6 @@ export const Theme = {
   themeLight: '#f9fafb',
   themeDark: '#141415',
   themeSyntax: 'nord',
-
   classDark: 'dark',
   classLight: 'light',
   classHidden: 'hidden',
@@ -36,7 +33,7 @@ export const Seo: AstroSeo = {
     basic: {
       type: 'website',
       title: Common.title,
-      image: `${Common.host}/images/og-image.png`,
+      image: `${Common.host}/index.og.png`,
       url: Common.host
     },
     optional: {
@@ -44,9 +41,9 @@ export const Seo: AstroSeo = {
       locale: Common.localeOpenGraph
     },
     image: {
-      alt: 'Logotype with letters V and M combined',
-      url: `${Common.host}/images/og-image.png`,
-      secureUrl: `${Common.host}/images/og-image.png`,
+      alt: Common.title,
+      url: `${Common.host}/index.og.png`,
+      secureUrl: `${Common.host}/index.og.png`,
       type: 'image/png',
       width: 1200,
       height: 630
