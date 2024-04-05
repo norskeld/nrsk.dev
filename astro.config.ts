@@ -15,6 +15,9 @@ export default defineConfig({
   site: 'https://vm.codes',
   trailingSlash: 'never',
   compressHTML: true,
+  build: {
+    format: 'file'
+  },
   markdown: {
     remarkRehype: {
       footnoteBackContent: '⤴'

@@ -2,7 +2,7 @@
 import { withSeoOptions, Common } from '@/config'
 
 import { loadTags, type ArticleEntry } from '@/api/content'
-import { unslash } from '@/api/utils'
+import { unslash, ogImageUrl } from '@/api/utils'
 
 import Layout from '@/layouts/Page.astro'
 
@@ -31,7 +31,7 @@ const title = `Articles tagged with #${tag} – ${Common.title}`
 const description = `Articles tagged with #${tag}.`
 
 const canonical = unslash(Astro.url.href)
-const ogImage = `${canonical}/og.png`
+const ogImage = ogImageUrl(canonical)
 
 const props = withSeoOptions({
   title,
@@ -42,15 +42,15 @@ const props = withSeoOptions({
     basic: {
       title: `Articles tagged with #${tag}`,
       type: 'website',
-      image: ogImage,
+      image: ogImage.url,
       url: canonical
     },
     optional: {
       description
     },
     image: {
-      url: ogImage,
-      secureUrl: ogImage,
+      url: ogImage.url,
+      secureUrl: ogImage.secureUrl,
       alt: title,
     },
   }

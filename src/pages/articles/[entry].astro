@@ -2,7 +2,7 @@
 import { withSeoOptions, Common } from '@/config'
 
 import { loadArticles, type ArticleEntry } from '@/api/content'
-import { formatDate, unslash } from '@/api/utils'
+import { formatDate, unslash, ogImageUrl } from '@/api/utils'
 
 import Layout from '@/layouts/Page.astro'
 
@@ -25,7 +25,7 @@ const { entry } = Astro.props
 const { title, description, createdAt, updatedAt } = entry.data
 
 const canonical = unslash(Astro.url.href)
-const ogImage = `${canonical}/og.png`
+const ogImage = ogImageUrl(canonical)
 
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
@@ -35,15 +35,15 @@ const props = withSeoOptions({
     basic: {
       title,
       type: 'article',
-      image: ogImage,
+      image: ogImage.url,
       url: canonical
     },
     optional: {
       description
     },
     image: {
-      url: ogImage,
-      secureUrl: ogImage,
+      url: ogImage.url,
+      secureUrl: ogImage.secureUrl,
       alt: title,
     },
     article: {
