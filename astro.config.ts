@@ -8,11 +8,13 @@ import { h } from 'hastscript'
 import mdx from '@astrojs/mdx'
 import icon from 'astro-icon'
 
+import { Common } from './src/config'
+
 import { compress } from './src/api/integrations'
 import { stripSuffix } from './src/api/utils'
 
 export default defineConfig({
-  site: 'https://vm.codes',
+  site: Common.host,
   trailingSlash: 'never',
   compressHTML: true,
   build: {

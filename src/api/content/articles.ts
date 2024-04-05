@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
-import { defaults, type LoaderOptions } from '@/api/content'
+import { defaults, type LoaderOptions } from '.'
 
 export type ArticleEntry = CollectionEntry<'articles'>
 

@@ -1,6 +1,6 @@
 import type { Props as AstroSeo } from 'astro-seo'
 
-import { merge } from '@/api/utils'
+import { merge } from './api/utils'
 
 type Optional<T> = {
   [P in keyof T]?: Optional<T[P]> | undefined
@@ -27,7 +27,7 @@ export const Theme = {
 } as const
 
 export const Seo: AstroSeo = {
-  title: `${Common.title}`,
+  title: Common.title,
   description: Common.description,
   openGraph: {
     basic: {

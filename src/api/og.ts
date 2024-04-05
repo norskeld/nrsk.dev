@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import satori, { type SatoriOptions } from 'satori'
 import sharp from 'sharp'
 
-import { stripSuffix } from '@/api/utils'
+import { stripSuffix } from './utils'
 
 export interface OgOptions {
   title: string

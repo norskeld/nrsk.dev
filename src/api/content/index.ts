@@ -1,5 +1,5 @@
-export * from './content/articles'
-export * from './content/projects'
+export * from './articles'
+export * from './projects'
 
 export type Order = 'asc' | 'none' | 'desc'
 
