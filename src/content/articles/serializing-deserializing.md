@@ -128,7 +128,7 @@ const DateCodec: Codec<Date, string> = {
 
 We also need to slightly change the replacer function to be a regular function instead of an arrow function, and check `this[key]` instead of `value` to properly handle `Date` objects:
 
-```typescript del={2} ins={3, 5}
+```typescript del={2} ins={3, 6}
 function serialize(value: unknown): string {
   return JSON.stringify(value, (key: string, value: unknown) => {
   return JSON.stringify(value, function (this: any, key: string, value: unknown) {
