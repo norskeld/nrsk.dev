@@ -8,14 +8,18 @@ Personal website &amp; blog.
 
 - [x] Built with **[Astro 4][astro]** and **TypeScript**.
 - [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
-- [x] Uses Markdown/MDX with YAML frontmatter for authoring articles.
+- [x] Uses **Markdown**/**MDX** with YAML frontmatter for authoring articles.
 - [x] Uses **[Expressive Code][expressive]** for syntax highlighting.
-- [x] Ships ~5-7 KB (gzipped) of JS to support [View Transitions][vts] and theme switching. Also works with JS disabled.
+- [x] Ships ~5-7 KB (gzipped) of JS to support [View Transitions][vts] and theme switching.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
 - [x] Uses **[Tailwind]** for styling.
-- [x] **[Open Graph][open-graph]** support with dynamic Open Graph image generation at build time.
+- [x] Uses **[astro-seo]** to generate **[Open Graph][open-graph]** metadata.
+- [x] Uses **[satori]** to generate static **[Open Graph images][open-graph-images]**.
 
-Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
+Also:
+
+- [x] Scores **99/100 on [yellowlab.tools]** (all devices).
+- [x] Scores **all 100s on [pagespeed.web.dev]** (both mobile and desktop).
 
 ## Backlog
 
@@ -27,13 +31,21 @@ Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s
 
 The code is licensed under the [MIT](LICENSE) license.
 
+<!-- Links. -->
+
 [astro]: https://astro.build
 [tailwind]: https://tailwindcss.com
 [expressive]: https://expressive-code.com
 [open-graph]: https://ogp.me
+[open-graph-images]: https://ogp.me/#structured
 [cc-by-license]: https://choosealicense.com/licenses/cc-by-4.0/
-[yellowlab.tools]: https://yellowlab.tools/result/gk7b2fdj0y
-[pagespeed.web.dev]: https://pagespeed.web.dev/analysis/https-vm-codes/0m52xtvgee?form_factor=mobile
 [collections]: https://docs.astro.build/en/guides/content-collections/
 [zod]: https://zod.dev
 [vts]: https://docs.astro.build/en/guides/view-transitions/
+[astro-seo]: https://github.com/jonasmerlin/astro-seo
+[satori]: https://github.com/vercel/satori
+
+<!-- Perf links. -->
+
+[yellowlab.tools]: https://yellowlab.tools/result/guytxvkjwf
+[pagespeed.web.dev]: https://pagespeed.web.dev/analysis/https-vm-codes/o6sb2m6idv?form_factor=mobile
