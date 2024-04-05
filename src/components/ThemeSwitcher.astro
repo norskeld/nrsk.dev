@@ -75,12 +75,12 @@ function toggleColorScheme(isDark) {
     toggleIcons(false)
   }
 
-  metaThemeEl?.setAttribute('content', isDark ? themeDark : themeLight)
-  localStorage.setItem(localStorageKey, isDark ? classDark : classLight)
-
   // Force a repaint and remove the stylesheet.
   const _ = window.getComputedStyle(css).transition
   document.head.removeChild(css)
+
+  metaThemeEl?.setAttribute('content', isDark ? themeDark : themeLight)
+  localStorage.setItem(localStorageKey, isDark ? classDark : classLight)
 }
 
 function toggleIcons(isDark) {
