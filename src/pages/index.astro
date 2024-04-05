@@ -2,6 +2,7 @@
 import { withSeoOptions, Common } from '@/config'
 
 import { loadArticles, loadProjects } from '@/api/content'
+import { unslash } from '@/api/utils'
 
 import Layout from '@/layouts/Index.astro'
 
@@ -9,7 +10,7 @@ import Link from '@/components/Link.astro'
 import ArticleList from '@/components/ArticleList.astro'
 
 const canonical = Astro.url.href
-const ogImage = `${canonical}/og.png`
+const ogImage = `${unslash(canonical)}/og.png`
 
 const props = withSeoOptions({
   canonical,
