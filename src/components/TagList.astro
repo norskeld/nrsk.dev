@@ -1,8 +1,11 @@
 ---
-import type { Tag } from '@/api/frontmatter'
-
 import TagLink from './TagLink.astro'
 import TagText from './TagText.astro'
+
+export interface Tag {
+  tag: string
+  url?: string
+}
 
 export interface Props {
   class?: string
@@ -16,8 +19,8 @@ const { class: className, items } = Astro.props
   {
     items.map(
       (item) => item.url
-        ? <TagLink url={item.url}>{item.name}</TagLink>
-        : <TagText>{item.name}</TagText>
+        ? <TagLink url={item.url}>{item.tag}</TagLink>
+        : <TagText>{item.tag}</TagText>
     )
   }
 </span>

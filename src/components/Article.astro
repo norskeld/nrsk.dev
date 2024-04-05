@@ -1,6 +1,5 @@
 ---
 import type { ArticleEntry } from '@/api/content'
-import { toTagsWithURL } from '@/api/frontmatter'
 import { readingTime } from '@/api/utils'
 
 import TagList from './TagList.astro'
@@ -16,7 +15,10 @@ const { body, data, render } = Astro.props.item
 const { Content } = await render()
 
 const time = readingTime(body)
-const tags = toTagsWithURL('/articles/tag/', data.tags ?? [])
+const tags = data.tags.map((tag) => ({
+  tag,
+  url: `/articles/tag/${tag}`
+}))
 ---
 
 <article class="flex flex-col justify-center items-start gap-10 sm:gap-12 w-full">
