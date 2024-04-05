@@ -15,7 +15,7 @@ export interface OgImageUrl {
 }
 
 export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
-  const logo = await readFile('./public/logo-inverted.png')
+  const icon = await readFile('./public/icon-inverted.png')
   const interRegular = await readFile('./public/fonts/og/inter-regular.ttf')
   const interSemiBold = await readFile('./public/fonts/og/inter-semibold.ttf')
 
@@ -69,7 +69,7 @@ export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
                 props: {
                   width: 96,
                   height: 96,
-                  src: logo.buffer
+                  src: icon.buffer
                 }
               },
 
