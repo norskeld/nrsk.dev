@@ -1,6 +1,7 @@
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import expressive from 'astro-expressive-code'
 import { defineConfig } from 'astro/config'
+import astropress from '@nrsk/astropress'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import rehypeSlug from 'rehype-slug'
@@ -10,7 +11,6 @@ import icon from 'astro-icon'
 
 import { Common } from './src/config'
 
-import { compress } from './src/api/integrations'
 import { stripSuffix } from './src/api/utils'
 
 export default defineConfig({
@@ -74,6 +74,6 @@ export default defineConfig({
 
     mdx(),
     icon(),
-    compress()
+    astropress()
   ]
 })
