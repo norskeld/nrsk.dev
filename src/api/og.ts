@@ -3,8 +3,15 @@ import { readFile } from 'node:fs/promises'
 import satori, { type SatoriOptions } from 'satori'
 import sharp from 'sharp'
 
+import { stripSuffix } from '@/api/utils'
+
 export interface OgOptions {
   title: string
+}
+
+export interface OgImageUrl {
+  url: string
+  secureUrl: string
 }
 
 export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
@@ -121,4 +128,17 @@ export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
   const png = await sharp(Buffer.from(svg)).png().toBuffer()
 
   return png
+}
+
+export function ogImageUrl(canonical: string): OgImageUrl {
+  const url = stripSuffix(canonical, '.html') + '.og.png'
+  const secureUrl = new URL(url)
+
+  // Ensure the protocol is secure.
+  secureUrl.protocol = 'https:'
+
+  return {
+    url,
+    secureUrl: secureUrl.toString()
+  }
 }
