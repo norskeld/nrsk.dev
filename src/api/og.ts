@@ -7,6 +7,7 @@ import { stripSuffix } from './utils'
 
 export interface OgOptions {
   title: string
+  titleColor?: string
 }
 
 export interface OgImageUrl {
@@ -14,7 +15,7 @@ export interface OgImageUrl {
   secureUrl: string
 }
 
-export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
+export async function createOgImage({ title, titleColor }: OgOptions): Promise<Buffer> {
   const icon = await readFile('./public/icon-inverted.png')
   const interRegular = await readFile('./public/fonts/og/inter-regular.ttf')
   const interSemiBold = await readFile('./public/fonts/og/inter-semibold.ttf')
@@ -103,13 +104,12 @@ export async function createOgImage({ title }: OgOptions): Promise<Buffer> {
                         style: {
                           display: 'flex',
                           flexWrap: 'wrap',
-                          justifyContent: 'center',
                           width: 'auto',
                           maxWidth: 750,
                           fontSize: 48,
                           fontWeight: 600,
                           lineHeight: 1.25,
-                          color: '#f9fafb'
+                          color: titleColor ?? '#f9fafb'
                         },
                         children: title
                       }
