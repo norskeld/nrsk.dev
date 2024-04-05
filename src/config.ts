@@ -60,5 +60,5 @@ export const Seo: AstroSeo = {
 }
 
 export function withSeoOptions(options: Optional<AstroSeo> = {}): AstroSeo {
-  return merge({ ...Seo }, options)
+  return merge(structuredClone(Seo), options)
 }
