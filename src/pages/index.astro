@@ -1,5 +1,5 @@
 ---
-import { withSeoOptions } from '@/config'
+import { withSeoOptions, Common } from '@/config'
 
 import { loadArticles, loadProjects } from '@/api/content'
 
@@ -8,8 +8,21 @@ import Layout from '@/layouts/Index.astro'
 import Link from '@/components/Link.astro'
 import ArticleList from '@/components/ArticleList.astro'
 
+const canonical = Astro.url.href
+const ogImage = `${canonical}/og.png`
+
 const props = withSeoOptions({
-  canonical: Astro.url.href
+  canonical,
+  openGraph: {
+    basic: {
+      image: ogImage,
+    },
+    image: {
+      url: ogImage,
+      secureUrl: ogImage,
+      alt: Common.title,
+    },
+  }
 })
 
 const articles = await loadArticles({ sort: 'desc' })

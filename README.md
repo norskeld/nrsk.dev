@@ -8,18 +8,17 @@ Personal website &amp; blog.
 
 - [x] Built with **[Astro 4][astro]** and **TypeScript**.
 - [x] Uses **Astro [Content Collections][collections]** with **[Zod]** schemas.
-- [x] Uses good old Markdown with YAML frontmatter for authoring articles.
+- [x] Uses Markdown/MDX with YAML frontmatter for authoring articles.
 - [x] Uses **[Expressive Code][expressive]** for syntax highlighting.
 - [x] Ships ~5-7 KB (gzipped) of JS to support [View Transitions][vts] and theme switching. Also works with JS disabled.
 - [x] **Dark theme** (respects `prefers-color-scheme`) support.
 - [x] Uses **[Tailwind]** for styling.
-- [x] **[Open Graph][open-graph]** support.
+- [x] **[Open Graph][open-graph]** support with dynamic Open Graph image generation at build time.
 
 Also, well, not a feature, but... **99/100 on [yellowlab.tools]** and **all 100s on [pagespeed.web.dev]**.
 
 ## Backlog
 
-- [ ] Add dynamic Open Graph image generation.
 - [ ] Add article series.
 
 ## License

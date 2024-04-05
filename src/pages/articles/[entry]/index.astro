@@ -25,6 +25,7 @@ const { entry } = Astro.props
 const { title, description, createdAt, updatedAt } = entry.data
 
 const canonical = unslash(Astro.url.href)
+const ogImage = `${canonical}/og.png`
 
 const props = withSeoOptions({
   title: `${title} – ${Common.title}`,
@@ -34,10 +35,16 @@ const props = withSeoOptions({
     basic: {
       title,
       type: 'article',
+      image: ogImage,
       url: canonical
     },
     optional: {
       description
+    },
+    image: {
+      url: ogImage,
+      secureUrl: ogImage,
+      alt: title,
     },
     article: {
       authors: ['Vladislav Mamon'],
