@@ -1,7 +1,7 @@
 ---
 import { withSeoOptions, Common } from '@/config'
 
-import { loadArticles, type ArticleEntry } from '@/api/content'
+import { loadTags, type ArticleEntry } from '@/api/content'
 import { unslash } from '@/api/utils'
 
 import Layout from '@/layouts/Page.astro'
@@ -15,13 +15,9 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const entries = await loadArticles()
+  const tags = await loadTags()
 
-  const tags = new Set(entries.map((entry) => entry.data.tags).flat())
-
-  return [...tags].map((tag) => {
-    const articles = entries.filter((entry) => entry.data.tags.includes(tag))
-
+  return [...tags].map(({ tag, articles }) => {
     return {
       params: { tag },
       props: { tag, articles }
@@ -31,10 +27,11 @@ export async function getStaticPaths() {
 
 const { tag, articles } = Astro.props
 
-const title = `Articles tagged as '${tag}' – ${Common.title}`
-const description = `Articles tagged as '${tag}'.`
+const title = `Articles tagged with #${tag} – ${Common.title}`
+const description = `Articles tagged with #${tag}.`
 
 const canonical = unslash(Astro.url.href)
+const ogImage = `${canonical}/og.png`
 
 const props = withSeoOptions({
   title,
@@ -43,13 +40,19 @@ const props = withSeoOptions({
   noindex: true,
   openGraph: {
     basic: {
-      title: `Articles tagged as '${tag}'`,
+      title: `Articles tagged with #${tag}`,
       type: 'website',
+      image: ogImage,
       url: canonical
     },
     optional: {
       description
-    }
+    },
+    image: {
+      url: ogImage,
+      secureUrl: ogImage,
+      alt: title,
+    },
   }
 })
 ---

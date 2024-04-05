@@ -25,3 +25,18 @@ export async function loadArticles(options?: Partial<LoaderOptions>): Promise<Ar
 
   return entries
 }
+
+export async function loadTags() {
+  const entries = await loadArticles()
+
+  const tags = new Set(entries.map((entry) => entry.data.tags).flat())
+
+  return [...tags].map((tag) => {
+    const articles = entries.filter((entry) => entry.data.tags.includes(tag))
+
+    return {
+      tag,
+      articles
+    }
+  })
+}
