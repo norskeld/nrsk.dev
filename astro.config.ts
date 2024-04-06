@@ -32,7 +32,6 @@ export default defineConfig({
           behavior: 'append',
           content: () => h(null, '§'),
           properties: {
-            tabIndex: -1,
             ariaHidden: 'true',
             class: 'heading-anchor'
           }
