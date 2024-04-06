@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --ec-code-bg: theme(colors.nord.100);
-  --ec-frames-shadow: none;
-  --ec-frames-inline-button-border: none;
-  --ec-frames-tooltip-bg: theme(colors.nord.200);
-  --ec-markers-bg: theme(colors.nord.200);
-  --ec-markers-lb: theme(colors.slate.500);
-  --ec-markers-del-bg: theme(colors.red.500 / 25%);
-  --ec-markers-ins-bg: theme(colors.green.500 / 25%);
-}
-
 @layer base {
+  :root {
+    --ec-code-bg: theme(colors.nord.100);
+    --ec-frames-shadow: none;
+    --ec-frames-inline-button-border: none;
+    --ec-frames-tooltip-bg: theme(colors.nord.200);
+    --ec-markers-bg: theme(colors.nord.200);
+    --ec-markers-lb: theme(colors.slate.500);
+    --ec-markers-del-bg: theme(colors.red.500 / 25%);
+    --ec-markers-ins-bg: theme(colors.green.500 / 25%);
+  }
+
   html {
     @apply min-w-[320px] [text-size-adjust:none]
       scroll-smooth scroll-pt-10 sm:scroll-pt-20
@@ -28,40 +28,40 @@
   ::selection {
     @apply text-gray-800 bg-crayola-200;
   }
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
   }
-}
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
   }
-}
 
-@keyframes slideFromTop {
-  from {
-    transform: translate3d(0, -40px, 0);
+  @keyframes slideFromTop {
+    from {
+      transform: translate3d(0, -40px, 0);
+    }
   }
-}
 
-@keyframes slideFromBottom {
-  from {
-    transform: translate3d(0, 40px, 0);
+  @keyframes slideFromBottom {
+    from {
+      transform: translate3d(0, 40px, 0);
+    }
   }
-}
 
-@keyframes slideToTop {
-  to {
-    transform: translate3d(0, -40px, 0);
+  @keyframes slideToTop {
+    to {
+      transform: translate3d(0, -40px, 0);
+    }
   }
-}
 
-@keyframes slideToBottom {
-  to {
-    transform: translate3d(0, 40px, 0);
+  @keyframes slideToBottom {
+    to {
+      transform: translate3d(0, 40px, 0);
+    }
   }
 }
