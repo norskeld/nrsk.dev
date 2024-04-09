@@ -2,11 +2,7 @@
 
 Personal website &amp; blog.
 
-<p float="center">
-  <img src=".github/assets/main.png" width="33%" alt="Main page, introduction text.">
-  <img src=".github/assets/projects.png" width="33%" alt="Main page, projects section.">
-  <img src=".github/assets/article.png" width="33%" alt="Article page.">
-</p>
+<img src=".github/assets/main.png" width="33%" alt="Main page, introduction text."> <img src=".github/assets/projects.png" width="33%" alt="Main page, projects section."> <img src=".github/assets/article.png" width="33%" alt="Article page.">
 
 ## Features
 
