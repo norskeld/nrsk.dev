@@ -2,7 +2,11 @@
 
 Personal website &amp; blog.
 
-![How it looks like (with dark theme)](.github/assets/screenshot.png)
+<p float="center">
+  <img src=".github/assets/main.png" width="33%" alt="Main page, introduction text.">
+  <img src=".github/assets/projects.png" width="33%" alt="Main page, projects section.">
+  <img src=".github/assets/article.png" width="33%" alt="Article page.">
+</p>
 
 ## Features
 
