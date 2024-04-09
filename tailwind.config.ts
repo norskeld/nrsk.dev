@@ -2,7 +2,7 @@ import type { Config, PluginAPI } from 'tailwindcss/types/config'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import typography from '@tailwindcss/typography'
 
-import { easing } from './src/api/transitions'
+import { inOutBack } from './src/api/transitions'
 
 export default {
   darkMode: 'class',
@@ -52,7 +52,7 @@ export default {
       },
       animation: {
         boing: 'boing 700ms ease-in-out 1',
-        appear: `appear 500ms ${easing}`
+        appear: `appear 500ms ${inOutBack}`
       },
       keyframes: {
         boing: {
@@ -71,6 +71,9 @@ export default {
             transform: 'scale(1)'
           }
         }
+      },
+      transitionTimingFunction: {
+        'in-out-back': inOutBack
       },
       typography: ({ theme }: PluginAPI) => ({
         DEFAULT: {

@@ -39,8 +39,14 @@ const tags = data.tags.map((tag) => ({
       ]}
     >
       <div>
-        <Date created={data.createdAt} updated={data.updatedAt} />
+        <Date
+          created={data.createdAt}
+          updated={data.updatedAt}
+          tooltip
+        />
+
         <Dot />
+
         <span>{time}</span>
       </div>
 

@@ -3,21 +3,24 @@ import { tw } from '@nrsk/tw'
 
 import { formatDate } from '@/api/utils'
 
+import Tooltip from './Tooltip.astro'
+
 type DateLike = Date | string | number
 
 export interface Props {
+  class?: string
   created: DateLike
   updated?: DateLike
   format?: string
-  class?: string
+  tooltip?: boolean
 }
 
-const { created, updated, format = 'd MMM yyyy', class: className } = Astro.props
+const { created, updated, format = 'd MMM yyyy', tooltip = false, class: className } = Astro.props
 
 const isUpdated = typeof updated !== 'undefined'
 
 const createdAt = formatDate(created, 'yyyy-MM-dd')
-const updatedAt = isUpdated ? `Updated: ${formatDate(updated, format)}` : null
+const updatedAt = isUpdated ? `Edited: ${formatDate(updated, format)}` : null
 
 const updatedClasses = tw`
   border-b border-dotted border-b-gray-400 transition-colors
@@ -26,9 +29,24 @@ const updatedClasses = tw`
 `
 ---
 
-<time
-  class:list={[isUpdated && updatedClasses, className]}
-  set:text={formatDate(created, format)}
-  datetime={createdAt}
-  title={updatedAt}
-/>
+{
+  isUpdated && tooltip
+    ?
+      <Tooltip position="right">
+        <time
+          class:list={[isUpdated && updatedClasses, className]}
+          set:text={formatDate(created, format)}
+          datetime={createdAt}
+        />
+
+        <Fragment slot="tooltip">
+          <span class="text-sm">{updatedAt}</span>
+        </Fragment>
+      </Tooltip>
+    :
+      <time
+        class:list={[isUpdated && updatedClasses, className]}
+        set:text={formatDate(created, format)}
+        datetime={createdAt}
+      />
+}

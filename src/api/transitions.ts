@@ -1,5 +1,5 @@
 /** Easing: in-out-back */
-export const easing = 'cubic-bezier(0.68, -0.6, 0.32, 1.6)'
+export const inOutBack = 'cubic-bezier(0.68, -0.6, 0.32, 1.6)'
 
 interface SlideVerticallyOptions {
   duration?: string
@@ -16,13 +16,13 @@ export function slideVertically(options: SlideVerticallyOptions = {}) {
         {
           name: 'fadeOut',
           duration,
-          easing,
+          easing: inOutBack,
           fillMode: 'both'
         },
         {
           name: 'slideToBottom',
           duration,
-          easing,
+          easing: inOutBack,
           fillMode: 'both'
         }
       ],
@@ -30,14 +30,14 @@ export function slideVertically(options: SlideVerticallyOptions = {}) {
         {
           name: 'fadeIn',
           duration,
-          easing,
+          easing: inOutBack,
           delay,
           fillMode: 'both'
         },
         {
           name: 'slideFromTop',
           duration,
-          easing,
+          easing: inOutBack,
           fillMode: 'both'
         }
       ]
