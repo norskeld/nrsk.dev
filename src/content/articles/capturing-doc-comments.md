@@ -2,7 +2,7 @@
 title: 'Capturing doc comments in declarative macros'
 description: "How to: Capture doc comments in Rust's declarative macros."
 createdAt: 2022-11-18
-updatedAt: 2024-04-03
+updatedAt: 2024-04-09
 tags:
   - rust
   - macros
@@ -19,7 +19,7 @@ macro_rules! create (($name:ident, $bytes:expr) => (
 create!(SomeType, 42);
 ```
 
-Unfortunately, it's not gonna work, and compiler will even warn us:
+Unfortunately, it's not gonna work, and the compiler will promptly warn us:
 
 ```ansi title="$ cargo check"
 [0;34;1m8[0m [0;34;1m|[0m /// Really important comment.
@@ -29,7 +29,7 @@ Unfortunately, it's not gonna work, and compiler will even warn us:
   [0;34;1m= [0;1mnote[0m: `#[warn(unused_doc_comments)]` on by default
 ```
 
-As the compiler suggests (thanks, rustc!), the solution is to move the doc comment into macro body and capture it. This will work because doc comments desugar into [attributes]. So the example above can be rewritten as:
+As rustc suggests, the solution is to move the doc comment into macro body and capture it. This will work because doc comments desugar into [attributes]. So the example above can be rewritten as:
 
 ```rust
 #[doc="Really important comment."]
