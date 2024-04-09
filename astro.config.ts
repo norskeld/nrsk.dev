@@ -7,7 +7,6 @@ import sitemap from '@astrojs/sitemap'
 import rehypeSlug from 'rehype-slug'
 import { h } from 'hastscript'
 import mdx from '@astrojs/mdx'
-import icon from 'astro-icon'
 
 import { Common } from './src/config'
 
@@ -72,7 +71,6 @@ export default defineConfig({
     }),
 
     mdx(),
-    icon(),
     astropress()
   ]
 })
