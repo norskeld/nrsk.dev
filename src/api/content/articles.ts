@@ -1,8 +1,21 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { getCollection, z, type CollectionEntry } from 'astro:content'
 
 import { defaults, type LoaderOptions } from '.'
 
 export type ArticleEntry = CollectionEntry<'articles'>
+
+function intoTimestamp(date: Date | string): number {
+  return (date instanceof Date ? date : new Date(date)).valueOf()
+}
+
+export const articlesSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  createdAt: z.string().or(z.date()).transform(intoTimestamp),
+  updatedAt: z.string().or(z.date()).transform(intoTimestamp).optional(),
+  draft: z.boolean().optional(),
+  tags: z.array(z.string())
+})
 
 export async function loadArticles(options?: Partial<LoaderOptions>): Promise<Array<ArticleEntry>> {
   const { sort, limit } = defaults(options)
