@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --ec-code-radius: theme(borderRadius.none);
     --ec-code-bg: theme(colors.nord.100);
     --ec-frames-shadow: none;
     --ec-frames-inline-button-border: none;
@@ -27,6 +28,12 @@
 
   ::selection {
     @apply text-gray-800 bg-crayola-200;
+  }
+
+  @media screen(md) {
+    :root {
+      --ec-code-radius: theme(borderRadius.md);
+    }
   }
 
   @keyframes fadeIn {

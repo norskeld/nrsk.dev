@@ -239,16 +239,6 @@ export default {
                 '&': {
                   margin: `${theme('spacing.6')} 0`
                 }
-              },
-
-              ':where(figure, pre)': {
-                borderRadius: '0 !important',
-
-                [`@media (min-width: ${theme('screens.sm')})`]: {
-                  '&': {
-                    borderRadius: `${theme('borderRadius.lg')} !important`
-                  }
-                }
               }
             }
           }

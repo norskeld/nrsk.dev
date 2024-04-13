@@ -54,6 +54,7 @@ export default defineConfig({
       themes: ['nord'],
       styleOverrides: {
         codeBackground: 'var(--ec-code-bg)',
+        borderRadius: 'var(--ec-code-radius)',
         frames: {
           frameBoxShadowCssValue: 'var(--ec-frames-shadow)',
           inlineButtonBorder: 'var(--ec-frames-inline-button-border)',
