@@ -8,8 +8,8 @@ import ThemeIconDark from './ThemeIconDark.astro'
 
 function iconClasses(isHidden = false) {
   return tw`
-    ${isHidden && 'hidden'} w-5 cursor-pointer
-    animate-appear text-gray-800 dark:text-gray-200 transition-colors
+    ${isHidden && 'hidden'} w-6 cursor-pointer
+    animate-appear text-gray-900 dark:text-gray-50 transition-colors
     group-hover:text-crayola-500 dark:group-hover:text-crayola-300
   `
 }
@@ -22,7 +22,7 @@ function iconClasses(isHidden = false) {
   aria-live="polite"
   class:list={[
     "group flex items-center justify-center",
-    "w-9 h-9 rounded-lg transition-all"
+    "w-auto h-auto rounded-lg transition-colors"
   ]}
 >
   <ThemeIconDark
