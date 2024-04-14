@@ -28,7 +28,7 @@ export default {
         },
         gray: {
           0: '#fcfcfc',
-          50: '#ededee',
+          50: '#f9fafb',
           100: '#e4e4e7',
           200: '#c7c7c8',
           250: '#b5b5b6',
@@ -179,6 +179,7 @@ export default {
 
             // Re-style headers.
             ':where(h1, h2, h3, h4, h5, h6)': {
+              position: 'relative',
               fontWeight: theme('fontWeight.semibold'),
 
               '&:focus-visible': {
@@ -196,10 +197,15 @@ export default {
             '.heading-anchor': {
               opacity: 1,
               border: 'none',
+              display: 'inline-block',
+              position: 'absolute',
+              left: `-${theme('spacing.6')}`,
+              width: theme('width.6'),
+              lineHeight: 'inherit',
               userSelect: 'none',
+              textAlign: 'center',
               textDecorationLine: 'none',
-              marginLeft: theme('spacing.2'),
-              color: theme('colors.gray.300'),
+              color: theme('colors.gray.400'),
               transitionProperty: 'color, opacity',
               transitionDuration: theme('transitionDuration.150'),
               transitionTimingFunction: theme('transitionTimingFunction.in-out'),

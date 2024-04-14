@@ -28,7 +28,7 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behavior: 'append',
+          behavior: 'prepend',
           content: () => h(null, '§'),
           properties: {
             ariaHidden: 'true',
