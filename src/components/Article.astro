@@ -38,7 +38,7 @@ const tags = data.tags.map((tag) => ({
         "text-gray-500 dark:text-gray-400"
       ]}
     >
-      <div>
+      <div class="flex">
         <Date
           created={data.createdAt}
           updated={data.updatedAt}
@@ -52,6 +52,7 @@ const tags = data.tags.map((tag) => ({
 
       <div class="flex">
         <Dot class="hidden sm:block" />
+
         <TagList items={tags} />
       </div>
     </div>
