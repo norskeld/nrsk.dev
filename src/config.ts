@@ -7,7 +7,7 @@ type Optional<T> = {
 }
 
 export const Common = {
-  host: 'https://vm.codes',
+  host: 'https://nrsk.dev',
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
   title: 'Vladislav Mamon',

@@ -1,4 +1,4 @@
-# vm.codes
+# nrsk.dev
 
 Personal website &amp; blog.
 
