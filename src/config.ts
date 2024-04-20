@@ -8,12 +8,13 @@ type Optional<T> = {
 
 export const Common = {
   host: 'https://nrsk.dev',
+  email: 'vlad@nrsk.dev',
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
   title: 'Vladislav Mamon',
   description:
-    `A TypeScript and Rust aficionado doing front-end for a living. ` +
-    `Interested in functional programming, compilers and PL design.`
+    `Software engineer building polished products and web experiences using modern tech stack. ` +
+    `Interested in Rust, functional programming, compilers and programming languages design.`
 } as const
 
 export const Theme = {

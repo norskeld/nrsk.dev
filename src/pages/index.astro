@@ -30,7 +30,7 @@ const articles = await loadArticles({ sort: 'desc' })
 const projects = await loadProjects()
 
 // Links.
-const email = `mailto:vlad@nrsk.dev`
+const email = `mailto:${Common.email}`
 const bandcamp = `https://hypnosense.bandcamp.com`
 const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzSwm0RSCnS70g_sVZXQ`
 ---
@@ -54,9 +54,10 @@ const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzS
     </p>
 
     <p class="text-gray-800 dark:text-gray-300">
-      I'm also a Rust and functional programming aficionado fascinated by design of compilers and
-      programming languages. Sometimes I write music, mostly drone-ambient, which is available for
-      free on my <Link to={bandcamp} external>Bandcamp</Link> and <Link to={spotify} external>Spotify</Link>.
+      I'm also a Rust, TypeScript, and functional programming aficionado fascinated by design of
+      compilers and programming languages. Sometimes I write music, mostly drone-ambient, which is
+      available for free on my <Link to={bandcamp} external>Bandcamp</Link> and
+      <Link to={spotify} external>Spotify</Link>.
     </p>
 
     <hr
@@ -88,7 +89,7 @@ const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzS
         "text-gray-800 dark:text-gray-300"
       ]}
     >
-      I occasionally write about Rust, TypeScript, functional programming, and front-end stuff.
+      I occasionally write about Rust, TypeScript, functional programming, and other stuff.
     </p>
 
     <ArticleList items={articles} />
