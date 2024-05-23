@@ -50,11 +50,12 @@ const tags = data.tags.map((tag) => ({
         <span>{time}</span>
       </div>
 
-      <div class="flex">
-        <Dot class="hidden sm:block" />
+      {tags.length > 0 &&
+        <div class="flex">
+          <Dot class="hidden sm:block" />
 
-        <TagList items={tags} />
-      </div>
+          <TagList items={tags} />
+        </div>}
     </div>
   </header>
 
