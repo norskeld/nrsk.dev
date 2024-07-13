@@ -1,3 +1,4 @@
+
 ---
 title: Cherry-Pick: A Useful GitHub Tool for Managing Commits
 description: Learn how to use the cherry-pick feature in GitHub Desktop to efficiently manage commits across branches.
@@ -8,7 +9,6 @@ tags:
   - version control
   - git
   - software development
-
 ---
 
 # Introduction
@@ -78,5 +78,3 @@ If a new feature developed in a feature branch is also needed in an older releas
 The cherry-pick feature in GitHub Desktop is a powerful tool for managing commits across branches, providing flexibility and precision in your version control workflow. By allowing you to select and apply specific commits, cherry-picking helps streamline the development process, reduce conflicts, and maintain a clean codebase. Whether you're applying hotfixes or backporting features, mastering cherry-picking can significantly enhance your productivity as a developer.
 
 For more detailed information, refer to the [official GitHub documentation](https://docs.github.com/en/desktop/managing-commits/cherry-picking-a-commit-in-github-desktop).
-
-Thank you for reading, and happy coding!
