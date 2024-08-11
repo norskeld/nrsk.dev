@@ -10,6 +10,7 @@ export async function getStaticPaths() {
 
 export const GET: APIRoute = async () => {
   const png = await createOgImage({
+    host: Common.host,
     title: Common.title
   })
 

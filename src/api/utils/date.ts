@@ -11,3 +11,7 @@ export function formatDate(date: Date | string | number, template: string): stri
 
   return format(new Date(date), template)
 }
+
+export function intoTimestamp(date: Date | string): number {
+  return (date instanceof Date ? date : new Date(date)).valueOf()
+}

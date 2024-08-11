@@ -1,4 +1,4 @@
-import { getCollection, z, type CollectionEntry } from 'astro:content'
+import { defineCollection, getCollection, z, type CollectionEntry } from 'astro:content'
 
 export type ProjectEntry = CollectionEntry<'projects'>
 
@@ -43,15 +43,18 @@ const language = z.union([
   z.literal('fsharp')
 ])
 
-export const projectsSchema = z.object({
-  order: z.number().optional().default(-1),
-  name: z.string(),
-  description: z.string(),
-  url: z.string().url(),
-  language: language.transform((lang) => languages[lang]),
-  wip: z.boolean().optional().default(false)
+export const projectsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    order: z.number().optional().default(-1),
+    name: z.string(),
+    description: z.string(),
+    url: z.string().url(),
+    language: language.transform((lang) => languages[lang]),
+    wip: z.boolean().optional().default(false)
+  })
 })
 
-export async function loadProjects(): Promise<Array<ProjectEntry>> {
+export async function getProjects(): Promise<Array<ProjectEntry>> {
   return (await getCollection('projects')).sort((prev, next) => prev.data.order - next.data.order)
 }

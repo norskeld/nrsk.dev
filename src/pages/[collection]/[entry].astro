@@ -1,7 +1,7 @@
 ---
 import { withSeoOptions, Common } from '@/config'
 
-import { loadArticles, type ArticleEntry } from '@/api/content'
+import { getAllArticles, type ArticleEntry } from '@/api/content'
 import { formatDate, stripSuffix } from '@/api/utils'
 import { ogImageUrl } from '@/api/og'
 
@@ -14,12 +14,15 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const articlesRaw = await loadArticles()
+  const articlesRaw = await getAllArticles()
 
   return articlesRaw.map((entry) => ({
-    params: { entry: entry.slug },
-    props: { entry }
-  }))
+      params: {
+        collection: entry.collection,
+        entry: entry.slug
+      },
+      props: { entry }
+    }))
 }
 
 const { entry } = Astro.props
@@ -48,7 +51,7 @@ const props = withSeoOptions({
       alt: title,
     },
     article: {
-      authors: ['Vladislav Mamon'],
+      authors: [Common.author],
       publishedTime: formatDate(createdAt, 'yyyy-LL-dd'),
       ...(updatedAt && {
         modifiedTime: formatDate(updatedAt, 'yyyy-LL-dd')

@@ -1,18 +1,25 @@
-import { defineCollection, z } from 'astro:content'
+import { articlesCollection, projectsCollection, type Collection } from '@/api/content'
 
-import { articlesSchema, projectsSchema } from '@/api/content'
-
-const articles = defineCollection({
-  type: 'content',
-  schema: articlesSchema
-})
-
-const projects = defineCollection({
-  type: 'data',
-  schema: projectsSchema
-})
+export const collectionsMap: Record<Collection['key'], Collection> = {
+  articles: {
+    key: 'articles',
+    name: 'Articles',
+    series: false
+  },
+  projects: {
+    key: 'projects',
+    name: 'Projects',
+    series: false
+  },
+  zeal: {
+    key: 'zeal',
+    name: 'Zeal Devlog',
+    series: true
+  }
+}
 
 export const collections = {
-  articles,
-  projects
+  articles: articlesCollection,
+  projects: projectsCollection,
+  zeal: articlesCollection
 }

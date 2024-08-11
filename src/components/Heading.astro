@@ -1,33 +1,21 @@
 ---
 export interface Props {
+  level?: number
   title?: string
   class?: string
-  description?: string
 }
 
-const { title, class: className, description } = Astro.props
+const { level = 1, title, class: className } = Astro.props
+
+const Element = `h${level}`
 ---
 
-<header
+<Element
   class:list={[
-    "flex flex-col gap-4",
-    "w-full"
+    "text-2xl font-semibold",
+    "text-gray-900 dark:text-gray-50",
+    className
   ]}
 >
-  <h1
-    class:list={[
-      "text-2xl font-semibold",
-      "text-black dark:text-white",
-      className
-    ]}
-  >
-    {Astro.slots.has('title') ? <slot name="title" /> : title}
-  </h1>
-
-  {
-    (Astro.slots.has('description') || description) &&
-      <p class="text-gray-500 dark:text-gray-400">
-        {Astro.slots.has('description') ? <slot name="description" /> : description}
-      </p>
-  }
-</header>
+  {Astro.slots.has('default') ? <slot /> : title}
+</Element>

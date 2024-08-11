@@ -11,7 +11,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans]
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono]
+      },
+      maxWidth: {
+        '2.5xl': '45rem'
       },
       colors: {
         crayola: {
@@ -154,25 +158,22 @@ export default {
             // Re-style links.
             'a': {
               display: 'inline',
-              textDecorationLine: 'none',
+              textDecorationLine: 'underline',
               lineHeight: theme('spacing.5'),
               fontWeight: theme('fontWeight.normal'),
-              transitionProperty: theme('transitionProperty.colors'),
+              transitionProperty: 'color,text-decoration-color',
               transitionDuration: theme('transitionDuration.150'),
               transitionTimingFunction: theme('transitionTimingFunction.in-out'),
-              borderBottom: `1px dotted ${theme('colors.black')}`,
 
-              '&:where(:hover, :focus)': {
+              '&:where(:hover, :focus-visible)': {
                 color: theme('colors.crayola.500'),
-                borderColor: theme('colors.crayola.500')
+                textDecorationColor: 'transparent'
               },
 
               '.dark &': {
-                borderColor: theme('colors.white'),
-
-                '&:where(:hover, :focus)': {
+                '&:where(:hover, :focus-visible)': {
                   color: theme('colors.crayola.300'),
-                  borderColor: theme('colors.crayola.300')
+                  textDecorationColor: 'transparent'
                 }
               }
             },

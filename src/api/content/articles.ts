@@ -1,55 +1,67 @@
-import { getCollection, z, type CollectionEntry } from 'astro:content'
+import { defineCollection, z, type CollectionEntry, type CollectionKey } from 'astro:content'
 
-import { defaults, type LoaderOptions } from '.'
+import { intoTimestamp, partitionBy } from '@/api/utils'
 
-export type ArticleEntry = CollectionEntry<'articles'>
+import { getWithOptions, type LoaderOptions } from '.'
 
-function intoTimestamp(date: Date | string): number {
-  return (date instanceof Date ? date : new Date(date)).valueOf()
+export type ArticleEntry = CollectionEntry<'articles' | 'zeal'>
+
+export interface ArticleTag {
+  tag: string
+  collection: CollectionKey
+  articles: Array<ArticleEntry>
 }
 
-export const articlesSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  createdAt: z.string().or(z.date()).transform(intoTimestamp),
-  updatedAt: z.string().or(z.date()).transform(intoTimestamp).optional(),
-  draft: z.boolean().optional(),
-  tags: z.array(z.string())
+export const articlesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    draft: z.boolean().optional(),
+    title: z.string(),
+    description: z.string(),
+    createdAt: z.string().or(z.date()).transform(intoTimestamp),
+    updatedAt: z.string().or(z.date()).transform(intoTimestamp).optional(),
+    tags: z.array(z.string()).optional()
+  })
 })
 
-export async function loadArticles(options?: Partial<LoaderOptions>): Promise<Array<ArticleEntry>> {
-  const { sort, limit } = defaults(options)
-
-  let entries = await getCollection('articles')
-
-  if (sort !== 'none') {
-    entries.sort((prev, next) => {
-      // prettier-ignore
-      switch (sort) {
-        case 'asc': return prev.data.createdAt - next.data.createdAt
-        case 'desc': return next.data.createdAt - prev.data.createdAt
-      }
-    })
-  }
-
-  if (limit > 0) {
-    entries = entries.slice(0, limit)
-  }
-
-  return entries
+export async function getArticles(options?: Partial<LoaderOptions>): Promise<Array<ArticleEntry>> {
+  return getWithOptions('articles', options)
 }
 
-export async function loadTags() {
-  const entries = await loadArticles()
+export async function getZealArticles(
+  options?: Partial<LoaderOptions>
+): Promise<Array<ArticleEntry>> {
+  return getWithOptions('zeal', options)
+}
 
-  const tags = new Set(entries.map((entry) => entry.data.tags).flat())
+export async function getAllArticles(
+  options?: Partial<LoaderOptions>
+): Promise<Array<ArticleEntry>> {
+  return (await Promise.all([getArticles(options), getZealArticles(options)])).flat()
+}
 
-  return [...tags].map((tag) => {
-    const articles = entries.filter((entry) => entry.data.tags.includes(tag))
+export async function getAllTags(): Promise<Array<ArticleTag>> {
+  const allArticles = await getAllArticles()
+  const allTags = [] as Array<ArticleTag>
 
-    return {
-      tag,
-      articles
-    }
-  })
+  const uniqueTags = new Set(allArticles.flatMap(({ data }) => data?.tags ?? []))
+
+  for (const tag of uniqueTags) {
+    const partitioned = partitionBy(
+      allArticles.filter(({ data }) => (data?.tags ?? []).includes(tag)),
+      ({ collection }) => collection
+    )
+
+    const tags = partitioned.flatMap((articles) =>
+      articles.map(({ collection }) => ({
+        tag,
+        collection,
+        articles
+      }))
+    )
+
+    allTags.push(...tags)
+  }
+
+  return allTags
 }

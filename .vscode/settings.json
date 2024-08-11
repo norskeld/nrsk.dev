@@ -6,6 +6,9 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "[markdown]": {
+    "editor.wordWrapColumn": 100
+  },
   "files.associations": {
     "*.css": "tailwindcss"
   },

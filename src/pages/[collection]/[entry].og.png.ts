@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro'
 
-import { loadArticles, type ArticleEntry } from '@/api/content'
+import { Common } from '@/config'
+
+import { getAllArticles, type ArticleEntry } from '@/api/content'
 import { createOgImage } from '@/api/og'
 
 interface Props {
@@ -8,10 +10,13 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const articles = await loadArticles()
+  const articles = await getAllArticles()
 
   return articles.map((entry) => ({
-    params: { entry: entry.slug },
+    params: {
+      collection: entry.collection,
+      entry: entry.slug
+    },
     props: { entry }
   }))
 }
@@ -20,6 +25,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
   const { data } = props.entry
 
   const png = await createOgImage({
+    host: Common.host,
     title: data.title
   })
 

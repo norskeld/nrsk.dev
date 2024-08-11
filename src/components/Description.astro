@@ -1,0 +1,26 @@
+---
+export interface Props {
+  text?: string
+  wrap?: boolean
+  class?: string
+}
+
+const { text, wrap = true, class: className } = Astro.props
+
+const contents = text === undefined
+  ? await Astro.slots.render('default')
+  : text
+---
+
+{wrap
+  ? (
+    <p
+      class:list={[
+        "text-gray-800 dark:text-gray-300",
+        className
+      ]}
+      set:html={contents}
+    />
+  )
+  : <slot />
+}

@@ -3,7 +3,7 @@ import { ViewTransitions } from 'astro:transitions'
 
 import { SEO, type Props as AstroSeo } from 'astro-seo'
 
-import { Common, Theme } from '@/config'
+import { Common } from '@/config'
 
 import ThemeScript from '@/components/ThemeScript.astro'
 
@@ -11,11 +11,10 @@ export interface Props extends AstroSeo {}
 ---
 
 <!DOCTYPE html>
-<html lang={Common.localeSite} prefix="og: https://ogp.me/ns#" class="dark">
+<html lang={Common.localeSite} prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content={Theme.themeDark} />
 
     {/* Fonts. */}
     <link
@@ -35,8 +34,7 @@ export interface Props extends AstroSeo {}
       }
     </style>
 
-    {/* Favicons & Webmanifest. */}
-    <link rel="manifest" href="/site.webmanifest" />
+    {/* Favicons. */}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

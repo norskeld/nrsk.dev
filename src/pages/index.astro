@@ -1,12 +1,14 @@
 ---
 import { withSeoOptions, Common } from '@/config'
 
-import { loadArticles, loadProjects } from '@/api/content'
+import { getArticles, getProjects, getZealArticles } from '@/api/content'
 import { stripSuffix } from '@/api/utils'
 
 import Layout from '@/layouts/Index.astro'
 
 import ArticleList from '@/components/ArticleList.astro'
+import Description from '@/components/Description.astro'
+import Heading from '@/components/Heading.astro'
 import Link from '@/components/Link.astro'
 
 const canonical = Astro.url.href
@@ -26,39 +28,34 @@ const props = withSeoOptions({
   }
 })
 
-const articles = await loadArticles({ sort: 'desc' })
-const projects = await loadProjects()
+const articles = await getArticles({ sort: 'desc' })
+const zealArticles = await getZealArticles({ sort: 'desc' })
+const projects = await getProjects()
 
 // Links.
 const email = `mailto:${Common.email}`
 const bandcamp = `https://hypnosense.bandcamp.com`
 const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzSwm0RSCnS70g_sVZXQ`
+const resty = `https://resty.cc`
 ---
 
 <Layout {...props}>
   <!-- Introduction. -->
   <section class="flex flex-col gap-4">
-    <h2
-      class:list={[
-        "text-2xl font-semibold",
-        "text-gray-900 dark:text-gray-50"
-      ]}
-    >
-      Hello!
-    </h2>
+    <Heading level={2}>Hello!</Heading>
 
-    <p class="text-gray-800 dark:text-gray-300">
-      I'm a software engineer building polished products and web experiences using modern tech stack.
-      My expertise ranges from working independently to leading teams towards project success as a
-      tech/team lead.
-    </p>
+    <Description>
+      I'm a software engineer building polished products and web experiences using modern tech
+      stack. My expertise ranges from working independently to leading teams towards project
+      success as a tech/team lead.
+    </Description>
 
-    <p class="text-gray-800 dark:text-gray-300">
+    <Description>
       I'm also a Rust, TypeScript, and functional programming aficionado fascinated by design of
-      compilers and programming languages. Sometimes I write music, mostly drone-ambient, which is
-      available for free on my <Link to={bandcamp} external>Bandcamp</Link> and
+      compilers and programming languages. Sometimes I write music, mostly drone-ambient, which
+      is available for free on my <Link to={bandcamp} external>Bandcamp</Link> and
       <Link to={spotify} external>Spotify</Link>.
-    </p>
+    </Description>
 
     <hr
       class:list={[
@@ -67,53 +64,50 @@ const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzS
       ]}
     />
 
-    <p class="text-gray-800 dark:text-gray-300">
+    <Description class="prose dark:prose-invert">
+      I'm currently the founding engineer at <strong>Resty</strong> on the mission to build the best
+      payment solution for restaurants and visitors.
+    </Description>
+
+    <Description>
       You can reach me via <Link to={email}>email</Link>.
-    </p>
+    </Description>
   </section>
+
+  <!-- Zeal devlog. -->
+  {zealArticles.length > 0 && (
+    <section id="zeal" class="flex flex-col gap-4">
+      <Heading level={2}>Zeal Devlog</Heading>
+
+      <Description class="prose dark:prose-invert mb-2">
+        The development log for <strong>Zeal</strong> —
+        a statically-typed programming language, embracing a single ownership model.
+      </Description>
+
+      <ArticleList items={zealArticles} />
+    </section>
+  )}
 
   <!-- Articles. -->
-  <section class="flex flex-col gap-4">
-    <h2
-      class:list={[
-        "text-2xl font-semibold",
-        "text-gray-900 dark:text-gray-50"
-      ]
-    }>
-      Articles
-    </h2>
+  {articles.length > 0 && (
+    <section id="articles" class="flex flex-col gap-4">
+      <Heading level={2}>Articles</Heading>
 
-    <p
-      class:list={[
-        "mb-2",
-        "text-gray-800 dark:text-gray-300"
-      ]}
-    >
-      I occasionally write about Rust, TypeScript, functional programming, and other stuff.
-    </p>
+      <Description class="mb-2">
+        I occasionally write about Rust, TypeScript, functional programming, and other stuff.
+      </Description>
 
-    <ArticleList items={articles} />
-  </section>
+      <ArticleList items={articles} />
+    </section>
+  )}
 
   <!-- Projects. -->
   <section class="flex flex-col gap-4">
-    <h2
-      class:list={[
-        "text-2xl font-semibold",
-        "text-gray-900 dark:text-gray-50"
-      ]}
-    >
-      Projects
-    </h2>
+    <Heading level={2}>Projects</Heading>
 
-    <p
-      class:list={[
-        "mb-2",
-        "text-gray-800 dark:text-gray-300"
-      ]}
-    >
+    <Description>
       Some of my OSS projects.
-    </p>
+    </Description>
 
     <ul
       class:list={[
@@ -122,49 +116,47 @@ const spotify = `https://open.spotify.com/artist/1EqX9erOVQHCVlAwGihPS2?si=U6WzS
         "[grid-auto-rows:minmax(0,auto)] sm:[grid-auto-rows:minmax(10rem,auto)]"
       ]}
     >
-      {
-        projects.map((project) => (
-          <li
+      {projects.map((project) => (
+        <li
+          class:list={[
+            "group/card",
+            "flex flex-col gap-2 p-4 rounded-lg transition-all ease-in-out duration-200",
+            "bg-gray-100/50 dark:bg-gray-400/5",
+            "hover:bg-gray-50 dark:hover:bg-gray-400/10",
+            "hover:shadow-neon hover:scale-[1.02]"
+          ]}
+        >
+          <Link
+            to={project.data.url}
             class:list={[
-              "group/card",
-              "flex flex-col gap-2 p-4 rounded-lg transition-all ease-in-out duration-200",
-              "bg-gray-100/50 dark:bg-gray-400/5",
-              "hover:bg-gray-50 dark:hover:bg-gray-400/10",
-              "hover:shadow-neon hover:scale-[1.02]"
+              "group/title inline-flex w-min",
+              "!font-medium"
             ]}
+            underline={false}
+            external
           >
-            <Link
-              to={project.data.url}
+            <span class="inline">{project.data.name}</span>
+            <span
               class:list={[
-                "group/title inline-flex w-min",
-                "!font-medium"
-              ]}
-              underline={false}
-              external
-            >
-              <span class="inline">{project.data.name}</span>
-              <span
-                class:list={[
-                  "inline select-none transition-colors",
-                  "text-gray-500 dark:text-gray-400",
-                  "group-hover/title:text-crayola-500 dark:group-hover/title:text-crayola-300"
-                ]}
-              >
-                {project.data.language.ext}
-              </span>
-            </Link>
-
-            <div
-              class:list={[
-                "cursor-default transition-colors",
+                "inline select-none transition-colors",
                 "text-gray-500 dark:text-gray-400",
-                "group-hover/card:text-gray-700 dark:group-hover/card:text-gray-300"
+                "group-hover/title:text-crayola-500 dark:group-hover/title:text-crayola-300"
               ]}
-              set:html={project.data.description}
-            />
-          </li>
-        ))
-      }
+            >
+              {project.data.language.ext}
+            </span>
+          </Link>
+
+          <div
+            class:list={[
+              "cursor-default transition-colors",
+              "text-gray-500 dark:text-gray-400",
+              "group-hover/card:text-gray-700 dark:group-hover/card:text-gray-300"
+            ]}
+            set:html={project.data.description}
+          />
+        </li>
+      ))}
     </ul>
 
     <p class="text-gray-800 dark:text-gray-300">

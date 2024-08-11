@@ -15,14 +15,15 @@ const linkTarget = blank ? '_blank' : '_self'
 const linkRel = external ? 'noopener noreferrer external' : null
 
 const linkClassesBase = tw`
-  inline leading-5 font-normal no-underline transition-colors
+  inline leading-5 transition-colors
   text-black dark:text-white
   hover:text-crayola-500 dark:hover:text-crayola-300
 `
 
 const linkBorderClasses = tw`
-  border-b border-dotted border-black dark:border-white
-  hover:border-crayola-500 dark:hover:border-crayola-300
+  underline decoration-solid
+  hover:text-crayola-500 hover:dark:text-crayola-300
+  hover:decoration-transparent focus-visible:decoration-transparent
 `
 
 const linkClasses = underline ? tw`${linkClassesBase} ${linkBorderClasses}` : linkClassesBase

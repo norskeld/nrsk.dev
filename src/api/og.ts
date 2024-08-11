@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { stripSuffix } from './utils'
 
 export interface OgOptions {
+  host: string
   title: string
   titleColor?: string
 }
@@ -15,10 +16,12 @@ export interface OgImageUrl {
   secureUrl: string
 }
 
-export async function createOgImage({ title, titleColor }: OgOptions): Promise<Buffer> {
+export async function createOgImage({ host: url, title, titleColor }: OgOptions): Promise<Buffer> {
   const icon = await readFile('./public/icon-inverted.png')
   const interRegular = await readFile('./public/fonts/og/inter-regular.ttf')
   const interSemiBold = await readFile('./public/fonts/og/inter-semibold.ttf')
+
+  const host = url.startsWith('http') ? new URL(url).host : url
 
   const options = {
     width: 1200,
@@ -93,7 +96,7 @@ export async function createOgImage({ title, titleColor }: OgOptions): Promise<B
                           opacity: 0.5,
                           fontSize: 48
                         },
-                        children: 'nrsk.dev'
+                        children: host
                       }
                     },
 

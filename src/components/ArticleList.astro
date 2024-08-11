@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components'
+
 import type { ArticleEntry } from '@/api/content'
 
 import Date from './Date.astro'
@@ -12,33 +14,46 @@ const { items } = Astro.props
 ---
 
 <ul class="flex flex-col gap-4">
-  {
-    items.map((article) => (
-      <li class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-        <Link
-          to={'/articles/' + article.slug}
-          class="font-medium flex-none"
-          underline={false}
-        >
-          {article.data.title}
-        </Link>
+  {items.length === 0 && (
+    <li class="text-gray-500 dark:text-gray-400">Whoops, nothing here yet!</li>
+  )}
 
-        <div
-          class:list={[
-            "hidden sm:block w-full",
-            "border-b-2 border-dotted",
-            "border-gray-200 dark:border-gray-800"
-          ]}
-        />
+  {items.map((article) => (
+    <li class="relative flex flex-row flex-wrap sm:flex-nowrap items-center gap-1 sm:gap-3">
+      <Link
+        to={`/${article.collection}/${article.slug}`}
+        class="flex-none w-fit"
+        underline={false}
+      >
+        {article.data.title}
+      </Link>
 
-        <Date
-          created={article.data.createdAt}
+      {article.data.draft && (
+        <Icon
+          name="draft"
+          title="This is a draft"
           class:list={[
-            "flex-none text-sm",
+            "flex-shrink-0 cursor-help",
             "text-gray-500 dark:text-gray-400"
           ]}
         />
-      </li>
-    ))
-  }
+      )}
+
+      <div
+        class:list={[
+          "hidden sm:block w-full",
+          "border-b-2 border-dotted",
+          "border-gray-200 dark:border-gray-800"
+        ]}
+      />
+
+      <Date
+        created={article.data.createdAt}
+        class:list={[
+          "flex-none w-full sm:w-auto text-sm",
+          "text-gray-500 dark:text-gray-400"
+        ]}
+      />
+    </li>
+  ))}
 </ul>

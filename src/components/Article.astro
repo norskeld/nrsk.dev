@@ -1,8 +1,12 @@
 ---
-import type { ArticleEntry } from '@/api/content'
-import { readingTime } from '@/api/utils'
+import { getAllArticles, type ArticleEntry } from '@/api/content'
 
+import { collectionsMap } from '@/content/config'
+
+import Dropdown from './Dropdown.astro'
+import Heading from './Heading.astro'
 import TagList from './TagList.astro'
+import Link from './Link.astro'
 import Date from './Date.astro'
 import Dot from './Dot.astro'
 
@@ -10,27 +14,30 @@ export interface Props {
   item: ArticleEntry
 }
 
-const { body, data, render } = Astro.props.item
+const { collection, data, render } = Astro.props.item
 
 const { Content } = await render()
 
-const time = readingTime(body)
-const tags = data.tags.map((tag) => ({
+const tags = (data?.tags ?? []).map((tag) => ({
   tag,
-  url: `/articles/tag/${tag}`
+  url: `/${collection}/tag/${tag}`
 }))
+
+const collectionInfo = collectionsMap[collection]
+
+const seriesArticles = (await getAllArticles({ sort: 'asc' }))
+  .filter((it) => it.collection === collection)
+
+function isArticleActive(article: ArticleEntry): boolean {
+  return `${collection}:${data.title}` === `${article.collection}:${article.data.title}`
+}
 ---
 
 <article class="flex flex-col justify-center items-start gap-10 sm:gap-12 w-full">
   <header class="flex flex-col gap-4 w-full">
-    <h1
-      class:list={[
-        "text-2xl font-semibold",
-        "text-black dark:text-white"
-      ]}
-    >
+    <Heading>
       {data.title}
-    </h1>
+    </Heading>
 
     <div
       class:list={[
@@ -39,25 +46,52 @@ const tags = data.tags.map((tag) => ({
       ]}
     >
       <div class="flex">
-        <Date
-          created={data.createdAt}
-          updated={data.updatedAt}
-          tooltip
-        />
+        <Date created={data.createdAt} />
 
-        <Dot />
-
-        <span>{time}</span>
-      </div>
-
-      {tags.length > 0 &&
-        <div class="flex">
-          <Dot class="hidden sm:block" />
+        {tags.length > 0 && (
+          <Dot />
 
           <TagList items={tags} />
-        </div>}
+        )}
+      </div>
     </div>
   </header>
+
+  {collectionInfo.series && (
+    <Dropdown>
+      <p slot="summary">
+        <Link to={`/#${collection}`}>{collectionInfo.name}</Link> series.
+      </p>
+
+      <ol
+        slot="content"
+        class:list={[
+          "flex flex-col gap-2 list-inside list-[upper-roman]",
+          "text-gray-500 dark:text-gray-400"
+        ]}
+      >
+        {seriesArticles.map((article) => (
+          <a
+            href={`/${article.collection}/${article.slug}`}
+            class:list={[
+              isArticleActive(article)
+                ? "text-black dark:text-white"
+                : "text-gray-400 dark:text-gray-500"
+            ]}
+          >
+            <li
+              class:list={[
+                "py-1 px-2 -my-1 -mx-2 rounded-md transition-colors",
+                !isArticleActive(article) && "hover:text-gray-700 hover:dark:text-gray-300"
+              ]}
+            >
+              {article.data.title}
+            </li>
+          </a>
+        ))}
+      </ol>
+    </Dropdown>
+  )}
 
   <section
     class:list={[

@@ -1,7 +1,7 @@
 ---
 import { withSeoOptions, Common } from '@/config'
 
-import { loadTags, type ArticleEntry } from '@/api/content'
+import { getAllTags, type ArticleEntry } from '@/api/content'
 import { stripSuffix } from '@/api/utils'
 import { ogImageUrl } from '@/api/og'
 
@@ -16,14 +16,10 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const tags = await loadTags()
-
-  return [...tags].map(({ tag, articles }) => {
-    return {
-      params: { tag },
-      props: { tag, articles }
-    }
-  })
+  return (await getAllTags()).map(({ tag, collection, articles }) => ({
+    params: { tag, collection },
+    props: { tag, articles }
+  }))
 }
 
 const { tag, articles } = Astro.props
@@ -59,12 +55,20 @@ const props = withSeoOptions({
 ---
 
 <Layout {...props}>
-  <Heading
+  <header
     class:list={[
-      "before:content-['#'] before:font-mono",
-      "before:text-gray-400 dark:before:text-gray-400"
+      "flex flex-col gap-4",
+      "w-full"
     ]}
-    title={tag}
-  />
+  >
+    <Heading
+      class:list={[
+        "before:content-['#'] before:font-mono",
+        "before:text-gray-400 dark:before:text-gray-400"
+      ]}
+      title={tag}
+    />
+  </header>
+
   <ArticleList items={articles} />
 </Layout>

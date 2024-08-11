@@ -1,5 +1,5 @@
+export * from './arrays'
 export * from './date'
 export * from './inflect'
 export * from './object'
 export * from './paths'
-export * from './reading-time'
