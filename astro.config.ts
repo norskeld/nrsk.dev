@@ -1,14 +1,16 @@
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import expressive from 'astro-expressive-code'
 import { defineConfig } from 'astro/config'
+import webmanifest from 'astro-webmanifest'
 import astropress from '@nrsk/astropress'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import rehypeSlug from 'rehype-slug'
 import { h } from 'hastscript'
 import mdx from '@astrojs/mdx'
+import icon from 'astro-icon'
 
-import { Common } from './src/config'
+import { Common, Manifest } from './src/config'
 
 import { stripSuffix } from './src/api/utils'
 
@@ -39,10 +41,16 @@ export default defineConfig({
     ]
   },
   integrations: [
+    icon({
+      iconDir: 'src/assets/icons'
+    }),
+
     tailwind({
       configFile: 'tailwind.config.ts',
       applyBaseStyles: false
     }),
+
+    webmanifest(Manifest),
 
     sitemap({
       lastmod: new Date(),

@@ -1,4 +1,5 @@
-import type { Props as AstroSeo } from 'astro-seo'
+import type { Webmanifest } from 'astro-webmanifest'
+import type { SEOProps } from 'astro-seo'
 
 import { merge } from './api/utils'
 
@@ -11,6 +12,7 @@ export const Common = {
   email: 'vlad@nrsk.dev',
   localeSite: 'en-US',
   localeOpenGraph: 'en_US',
+  author: 'Vladislav Mamon',
   title: 'Vladislav Mamon',
   description:
     `Software engineer building polished products and web experiences using modern tech stack. ` +
@@ -27,7 +29,32 @@ export const Theme = {
   localStorageKey: 'color-scheme'
 } as const
 
-export const Seo: AstroSeo = {
+export const Manifest: Webmanifest = {
+  name: Common.title,
+  description: Common.description,
+  start_url: Common.host,
+  short_name: new URL(Common.host).host,
+  dir: 'ltr',
+  lang: Common.localeSite,
+  display: 'standalone',
+  orientation: 'portrait-primary',
+  theme_color: Theme.themeDark,
+  background_color: Theme.themeDark,
+  icons: [
+    {
+      src: 'icon-192x192.png',
+      sizes: '192x192',
+      type: 'image/png'
+    },
+    {
+      src: 'icon-512x512.png',
+      sizes: '512x512',
+      type: 'image/png'
+    }
+  ]
+}
+
+export const Seo: SEOProps = {
   title: Common.title,
   description: Common.description,
   openGraph: {
@@ -57,6 +84,6 @@ export const Seo: AstroSeo = {
   }
 }
 
-export function withSeoOptions(options: Optional<AstroSeo> = {}): AstroSeo {
+export function withSeoOptions(options: Optional<SEOProps> = {}): SEOProps {
   return merge(structuredClone(Seo), options)
 }
