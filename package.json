@@ -48,6 +48,10 @@
       "@nrsk/config-conventional"
     ]
   },
+    "resolutions": {
+    "astro/sharp": "0.33.1",
+    "astro-compress/sharp": "0.33.1"
+  },
   "lint-staged": {
     "*.{cjs,ts,json}": [
       "prettier --write"
