@@ -1,6 +1,6 @@
 order: 2
-name: arx
-description: Simple and user-friendly command-line tool for declarative scaffolding
-url: https://github.com/norskeld/arx#readme
+name: decaff
+description: Opinionated, simple, user-friendly command-line tool for declarative scaffolding.
+url: https://github.com/norskeld/decaff#readme
 language: rust
-wip: true
+wip: false
