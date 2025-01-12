@@ -9,7 +9,7 @@ import ThemeIconDark from './ThemeIconDark.astro'
 function iconClasses(isHidden = false) {
   return tw`
     ${isHidden && 'hidden'} w-6 cursor-pointer
-    animate-appear text-gray-900 dark:text-gray-50 transition-colors
+    text-gray-900 dark:text-gray-50 transition-colors
     group-hover:text-crayola-500 dark:group-hover:text-crayola-300
   `
 }
@@ -36,7 +36,7 @@ function iconClasses(isHidden = false) {
   />
 </button>
 
-<script is:inline data-astro-rerun define:vars={Theme}>
+<script is:inline define:vars={Theme}>
 // Text node for disabling transitions.
 const noTransitionsNode = document.createTextNode(`* { transition: none !important }`)
 

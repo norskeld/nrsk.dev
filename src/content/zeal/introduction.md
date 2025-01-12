@@ -9,9 +9,9 @@ This post opens the development log of **Zeal** — a statically-typed programmi
 
 ## Why?
 
-I'm not going to rant here about how all other languages are bad or inherently broken — they are not — at least not all of them — but I definitely accumulated some annoyance and frustration while use most of them. On the other hand, I also accumulated a lot of aspiration to make a language. This is mostly a toy project which I plan to use as an opportunity to revive this blog and learn something new about:
+I'm not going to rant here about how all other languages are bad or inherently broken — they are not (at least not all of them), but I definitely accumulated some annoyance and frustration while using most of them. On the other hand, I also accumulated a lot of aspiration to make a language. This is mostly a toy project which I plan to use as an opportunity to revive this blog and learn something new about:
 
-- lower-level stuff like memory management, VMs, syscalls;
+- lower-level stuff like memory management and VMs;
 - different concurrency models and their inner workings;
 - hand rolled lexers and parsers;
 - type systems implementation.
@@ -24,5 +24,3 @@ I had a fair amount of exposure to other languages and gradually formed a taste 
 2. a practical and simple type system with single ownership model;
 3. a Go/Elixir-like M:N concurrency model;
 4. a GC-less bytecode virtual machine.
-
-As you can see, it's somewhat ambitious. At the very least I'd like to implement

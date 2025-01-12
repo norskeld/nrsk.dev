@@ -2,8 +2,6 @@ import type { Config, PluginAPI } from 'tailwindcss/types/config'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import typography from '@tailwindcss/typography'
 
-import { inOutBack } from './src/api/transitions'
-
 export default {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,mdx,ts,tsx}'],
@@ -55,8 +53,7 @@ export default {
         neon: '0 25px 50px -12px #006ae620'
       },
       animation: {
-        boing: 'boing 700ms ease-in-out 1',
-        appear: `appear 500ms ${inOutBack}`
+        boing: 'boing 700ms ease-in-out 1'
       },
       keyframes: {
         boing: {
@@ -64,20 +61,7 @@ export default {
           '49.95%': { transform: 'scale(0.95)' },
           '83.25%': { transform: 'scale(1.01)' },
           '100%': { transform: 'scale(1)' }
-        },
-        appear: {
-          from: {
-            opacity: '0',
-            transform: 'scale(0)'
-          },
-          to: {
-            opacity: '1',
-            transform: 'scale(1)'
-          }
         }
-      },
-      transitionTimingFunction: {
-        'in-out-back': inOutBack
       },
       typography: ({ theme }: PluginAPI) => ({
         DEFAULT: {

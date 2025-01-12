@@ -1,6 +1,4 @@
 ---
-import { slideVertically } from '@/api/transitions'
-
 import ThemeSwitcher from './ThemeSwitcher.astro'
 import Avatar from './Avatar.astro'
 import Link from './Link.astro'
@@ -24,7 +22,6 @@ export interface Item {
       "flex items-center justify-between",
       "w-full max-w-2xl mx-auto px-8 lg:px-0"
     ]}
-    transition:animate={slideVertically({ duration: '600ms' })}
   >
     <Link to="/" underline={false}>
       <div class="group flex items-center gap-4">

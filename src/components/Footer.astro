@@ -1,6 +1,4 @@
 ---
-import { slideVertically } from '@/api/transitions'
-
 import FooterItem from './FooterItem.astro'
 import Link from './Link.astro'
 import Dot from './Dot.astro'
@@ -11,7 +9,6 @@ import Dot from './Dot.astro'
     "flex w-full max-w-2xl",
     "mt-auto pt-8 pb-16 px-8 lg:px-0"
   ]}
-  transition:animate={slideVertically({ duration: '200ms' })}
 >
   <FooterItem>&copy; 2021&ndash;present</FooterItem>
 

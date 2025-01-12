@@ -1,6 +1,6 @@
 order: 2
 name: decaff
-description: Opinionated, simple, user-friendly command-line tool for declarative scaffolding.
+description: Opinionated, simple, user-friendly command-line tool for declarative scaffolding
 url: https://github.com/norskeld/decaff#readme
 language: rust
 wip: false

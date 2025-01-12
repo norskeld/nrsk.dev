@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
-
 import { SEO, type Props as AstroSeo } from 'astro-seo'
 
 import { Common } from '@/config'
@@ -41,13 +39,10 @@ export interface Props extends AstroSeo {}
 
     {/* OpenGraph & other essential props like `title` and `description`. */}
     <SEO {...Astro.props} />
-
-    {/* View transitions. */}
-    <ViewTransitions />
   </head>
 
   <body>
-    <ThemeScript transition:persist />
+    <ThemeScript />
 
     <div
       class:list={[
