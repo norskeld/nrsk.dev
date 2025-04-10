@@ -31,7 +31,6 @@
     "@tailwindcss/typography": "^0.5.8",
     "@types/node": "^18.11.9",
     "astro": "^2.0.15",
-    "astro-compress": "^2.2.10",
     "astro-seo": "^0.7.1",
     "autoprefixer": "^10.4.13",
     "date-fns": "^2.29.3",
@@ -49,8 +48,7 @@
     ]
   },
     "resolutions": {
-    "astro/sharp": "0.33.1",
-    "astro-compress/sharp": "0.33.1"
+    "astro/sharp": "0.33.1"
   },
   "lint-staged": {
     "*.{cjs,ts,json}": [
