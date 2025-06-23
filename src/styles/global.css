@@ -16,7 +16,7 @@
   }
 
   html {
-    @apply min-w-[320px] [text-size-adjust:none] md:text-[18px]
+    @apply min-w-[320px] [text-size-adjust:none]
       scroll-smooth scroll-pt-10 sm:scroll-pt-20
       bg-gray-50;
   }

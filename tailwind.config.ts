@@ -63,6 +63,9 @@ export default {
           '100%': { transform: 'scale(1)' }
         }
       },
+      transitionTimingFunction: {
+        'cubic-in-out': 'cubic-bezier(0.65, 0, 0.35, 1)'
+      },
       typography: ({ theme }: PluginAPI) => ({
         DEFAULT: {
           css: {
