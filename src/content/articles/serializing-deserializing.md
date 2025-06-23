@@ -2,13 +2,15 @@
 title: '(De)serializing sets, maps and dates'
 description: 'How to: Serialize and deserialize Set, Map, or Date using JSON.stringify and JSON.parse.'
 createdAt: 2023-08-30
-updatedAt: 2024-04-03
+updatedAt: 2025-06-23
 tags:
   - typescript
   - serialization
 ---
 
-I think we all sometimes need to serialize and deserialize `Set`, `Map` or `Date` objects in JavaScript, but [JSON.stringify] and [JSON.parse] historically don't handle them. Often, it's a good idea to sit down and pick a good serialization library or data interchange format ([MessagePack][messagepack], [Protocol Buffers][protobuf], [Avro][avro]), but sometimes we don't want to bring dependencies for a relatively simple use-case.
+Sometimes we need to serialize and deserialize `Set`, `Map` or `Date` objects in JavaScript, but [JSON.stringify] and [JSON.parse] historically don't handle them.
+
+Often, it's a good idea to pick a good serialization library or data interchange format ([MessagePack][messagepack], [Protocol Buffers][protobuf], [Avro][avro]), but sometimes it's simply not practical or desirable to bring dependencies for a relatively simple use-case.
 
 For instance, I recently needed to store a relatively small state with `Set` and `Map` objects in `localStorage`. So I decided to write a couple of helper functions that are capable of serializing/deserializing simple `Set`, `Map` and `Date` objects without any dependencies.
 
@@ -16,22 +18,22 @@ In this article I'll show how I did that.
 
 ## Representation
 
-Before we start actually serializing and deserializing custom objects, let's first think how we could represent them in plain JSON. The idea I came up with is simple: we encode values as tuples with custom string markers as the first element and our custom representation of the value as the second. Some examples:
+Before we start actually serializing and deserializing custom objects, let's first think how we will represent them in plain JSON. The idea I came up with is simple: we encode values as tuples with custom string markers as the first element, and our custom representation of the value as the second. Some examples:
 
 ```typescript
 serialize(new Set([1, 2, 3]))
-// => ['@set', [1, 2, 3]]
+//> ['@set', [1, 2, 3]]
 
 serialize(new Map([['a', 1], ['b', 2], ['c', 3]]))
-// => ['@map', [['a', 1], ['b', 2], ['c', 3]]]
+//> ['@map', [['a', 1], ['b', 2], ['c', 3]]]
 
 serialize(new Date("2023-08-30"))
-// => ['@date', '2023-08-30T00:00:00.000Z']
+//> ['@date', '2023-08-30T00:00:00.000Z']
 ```
 
 Then, when deserializing, we check if we're looking at a tuple and check if its first element is a marker. If it is, we deserialize it into the object we need. Simple and easy.
 
-Some downsides of this approach:
+This approach has some downsides, though:
 
 - It's space inefficient.
 - String markers may collide with some arbitrary strings.
