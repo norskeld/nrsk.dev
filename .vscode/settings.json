@@ -6,6 +6,11 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+  "[mdc]": {
+    "editor.wordWrapColumn": 100
+  },
   "[markdown]": {
     "editor.wordWrapColumn": 100
   },

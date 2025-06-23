@@ -1,8 +1,8 @@
 ---
 title: 'Demystifying monads'
-description: "In this article we're going to find out, without diving into tangled mathematical jargon, what monads are and what for we may want to use them."
+description: 'Another take on monads, this time without diving into tangled mathematical jargon.'
 createdAt: 2021-12-01
-updatedAt: 2023-02-26
+updatedAt: 2025-06-23
 tags:
   - fp
   - monads
@@ -18,20 +18,19 @@ Now, let's unpack.
 
 ## Control abstractions
 
-In the practice of computer programming, _control logic_ refers to program code that defines the infrastructure needed to support a particular behavior. Broadly speaking, the control logic is the cruft and boilerplate required to execute the code we're actually interested in writing. Control logic includes such mundane patterns as:
+_Control logic_ is the scaffolding around your actual program logic, things like:
 
 - Error propagation
 - Iteration
 - Stack manipulation
 - Virtual dispatch
 
-A common example of control logic is the classic error propagation routine:
+Here's a simple example in JavaScript:
 
 ```javascript
 function main() {
   const { isError } = fallible(state)
 
-  // This is control logic!
   if (isError) {
     throw 'Error happened!'
   }
@@ -40,20 +39,19 @@ function main() {
 }
 ```
 
-A _control abstraction_ provides a way to separate a control structure from the interesting code inside it. Common control abstractions are:
+That `if (isError)` check is control logic. A _control abstraction_ provides a way to separate a control structure from the interesting code inside it. Common control abstractions are:
 
 - **Exception handling**, for error propagation
 - **Objects and interfaces**, for virtual dispatch
 - **Function invocation**, for stack manipulation
 - **Memory management**
 
-The first two (exceptions and objects) are commonplace in languages that prefer or enforce the object-oriented paradigm. Function invocation is much more fundamental and is present in almost every language, except some of the more limited assembly languages.
-
-The presence of many control abstractions is one of, if not _the_, defining feature of high-level languages. High-level systems languages like Rust provide destructors, automatic resource management, and smart pointers. Using these control abstractions certainly results in less, more interesting code than if the control logic was to be entangled with the more unique parts of the program.
+The presence of control abstractions is one of, if not _the_, defining features of high-level languages. Rust, for example, provides destructors, automatic resource management, and smart pointers. Using these control abstractions simplifies control logic and results in less boilerplate needed to execute the code we're actually interested in writing.
 
 ## Effectful functions
 
-The term _effect_ can mean many things in a programming context, but we use it here to mean "anything that results from a function other than its return value." Effects generally include:
+<!-- An _effect_ is generally anything a function does besides return a value: -->
+An _effect_ refers to any phenomenon that arises during program execution beyond just computing a value. Effects introduce additional behavior that affects the program's control flow, state, or interaction with the external world, for instance:
 
 - Returning an error
 - Throwing an exception
@@ -63,23 +61,23 @@ The term _effect_ can mean many things in a programming context, but we use it h
 - Synchronizing in a multithreaded environment
 - Reading or modifying global variables
 
-An effectful function, therefore, is a function that produces or consumes at least one effect. In most languages, any function can be an effectful function, but some mainstream languages restrict some effects to specially decorated functions. For example, [Java has checked exceptions] that must be opted into with a function `throws` clause, a widely criticized form of effect.
+An effectful function, therefore, is a function that produces or consumes at least one effect. In most languages, any function can be an effectful function, but some languages make effects explicit, e.g. Java has checked exceptions; experimental languages like [Koka] or [Eff] have algebraic effects; OCaml recently introduced [algebraic effects support][ocaml-effects] as well.
 
 ## Function composition
 
-Function composition is a way to sequence functions by feeding the output of one function into the input of another one. You may actually remember the mathematical definition of function composition from school:
+Function composition is a way to sequence functions by feeding the output of one function into the input of another one:
 
 ```
 (f ∘ g)(x) = f(g(x))
 ```
 
-Function composition in the functional paradigm allows the programmer to express a sequence of computations — functions — as a single computation that chains each component function one after the other, output-to-input. Ideally, if `f` and `g` produce an effect, then the composition of the two should produce that effect as well. However, plain function composition requires that the result type of `g` match the argument type of `f` exactly. The functions can no longer be composed unless `f` accepts the exact effect!
+This works fine for pure functions. But with effects involved, types often no longer line up — especially if `g` returns an effect and `f` doesn't know how to deal with it.
 
-And this is where monads enter the picture.
+That's where monads come in.
 
 ## Monads
 
-A monad fundamentally defines how functions are composed in the presence of an associated effect. A monad consists of two operators, often called `unit` and `bind`, and often given in [Haskell syntax] like the following, given a monad `m`.
+A monad defines how to chain effectful functions. It provides two operations, usually called `unit` and `bind`. In Haskell-like syntax:
 
 ```haskell
 unit :: a -> m a
@@ -88,7 +86,7 @@ bind :: (a -> m b) -> (m a -> m b)
 
 For those unfamiliar with Haskell syntax, the type `t1 -> t2` is a function type, where `t1` is an argument and `t2` is a return type. And, the construction `m t1` refers to the type `t1` combined with the effect `m`.
 
-The `unit` operator takes a plain value and produces that same value, but within the associated effect. And, importantly, the `bind` operator takes an effectful function and produces an equivalent effectful function _that accepts the associated effect as an argument_. With `bind`, one can compose two effectful functions by `f` and `g` by simply using plain function composition on `bind f` and `g`.
+`unit` wraps a value in the effect. `bind` chains effectful functions, handling the effects automatically.
 
 ### But what is `bind`, exactly?
 
@@ -105,15 +103,15 @@ An important thing to note is that by allowing the composition of effectful func
 
 ## Wrapping up
 
-So, now you know what monads are for. Each monad instance defines how to route the control logic for a certain effect in such a way that functions producing that effect can be composed.
+So, now — hopefully — you know what monads are for. Each monad instance defines how to route the control logic for a certain effect in such a way that functions producing that effect can be composed.
 
 But, monads only deal with one effect at a time. How does one compose functions that have more than one effect? How does one compose _effects?_
 
-Consider an iterator. An iterator follows the rules of the list monad, because you can (in principle) collect the elements of an iterator into a list. But what if your iterator doesn't yield values directly, but instead yields a value in an effect?..
+Consider an iterator. An iterator follows the rules of the list monad, because you can (in principle) collect the elements of an iterator into a list. But what if your iterator doesn't yield values directly, but instead yields a value in an effect?
 
 In most programming languages, there is no way to use regular iteration to perform some effect. Instead, there are separate constructs in libraries for [fallible iterators] and [asynchronous streams]. As more and more effects are added into languages as first-class features, the problem [only gets worse].
 
-Fortunately, there is a way to unify these disparate interfaces and define a way to compose one effect with another... Up next time, the _monad transformer_!
+Fortunately, there is a way to unify these disparate interfaces and define a way to compose one effect with another... [Monad transformers]!
 
 <!-- Links. -->
 
@@ -130,3 +128,7 @@ Fortunately, there is a way to unify these disparate interfaces and define a way
 [fallible iterators]: https://docs.rs/fallible-iterator/0.2.0/fallible_iterator/
 [asynchronous streams]: https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#asynchronous-streams
 [only gets worse]: https://www.reddit.com/r/rust/comments/g0oekn/fallible_iterator_adapters_blogyoshuawuytscom/fnbuim1
+[monad transformers]: https://en.wikibooks.org/wiki/Haskell/Monad_transformers
+[koka]: https://koka-lang.github.io
+[eff]: https://github.com/eff-lang/eff
+[ocaml-effects]: https://ocaml.org/manual/5.3/effects.html
